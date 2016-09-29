@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         //현재 위치에 대한 마커를 띄워줌
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-
+        mLastLocation = location;
         //카메라를 옮김
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(14));
@@ -366,6 +366,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Marker marker;
+
         if (requestCode == REQUEST_SELECT_PLACE) {
             if (resultCode == RESULT_OK) {
                 Place place = PlaceAutocomplete.getPlace(this, data);
@@ -374,6 +376,25 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 Status status = PlaceAutocomplete.getStatus(this, data);
                 this.onError(status);
             }
+        } else if(requestCode == 0) {
+
+        } else {
+            if(stationMarkerMap.containsKey(String.valueOf(resultCode))){
+                marker = (Marker) stationMarkerMap.get(String.valueOf(resultCode));
+                Log.i("일반","일반");
+            } else if(neartourSpotStationMarkerMap.containsKey(String.valueOf(resultCode))) {
+                marker = (Marker) neartourSpotStationMarkerMap.get(String.valueOf(resultCode));
+                Log.i("관광지근처","관광지근처");
+            } else {
+                marker = (Marker) stationRedMarkMap.get(String.valueOf(resultCode));
+                Log.i("선택됨","선택됨");
+            }
+            uncheckNearStationMarker();
+            changeSelectedMarker(marker);
+            marker = (Marker) stationRedMarkMap.get("selected");
+            marker.showInfoWindow();
+            CameraUpdate center = CameraUpdateFactory.newLatLng(marker.getPosition());
+            mGoogleMap.animateCamera(center);
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -417,7 +438,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
-    public void btn_Tour_Spot(View v) {
+    public void btn_TourSpot_Click(View v) {
         Marker marker;
         if (!showTourSpot) {
             //tourSpotMarkerMap = new HashMap();
@@ -433,6 +454,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             uncheckNearStationMarker();
             showTourSpot = false;
         }
+    }
+
+    public void btn_StationList_Click(View v) {
+
+        Intent intent = new Intent(this, NearbyStationListActivity.class);
+        intent.putExtra("location", mLastLocation);
+        startActivityForResult(intent, 0);
     }
 
 

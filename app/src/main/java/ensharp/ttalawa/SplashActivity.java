@@ -21,6 +21,10 @@ public class SplashActivity extends Activity {
     /* 스플래쉬 화면이 뜨는 시간 */
     private final int SPLASH_DISPLAY_LENGTH = 2000;
 
+    private StationDbAdapter dbAdapter;
+    private SpotsDbAdapter spotDbAdapter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +40,18 @@ public class SplashActivity extends Activity {
             copyExcelDataToDatabase();
         dbAdapter.close();
 
+        this.spotDbAdapter = new SpotsDbAdapter(this);
+
+        //엑셀파일 데이터를 데이터베이스에 저장
+        spotDbAdapter.open();
+        temp = spotDbAdapter.fetchAllSpots();
+        Log.w("testing!getCount!", String.valueOf(temp.getCount()));
+
+        if (temp.getCount() == 0)
+            copyExcelDataToDbSpot();
+        spotDbAdapter.close();
+
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -46,8 +62,6 @@ public class SplashActivity extends Activity {
         }, SPLASH_DISPLAY_LENGTH);
 
     }
-
-    private StationDbAdapter dbAdapter;
 
     private void copyExcelDataToDatabase() {
         Log.w("ExcelToDatabase", "copyExcelDataToDatabase()");
@@ -99,4 +113,55 @@ public class SplashActivity extends Activity {
             }
         }
     }
+
+    private void copyExcelDataToDbSpot() {
+        Log.w("ExcelToDatabase", "copyExcelDataToDatabase()");
+
+        Workbook workbook = null;
+        Sheet sheet = null;
+
+        try {
+            InputStream is = getBaseContext().getResources().getAssets().open("TourSpot_DB.xls");
+            workbook = Workbook.getWorkbook(is);
+
+            if (workbook != null) {
+
+                sheet = workbook.getSheet(0);
+
+                if (sheet != null) {
+
+                    int nMaxColumn = 2;
+                    int nRowStartIndex = 0;
+                    int nRowEndIndex = sheet.getColumn(nMaxColumn - 1).length - 1;
+                    int nColumnStartIndex = 0;
+                    int nColumnEndIndex = sheet.getRow(2).length - 1;
+
+                    spotDbAdapter.open();
+                    for (int nRow = nRowStartIndex + 1; nRow <= nRowEndIndex; nRow++) {
+//                        String spotAddr1 = sheet.getCell(nColumnStartIndex, nRow).getContents();
+//                        String spotAddr2 = sheet.getCell(nColumnStartIndex + 1, nRow).getContents();
+                        String spotMapX = sheet.getCell(nColumnStartIndex, nRow).getContents();
+                        String spotMapY = sheet.getCell(nColumnStartIndex + 1, nRow).getContents();
+                        String spotTitle = sheet.getCell(nColumnStartIndex + 2, nRow).getContents();
+
+                        spotDbAdapter.createSpot(spotMapX, spotMapY, spotTitle);
+                    }
+                    spotDbAdapter.close();
+
+                } else {
+                    System.out.println("Sheet is null!!");
+                }
+            } else {
+                System.out.println("WorkBook is null!!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (workbook != null) {
+                workbook.close();
+            }
+        }
+
+    }
+
 }

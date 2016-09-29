@@ -4,22 +4,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="ensharp.ttalawa.MainActivity">
+
     <include
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/include"
         layout="@layout/toolbar"
-        android:id="@+id/include" />
-    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/include">
 
-        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.MapFragment"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context="com.iotaconcepts.aurum.MapLocationActivity" />
-    </LinearLayout>
+            android:layout_height="match_parent">
+
+            <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.MapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.iotaconcepts.aurum.MapLocationActivity" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/tourspot"
+            android:layout_width="54dp"
+            android:layout_height="36dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:onClick="btn_Tour_Spot"
+            android:text="관광지"
+            android:textSize="10dp" />
+
+    </FrameLayout>
 </RelativeLayout>

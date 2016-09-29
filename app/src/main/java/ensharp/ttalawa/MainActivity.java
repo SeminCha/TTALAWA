@@ -17,6 +17,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -59,12 +60,21 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private static final LatLngBounds BOUNDS_MOUNTAIN_VIEW = new LatLngBounds(
             new LatLng(37.398160, -122.180831), new LatLng(37.430610, -121.972090));
     private static final int REQUEST_SELECT_PLACE = 1000;
+
     private StationDbAdapter dbAdapter;
+    private SpotsDbAdapter spotDbAdapter;
 
     HashMap markerMap;
     HashMap stationMarkerMap;
     HashMap stationRedMarkMap;
+    HashMap tourSpotMarkerMap;
+    HashMap neartourSpotStationMarkerMap;
     boolean isSelected;
+
+    ArrayList<TourSpotMarkerItem> TourSpotList;
+    ArrayList<MarkerItem> BackupStationList;
+    boolean showTourSpot = true;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,9 +116,19 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         mGoogleMap = googleMap;
         mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-
         mGoogleMap.setOnMarkerClickListener(this);
 
+        markerMap = new HashMap();
+        stationMarkerMap = new HashMap();
+        stationRedMarkMap = new HashMap();
+        isSelected = false;
+        tourSpotMarkerMap = new HashMap();
+        neartourSpotStationMarkerMap = new HashMap();
+        TourSpotList = new ArrayList();
+        BackupStationList = new ArrayList();
+
+        getStationMarkerItems();
+        getTourSpotMarkerItems();
         //구글플레이 서비스를 초기화 시킴
         // 버전이 6.0이상인 경우 허가사용을 요청
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -124,12 +144,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             buildGoogleApiClient();
             mGoogleMap.setMyLocationEnabled(true);
         }
-
-        markerMap = new HashMap();
-        stationMarkerMap = new HashMap();
-        stationRedMarkMap = new HashMap();
-        isSelected = false;
-        getStationMarkerItems();
     }
 
     //Google Play Service API로 위치정보를 처리하는 앱에서는 반드시 필요
@@ -273,10 +287,23 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public boolean onMarkerClick(Marker marker) {
         Marker selectedMarker;
         if (marker.equals(markerMap.get("searched"))) {
+            uncheckNearStationMarker();
+            marker.showInfoWindow();
+            CameraUpdate center = CameraUpdateFactory.newLatLng(marker.getPosition());
+            mGoogleMap.animateCamera(center);
+        } else if (marker.equals(tourSpotMarkerMap.get("S" + marker.getTitle()))) {
+            changeSelectedMarker(null);
+            marker.showInfoWindow();
+            uncheckNearStationMarker();
+            checkNearStationMarker(marker);
+            CameraUpdate center = CameraUpdateFactory.newLatLng(marker.getPosition());
+            mGoogleMap.animateCamera(center);
+        } else if (marker.equals(neartourSpotStationMarkerMap.get(marker.getSnippet()))) {
             marker.showInfoWindow();
             CameraUpdate center = CameraUpdateFactory.newLatLng(marker.getPosition());
             mGoogleMap.animateCamera(center);
         } else {
+            uncheckNearStationMarker();
             changeSelectedMarker(marker);
             selectedMarker = (Marker) stationRedMarkMap.get("selected");
             selectedMarker.showInfoWindow();
@@ -304,12 +331,27 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
+    private void uncheckNearStationMarker() {
+
+        Marker removeMarker;
+
+        if (BackupStationList != null) {
+            for (int i = 0; i < BackupStationList.size(); i++) {
+                removeMarker = (Marker) neartourSpotStationMarkerMap.get(BackupStationList.get(i).contentNum);
+                removeMarker.remove();
+                addMarker(BackupStationList.get(i), "green");
+            }
+            BackupStationList.clear();
+        }
+    }
+
     @Override
     public void onPlaceSelected(Place place) {
         if (markerMap.containsKey("searched")) {
             Marker marker = (Marker) markerMap.get("searched");
             marker.remove();
         }
+        uncheckNearStationMarker();
         MarkerOptions markerOptions = new MarkerOptions();
         LatLng latLng = new LatLng(place.getLatLng().latitude, place.getLatLng().longitude);
         markerOptions.position(latLng);
@@ -375,6 +417,60 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
+    public void btn_Tour_Spot(View v) {
+        Marker marker;
+        if (!showTourSpot) {
+            //tourSpotMarkerMap = new HashMap();
+            for (TourSpotMarkerItem markerItem : TourSpotList) {
+                addTourSpotMarker(markerItem);
+            }
+            showTourSpot = true;
+        } else {
+            for (int i = 0; i < TourSpotList.size(); i++) {
+                marker = (Marker) tourSpotMarkerMap.get("S" + TourSpotList.get(i).tourSpotName);
+                marker.remove();
+            }
+            uncheckNearStationMarker();
+            showTourSpot = false;
+        }
+    }
+
+
+    private void getTourSpotMarkerItems() {
+
+        this.spotDbAdapter = new SpotsDbAdapter(this);
+
+        //엑셀파일 데이터를 데이터베이스에 저장
+        spotDbAdapter.open();
+        Cursor temp = spotDbAdapter.fetchAllSpots();
+        Log.w("testing!getCount!", String.valueOf(temp.getCount()));
+        spotDbAdapter.close();
+
+        spotDbAdapter.open();
+        Cursor result = spotDbAdapter.fetchAllSpots();
+        result.moveToFirst();
+        String resultStr = "";
+        while (!result.isAfterLast()) {
+            String spotNum = result.getString(0);
+            String spotMapX = result.getString(1);
+            String spotMapY = result.getString(2);
+            String spotTitle = result.getString(3);
+
+            resultStr += spotNum + ", " + spotMapX + ", " + spotMapY + " , " + spotTitle + "\n";
+
+            Log.w("resultStr:: ", spotNum + ", " + spotMapX + ", " + spotMapY + " , " + spotTitle);
+            TourSpotList.add(new TourSpotMarkerItem(Double.parseDouble(spotMapX), Double.parseDouble(spotMapY), spotTitle));
+            result.moveToNext();
+        }
+
+        result.close();
+        spotDbAdapter.close();
+
+        for (TourSpotMarkerItem markerItem : TourSpotList) {
+            addTourSpotMarker(markerItem);
+        }
+    }
+
     public Bitmap resizeMapIcons(String iconName, int width, int height) {
         Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(), getResources().getIdentifier(iconName, "drawable", getPackageName()));
         Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, width, height, false);
@@ -408,10 +504,33 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         } else if (markerMode.equals("green")) {
             markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("greenmarker", 100, 165)));
             stationMarkerMap.put(stationNumber, mGoogleMap.addMarker(markerOptions));
+        } else if (markerMode.equals("nearStation")) {
+            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("redmarker", 110, 180)));
+            neartourSpotStationMarkerMap.put(stationNumber, mGoogleMap.addMarker(markerOptions));
         }
 
         return;
     }
+
+    private void addTourSpotMarker(Marker marker) {
+        double latitude = marker.getPosition().latitude;
+        double longitude = marker.getPosition().longitude;
+        String tourSpotName = marker.getTitle();
+        TourSpotMarkerItem temp = new TourSpotMarkerItem(latitude, longitude, tourSpotName);
+        addTourSpotMarker(temp);
+        return;
+    }
+
+    private void addTourSpotMarker(TourSpotMarkerItem markerItem) {
+        LatLng position = new LatLng(markerItem.getLatitude(), markerItem.getLongitude());
+        String tourSpotName = markerItem.gettourSpotName();
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.title(tourSpotName);
+        markerOptions.position(position);
+        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bluemarker)));
+        tourSpotMarkerMap.put("S" + tourSpotName, mGoogleMap.addMarker(markerOptions));
+    }
+
 
     public class MarkerItem {
         Double latitude;
@@ -457,6 +576,194 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         public void setNumber(String contentNum) {
             this.contentNum = contentNum;
+        }
+    }
+
+    public class TourSpotMarkerItem {
+        Double latitude;
+        Double longitude;
+        String tourSpotName;
+
+        public TourSpotMarkerItem(Double latitude, Double longitude, String tourSpotName) {
+            this.latitude = latitude;
+            this.longitude = longitude;
+            this.tourSpotName = tourSpotName;
+        }
+
+        public Double getLatitude() {
+            return latitude;
+        }
+
+        public void setLatitude(double latitude) {
+            this.latitude = latitude;
+        }
+
+        public Double getLongitude() {
+            return longitude;
+        }
+
+        public void setLongitude(double longitude) {
+            this.longitude = longitude;
+        }
+
+        public String gettourSpotName() {
+            return tourSpotName;
+        }
+
+        public void settourSpotName(String tourSpotName) {
+            this.tourSpotName = tourSpotName;
+        }
+    }
+
+    private void checkNearStationMarker(Marker marker) {
+
+        Marker removeMarker;
+
+        switch (marker.getTitle()) {
+
+            //311, 312
+            case "덕수궁 돌담길":
+                BackupStationList.add(new MarkerItem(37.5666321, 126.9774684, "서울광장 옆", "311"));
+                BackupStationList.add(new MarkerItem(37.5646485, 126.9767202, "시청역 1번출구 뒤", "312"));
+                break;
+            //321, 322
+            case "명동":
+                BackupStationList.add(new MarkerItem(37.5651703, 126.9846938, "한국외환은행 본점 앞", "321"));
+                BackupStationList.add(new MarkerItem(37.5640689, 126.9863523, "명동성당 앞", "322"));
+                break;
+            //336
+            case "남산골 한옥마을":
+                BackupStationList.add(new MarkerItem(37.5625785, 126.9929071, "티마크 호텔 앞", "336"));
+                break;
+            //313, 324
+            case "숭례문":
+                BackupStationList.add(new MarkerItem(37.556828, 126.9719665, "서울역 광장 파출소 옆", "313"));
+                BackupStationList.add(new MarkerItem(37.561474, 126.9810088, "신세계백화점 본점 앞", "324"));
+                break;
+            //없음
+            case "남산 공원":
+                break;
+            //없음
+            case "N 서울타워":
+                break;
+            //302, 314
+            case "경복궁":
+                BackupStationList.add(new MarkerItem(37.5759804, 126.9741132, "경복궁역 4번출구 뒤", "302"));
+                BackupStationList.add(new MarkerItem(37.5790923, 126.9803112, "국립현대미술관", "314"));
+                break;
+            //304, 305, 306
+            case "광화문 광장":
+                BackupStationList.add(new MarkerItem(37.572552, 126.977427, "광화문역 2번출구 앞", "304"));
+                BackupStationList.add(new MarkerItem(37.5725488, 126.9783353, "종로구청 옆", "305"));
+                BackupStationList.add(new MarkerItem(37.5706864, 126.9764515, "광화문역 7번출구 앞", "306"));
+                break;
+            //333, 334, 338
+            case "종묘":
+                BackupStationList.add(new MarkerItem(37.5775368, 126.9936516, "창덕궁 매표소 앞", "333"));
+                BackupStationList.add(new MarkerItem(37.570584, 126.9918076, "종로3가역 2번출구 뒤", "334"));
+                BackupStationList.add(new MarkerItem(37.5712826, 126.9974966, "세운스퀘어 앞", "338"));
+                break;
+            //316, 318, 330
+            case "보신각 터":
+                BackupStationList.add(new MarkerItem(37.5703991, 126.9818301, "종각역 1번출구 앞", "316"));
+                BackupStationList.add(new MarkerItem(37.5685003, 126.9825137, "광교사거리 남측", "318"));
+                BackupStationList.add(new MarkerItem(37.5682135, 126.9849536, "청계천 한빛광장", "330"));
+                break;
+            //315, 326, 327
+            case "쌈지길":
+                BackupStationList.add(new MarkerItem(37.5758723, 126.9833154, "신한은행 안국역지점 옆", "315"));
+                BackupStationList.add(new MarkerItem(37.5762768, 126.9861608, "안국역 5번출구 앞", "326"));
+                BackupStationList.add(new MarkerItem(37.5736474, 126.9873623, "낙원상가 옆", "327"));
+                break;
+            //315, 326
+            case "인사동":
+                BackupStationList.add(new MarkerItem(37.5758723, 126.9833154, "신한은행 안국역지점 옆", "315"));
+                BackupStationList.add(new MarkerItem(37.5762768, 126.9861608, "안국역 5번출구 앞", "326"));
+                break;
+            //333, 337
+            case "창덕궁과 후원":
+                BackupStationList.add(new MarkerItem(37.5775368, 126.9936516, "창덕궁 매표소 앞", "333"));
+                BackupStationList.add(new MarkerItem(37.5789955, 126.9964652, "창경궁 입구", "337"));
+                break;
+            //333, 337
+            case "창경궁":
+                BackupStationList.add(new MarkerItem(37.5775368, 126.9936516, "창덕궁 매표소 앞", "333"));
+                BackupStationList.add(new MarkerItem(37.5789955, 126.9964652, "창경궁 입구", "337"));
+                break;
+            //325, 326
+            case "북촌 한옥마을":
+                BackupStationList.add(new MarkerItem(37.580003, 126.9849234, "가회동 주민센터 옆", "325"));
+                BackupStationList.add(new MarkerItem(37.5762768, 126.9861608, "안국역 5번출구 앞", "326"));
+                break;
+            //344, 346
+            case "흥인지문":
+                BackupStationList.add(new MarkerItem(37.5740319, 127.0067303, "성균관대 E하우스 앞", "344"));
+                BackupStationList.add(new MarkerItem(37.5688585, 127.0100563, "맥스타일 앞", "346"));
+                break;
+            //346, 347
+            case "동대문 패션타운":
+                BackupStationList.add(new MarkerItem(37.5688585, 127.0100563, "맥스타일 앞", "346"));
+                BackupStationList.add(new MarkerItem(37.5653792, 127.0078744, "동대문역사문화공원역 9번출구 앞", "347"));
+                break;
+            //341, 342
+            case "대학로":
+                BackupStationList.add(new MarkerItem(37.5821752, 127.0017159, "혜화역 3번출구 뒤", "341"));
+                BackupStationList.add(new MarkerItem(37.5796835, 127.00248, "대학로 마로니에공원", "342"));
+                break;
+            //341, 342
+            case "마로니에 공원":
+                BackupStationList.add(new MarkerItem(37.5821752, 127.0017159, "혜화역 3번출구 뒤", "341"));
+                BackupStationList.add(new MarkerItem(37.5796835, 127.00248, "대학로 마로니에공원", "342"));
+                break;
+            //341, 342
+            case "낙산 공원":
+                BackupStationList.add(new MarkerItem(37.5821752, 127.0017159, "혜화역 3번출구 뒤", "341"));
+                BackupStationList.add(new MarkerItem(37.5796835, 127.00248, "대학로 마로니에공원", "342"));
+                break;
+            //221, 222
+            case "63스퀘어":
+                BackupStationList.add(new MarkerItem(37.522529, 126.9376243, "여의도초교 앞", "221"));
+                BackupStationList.add(new MarkerItem(37.5190648, 126.9375564, "시범아파트버스정류장 옆", "222"));
+                break;
+            //202, 205, 206, 213, 214, 210
+            case "여의도 공원":
+                BackupStationList.add(new MarkerItem(37.5287803, 126.924613, "국민일보 앞", "202"));
+                BackupStationList.add(new MarkerItem(37.52629, 126.9204017, "산업은행 앞", "205"));
+                BackupStationList.add(new MarkerItem(37.5245621, 126.9178234, "KBS 앞", "206"));
+                BackupStationList.add(new MarkerItem(37.5250461, 126.9240667, "신한금융투자후문 앞", "210"));
+                BackupStationList.add(new MarkerItem(37.5218453, 126.9188913, "KT 앞", "213"));
+                BackupStationList.add(new MarkerItem(37.5230357, 126.9208569, "금융감독원 앞", "214"));
+                break;
+            //404, 405, 408, 409, 411, 414
+            case "MBC 월드 방송 테마 파크":
+                BackupStationList.add(new MarkerItem(37.583542, 126.8867311, "우리금융상암센터 교차로", "404"));
+                BackupStationList.add(new MarkerItem(37.5825567, 126.8856689, "DMC빌 앞", "405"));
+                BackupStationList.add(new MarkerItem(37.5808287, 126.886682, "LG CNS앞", "408"));
+                BackupStationList.add(new MarkerItem(37.579368, 126.8891946, "누리꿈스퀘어 옆", "409"));
+                BackupStationList.add(new MarkerItem(37.5779916, 126.8914505, "KT 앞", "411"));
+                BackupStationList.add(new MarkerItem(37.5781785, 126.8945011, "상암동주민센터 옆", "414"));
+                break;
+            //413, 420, 421
+            case "평화의 공원":
+                BackupStationList.add(new MarkerItem(37.5715288, 126.8896663, "상암월드컵파크 3단지 후문", "413"));
+                BackupStationList.add(new MarkerItem(37.5662219, 126.8961888, "서울시 공공자전거 운영센터 옆", "420"));
+                BackupStationList.add(new MarkerItem(37.5659259, 126.9009017, "마포구청 앞", "421"));
+                break;
+            //413, 420, 421
+            case "하늘 공원":
+                BackupStationList.add(new MarkerItem(37.5715288, 126.8896663, "상암월드컵파크 3단지 후문", "413"));
+                BackupStationList.add(new MarkerItem(37.5662219, 126.8961888, "서울시 공공자전거 운영센터 옆", "420"));
+                BackupStationList.add(new MarkerItem(37.5659259, 126.9009017, "마포구청 앞", "421"));
+                break;
+
+            default:
+                break;
+        }
+
+        for (int i = 0; i < BackupStationList.size(); i++) {
+            removeMarker = (Marker) stationMarkerMap.get(BackupStationList.get(i).contentNum.toString());
+            removeMarker.remove();
+            addMarker(BackupStationList.get(i), "nearStation");
         }
     }
 

@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
@@ -25,19 +28,25 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         PlaceSelectionListener,
+        GoogleMap.OnMarkerClickListener,
         com.google.android.gms.location.LocationListener {
 
     GoogleMap mGoogleMap;
@@ -45,10 +54,17 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     LocationRequest mLocationRequest;
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
+
     private static final String LOG_TAG = "PlaceSelectionListener";
     private static final LatLngBounds BOUNDS_MOUNTAIN_VIEW = new LatLngBounds(
             new LatLng(37.398160, -122.180831), new LatLng(37.430610, -121.972090));
     private static final int REQUEST_SELECT_PLACE = 1000;
+    private StationDbAdapter dbAdapter;
+
+    HashMap markerMap;
+    HashMap stationMarkerMap;
+    HashMap stationRedMarkMap;
+    boolean isSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkLocationPermission();
         }
-
+        // 검색 기능 코드
         PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.place_fragment);
         autocompleteFragment.setOnPlaceSelectedListener(this);
@@ -91,6 +107,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mGoogleMap = googleMap;
         mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
+        mGoogleMap.setOnMarkerClickListener(this);
+
         //구글플레이 서비스를 초기화 시킴
         // 버전이 6.0이상인 경우 허가사용을 요청
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -106,6 +124,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             buildGoogleApiClient();
             mGoogleMap.setMyLocationEnabled(true);
         }
+
+        markerMap = new HashMap();
+        stationMarkerMap = new HashMap();
+        stationRedMarkMap = new HashMap();
+        isSelected = false;
+        getStationMarkerItems();
     }
 
     //Google Play Service API로 위치정보를 처리하는 앱에서는 반드시 필요
@@ -246,14 +270,57 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     @Override
+    public boolean onMarkerClick(Marker marker) {
+        Marker selectedMarker;
+        if (marker.equals(markerMap.get("searched"))) {
+            marker.showInfoWindow();
+            CameraUpdate center = CameraUpdateFactory.newLatLng(marker.getPosition());
+            mGoogleMap.animateCamera(center);
+        } else {
+            changeSelectedMarker(marker);
+            selectedMarker = (Marker) stationRedMarkMap.get("selected");
+            selectedMarker.showInfoWindow();
+            CameraUpdate center = CameraUpdateFactory.newLatLng(marker.getPosition());
+            mGoogleMap.animateCamera(center);
+        }
+        return true;
+    }
+
+    private void changeSelectedMarker(Marker marker) {
+        Marker temp;
+        // 선택했던 마커 되돌리기
+        if (isSelected) {
+            temp = (Marker) stationRedMarkMap.get("selected");
+            addMarker(temp, "green");
+            temp.remove();
+            isSelected = false;
+        }
+        // 선택한 마커 표시
+        if (marker != null) {
+            temp = (Marker) stationMarkerMap.get(marker.getSnippet());
+            addMarker(temp, "red");
+            temp.remove();
+            isSelected = true;
+        }
+    }
+
+    @Override
     public void onPlaceSelected(Place place) {
+        if (markerMap.containsKey("searched")) {
+            Marker marker = (Marker) markerMap.get("searched");
+            marker.remove();
+        }
+        MarkerOptions markerOptions = new MarkerOptions();
         LatLng latLng = new LatLng(place.getLatLng().latitude, place.getLatLng().longitude);
+        markerOptions.position(latLng);
+        markerOptions.title(place.getName().toString());
+        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.yellowmarker)));
+        markerMap.put("searched", mGoogleMap.addMarker(markerOptions));
+        Marker marker = (Marker) markerMap.get("searched");
+        marker.showInfoWindow();
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(14));
-        Marker marker = mGoogleMap.addMarker(new MarkerOptions()
-                .position(latLng)
-                .title(place.getName().toString())
-                .draggable(true));
+
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -275,6 +342,122 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         Log.e(LOG_TAG, "onError: Status = " + status.toString());
         Toast.makeText(this, "Place selection failed: " + status.getStatusMessage(),
                 Toast.LENGTH_SHORT).show();
+    }
+
+    private void getStationMarkerItems() {
+
+        this.dbAdapter = new StationDbAdapter(this);
+
+        dbAdapter.open();
+        Cursor result = dbAdapter.fetchAllStations();
+        result.moveToFirst();
+        String content_name = "";
+        String coordinate_x = "";
+        String coordinate_y = "";
+        String content_num = "";
+
+        ArrayList<MarkerItem> sampleList = new ArrayList();
+        while (!result.isAfterLast()) {
+            content_name = result.getString(1);
+            content_num = result.getString(6);
+            coordinate_x = result.getString(4);
+            coordinate_y = result.getString(5);
+            sampleList.add(new MarkerItem(Double.parseDouble(coordinate_x), Double.parseDouble(coordinate_y), content_name, content_num));
+            result.moveToNext();
+        }
+
+        result.close();
+        dbAdapter.close();
+
+        for (MarkerItem markerItem : sampleList) {
+            markerItem.setName(markerItem.getName().substring(4));
+            addMarker(markerItem, "green");
+        }
+    }
+
+    public Bitmap resizeMapIcons(String iconName, int width, int height) {
+        Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(), getResources().getIdentifier(iconName, "drawable", getPackageName()));
+        Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, width, height, false);
+        return resizedBitmap;
+    }
+
+    private void addMarker(Marker marker, String markerMode) {
+        double latitude = marker.getPosition().latitude;
+        double longitude = marker.getPosition().longitude;
+        String stationName = marker.getTitle();
+        String stationNumber = marker.getSnippet();
+        MarkerItem temp = new MarkerItem(latitude, longitude, stationName, stationNumber);
+        addMarker(temp, markerMode);
+        return;
+    }
+
+    private void addMarker(MarkerItem markerItem, String markerMode) {
+
+        LatLng position = new LatLng(markerItem.getLatitude(), markerItem.getLongitude());
+        String stationName = markerItem.getName();
+        String stationNumber = markerItem.getNumber();
+
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.title(stationName);
+        markerOptions.position(position);
+        markerOptions.snippet(stationNumber);
+
+        if (markerMode.equals("red")) {
+            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("redmarker", 110, 180)));
+            stationRedMarkMap.put("selected", mGoogleMap.addMarker(markerOptions));
+        } else if (markerMode.equals("green")) {
+            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("greenmarker", 100, 165)));
+            stationMarkerMap.put(stationNumber, mGoogleMap.addMarker(markerOptions));
+        }
+
+        return;
+    }
+
+    public class MarkerItem {
+        Double latitude;
+        Double longitude;
+        String contentName;
+        String contentNum;
+
+
+        public MarkerItem(Double latitude, Double longitude, String contentName, String contentNum) {
+            this.latitude = latitude;
+            this.longitude = longitude;
+            this.contentName = contentName;
+            this.contentNum = contentNum;
+        }
+
+        public Double getLatitude() {
+            return latitude;
+        }
+
+        public void setLatitude(double latitude) {
+            this.latitude = latitude;
+        }
+
+        public Double getLongitude() {
+            return longitude;
+        }
+
+        public void setLongitude(double longitude) {
+            this.longitude = longitude;
+        }
+
+        public String getName() {
+            return contentName;
+        }
+
+        public void setName(String contentName) {
+            this.contentName = contentName;
+        }
+
+        public String getNumber() {
+            return contentNum;
+        }
+
+        public void setNumber(String contentNum) {
+            this.contentNum = contentNum;
+        }
     }
 
 

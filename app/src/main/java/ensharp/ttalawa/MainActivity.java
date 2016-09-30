@@ -18,6 +18,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -48,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         GoogleApiClient.OnConnectionFailedListener,
         PlaceSelectionListener,
         GoogleMap.OnMarkerClickListener,
+        GoogleMap.OnMapClickListener,
         com.google.android.gms.location.LocationListener {
 
     GoogleMap mGoogleMap;
@@ -75,6 +79,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     ArrayList<MarkerItem> BackupStationList;
     boolean showTourSpot = true;
 
+    LinearLayout stationInfoLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +100,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         autocompleteFragment.setOnPlaceSelectedListener(this);
         autocompleteFragment.setHint("장소, 주소입력");
         autocompleteFragment.setBoundsBias(BOUNDS_MOUNTAIN_VIEW);
+
+        stationInfoLayout = (LinearLayout) findViewById(R.id.stationInfoLayout);
 
         mapFrag = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         //구글맵 인스턴스(지도)가 사용될 준비가 되면 this라는 콜백객체를 발생시킨다.
@@ -117,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mGoogleMap = googleMap;
         mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mGoogleMap.setOnMarkerClickListener(this);
+        mGoogleMap.setOnMapClickListener(this);
 
         markerMap = new HashMap();
         stationMarkerMap = new HashMap();
@@ -170,8 +179,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
 
         final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-
     }
 
     private void buildAlertMessageNoGps() {
@@ -305,12 +312,44 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         } else {
             uncheckNearStationMarker();
             changeSelectedMarker(marker);
+            changeInfoLayoutVisibility(true);
             selectedMarker = (Marker) stationRedMarkMap.get("selected");
             selectedMarker.showInfoWindow();
             CameraUpdate center = CameraUpdateFactory.newLatLng(marker.getPosition());
             mGoogleMap.animateCamera(center);
         }
         return true;
+    }
+
+    @Override
+    public void onMapClick(LatLng latLng) {
+        changeSelectedMarker(null);
+        uncheckNearStationMarker();
+        changeInfoLayoutVisibility(false);
+    }
+
+    private void changeInfoLayoutVisibility(boolean isVisible) {
+
+        Animation slide_down = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slide_down);
+
+        Animation slide_up = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slide_up);
+
+        if (isVisible) {
+            // Prepare the View for the animation
+            if(stationInfoLayout.getVisibility() == View.VISIBLE) {
+                stationInfoLayout.setVisibility(View.VISIBLE);
+            }
+            else {
+                stationInfoLayout.setVisibility(View.VISIBLE);
+                stationInfoLayout.startAnimation(slide_up);
+            }
+        } else {
+            // Prepare the View for the animation
+            stationInfoLayout.startAnimation(slide_down);
+            stationInfoLayout.setVisibility(View.INVISIBLE);
+        }
     }
 
     private void changeSelectedMarker(Marker marker) {
@@ -376,18 +415,18 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 Status status = PlaceAutocomplete.getStatus(this, data);
                 this.onError(status);
             }
-        } else if(resultCode == 0) {
+        } else if (resultCode == 0) {
 
         } else {
-            if(stationMarkerMap.containsKey(String.valueOf(resultCode))){
+            if (stationMarkerMap.containsKey(String.valueOf(resultCode))) {
                 marker = (Marker) stationMarkerMap.get(String.valueOf(resultCode));
-                Log.i("일반","일반");
-            } else if(neartourSpotStationMarkerMap.containsKey(String.valueOf(resultCode))) {
+                Log.i("일반", "일반");
+            } else if (neartourSpotStationMarkerMap.containsKey(String.valueOf(resultCode))) {
                 marker = (Marker) neartourSpotStationMarkerMap.get(String.valueOf(resultCode));
-                Log.i("관광지근처","관광지근처");
+                Log.i("관광지근처", "관광지근처");
             } else {
                 marker = (Marker) stationRedMarkMap.get(String.valueOf(resultCode));
-                Log.i("선택됨","선택됨");
+                Log.i("선택됨", "선택됨");
             }
             uncheckNearStationMarker();
             changeSelectedMarker(marker);

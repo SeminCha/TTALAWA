@@ -43,7 +43,6 @@ public class NearbyStationListActivity extends Activity implements AdapterView.O
 
     @Override
     public void onItemClick(AdapterView parent, View v, int position, long id) {
-
         ListViewAdapter.ListViewItem item = (ListViewAdapter.ListViewItem) parent.getItemAtPosition(position);
         String stationNumber = item.getStationNumber();
         setResult(Integer.parseInt(stationNumber));

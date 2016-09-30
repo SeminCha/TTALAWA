@@ -55,5 +55,19 @@
                 android:layout_below="@+id/tourspot"
                 android:layout_alignParentStart="true" />
         </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/stationInfoLayout"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/stationinfo_layout_style"
+            android:visibility="invisible">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="거치소 정보"/>
+        </LinearLayout>
     </FrameLayout>
 </RelativeLayout>

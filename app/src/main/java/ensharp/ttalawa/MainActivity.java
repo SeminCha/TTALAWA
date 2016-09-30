@@ -404,6 +404,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     }
 
+    // 결과에 대한 함수
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Marker marker;
 

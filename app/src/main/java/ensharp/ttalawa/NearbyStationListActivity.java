@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,13 +26,17 @@ public class NearbyStationListActivity extends Activity implements AdapterView.O
     ListViewAdapter adapter;
     StationData stationData;
     Location currentLocation;
+    TextView activityNameTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nearbystationlist);
-        // 버전이 6.0이상인 경우 허가사용을 요청
+
+        activityNameTxt = (TextView) findViewById(R.id.activityName);
+        activityNameTxt.setText("거치소 목록");
         currentLocation = getIntent().getParcelableExtra("location");
+
         getStationData();
         sortingStationList();
     }
@@ -50,6 +55,11 @@ public class NearbyStationListActivity extends Activity implements AdapterView.O
         setResult(0);
         finish();
         super.onBackPressed();
+    }
+
+    public void btn_Back_Click(View v) {
+        setResult(0);
+        finish();
     }
 
     private void sortingStationList() {

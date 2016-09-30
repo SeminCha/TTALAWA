@@ -376,7 +376,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 Status status = PlaceAutocomplete.getStatus(this, data);
                 this.onError(status);
             }
-        } else if(requestCode == 0) {
+        } else if(resultCode == 0) {
 
         } else {
             if(stationMarkerMap.containsKey(String.valueOf(resultCode))){

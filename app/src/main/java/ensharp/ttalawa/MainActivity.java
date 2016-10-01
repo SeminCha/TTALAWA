@@ -136,6 +136,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mGoogleMap.setOnMarkerClickListener(this);
         mGoogleMap.setOnMapClickListener(this);
+        mGoogleMap.getUiSettings().setMyLocationButtonEnabled(false);
+
+        mapButtonSetting();
 
         markerMap = new HashMap();
         stationMarkerMap = new HashMap();
@@ -267,6 +270,56 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
+    private void mapButtonSetting() {
+
+        Button myLocation = (Button) findViewById(R.id.myLocationBtn);
+        Button stationList = (Button) findViewById(R.id.stationListBtn);
+        Button tourSpotMarker = (Button) findViewById(R.id.tourSpotMarkerBtn);
+
+        myLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Location location = mGoogleMap.getMyLocation();
+
+                if (location != null) {
+                    LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                    mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                    mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+                }
+            }
+        });
+
+        stationList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LatLng center = mGoogleMap.getCameraPosition().target;
+                Intent intent = new Intent(MainActivity.this, NearbyStationListActivity.class);
+                intent.putExtra("location", center);
+                startActivityForResult(intent, 0);
+            }
+        });
+
+        tourSpotMarker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Marker marker;
+                if (!showTourSpot) {
+                    //tourSpotMarkerMap = new HashMap();
+                    for (TourSpotMarkerItem markerItem : TourSpotList) {
+                        addTourSpotMarker(markerItem);
+                    }
+                    showTourSpot = true;
+                } else {
+                    for (int i = 0; i < TourSpotList.size(); i++) {
+                        marker = (Marker) tourSpotMarkerMap.get("S" + TourSpotList.get(i).tourSpotName);
+                        marker.remove();
+                    }
+                    uncheckNearStationMarker();
+                    showTourSpot = false;
+                }
+            }
+        });
+    }
 
     //권한이 없을 경우 권한사용 동의창을 띄우고, "동의", "비동의"에 대한 콜백을 받는 함수
     @Override
@@ -614,33 +667,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             addMarker(markerItem, "green");
         }
     }
-
-    public void btn_TourSpot_Click(View v) {
-        Marker marker;
-        if (!showTourSpot) {
-            //tourSpotMarkerMap = new HashMap();
-            for (TourSpotMarkerItem markerItem : TourSpotList) {
-                addTourSpotMarker(markerItem);
-            }
-            showTourSpot = true;
-        } else {
-            for (int i = 0; i < TourSpotList.size(); i++) {
-                marker = (Marker) tourSpotMarkerMap.get("S" + TourSpotList.get(i).tourSpotName);
-                marker.remove();
-            }
-            uncheckNearStationMarker();
-            showTourSpot = false;
-        }
-    }
-
-    public void btn_StationList_Click(View v) {
-
-        LatLng center = mGoogleMap.getCameraPosition().target;
-        Intent intent = new Intent(this, NearbyStationListActivity.class);
-        intent.putExtra("location", center);
-        startActivityForResult(intent, 0);
-    }
-
 
     private void getTourSpotMarkerItems() {
 

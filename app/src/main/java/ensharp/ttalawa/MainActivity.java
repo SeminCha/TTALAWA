@@ -394,6 +394,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private void TmapNavigation(Marker marker) {
         TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         String networkoper = telephonyManager.getNetworkOperatorName();
+        boolean isTmapApp;
 
         tmaptapi = new TMapTapi(this);
         tmaptapi.setSKPMapAuthentication("593851f2-df66-33d7-ae97-52ef7278295f");
@@ -412,30 +413,43 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
-        boolean isTmapApp = tmaptapi.isTmapApplicationInstalled();
+        //boolean isTmapApp = tmaptapi.isTmapApplicationInstalled();
 
-        // T맵이 설치되어 있을 경우 바로 경로 안내
-        if (isTmapApp) {
-            tmaptapi.invokeRoute(marker.getTitle() + " " + "거치소", (float) marker.getPosition().longitude, (float) marker.getPosition().latitude);
-            // T맵이 설치되어 있지 않을 경우 통신사 별로 설치 URL로 가기
-        } else {
-            if (networkoper.equals("SKTelecom")) {
-                Log.i("통신사", "skt");
+        if (networkoper.equals("SKTelecom")) {
+            Log.i("통신사", "skt");
+            isTmapApp = appInstalledOrNot("com.skt.skaf.l001mtm091");
+            if (isTmapApp) {
+                tmaptapi.invokeRoute(marker.getTitle() + " " + "거치소", (float) marker.getPosition().longitude, (float) marker.getPosition().latitude);
+            } else {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://onesto.re/0000163382"));
                 startActivity(intent);
-            } else if (networkoper.equals("KT") || networkoper.equals("olleh")) {
-                Log.i("통신사", "kt");
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(" https://play.google.com/store/apps/details?id=com.skt.tmap.ku"));
-                startActivity(intent);
-            } else if (networkoper.matches(".*LG.*")) {
-                Log.i("통신사", "lg");
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(" https://play.google.com/store/apps/details?id=com.skt.tmap.ku"));
-                startActivity(intent);
-            } else {
-                Log.i("통신사", "없음");
-                Toast.makeText(this, "현재 단말기로 네비게이션 서비스를 받으실 수 없습니다.", Toast.LENGTH_LONG).show();
             }
+        } else if (networkoper.equals("KT") || networkoper.equals("olleh") || networkoper.matches(".*LG.*")) {
+            Log.i("통신사", "kt나 lg");
+            isTmapApp = appInstalledOrNot("com.skt.skaf.l001mtm092");
+            if (isTmapApp) {
+                tmaptapi.invokeRoute(marker.getTitle() + " " + "거치소", (float) marker.getPosition().longitude, (float) marker.getPosition().latitude);
+            } else {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.skt.tmap.ku"));
+                startActivity(intent);
+            }
+        } else {
+            Log.i("통신사", "없음");
+            Toast.makeText(this, "현재 단말기로 네비게이션 서비스를 받으실 수 없습니다.", Toast.LENGTH_LONG).show();
         }
+
+    }
+
+    private boolean appInstalledOrNot(String uri) {
+        PackageManager pm = getPackageManager();
+        boolean app_installed;
+        try {
+            pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
+            app_installed = true;
+        } catch (PackageManager.NameNotFoundException e) {
+            app_installed = false;
+        }
+        return app_installed;
     }
 
     private void changeInfoLayoutVisibility(LinearLayout view, boolean isVisible) {

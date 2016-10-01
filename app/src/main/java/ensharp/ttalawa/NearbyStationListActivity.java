@@ -9,6 +9,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -25,7 +27,7 @@ public class NearbyStationListActivity extends Activity implements AdapterView.O
     ListView listview;
     ListViewAdapter adapter;
     StationData stationData;
-    Location currentLocation;
+    LatLng currentLocation;
     TextView activityNameTxt;
 
     @Override
@@ -73,7 +75,7 @@ public class NearbyStationListActivity extends Activity implements AdapterView.O
         for (int i = 0; i < stationList.size(); i++) {
             float[] distance = new float[2];
             Location.distanceBetween(stationList.get(i).getLatitude(), stationList.get(i).getLongitude(),
-                    currentLocation.getLatitude(), currentLocation.getLongitude(), distance);
+                    currentLocation.latitude, currentLocation.longitude, distance);
             distanceList.add(distance[0]);
             placeDistance.put(distance[0], stationList.get(i));
         }

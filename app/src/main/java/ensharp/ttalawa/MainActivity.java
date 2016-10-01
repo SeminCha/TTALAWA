@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -16,6 +17,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -44,6 +46,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.skp.Tmap.TMapTapi;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -83,6 +86,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     LinearLayout stationInfoLayout;
     LinearLayout tourSpotInfoLayout;
+
+    TMapTapi tmaptapi;
+    Marker navigationMarker;
 
 
     @Override
@@ -299,30 +305,21 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         Marker selectedMarker;
         if (marker.equals(markerMap.get("searched"))) {
             uncheckNearStationMarker();
-            CameraUpdate center = CameraUpdateFactory.newLatLng(marker.getPosition());
-            mGoogleMap.animateCamera(center);
         } else if (marker.equals(tourSpotMarkerMap.get("S" + marker.getTitle()))) {
             changeSelectedMarker(null);
             insertInfoLayoutContent(marker, tourSpotInfoLayout);
             changeInfoLayoutVisibility(tourSpotInfoLayout, true);
             uncheckNearStationMarker();
             checkNearStationMarker(marker);
-            CameraUpdate center = CameraUpdateFactory.newLatLng(marker.getPosition());
-            mGoogleMap.animateCamera(center);
         } else if (marker.equals(neartourSpotStationMarkerMap.get(marker.getSnippet()))) {
             insertInfoLayoutContent(marker, stationInfoLayout);
             changeInfoLayoutVisibility(stationInfoLayout, true);
-            CameraUpdate center = CameraUpdateFactory.newLatLng(marker.getPosition());
-            mGoogleMap.animateCamera(center);
         } else {
             uncheckNearStationMarker();
             changeSelectedMarker(marker);
             insertInfoLayoutContent(marker, stationInfoLayout);
             changeInfoLayoutVisibility(stationInfoLayout, true);
             selectedMarker = (Marker) stationRedMarkMap.get("selected");
-            selectedMarker.showInfoWindow();
-            CameraUpdate center = CameraUpdateFactory.newLatLng(marker.getPosition());
-            mGoogleMap.animateCamera(center);
         }
         return true;
     }
@@ -348,6 +345,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         TextView tourSpotName = (TextView) findViewById(R.id.tourSpotNameTxt);
         Button tourSpotNavigation = (Button) findViewById(R.id.tourSpotNavigationBtn);
 
+        navigationMarker = marker;
+
         if (view == stationInfoLayout) {
 
             dbAdapter.open();
@@ -371,8 +370,71 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             stationRack.setText(rack_count + "대");
             stationAddress.setText(addr_gu + " " + new_addr);
 
+            stationNavigation.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    TmapNavigation(navigationMarker);
+                }
+            });
+
+
         } else {
             tourSpotName.setText(marker.getTitle());
+
+            tourSpotNavigation.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    TmapNavigation(navigationMarker);
+                }
+            });
+
+        }
+    }
+
+    private void TmapNavigation(Marker marker) {
+        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        String networkoper = telephonyManager.getNetworkOperatorName();
+
+        tmaptapi = new TMapTapi(this);
+        tmaptapi.setSKPMapAuthentication("593851f2-df66-33d7-ae97-52ef7278295f");
+
+        tmaptapi.setOnAuthenticationListener(new TMapTapi.OnAuthenticationListenerCallback() {
+
+            @Override
+            public void SKPMapApikeySucceed() {
+                Log.i("키인증", "성공");
+            }
+
+            @Override
+            public void SKPMapApikeyFailed(String errorMsg) {
+                Log.i("키인증", "실패");
+                Toast.makeText(MainActivity.this, "네비게이션 안내 오류로 다음에 이용해 주시기 바랍니다.", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        boolean isTmapApp = tmaptapi.isTmapApplicationInstalled();
+
+        // T맵이 설치되어 있을 경우 바로 경로 안내
+        if (isTmapApp) {
+            tmaptapi.invokeRoute(marker.getTitle() + " " + "거치소", (float) marker.getPosition().longitude, (float) marker.getPosition().latitude);
+            // T맵이 설치되어 있지 않을 경우 통신사 별로 설치 URL로 가기
+        } else {
+            if (networkoper.equals("SKTelecom")) {
+                Log.i("통신사", "skt");
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://onesto.re/0000163382"));
+                startActivity(intent);
+            } else if (networkoper.equals("KT") || networkoper.equals("olleh")) {
+                Log.i("통신사", "kt");
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(" https://play.google.com/store/apps/details?id=com.skt.tmap.ku"));
+                startActivity(intent);
+            } else if (networkoper.matches(".*LG.*")) {
+                Log.i("통신사", "lg");
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(" https://play.google.com/store/apps/details?id=com.skt.tmap.ku"));
+                startActivity(intent);
+            } else {
+                Log.i("통신사", "없음");
+                Toast.makeText(this, "현재 단말기로 네비게이션 서비스를 받으실 수 없습니다.", Toast.LENGTH_LONG).show();
+            }
         }
     }
 
@@ -458,10 +520,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         markerOptions.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.yellowmarker)));
         markerMap.put("searched", mGoogleMap.addMarker(markerOptions));
         Marker marker = (Marker) markerMap.get("searched");
+        changeInfoLayoutVisibility(stationInfoLayout, false);
+        changeInfoLayoutVisibility(tourSpotInfoLayout, false);
         marker.showInfoWindow();
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(14));
-
     }
 
     // 결과에 대한 함수
@@ -558,8 +621,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     public void btn_StationList_Click(View v) {
 
+        LatLng center = mGoogleMap.getCameraPosition().target;
         Intent intent = new Intent(this, NearbyStationListActivity.class);
-        intent.putExtra("location", mLastLocation);
+        intent.putExtra("location", center);
         startActivityForResult(intent, 0);
     }
 

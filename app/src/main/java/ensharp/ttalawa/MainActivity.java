@@ -20,7 +20,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -301,20 +303,21 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             mGoogleMap.animateCamera(center);
         } else if (marker.equals(tourSpotMarkerMap.get("S" + marker.getTitle()))) {
             changeSelectedMarker(null);
-
+            insertInfoLayoutContent(marker, tourSpotInfoLayout);
             changeInfoLayoutVisibility(tourSpotInfoLayout, true);
             uncheckNearStationMarker();
             checkNearStationMarker(marker);
             CameraUpdate center = CameraUpdateFactory.newLatLng(marker.getPosition());
             mGoogleMap.animateCamera(center);
         } else if (marker.equals(neartourSpotStationMarkerMap.get(marker.getSnippet()))) {
+            insertInfoLayoutContent(marker, stationInfoLayout);
             changeInfoLayoutVisibility(stationInfoLayout, true);
             CameraUpdate center = CameraUpdateFactory.newLatLng(marker.getPosition());
             mGoogleMap.animateCamera(center);
         } else {
             uncheckNearStationMarker();
             changeSelectedMarker(marker);
-
+            insertInfoLayoutContent(marker, stationInfoLayout);
             changeInfoLayoutVisibility(stationInfoLayout, true);
             selectedMarker = (Marker) stationRedMarkMap.get("selected");
             selectedMarker.showInfoWindow();
@@ -328,8 +331,49 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onMapClick(LatLng latLng) {
         changeSelectedMarker(null);
         uncheckNearStationMarker();
-        changeInfoLayoutVisibility(stationInfoLayout,false);
-        changeInfoLayoutVisibility(tourSpotInfoLayout,false);
+        changeInfoLayoutVisibility(stationInfoLayout, false);
+        changeInfoLayoutVisibility(tourSpotInfoLayout, false);
+    }
+
+    private void insertInfoLayoutContent(Marker marker, LinearLayout view) {
+
+        // 거치소 정보 레이아웃에 대한 정보
+        TextView stationName = (TextView) findViewById(R.id.stationNameTxt);
+        TextView stationNumber = (TextView) findViewById(R.id.stationNumberTxt);
+        TextView stationRack = (TextView) findViewById(R.id.stationRackTxt);
+        TextView stationAddress = (TextView) findViewById(R.id.stationAddressTxt);
+        Button stationNavigation = (Button) findViewById(R.id.stationNavigationBtn);
+
+        // 관광명소 정보 레이아웃에 대한 정보
+        TextView tourSpotName = (TextView) findViewById(R.id.tourSpotNameTxt);
+        Button tourSpotNavigation = (Button) findViewById(R.id.tourSpotNavigationBtn);
+
+        if (view == stationInfoLayout) {
+
+            dbAdapter.open();
+            Cursor result = dbAdapter.fetchStationByNumber(marker.getSnippet());
+            result.moveToFirst();
+
+
+            String addr_gu = "";
+            String new_addr = "";
+            String rack_count = "";
+
+            while (!result.isAfterLast()) {
+                addr_gu = result.getString(2);
+                new_addr = result.getString(3);
+                rack_count = result.getString(7);
+                result.moveToNext();
+            }
+
+            stationName.setText(marker.getTitle());
+            stationNumber.setText(marker.getSnippet());
+            stationRack.setText(rack_count + "대");
+            stationAddress.setText(addr_gu + " " + new_addr);
+
+        } else {
+            tourSpotName.setText(marker.getTitle());
+        }
     }
 
     private void changeInfoLayoutVisibility(LinearLayout view, boolean isVisible) {

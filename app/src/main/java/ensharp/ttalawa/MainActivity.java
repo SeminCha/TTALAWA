@@ -426,7 +426,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             stationNavigation.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    TmapNavigation(navigationMarker);
+                    TmapNavigation(navigationMarker, true);
                 }
             });
 
@@ -437,14 +437,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             tourSpotNavigation.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    TmapNavigation(navigationMarker);
+                    TmapNavigation(navigationMarker, false);
                 }
             });
 
         }
     }
 
-    private void TmapNavigation(Marker marker) {
+    private void TmapNavigation(Marker marker, boolean isStation) {
         TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         String networkoper = telephonyManager.getNetworkOperatorName();
         boolean isTmapApp;
@@ -472,7 +472,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             Log.i("통신사", "skt");
             isTmapApp = appInstalledOrNot("com.skt.skaf.l001mtm091");
             if (isTmapApp) {
-                tmaptapi.invokeRoute(marker.getTitle() + " " + "거치소", (float) marker.getPosition().longitude, (float) marker.getPosition().latitude);
+                if (isStation) {
+                    tmaptapi.invokeRoute(marker.getTitle() + " " + "거치소", (float) marker.getPosition().longitude, (float) marker.getPosition().latitude);
+                } else {
+                    tmaptapi.invokeRoute(marker.getTitle(), (float) marker.getPosition().longitude, (float) marker.getPosition().latitude);
+                }
             } else {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://onesto.re/0000163382"));
                 startActivity(intent);
@@ -481,7 +485,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             Log.i("통신사", "kt나 lg");
             isTmapApp = appInstalledOrNot("com.skt.skaf.l001mtm092");
             if (isTmapApp) {
-                tmaptapi.invokeRoute(marker.getTitle() + " " + "거치소", (float) marker.getPosition().longitude, (float) marker.getPosition().latitude);
+                if (isStation) {
+                    tmaptapi.invokeRoute(marker.getTitle() + " " + "거치소", (float) marker.getPosition().longitude, (float) marker.getPosition().latitude);
+                } else {
+                    tmaptapi.invokeRoute(marker.getTitle(), (float) marker.getPosition().longitude, (float) marker.getPosition().latitude);
+                }
             } else {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.skt.tmap.ku"));
                 startActivity(intent);

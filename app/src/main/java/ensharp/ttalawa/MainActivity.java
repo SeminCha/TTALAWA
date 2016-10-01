@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     boolean showTourSpot = true;
 
     LinearLayout stationInfoLayout;
+    LinearLayout tourSpotInfoLayout;
 
 
     @Override
@@ -102,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         autocompleteFragment.setBoundsBias(BOUNDS_MOUNTAIN_VIEW);
 
         stationInfoLayout = (LinearLayout) findViewById(R.id.stationInfoLayout);
+        tourSpotInfoLayout = (LinearLayout) findViewById(R.id.tourSpotInfoLayout);
 
         mapFrag = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         //구글맵 인스턴스(지도)가 사용될 준비가 되면 this라는 콜백객체를 발생시킨다.
@@ -295,24 +297,25 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         Marker selectedMarker;
         if (marker.equals(markerMap.get("searched"))) {
             uncheckNearStationMarker();
-            marker.showInfoWindow();
             CameraUpdate center = CameraUpdateFactory.newLatLng(marker.getPosition());
             mGoogleMap.animateCamera(center);
         } else if (marker.equals(tourSpotMarkerMap.get("S" + marker.getTitle()))) {
             changeSelectedMarker(null);
-            marker.showInfoWindow();
+
+            changeInfoLayoutVisibility(tourSpotInfoLayout, true);
             uncheckNearStationMarker();
             checkNearStationMarker(marker);
             CameraUpdate center = CameraUpdateFactory.newLatLng(marker.getPosition());
             mGoogleMap.animateCamera(center);
         } else if (marker.equals(neartourSpotStationMarkerMap.get(marker.getSnippet()))) {
-            marker.showInfoWindow();
+            changeInfoLayoutVisibility(stationInfoLayout, true);
             CameraUpdate center = CameraUpdateFactory.newLatLng(marker.getPosition());
             mGoogleMap.animateCamera(center);
         } else {
             uncheckNearStationMarker();
             changeSelectedMarker(marker);
-            changeInfoLayoutVisibility(true);
+
+            changeInfoLayoutVisibility(stationInfoLayout, true);
             selectedMarker = (Marker) stationRedMarkMap.get("selected");
             selectedMarker.showInfoWindow();
             CameraUpdate center = CameraUpdateFactory.newLatLng(marker.getPosition());
@@ -325,10 +328,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onMapClick(LatLng latLng) {
         changeSelectedMarker(null);
         uncheckNearStationMarker();
-        changeInfoLayoutVisibility(false);
+        changeInfoLayoutVisibility(stationInfoLayout,false);
+        changeInfoLayoutVisibility(tourSpotInfoLayout,false);
     }
 
-    private void changeInfoLayoutVisibility(boolean isVisible) {
+    private void changeInfoLayoutVisibility(LinearLayout view, boolean isVisible) {
 
         Animation slide_down = AnimationUtils.loadAnimation(getApplicationContext(),
                 R.anim.slide_down);
@@ -338,17 +342,29 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         if (isVisible) {
             // Prepare the View for the animation
-            if(stationInfoLayout.getVisibility() == View.VISIBLE) {
-                stationInfoLayout.setVisibility(View.VISIBLE);
-            }
-            else {
-                stationInfoLayout.setVisibility(View.VISIBLE);
-                stationInfoLayout.startAnimation(slide_up);
+            if (stationInfoLayout.getVisibility() == View.VISIBLE || tourSpotInfoLayout.getVisibility() == View.VISIBLE) {
+                if (view == stationInfoLayout) {
+                    stationInfoLayout.setVisibility(View.VISIBLE);
+                    tourSpotInfoLayout.setVisibility(View.GONE);
+                } else {
+                    stationInfoLayout.setVisibility(View.GONE);
+                    tourSpotInfoLayout.setVisibility(View.VISIBLE);
+                }
+            } else {
+                if (view == stationInfoLayout) {
+                    stationInfoLayout.setVisibility(View.VISIBLE);
+                    stationInfoLayout.startAnimation(slide_up);
+                } else {
+                    tourSpotInfoLayout.setVisibility(View.VISIBLE);
+                    tourSpotInfoLayout.startAnimation(slide_up);
+                }
             }
         } else {
             // Prepare the View for the animation
-            stationInfoLayout.startAnimation(slide_down);
-            stationInfoLayout.setVisibility(View.INVISIBLE);
+            if (view.getVisibility() == View.VISIBLE) {
+                view.startAnimation(slide_down);
+                view.setVisibility(View.GONE);
+            }
         }
     }
 

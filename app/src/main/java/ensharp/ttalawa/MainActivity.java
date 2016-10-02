@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         stationInfoLayout = (LinearLayout) findViewById(R.id.stationInfoLayout);
         tourSpotInfoLayout = (LinearLayout) findViewById(R.id.tourSpotInfoLayout);
-
+        TmapAuthentication();
         mapFrag = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         //구글맵 인스턴스(지도)가 사용될 준비가 되면 this라는 콜백객체를 발생시킨다.
         mapFrag.getMapAsync(this);
@@ -444,11 +444,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
-    private void TmapNavigation(Marker marker, boolean isStation) {
-        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        String networkoper = telephonyManager.getNetworkOperatorName();
-        boolean isTmapApp;
-
+    private void TmapAuthentication(){
         tmaptapi = new TMapTapi(this);
         tmaptapi.setSKPMapAuthentication("593851f2-df66-33d7-ae97-52ef7278295f");
 
@@ -465,9 +461,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 Toast.makeText(MainActivity.this, "네비게이션 안내 오류로 다음에 이용해 주시기 바랍니다.", Toast.LENGTH_LONG).show();
             }
         });
+    }
+    private void TmapNavigation(Marker marker, boolean isStation) {
+        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        String networkoper = telephonyManager.getNetworkOperatorName();
+        boolean isTmapApp;
 
         //boolean isTmapApp = tmaptapi.isTmapApplicationInstalled();
-
         if (networkoper.equals("SKTelecom")) {
             Log.i("통신사", "skt");
             isTmapApp = appInstalledOrNot("com.skt.skaf.l001mtm091");
@@ -587,7 +587,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             Marker marker = (Marker) markerMap.get("searched");
             marker.remove();
         }
+        changeSelectedMarker(null);
         uncheckNearStationMarker();
+        changeInfoLayoutVisibility(stationInfoLayout, false);
+        changeInfoLayoutVisibility(tourSpotInfoLayout, false);
         MarkerOptions markerOptions = new MarkerOptions();
         LatLng latLng = new LatLng(place.getLatLng().latitude, place.getLatLng().longitude);
         markerOptions.position(latLng);
@@ -597,7 +600,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         Marker marker = (Marker) markerMap.get("searched");
         changeInfoLayoutVisibility(stationInfoLayout, false);
         changeInfoLayoutVisibility(tourSpotInfoLayout, false);
-        marker.showInfoWindow();
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(14));
     }
@@ -619,18 +621,25 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         } else {
             if (stationMarkerMap.containsKey(String.valueOf(resultCode))) {
                 marker = (Marker) stationMarkerMap.get(String.valueOf(resultCode));
+                uncheckNearStationMarker();
+                changeSelectedMarker(marker);
+                insertInfoLayoutContent(marker, stationInfoLayout);
+                changeInfoLayoutVisibility(stationInfoLayout, true);
+                marker = (Marker) stationRedMarkMap.get("selected");
                 Log.i("일반", "일반");
             } else if (neartourSpotStationMarkerMap.containsKey(String.valueOf(resultCode))) {
                 marker = (Marker) neartourSpotStationMarkerMap.get(String.valueOf(resultCode));
+                uncheckNearStationMarker();
+                changeSelectedMarker(marker);
+                insertInfoLayoutContent(marker, stationInfoLayout);
+                changeInfoLayoutVisibility(stationInfoLayout, true);
+                marker = (Marker) stationRedMarkMap.get("selected");
                 Log.i("관광지근처", "관광지근처");
             } else {
                 marker = (Marker) stationRedMarkMap.get(String.valueOf(resultCode));
                 Log.i("선택됨", "선택됨");
             }
-            uncheckNearStationMarker();
-            changeSelectedMarker(marker);
-            marker = (Marker) stationRedMarkMap.get("selected");
-            marker.showInfoWindow();
+
             CameraUpdate center = CameraUpdateFactory.newLatLng(marker.getPosition());
             mGoogleMap.animateCamera(center);
         }

@@ -53,6 +53,7 @@ import java.util.HashMap;
 
 import ensharp.ttalawa.DBAdapter.SpotsDbAdapter;
 import ensharp.ttalawa.DBAdapter.StationDbAdapter;
+import ensharp.ttalawa.TourSpot.TourInfoActivity;
 import ensharp.ttalawa.TourSpot.TourSpotListActivity;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback,
@@ -421,6 +422,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         // 관광명소 정보 레이아웃에 대한 정보
         TextView tourSpotName = (TextView) findViewById(R.id.tourSpotNameTxt);
         Button tourSpotNavigation = (Button) findViewById(R.id.tourSpotNavigationBtn);
+        Button btn_tourSpotInfo=(Button)findViewById(R.id.btn_tourInfo);
 
         navigationMarker = marker;
 
@@ -464,7 +466,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     TmapNavigation(navigationMarker);
                 }
             });
-
+            //여행명소 상세 페이지(TourInfoActivity)로 이동
+            btn_tourSpotInfo.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    Intent intent = new Intent(getBaseContext(), TourInfoActivity.class);
+                    intent.putExtra("관광명소",navigationMarker.getTitle());
+                    startActivityForResult(intent,0);
+                }
+            });
         }
     }
 

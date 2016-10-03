@@ -435,6 +435,7 @@
                     android:gravity="end">
 
                     <Button
+                        android:id="@+id/btn_tourInfo"
                         android:layout_width="180dp"
                         android:layout_height="48dp"
                         android:text="상세보기"

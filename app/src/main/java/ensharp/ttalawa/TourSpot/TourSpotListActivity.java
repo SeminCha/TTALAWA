@@ -45,16 +45,13 @@ public class TourSpotListActivity extends ActionBarActivity implements TourSpotR
     @Override
     public void onItemClick(int position) {
         Intent intent = new Intent(getBaseContext(), TourInfoActivity.class);
-        intent.putExtra("관광명소",position);
+        intent.putExtra("관광명소",adapter.getItem(position).getSpotName());
         startActivityForResult(intent,REQUEST_CODE_SPOTINFO);
 
 //        startActivityForResult(intent, REQUEST_CODE_SPOTINFO);
 //        Toast.makeText(this, "다른액티비티로 "+adapter.getItem(position).getSpotName(), Toast.LENGTH_SHORT).show();
     }
 
-    /**
-     * 새로운 액티비티에서 돌아올 때 자동 호출되는 메소드
-     */
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
 
@@ -63,9 +60,9 @@ public class TourSpotListActivity extends ActionBarActivity implements TourSpotR
             toast.show();
 
             if (resultCode == RESULT_OK) {
-                String name = intent.getExtras().getString("name");
-                toast = Toast.makeText(getBaseContext(), "응답으로 전달된 name : " + name, Toast.LENGTH_LONG);
-                toast.show();
+//                String name = intent.getExtras().getString("name");
+//                toast = Toast.makeText(getBaseContext(), "응답으로 전달된 name : " + name, Toast.LENGTH_LONG);
+//                toast.show();
             }
 //        }
     }

@@ -89,7 +89,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     TMapTapi tmaptapi;
     Marker navigationMarker;
+    private Button btn_tourspot;
 
+//    요청코드정의
+    public static final int REQUEST_CODE_ANOTHER = 1001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,7 +119,33 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapFrag = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         //구글맵 인스턴스(지도)가 사용될 준비가 되면 this라는 콜백객체를 발생시킨다.
         mapFrag.getMapAsync(this);
+
+        btn_tourspot=(Button)findViewById(R.id.btn_tourspot);
+        btn_tourspot.setOnClickListener(btnClickListener);
+
+
+//        List<PackageInfo> appinfo = getPackageManager().getInstalledPackages(PackageManager.GET_ACTIVITIES);
+//
+//        for(int i = 0 ; i <appinfo.size() ; i ++){
+//            PackageInfo pi = appinfo.get(i);
+//            String appname = pi.packageName;
+//            Log.i("앱~~",appname);
+//        }
+
     }
+
+    Button.OnClickListener btnClickListener=new View.OnClickListener() {
+        public void onClick(View v) {
+            switch (v.getId()) {
+
+                case R.id.btn_tourspot:
+                    Intent intent = new Intent(getBaseContext(), TourSpotListActivity.class);
+                    startActivityForResult(intent, REQUEST_CODE_ANOTHER);
+                    break;
+
+            }
+        }
+    };
 
     //액티비티가 중지되거나 다시 시작될 때 현재위치표시를 새로고침 해주는 함수
     @Override
@@ -293,7 +322,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onClick(View v) {
                 LatLng center = mGoogleMap.getCameraPosition().target;
-                Intent intent = new Intent(MainActivity.this, NearbyStationListActivity.class);
+                Intent intent = new Intent(MainActivity.this, StationListActivity.class);
                 intent.putExtra("location", center);
                 startActivityForResult(intent, 0);
             }
@@ -479,11 +508,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         } else if (networkoper.equals("KT") || networkoper.equals("olleh") || networkoper.matches(".*LG.*")) {
             Log.i("통신사", "kt나 lg");
-            isTmapApp = appInstalledOrNot("com.skt.skaf.l001mtm092");
+            isTmapApp = appInstalledOrNot("com.skt.tmap.ku");
+//            isTmapApp = appInstalledOrNot("com.skt.skaf.l001mtm092");
             if (isTmapApp) {
                 tmaptapi.invokeRoute(marker.getTitle() + " " + "거치소", (float) marker.getPosition().longitude, (float) marker.getPosition().latitude);
             } else {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.skt.tmap.ku"));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("u"));
                 startActivity(intent);
             }
         } else {
@@ -598,7 +628,17 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Marker marker;
 
-        if (requestCode == REQUEST_SELECT_PLACE) {
+        //추천관광명소activity(TourSpotListActivity)에서 돌아왔을 때
+        if(requestCode==REQUEST_CODE_ANOTHER){
+//            Toast toast = Toast.makeText(getBaseContext(), "onActivityResult() 메소드가 호출됨. 요청코드 : " + requestCode + ", 결과코드 : " + resultCode, Toast.LENGTH_LONG);
+//            toast.show();
+
+            if (resultCode == RESULT_OK) {
+//                String name = data.getExtras().getString("name");
+//                toast = Toast.makeText(getBaseContext(), "응답으로 전달된 name : " + name, Toast.LENGTH_LONG);
+//                toast.show();
+            }
+        } else if (requestCode == REQUEST_SELECT_PLACE) {
             if (resultCode == RESULT_OK) {
                 Place place = PlaceAutocomplete.getPlace(this, data);
                 this.onPlaceSelected(place);

@@ -44,7 +44,7 @@ public class TourSpotListActivity extends ActionBarActivity implements TourSpotR
     @Override
     public void onItemClick(int position) {
         Intent intent = new Intent(getBaseContext(), TourInfoActivity.class);
-        intent.putExtra(adapter.getItem(position).getSpotName(),position);
+        intent.putExtra("관광명소",position);
         startActivityForResult(intent,REQUEST_CODE_SPOTINFO);
 
 //        startActivityForResult(intent, REQUEST_CODE_SPOTINFO);

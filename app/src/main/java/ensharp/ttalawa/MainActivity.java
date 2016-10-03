@@ -91,12 +91,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     LinearLayout stationInfoLayout;
     LinearLayout tourSpotInfoLayout;
 
+    TelephonyManager telephonyManager;
+    String networkoper;
     TMapTapi tmaptapi;
     Marker navigationMarker;
 
     RelativeLayout rentInfoLayout;
     RelativeLayout alarmSettingLayout;
     Toolbar alarmSettingToolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,7 +117,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.place_fragment);
         autocompleteFragment.setOnPlaceSelectedListener(this);
-        autocompleteFragment.setHint("장소, 주소입력");
         autocompleteFragment.setBoundsBias(BOUNDS_MOUNTAIN_VIEW);
 
         stationInfoLayout = (LinearLayout) findViewById(R.id.stationInfoLayout);
@@ -520,8 +522,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private void TmapNavigation(Marker marker, boolean isStation) {
-        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        String networkoper = telephonyManager.getNetworkOperatorName();
         boolean isTmapApp_1 = appInstalledOrNot("com.skt.skaf.l001mtm091");
         boolean isTmapApp_2 = appInstalledOrNot("com.skt.tmap.ku");
         boolean isTmapApp_3 = appInstalledOrNot("com.skt.skaf.l001mtm092");
@@ -534,15 +534,48 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 tmaptapi.invokeRoute(marker.getTitle(), (float) marker.getPosition().longitude, (float) marker.getPosition().latitude);
             }
         } else {
-            if (networkoper.equals("SKTelecom")) {
-                Log.i("통신사", "skt");
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://onesto.re/0000163382"));
-                startActivity(intent);
-            } else {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.skt.tmap.ku"));
-                startActivity(intent);
-            }
+            showTmapInstallDialog();
         }
+    }
+
+    private void showTmapInstallDialog() {
+
+        telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        networkoper = telephonyManager.getNetworkOperatorName();
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                MainActivity.this);
+
+        alertDialogBuilder
+                .setMessage("T map 설치가 필요합니다.")
+                .setCancelable(false)
+                .setPositiveButton("설치하기",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(
+                                    DialogInterface dialog, int id) {
+                                if (networkoper.equals("SKTelecom")) {
+                                    Log.i("통신사", "skt");
+                                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://onesto.re/0000163382"));
+                                    startActivity(intent);
+                                } else {
+                                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.skt.tmap.ku"));
+                                    startActivity(intent);
+                                }
+                            }
+                        })
+                .setNegativeButton("취소",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(
+                                    DialogInterface dialog, int id) {
+                                // 다이얼로그를 취소한다
+                                dialog.cancel();
+                            }
+                        });
+
+        // 다이얼로그 생성
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        // 다이얼로그 보여주기
+        alertDialog.show();
     }
 
     private boolean appInstalledOrNot(String uri) {

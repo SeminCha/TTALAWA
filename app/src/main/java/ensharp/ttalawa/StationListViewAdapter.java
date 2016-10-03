@@ -32,6 +32,7 @@ public class StationListViewAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         final int pos = position;
         final Context context = parent.getContext();
+        String convertString;
 
         // "listview_item" Layout을 inflate하여 convertView 참조 획득.
         if (convertView == null) {
@@ -42,22 +43,25 @@ public class StationListViewAdapter extends BaseAdapter {
         // 화면에 표시될 View(Layout이 inflate된)으로부터 위젯에 대한 참조 획득
         TextView numberTextView = (TextView) convertView.findViewById(R.id.placenumber);
         TextView nameTextView = (TextView) convertView.findViewById(R.id.placename);
-        TextView addressTextView = (TextView) convertView.findViewById(R.id.placeaddress);
         TextView distanceView = (TextView) convertView.findViewById(R.id.placedistance);
+        //TextView distanceUnitView = (TextView) convertView.findViewById(R.id.placedistanceunit);
 
         // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
         ListViewItem listViewItem = listViewItemList.get(position);
 
         // 아이템 내 각 위젯에 데이터 반영
         numberTextView.setText(listViewItem.getStationNumber());
-        if (listViewItem.getStationName().length() > 13)
-            nameTextView.setText(listViewItem.getStationName().substring(0,13) + "...");
-        else
+//        if (listViewItem.getStationName().length() > 13)
+//            nameTextView.setText(listViewItem.getStationName().substring(0,13) + "...");
+//        else
             nameTextView.setText(listViewItem.getStationName());
 
-        addressTextView.setText(listViewItem.getStationAddress());
-        distanceView.setText(Math.round(listViewItem.getDistance())/1000 + "km");
-
+        if(listViewItem.getDistance()<1000) {
+            distanceView.setText(String.valueOf(Math.round(listViewItem.getDistance())) + " " +"m");
+        } else {
+            convertString = String.format("%.1f",listViewItem.getDistance()*0.001)+ " " +"km";
+            distanceView.setText(convertString);
+        }
         return convertView;
     }
 

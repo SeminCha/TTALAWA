@@ -6,7 +6,8 @@
     <color name="grey">#e3e3e3</color>
     <color name="grey_lighter">#E0E0E0</color>
     <color name="grey_light">#9E9E9E</color>
-    <color name="grey_dark">#424242</color>
+    <color name="grey_dark">#797d7b</color>
+    <color name="grey_darker">#424242</color>
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
     <color name="whitegrey">#FFF2F2F2</color>

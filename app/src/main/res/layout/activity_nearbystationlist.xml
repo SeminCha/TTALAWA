@@ -17,6 +17,6 @@
         android:layout_below="@id/include_back"
         android:background="#e9e9e9"
         android:choiceMode="singleChoice"
-        android:divider="#AAA"
-        android:dividerHeight="0.5dp" />
+        android:divider="#20D1D1D1"
+        android:dividerHeight="0.9dp" />
 </LinearLayout>

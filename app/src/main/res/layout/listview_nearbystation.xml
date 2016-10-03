@@ -1,95 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="horizontal"
-    android:weightSum="10">
+    android:layout_height="120dp"
+    android:background="@drawable/listview_itme_style"
+    android:orientation="vertical"
+    android:weightSum="10"
+    android:paddingBottom="10dp"
+    android:paddingEnd="13dp"
+    android:paddingStart="13dp"
+    android:paddingTop="10dp">
 
-    <RelativeLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="2">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:orientation="horizontal"
+        android:weightSum="10">
 
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5">
+            <TextView
+                android:id="@+id/placenumber"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center|left"
+                android:textColor="@color/grey_darker"
+                android:textStyle="bold"
+                android:textSize="22dp"
+                android:text="123"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8.5">
+            <TextView
+                android:id="@+id/placename"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:textSize="20dp"/>
+        </RelativeLayout>
 
-        <ImageView
-            android:id="@+id/imageview"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:padding="5dp"
-            android:src="@drawable/bicycle_logo" />
-
-    </RelativeLayout>
+    </LinearLayout>
 
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="6"
-        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:orientation="horizontal"
         android:weightSum="10">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="5"
-            android:orientation="horizontal"
-            android:weightSum="10">
+         <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="8">
 
             <TextView
-                android:id="@+id/placenumber"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="3"
-                android:textColor="@color/black"
-                android:gravity="center|center"
-                android:textSize="17dp" />
-
-            <TextView
-                android:id="@+id/placename"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="left"
-                android:layout_weight="7"
-                android:gravity="center_vertical"
-                android:textColor="@color/black"
-                android:textSize="17dp" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="5">
-
-            <TextView
-                android:id="@+id/placeaddress"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="left"
-                android:layout_weight="2.5"
-                android:gravity="center_vertical"
-                android:textColor="@color/black"
-                android:textSize="17dp" />
-        </LinearLayout>
+                android:gravity="center|right"
+                android:textColor="@color/grey_light"
+                android:textSize="20dp"
+                android:text="약"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2">
+
+            <TextView
+                android:id="@+id/placedistance"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/grey_dark"
+                android:textStyle="bold"
+                android:gravity="center|right"
+                android:text="23.5 km"
+                android:textSize="19dp"/>
+        </RelativeLayout>
     </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="2"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/placedistance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:gravity="center_vertical"
-            android:textColor="@color/black"
-            android:textSize="20dp" />
-    </RelativeLayout>
 </LinearLayout>
 

@@ -6,6 +6,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import ensharp.ttalawa.R;
@@ -14,6 +15,7 @@ import ensharp.ttalawa.R;
 public class TourInfoActivity extends AppCompatActivity{
 
     private TextView activityNameTxt;
+    public static int spotNumber;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -22,15 +24,15 @@ public class TourInfoActivity extends AppCompatActivity{
 
         // 현재 활성화된 액티비티를 시작하게 한 인텐트 호출
         Intent intent = getIntent();
-        int temp=intent.getIntExtra("관광명소",-1);
-        Log.d("test", "temp"+temp);
-        setTourInfoView(temp);
+        spotNumber=intent.getIntExtra("관광명소",-1);
+        Log.d("test", "temp"+spotNumber);
+        setTourInfoView(spotNumber);
 
         //탭 레이아웃
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 1"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 2"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 3"));
+        tabLayout.addTab(tabLayout.newTab().setText("소개"));
+        tabLayout.addTab(tabLayout.newTab().setText("요금"));
+        tabLayout.addTab(tabLayout.newTab().setText("시간"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
@@ -56,9 +58,9 @@ public class TourInfoActivity extends AppCompatActivity{
         });
     }
 
-    public void setTourInfoView(int temp){
+    public void setTourInfoView(int spotNumber){
         activityNameTxt = (TextView) findViewById(R.id.activityName);
-        switch(temp) {
+        switch(spotNumber) {
             case 1:
                 activityNameTxt.setText("덕수궁 돌담길");
                 break;
@@ -137,6 +139,18 @@ public class TourInfoActivity extends AppCompatActivity{
 
 
         }
+    }
+    public void btn_Back_Click(View v) {
+        setResult(0);
+        finish();
+    }
+    @Override
+    public void onBackPressed(){
+        Intent resultIntent = new Intent();
+
+        // 응답을 전달하고 이 액티비티를 종료합니다.
+        setResult(RESULT_OK, resultIntent);
+        finish();
     }
 
 }

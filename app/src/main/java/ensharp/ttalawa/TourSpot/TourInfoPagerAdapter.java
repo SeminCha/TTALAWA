@@ -17,13 +17,13 @@ public class TourInfoPagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                TourInfoTab_Frag1 tab1 = new TourInfoTab_Frag1();
+                TourInfoTab1_Intro tab1 = new TourInfoTab1_Intro();
                 return tab1;
             case 1:
-                TourInfoTab_Frag2 tab2 = new TourInfoTab_Frag2();
+                TourInfoTab2_Admissions tab2 = new TourInfoTab2_Admissions();
                 return tab2;
             case 2:
-                TourInfoTab_Frag3 tab3 = new TourInfoTab_Frag3();
+                TourInfoTab3_Hours tab3 = new TourInfoTab3_Hours();
                 return tab3;
             default:
                 return null;

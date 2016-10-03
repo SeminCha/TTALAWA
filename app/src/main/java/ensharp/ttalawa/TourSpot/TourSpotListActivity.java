@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -119,6 +119,10 @@ public class TourSpotListActivity extends ActionBarActivity implements TourSpotR
 
         // 응답을 전달하고 이 액티비티를 종료합니다.
         setResult(RESULT_OK, resultIntent);
+        finish();
+    }
+    public void btn_Back_Click(View v) {
+        setResult(0);
         finish();
     }
 

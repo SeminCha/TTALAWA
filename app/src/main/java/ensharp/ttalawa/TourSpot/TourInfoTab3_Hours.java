@@ -8,10 +8,10 @@ import android.view.ViewGroup;
 
 import ensharp.ttalawa.R;
 
-public class TourInfoTab_Frag1 extends Fragment {
+public class TourInfoTab3_Hours extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.spot_tab_fragment1, container, false);
+        return inflater.inflate(R.layout.spot_tab3_hours, container, false);
     }
 }

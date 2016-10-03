@@ -1,4 +1,4 @@
-package ensharp.ttalawa;
+package ensharp.ttalawa.TourSpot;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import ensharp.ttalawa.R;
 
 /**
  * Created by Moon on 2015-03-02.
@@ -27,7 +29,7 @@ public class TourSpotRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     public static class DataViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public TextView courseTitleView, spotItemView;
+        public TextView spotItemView;
 
         private OnViewHolderClickListener listener;
 

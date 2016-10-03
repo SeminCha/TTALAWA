@@ -27,7 +27,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TourSpotListActivity"/>
+        <activity android:name=".TourSpot.TourSpotListActivity"/>
+        <activity android:name=".TourSpot.TourInfoActivity"/>
     </application>
 
 </manifest>

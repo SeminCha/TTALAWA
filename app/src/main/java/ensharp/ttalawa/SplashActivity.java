@@ -9,6 +9,8 @@ import android.util.Log;
 
 import java.io.InputStream;
 
+import ensharp.ttalawa.DBAdapter.SpotsDbAdapter;
+import ensharp.ttalawa.DBAdapter.StationDbAdapter;
 import jxl.Sheet;
 import jxl.Workbook;
 

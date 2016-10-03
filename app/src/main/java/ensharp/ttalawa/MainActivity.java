@@ -51,6 +51,10 @@ import com.skp.Tmap.TMapTapi;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import ensharp.ttalawa.DBAdapter.SpotsDbAdapter;
+import ensharp.ttalawa.DBAdapter.StationDbAdapter;
+import ensharp.ttalawa.TourSpot.TourSpotListActivity;
+
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
@@ -122,15 +126,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         btn_tourspot=(Button)findViewById(R.id.btn_tourspot);
         btn_tourspot.setOnClickListener(btnClickListener);
-
-
-//        List<PackageInfo> appinfo = getPackageManager().getInstalledPackages(PackageManager.GET_ACTIVITIES);
-//
-//        for(int i = 0 ; i <appinfo.size() ; i ++){
-//            PackageInfo pi = appinfo.get(i);
-//            String appname = pi.packageName;
-//            Log.i("앱~~",appname);
-//        }
 
     }
 

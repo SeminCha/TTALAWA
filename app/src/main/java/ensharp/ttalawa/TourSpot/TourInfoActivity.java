@@ -150,7 +150,7 @@ public class TourInfoActivity extends AppCompatActivity{
         Intent resultIntent = new Intent();
 
         // 응답을 전달하고 이 액티비티를 종료합니다.
-        setResult(RESULT_OK, resultIntent);
+        setResult(0, resultIntent);
         finish();
     }
 

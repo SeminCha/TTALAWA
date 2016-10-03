@@ -12,6 +12,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -23,7 +24,9 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -90,6 +93,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     TMapTapi tmaptapi;
     Marker navigationMarker;
 
+    RelativeLayout alarmSettingLayout;
+    LinearLayout alarmSettingToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +117,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         stationInfoLayout = (LinearLayout) findViewById(R.id.stationInfoLayout);
         tourSpotInfoLayout = (LinearLayout) findViewById(R.id.tourSpotInfoLayout);
+        alarmSettingLayout = (RelativeLayout) findViewById(R.id.alarmSettingLayout);
+        alarmSettingToolbar = (LinearLayout) findViewById(R.id.alarmSettingToolbarLayout);
+
+        alarmButtonSetting();
         TmapAuthentication();
         mapFrag = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         //구글맵 인스턴스(지도)가 사용될 준비가 되면 this라는 콜백객체를 발생시킨다.
@@ -269,6 +278,58 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             return true;
         }
     }
+
+    private void alarmButtonSetting() {
+        Button alarmSetting = (Button) findViewById(R.id.alarmSettingBtn);
+        ImageButton alarmSettingBack = (ImageButton) findViewById(R.id.alarmSettingBackBtn);
+
+        alarmSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeInfoLayoutVisibility(stationInfoLayout, false);
+                changeInfoLayoutVisibility(tourSpotInfoLayout, false);
+                changeAlarmLayoutVisibility(true);
+            }
+        });
+
+        alarmSettingBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeAlarmLayoutVisibility(false);
+            }
+        });
+    }
+
+    private void changeAlarmLayoutVisibility(boolean isVisible) {
+
+        Animation slide_in = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slide_in);
+
+        Animation slide_out = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slide_out);
+
+        Animation slide_in_toolbar = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slide_in_toolbar);
+
+        Animation slide_out_toolbar = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slide_out_toolbar);
+
+        if (isVisible) {
+            alarmSettingToolbar.setVisibility(View.VISIBLE);
+            alarmSettingToolbar.startAnimation(slide_in_toolbar);
+            alarmSettingLayout.setVisibility(View.VISIBLE);
+            alarmSettingLayout.startAnimation(slide_in);
+            //alarmView.setBackgroundColor(Color.WHITE);
+
+        } else {
+            alarmSettingToolbar.startAnimation(slide_out_toolbar);
+            alarmSettingToolbar.setVisibility(View.GONE);
+            alarmSettingLayout.startAnimation(slide_out);
+            alarmSettingLayout.setVisibility(View.GONE);
+            //alarmView.setBackgroundColor(Color.parseColor("#CCffffff"));
+        }
+    }
+
 
     private void mapButtonSetting() {
 
@@ -444,7 +505,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
-    private void TmapAuthentication(){
+    private void TmapAuthentication() {
         tmaptapi = new TMapTapi(this);
         tmaptapi.setSKPMapAuthentication("593851f2-df66-33d7-ae97-52ef7278295f");
 
@@ -462,6 +523,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
     }
+
     private void TmapNavigation(Marker marker, boolean isStation) {
         TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         String networkoper = telephonyManager.getNetworkOperatorName();
@@ -1016,5 +1078,30 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
+    private Boolean exit = false;
 
+    @Override
+    public void onBackPressed() {
+        if (exit) {
+            finish(); // finish activity
+        } else {
+            if (stationInfoLayout.getVisibility() == View.VISIBLE || tourSpotInfoLayout.getVisibility() == View.VISIBLE) {
+                changeInfoLayoutVisibility(stationInfoLayout, false);
+                changeInfoLayoutVisibility(tourSpotInfoLayout, false);
+            } else if (alarmSettingLayout.getVisibility() == View.VISIBLE) {
+                changeAlarmLayoutVisibility(false);
+            } else {
+                Toast.makeText(this, "'뒤로'버튼을 한번 더 누르시면 종료됩니다.",
+                        Toast.LENGTH_SHORT).show();
+                exit = true;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        exit = false;
+                    }
+                }, 3 * 1000);
+            }
+        }
+
+    }
 }

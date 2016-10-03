@@ -1,190 +1,421 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="ensharp.ttalawa.MainActivity">
 
-    <include
-        android:id="@+id/include_main"
-        layout="@layout/toolbar_main"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/include_main">
-
-        <LinearLayout
+        <FrameLayout
+            android:id="@+id/toolbarLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
-            <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:id="@+id/map"
-                android:name="com.google.android.gms.maps.MapFragment"
+            <include
+                android:id="@+id/include_main"
+                layout="@layout/toolbar_main"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context="com.iotaconcepts.aurum.MapLocationActivity" />
-        </LinearLayout>
+                android:layout_height="wrap_content" />
 
-        <LinearLayout
+            <include
+                layout="@layout/layout_settingtoolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </FrameLayout>
+
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="165dp"
-            android:orientation="vertical"
-            android:weightSum="10">
-
-            <RelativeLayout
-                android:id="@+id/alarmLayout"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="3"
-                android:background="#CCffffff">
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="7"
-                android:padding="10dp">
-
-                <Button
-                    android:id="@+id/myLocationBtn"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:background="@drawable/mylocation_button" />
-
-                <Button
-                    android:id="@+id/stationListBtn"
-                    android:layout_width="54dp"
-                    android:layout_height="36dp"
-                    android:layout_alignParentEnd="true"
-                    android:text="목록"
-                    android:textSize="10dp" />
-
-                <Button
-                    android:id="@+id/tourSpotMarkerBtn"
-                    android:layout_width="54dp"
-                    android:layout_height="36dp"
-                    android:text="관광지"
-                    android:textSize="10dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentEnd="true" />
-            </RelativeLayout>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/stationInfoLayout"
-            android:layout_width="match_parent"
-            android:layout_height="210dp"
-            android:layout_gravity="bottom"
-            android:background="@drawable/stationinfo_layout_style"
-            android:orientation="vertical"
-            android:paddingBottom="10dp"
-            android:paddingEnd="13dp"
-            android:paddingStart="13dp"
-            android:paddingTop="15dp"
-            android:visibility="gone"
-            android:weightSum="100">
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbarLayout">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="36"
-                android:orientation="horizontal"
-                android:weightSum="10">
+                android:layout_height="match_parent">
 
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top"
-                    android:layout_weight="1.2">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="30dp"
-                        android:layout_alignParentStart="true"
-                        android:src="@drawable/station_label" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top"
-                    android:layout_weight="8.8">
-
-                    <TextView
-                        android:id="@+id/stationNameTxt"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
-
-                </RelativeLayout>
-
+                <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:id="@+id/map"
+                    android:name="com.google.android.gms.maps.MapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:context="com.iotaconcepts.aurum.MapLocationActivity" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="37"
-                android:orientation="horizontal"
+                android:layout_height="165dp"
+                android:orientation="vertical"
                 android:weightSum="10">
 
                 <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="2">
+                    android:id="@+id/alarmMainLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:background="#CCffffff"
+                    android:padding="5dp">
 
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_alignParentStart="true"
-                        android:src="@drawable/bicycle_logo" />
+                    <Button
+                        android:id="@+id/alarmSettingBtn"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="설정"
+                        android:textSize="10dp" />
                 </RelativeLayout>
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="7"
+                    android:padding="10dp">
+
+                    <Button
+                        android:id="@+id/myLocationBtn"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/mylocation_button" />
+
+                    <Button
+                        android:id="@+id/stationListBtn"
+                        android:layout_width="54dp"
+                        android:layout_height="36dp"
+                        android:layout_alignParentEnd="true"
+                        android:text="목록"
+                        android:textSize="10dp" />
+
+                    <Button
+                        android:id="@+id/tourSpotMarkerBtn"
+                        android:layout_width="54dp"
+                        android:layout_height="36dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:text="관광지"
+                        android:textSize="10dp" />
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/stationInfoLayout"
+                android:layout_width="match_parent"
+                android:layout_height="210dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/stationinfo_layout_style"
+                android:clickable="true"
+                android:orientation="vertical"
+                android:paddingBottom="10dp"
+                android:paddingEnd="13dp"
+                android:paddingStart="13dp"
+                android:paddingTop="15dp"
+                android:visibility="gone"
+                android:weightSum="100">
+
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_weight="8"
-                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="36"
+                    android:orientation="horizontal"
                     android:weightSum="10">
 
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_weight="1.2">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentStart="true"
+                            android:src="@drawable/station_label" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_weight="8.8">
+
+                        <TextView
+                            android:id="@+id/stationNameTxt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/black"
+                            android:textSize="20dp" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="37"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="2">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_alignParentStart="true"
+                            android:src="@drawable/bicycle_logo" />
+                    </RelativeLayout>
+
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="8"
+                        android:orientation="vertical"
+                        android:weightSum="10">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="5"
+                            android:orientation="horizontal"
+                            android:weightSum="10">
+
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="5"
+                                android:paddingEnd="15dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_centerVertical="true"
+                                    android:text="거치소 번호"
+                                    android:textColor="@color/black"
+                                    android:textSize="15dp" />
+
+                                <TextView
+                                    android:id="@+id/stationNumberTxt"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerVertical="true"
+                                    android:text=""
+                                    android:textColor="@color/grey_dark"
+                                    android:textSize="18dp" />
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="5"
+                                android:paddingEnd="5dp">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_centerVertical="true"
+                                    android:text="거치대 수"
+                                    android:textColor="@color/black"
+                                    android:textSize="15dp" />
+
+                                <TextView
+                                    android:id="@+id/stationRackTxt"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerVertical="true"
+                                    android:text=""
+                                    android:textColor="@color/grey_light"
+                                    android:textSize="18dp" />
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="5">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerVertical="true"
+                                android:text="주소 "
+                                android:textColor="@color/black"
+                                android:textSize="15dp" />
+
+                            <TextView
+                                android:id="@+id/stationAddressTxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:text=""
+                                android:textColor="@color/grey_light"
+                                android:textSize="18dp" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="27"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
                         android:layout_weight="5"
-                        android:orientation="horizontal"
+                        android:gravity="left">
+
+                        <Button
+                            android:id="@+id/stationNavigationBtn"
+                            android:layout_width="1890dp"
+                            android:layout_height="48dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentStart="true"
+                            android:text="길안내"
+                            android:textSize="22dp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:gravity="end">
+
+                        <Button
+                            android:layout_width="180dp"
+                            android:layout_height="48dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentStart="true"
+                            android:text="대여하기"
+                            android:textSize="22dp" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tourSpotInfoLayout"
+                android:layout_width="match_parent"
+                android:layout_height="210dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/stationinfo_layout_style"
+                android:clickable="true"
+                android:orientation="vertical"
+                android:paddingBottom="10dp"
+                android:paddingEnd="13dp"
+                android:paddingStart="13dp"
+                android:paddingTop="15dp"
+                android:visibility="gone"
+                android:weightSum="100">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="36"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_weight="1.2">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentStart="true"
+                            android:src="@drawable/tourspot_label" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_weight="8.8">
+
+                        <TextView
+                            android:id="@+id/tourSpotNameTxt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/black"
+                            android:textSize="20dp" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="37"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="2">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_alignParentStart="true"
+                            android:src="@drawable/seoul_logo" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="8"
+                        android:orientation="vertical"
                         android:weightSum="10">
 
                         <RelativeLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
                             android:layout_weight="5"
-                            android:paddingEnd="15dp">
+                            android:orientation="horizontal"
+                            android:weightSum="10">
+
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
                                 android:layout_centerVertical="true"
-                                android:text="거치소 번호"
+                                android:text="내용"
                                 android:textColor="@color/black"
                                 android:textSize="15dp" />
 
                             <TextView
-                                android:id="@+id/stationNumberTxt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
@@ -195,22 +426,20 @@
                         </RelativeLayout>
 
                         <RelativeLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="5"
-                            android:paddingEnd="5dp">
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="5">
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
                                 android:layout_centerVertical="true"
-                                android:text="거치대 수"
+                                android:text="주소 "
                                 android:textColor="@color/black"
                                 android:textSize="15dp" />
 
                             <TextView
-                                android:id="@+id/stationRackTxt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
@@ -221,250 +450,53 @@
                         </RelativeLayout>
 
                     </LinearLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="5">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_centerVertical="true"
-                            android:text="주소 "
-                            android:textColor="@color/black"
-                            android:textSize="15dp" />
-
-                        <TextView
-                            android:id="@+id/stationAddressTxt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            android:text=""
-                            android:textColor="@color/grey_light"
-                            android:textSize="18dp" />
-
-                    </RelativeLayout>
-
                 </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="27"
-                android:orientation="horizontal"
-                android:weightSum="10">
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_weight="5"
-                    android:gravity="left">
-
-                    <Button
-                        android:id="@+id/stationNavigationBtn"
-                        android:layout_width="1890dp"
-                        android:layout_height="48dp"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentStart="true"
-                        android:text="길안내"
-                        android:textSize="22dp" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5"
-                    android:gravity="end">
-
-                    <Button
-                        android:layout_width="180dp"
-                        android:layout_height="48dp"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentStart="true"
-                        android:text="대여하기"
-                        android:textSize="22dp" />
-                </RelativeLayout>
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/tourSpotInfoLayout"
-            android:layout_width="match_parent"
-            android:layout_height="210dp"
-            android:layout_gravity="bottom"
-            android:background="@drawable/stationinfo_layout_style"
-            android:orientation="vertical"
-            android:paddingBottom="10dp"
-            android:paddingEnd="13dp"
-            android:paddingStart="13dp"
-            android:paddingTop="15dp"
-            android:visibility="gone"
-            android:weightSum="100">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="36"
-                android:orientation="horizontal"
-                android:weightSum="10">
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top"
-                    android:layout_weight="1.2">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="30dp"
-                        android:layout_alignParentStart="true"
-                        android:src="@drawable/tourspot_label" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top"
-                    android:layout_weight="8.8">
-
-                    <TextView
-                        android:id="@+id/tourSpotNameTxt"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
-
-                </RelativeLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="37"
-                android:orientation="horizontal"
-                android:weightSum="10">
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="2">
-
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_alignParentStart="true"
-                        android:src="@drawable/seoul_logo" />
-                </RelativeLayout>
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_weight="8"
-                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="27"
+                    android:orientation="horizontal"
                     android:weightSum="10">
 
                     <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="5"
-                        android:orientation="horizontal"
-                        android:weightSum="10">
+                        android:gravity="left">
 
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                        <Button
+                            android:id="@+id/tourSpotNavigationBtn"
+                            android:layout_width="1890dp"
+                            android:layout_height="48dp"
+                            android:layout_alignParentBottom="true"
                             android:layout_alignParentStart="true"
-                            android:layout_centerVertical="true"
-                            android:text="내용"
-                            android:textColor="@color/black"
-                            android:textSize="15dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            android:text=""
-                            android:textColor="@color/grey_dark"
-                            android:textSize="18dp" />
+                            android:text="길안내"
+                            android:textSize="22dp" />
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="5">
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:gravity="end">
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_centerVertical="true"
-                            android:text="주소 "
-                            android:textColor="@color/black"
-                            android:textSize="15dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                        <Button
+                            android:layout_width="180dp"
+                            android:layout_height="48dp"
+                            android:layout_alignParentBottom="true"
                             android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            android:text=""
-                            android:textColor="@color/grey_light"
-                            android:textSize="18dp" />
+                            android:text="상세보기"
+                            android:textSize="22dp" />
                     </RelativeLayout>
 
                 </LinearLayout>
             </LinearLayout>
+        </FrameLayout>
+    </RelativeLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="27"
-                android:orientation="horizontal"
-                android:weightSum="10">
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5"
-                    android:gravity="left">
-
-                    <Button
-                        android:id="@+id/tourSpotNavigationBtn"
-                        android:layout_width="1890dp"
-                        android:layout_height="48dp"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentStart="true"
-                        android:text="길안내"
-                        android:textSize="22dp" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5"
-                    android:gravity="end">
-
-                    <Button
-                        android:layout_width="180dp"
-                        android:layout_height="48dp"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentEnd="true"
-                        android:text="상세보기"
-                        android:textSize="22dp" />
-                </RelativeLayout>
-
-            </LinearLayout>
-        </LinearLayout>
-    </FrameLayout>
-</RelativeLayout>
+    <include
+        layout="@layout/layout_alarmsetting"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</FrameLayout>

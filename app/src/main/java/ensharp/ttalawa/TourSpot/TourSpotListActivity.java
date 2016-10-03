@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -91,6 +92,7 @@ public class TourSpotListActivity extends ActionBarActivity implements TourSpotR
 
         return dataset;
     }
+
     private void getDbTourSpot(){
         this.dbAdapter = new SpotsDbAdapter(this);
 

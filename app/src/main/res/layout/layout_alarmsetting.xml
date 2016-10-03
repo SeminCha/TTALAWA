@@ -16,7 +16,7 @@
     <RelativeLayout
         android:id="@+id/alarmInfoLayout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="49dp"
         android:layout_below="@+id/voidLayout"
         android:background="#CCffffff">
     </RelativeLayout>

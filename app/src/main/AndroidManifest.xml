@@ -19,7 +19,7 @@
             android:value="AIzaSyDiWUglTUAIS0UwGbUz7yg-z0acrD1rYRI" />
 
         <activity android:name=".MainActivity"/>
-        <activity android:name=".NearbyStationListActivity"/>
+        <activity android:name=".StationListActivity"/>
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

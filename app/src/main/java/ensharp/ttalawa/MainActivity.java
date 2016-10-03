@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -93,8 +94,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     TMapTapi tmaptapi;
     Marker navigationMarker;
 
+    RelativeLayout rentInfoLayout;
     RelativeLayout alarmSettingLayout;
-    LinearLayout alarmSettingToolbar;
+    Toolbar alarmSettingToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,10 +120,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         stationInfoLayout = (LinearLayout) findViewById(R.id.stationInfoLayout);
         tourSpotInfoLayout = (LinearLayout) findViewById(R.id.tourSpotInfoLayout);
         alarmSettingLayout = (RelativeLayout) findViewById(R.id.alarmSettingLayout);
-        alarmSettingToolbar = (LinearLayout) findViewById(R.id.alarmSettingToolbarLayout);
+        alarmSettingToolbar = (Toolbar) findViewById(R.id.toolBar_alarmsetting);
+        rentInfoLayout = (RelativeLayout) findViewById(R.id.rentInfoLayout);
 
         alarmButtonSetting();
-        TmapAuthentication();
         mapFrag = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         //구글맵 인스턴스(지도)가 사용될 준비가 되면 this라는 콜백객체를 발생시킨다.
         mapFrag.getMapAsync(this);
@@ -148,6 +150,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mGoogleMap.getUiSettings().setMyLocationButtonEnabled(false);
 
         mapButtonSetting();
+        TmapAuthentication();
 
         markerMap = new HashMap();
         stationMarkerMap = new HashMap();
@@ -308,25 +311,17 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         Animation slide_out = AnimationUtils.loadAnimation(getApplicationContext(),
                 R.anim.slide_out);
 
-        Animation slide_in_toolbar = AnimationUtils.loadAnimation(getApplicationContext(),
-                R.anim.slide_in_toolbar);
-
-        Animation slide_out_toolbar = AnimationUtils.loadAnimation(getApplicationContext(),
-                R.anim.slide_out_toolbar);
-
         if (isVisible) {
             alarmSettingToolbar.setVisibility(View.VISIBLE);
-            alarmSettingToolbar.startAnimation(slide_in_toolbar);
             alarmSettingLayout.setVisibility(View.VISIBLE);
             alarmSettingLayout.startAnimation(slide_in);
-            //alarmView.setBackgroundColor(Color.WHITE);
+            rentInfoLayout.setBackgroundColor(Color.WHITE);
 
         } else {
-            alarmSettingToolbar.startAnimation(slide_out_toolbar);
             alarmSettingToolbar.setVisibility(View.GONE);
             alarmSettingLayout.startAnimation(slide_out);
             alarmSettingLayout.setVisibility(View.GONE);
-            //alarmView.setBackgroundColor(Color.parseColor("#CCffffff"));
+            rentInfoLayout.setBackgroundColor(Color.parseColor("#CCffffff"));
         }
     }
 
@@ -354,7 +349,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onClick(View v) {
                 LatLng center = mGoogleMap.getCameraPosition().target;
-                Intent intent = new Intent(MainActivity.this, NearbyStationListActivity.class);
+                Intent intent = new Intent(MainActivity.this, StationListActivity.class);
                 intent.putExtra("location", center);
                 startActivityForResult(intent, 0);
             }

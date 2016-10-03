@@ -12,12 +12,12 @@ import java.util.ArrayList;
 /**
  * Created by Semin on 2016-07-25.
  */
-public class ListViewAdapter extends BaseAdapter {
+public class StationListViewAdapter extends BaseAdapter {
     // Adapter에 추가된 데이터를 저장하기 위한 ArrayList
     private ArrayList<ListViewItem> listViewItemList = new ArrayList<ListViewItem>();
 
     // ListViewAdapter의 생성자
-    public ListViewAdapter() {
+    public StationListViewAdapter() {
 
     }
 

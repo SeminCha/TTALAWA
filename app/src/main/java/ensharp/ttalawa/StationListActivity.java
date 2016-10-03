@@ -18,14 +18,14 @@ import java.util.HashMap;
 /**
  * Created by Semin on 2016-09-30.
  */
-public class NearbyStationListActivity extends Activity implements AdapterView.OnItemClickListener {
+public class StationListActivity extends Activity implements AdapterView.OnItemClickListener {
 
     ArrayList<StationData> stationList;
     ArrayList<Float> distanceList;
     HashMap placeDistance;
     StationDbAdapter dbAdapter;
     ListView listview;
-    ListViewAdapter adapter;
+    StationListViewAdapter adapter;
     StationData stationData;
     LatLng currentLocation;
     TextView activityNameTxt;
@@ -45,7 +45,7 @@ public class NearbyStationListActivity extends Activity implements AdapterView.O
 
     @Override
     public void onItemClick(AdapterView parent, View v, int position, long id) {
-        ListViewAdapter.ListViewItem item = (ListViewAdapter.ListViewItem) parent.getItemAtPosition(position);
+        StationListViewAdapter.ListViewItem item = (StationListViewAdapter.ListViewItem) parent.getItemAtPosition(position);
         String stationNumber = item.getStationNumber();
         setResult(Integer.parseInt(stationNumber));
         finish();
@@ -67,7 +67,7 @@ public class NearbyStationListActivity extends Activity implements AdapterView.O
 
         distanceList = new ArrayList();
         placeDistance = new HashMap();
-        adapter = new ListViewAdapter();
+        adapter = new StationListViewAdapter();
         listview = (ListView) findViewById(R.id.stationlistview);
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(this);

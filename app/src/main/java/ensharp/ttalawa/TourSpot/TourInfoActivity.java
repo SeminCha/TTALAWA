@@ -31,8 +31,8 @@ public class TourInfoActivity extends AppCompatActivity{
         //탭 레이아웃
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("소개"));
-        tabLayout.addTab(tabLayout.newTab().setText("요금"));
         tabLayout.addTab(tabLayout.newTab().setText("시간"));
+        tabLayout.addTab(tabLayout.newTab().setText("요금"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:textColor="@color/grey_dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginTop="5dp"
+        android:gravity="top"
+        android:paddingLeft="10dp"
+        android:text="— 한옥 관람시간"
+        android:textSize="7pt" />
+
+    <TextView
+        android:textColor="@color/grey_dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginTop="5dp"
+        android:gravity="top"
+        android:paddingLeft="10dp"
+        android:text="하절기(4월~10월) 09:00~21:00"
+        android:textSize="7pt" />
+
+    <TextView
+        android:textColor="@color/grey_dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginTop="5dp"
+        android:gravity="top"
+        android:paddingLeft="10dp"
+        android:text="동절기(11월~3월) 09:00~20:00"
+        android:textSize="7pt" />
+
+    <TextView
+        android:textColor="@color/grey_dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginTop="5dp"
+        android:gravity="top"
+        android:paddingLeft="10dp"
+        android:text="* 매주 화요일 휴관입니다."
+        android:textSize="7pt" />
+
+    <TextView
+        android:textColor="@color/grey_dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginTop="5dp"
+        android:gravity="top"
+        android:paddingLeft="10dp"
+        android:text="— 전통정원 개방시간"
+        android:textSize="7pt" />
+
+    <TextView
+        android:textColor="@color/grey_dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginTop="5dp"
+        android:gravity="top"
+        android:paddingLeft="10dp"
+        android:text="산책 및 이용 07:00~23:00"
+        android:textSize="7pt" />
+
+    <TextView
+        android:textColor="@color/grey_dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginTop="5dp"
+        android:gravity="top"
+        android:paddingLeft="10dp"
+        android:text="후문 주민 통로 이용 05:00~익일 01:00"
+        android:textSize="7pt" />
+
+    <TextView
+        android:textColor="@color/grey_dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginTop="5dp"
+        android:gravity="top"
+        android:paddingLeft="10dp"
+        android:text="* 01:00~05:00 사이는 안전사고 예방과 시설관리 목적으로 입장과 통행이 제한됩니다."
+        android:textSize="7pt" />
+</LinearLayout>

@@ -101,6 +101,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     RelativeLayout alarmSettingLayout;
     Toolbar alarmSettingToolbar;
 
+    SharedPreferences pref;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,6 +129,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         rentInfoLayout = (RelativeLayout) findViewById(R.id.rentInfoLayout);
 
         alarmButtonSetting();
+        pref = new SharedPreferences(this);
         mapFrag = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         //구글맵 인스턴스(지도)가 사용될 준비가 되면 this라는 콜백객체를 발생시킨다.
         mapFrag.getMapAsync(this);
@@ -167,6 +170,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         getStationMarkerItems();
         getTourSpotMarkerItems();
+
+        LatLng latLng = new LatLng(Double.parseDouble(pref.getValue("위도","37.57142486","위치")),Double.parseDouble(pref.getValue("경도","126.985440","위치")));
+        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(14));
+
         //구글플레이 서비스를 초기화 시킴
         // 버전이 6.0이상인 경우 허가사용을 요청
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -1131,7 +1139,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onBackPressed() {
+        LatLng center = mGoogleMap.getCameraPosition().target;
         if (exit) {
+            pref.putValue("위도",String.valueOf(center.latitude),"위치");
+            pref.putValue("경도",String.valueOf(center.longitude),"위치");
             finish(); // finish activity
         } else {
             if (stationInfoLayout.getVisibility() == View.VISIBLE || tourSpotInfoLayout.getVisibility() == View.VISIBLE) {

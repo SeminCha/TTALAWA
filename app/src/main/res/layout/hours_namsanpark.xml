@@ -1,50 +1,226 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:paddingLeft="0.7dp"
-        android:paddingRight="0.7dp"
-        android:textSize="5pt">
-    <!--비고-->
-    <TableRow android:weightSum="15">
-        <TextView
-            android:layout_weight="6"
-            android:width="0px"
-            android:height="80dp"
-            android:background="@drawable/cellbg"
-            android:gravity="center"
-            android:text="운행시간" />
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-        <TableLayout
-            android:layout_weight="9">
-            <TextView
-                android:layout_weight="9"
-                android:width="0px"
-                android:height="20dp"
-                android:background="@drawable/cellbg"
-                android:gravity="center"
-                android:text="10:00~23:00" />
-            <TextView
-                android:layout_weight="9"
-                android:width="0px"
-                android:height="20dp"
-                android:background="@drawable/cellbg"
-                android:gravity="center"
-                android:text="" />
-            <TextView
-                android:layout_weight="9"
-                android:width="0px"
-                android:height="20dp"
-                android:background="@drawable/cellbg"
-                android:gravity="center"
-                android:text="단체 30인 이상" />
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:fillViewport="false"
+        android:visibility="visible">
 
-        </TableLayout>
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    </TableRow>
-    </TableLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="20dp"
+                android:gravity="top"
+                android:paddingLeft="17dp"
+                android:text="주요 시설"
+                android:textSize="8pt" />
+
+            <!--주요시설 표-->
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:textSize="10pt">
+
+                <!--1열(시설명)-->
+                <TableRow android:weightSum="15">
+
+                    <TextView
+                        android:layout_weight="6"
+                        android:width="0px"
+                        android:height="40dp"
+                        android:background="@drawable/cell_title"
+                        android:gravity="center"
+                        android:text="시설명" />
+
+                    <TextView
+                        android:layout_weight="9"
+                        android:width="0px"
+                        android:height="40dp"
+                        android:background="@drawable/cell_title"
+                        android:gravity="center"
+                        android:text="서울 타워" />
+
+
+                </TableRow>
+
+                <TableRow android:weightSum="15">
+
+                    <TextView
+                        android:layout_weight="6"
+                        android:width="0px"
+                        android:height="40dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="(종별)" />
+
+                    <TextView
+                        android:layout_weight="9"
+                        android:width="0px"
+                        android:height="40dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="전망대" />
+
+
+                </TableRow>
+
+
+                <!--비고-->
+                <TableRow android:weightSum="15">
+
+                    <TextView
+                        android:layout_weight="6"
+                        android:width="0px"
+                        android:height="120dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="비고" />
+
+                    <TableLayout android:layout_weight="9">
+
+                        <TextView
+                            android:layout_weight="9"
+                            android:width="0px"
+                            android:height="40dp"
+                            android:background="@drawable/cellbg"
+                            android:gravity="center"
+                            android:text="관람시간" />
+
+                        <TextView
+                            android:layout_weight="9"
+                            android:width="0px"
+                            android:height="40dp"
+                            android:background="@drawable/cellbg"
+                            android:gravity="center"
+                            android:text="주중/일 10:00~23:00" />
+
+                        <TextView
+                            android:layout_weight="9"
+                            android:width="0px"
+                            android:height="40dp"
+                            android:background="@drawable/cellbg"
+                            android:gravity="center"
+                            android:text="토 10:00~24:00" />
+
+
+                    </TableLayout>
+
+
+                </TableRow>
+
+            </TableLayout>
+
+
+            <!--케이블카-->
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:paddingBottom="50dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:textSize="10pt">
+
+                <!--1열(시설명)-->
+                <TableRow android:weightSum="15">
+
+                    <TextView
+                        android:layout_weight="6"
+                        android:width="0px"
+                        android:height="40dp"
+                        android:background="@drawable/cell_title"
+                        android:gravity="center"
+                        android:text="시설명" />
+
+
+                    <TextView
+                        android:layout_gravity="center"
+                        android:layout_weight="9"
+                        android:width="0px"
+                        android:height="40dp"
+                        android:background="@drawable/cell_title"
+                        android:gravity="center"
+                        android:text="케이블카" />
+                </TableRow>
+
+                <TableRow android:weightSum="15">
+
+                    <TextView
+                        android:layout_weight="6"
+                        android:width="0px"
+                        android:height="40dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="(종별)" />
+
+
+                    <TextView
+                        android:layout_weight="4.5"
+                        android:width="0px"
+                        android:height="40dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="편도" />
+
+                    <TextView
+                        android:layout_weight="4.5"
+                        android:width="0px"
+                        android:height="40dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="왕복" />
+                </TableRow>
+
+                <!--비고-->
+                <TableRow android:weightSum="15">
+
+                    <TextView
+                        android:layout_weight="6"
+                        android:width="0px"
+                        android:height="80dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="비고" />
+
+                    <TableLayout android:layout_weight="9">
+
+                        <TextView
+                            android:layout_weight="9"
+                            android:width="0px"
+                            android:height="40dp"
+                            android:background="@drawable/cellbg"
+                            android:gravity="center"
+                            android:text="운행시간" />
+
+                        <TextView
+                            android:layout_weight="9"
+                            android:width="0px"
+                            android:height="40dp"
+                            android:background="@drawable/cellbg"
+                            android:gravity="center"
+                            android:text="10:00~23:00" />
+
+
+                    </TableLayout>
+
+                </TableRow>
+
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

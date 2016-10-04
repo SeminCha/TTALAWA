@@ -1,6 +1,392 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:fillViewport="false"
+        android:visibility="visible">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="20dp"
+                android:gravity="top"
+                android:paddingLeft="17dp"
+                android:text="주요 시설"
+                android:textSize="8pt" />
+
+            <!--주요시설 및 이용요금 표-->
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:textSize="10pt">
+
+                <!--1열(시설명)-->
+                <TableRow android:weightSum="15">
+
+                    <TextView
+                        android:layout_weight="6"
+                        android:width="0px"
+                        android:height="40dp"
+                        android:background="@drawable/cell_title"
+                        android:gravity="center"
+                        android:text="시설명" />
+
+                    <TextView
+                        android:layout_weight="9"
+                        android:width="0px"
+                        android:height="40dp"
+                        android:background="@drawable/cell_title"
+                        android:gravity="center"
+                        android:text="서울 타워" />
+
+
+                </TableRow>
+
+                <TableRow android:weightSum="15">
+
+                    <TextView
+                        android:layout_weight="6"
+                        android:width="0px"
+                        android:height="40dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="(종별)" />
+
+                    <TextView
+                        android:layout_weight="9"
+                        android:width="0px"
+                        android:height="40dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="전망대" />
+
+
+                </TableRow>
+
+                <!--2열(이용요금)-->
+                <TableRow android:weightSum="15">
+
+                    <TextView
+                        android:layout_weight="3.5"
+                        android:width="0px"
+                        android:height="80dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="이용요금" />
+
+                    <TextView
+                        android:layout_weight="2.5"
+                        android:width="0px"
+                        android:height="80dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="대인" />
+
+                    <TableLayout android:layout_weight="9">
+                        <TextView
+                            android:width="0px"
+                            android:height="40dp"
+                            android:background="@drawable/cellbg"
+                            android:gravity="center"
+                            android:text="9000원" />
+                        <TextView
+                            android:width="0px"
+                            android:height="40dp"
+                            android:background="@drawable/cellbg"
+                            android:gravity="center"
+                            android:text="(단체 10% 할인)" />
+                    </TableLayout>
+
+
+
+                </TableRow>
+                <TableRow android:weightSum="15">
+
+                    <TextView
+                        android:layout_weight="3.5"
+                        android:width="0px"
+                        android:height="80dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="개별/(단체)" />
+
+                    <TextView
+                        android:layout_weight="2.5"
+                        android:width="0px"
+                        android:height="80dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="소인" />
+
+                    <TableLayout android:layout_weight="9">
+                        <TextView
+                            android:width="0px"
+                            android:height="40dp"
+                            android:background="@drawable/cellbg"
+                            android:gravity="center"
+                            android:text="5000원" />
+                        <TextView
+                            android:width="0px"
+                            android:height="40dp"
+                            android:background="@drawable/cellbg"
+                            android:gravity="center"
+                            android:text="(단체 10% 할인)" />
+                    </TableLayout>
+
+
+                </TableRow>
+
+                <!--비고-->
+                <TableRow android:weightSum="15">
+                    <TextView
+                        android:layout_weight="6"
+                        android:width="0px"
+                        android:height="120dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="비고" />
+
+                    <TableLayout
+                        android:layout_weight="9">
+
+                        <TextView
+                            android:layout_weight="9"
+                            android:width="0px"
+                            android:height="40dp"
+                            android:background="@drawable/cellbg"
+                            android:gravity="center"
+                            android:text="단체 20인 이상" />
+                        <TextView
+                            android:layout_weight="9"
+                            android:width="0px"
+                            android:height="40dp"
+                            android:background="@drawable/cellbg"
+                            android:gravity="center"
+                            android:text="대인: 만 13세 이상" />
+                        <TextView
+                            android:layout_weight="9"
+                            android:width="0px"
+                            android:height="40dp"
+                            android:background="@drawable/cellbg"
+                            android:gravity="center"
+                            android:text="소인: 만 3세~만 12세" />
+                    </TableLayout>
+
+
+
+                </TableRow>
+
+            </TableLayout>
+
+
+
+            <!--케이블카-->
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:paddingBottom="50dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:textSize="10pt">
+
+                <!--1열(시설명)-->
+                <TableRow android:weightSum="15">
+
+                    <TextView
+                        android:layout_weight="6"
+                        android:width="0px"
+                        android:height="40dp"
+                        android:background="@drawable/cell_title"
+                        android:gravity="center"
+                        android:text="시설명" />
+
+
+                    <TextView
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:layout_weight="9"
+                        android:width="0px"
+                        android:height="40dp"
+                        android:background="@drawable/cell_title"
+                        android:text="케이블카" />
+                </TableRow>
+
+                <TableRow android:weightSum="15">
+
+                    <TextView
+                        android:layout_weight="6"
+                        android:width="0px"
+                        android:height="40dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="(종별)" />
+
+
+                    <TextView
+                        android:layout_weight="4.5"
+                        android:width="0px"
+                        android:height="40dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="편도" />
+
+                    <TextView
+                        android:layout_weight="4.5"
+                        android:width="0px"
+                        android:height="40dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="왕복" />
+                </TableRow>
+
+                <!--2열(이용요금)-->
+                <TableRow android:weightSum="15">
+
+                    <TextView
+                        android:layout_weight="3.5"
+                        android:width="0px"
+                        android:height="80dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="이용요금" />
+
+                    <TextView
+                        android:layout_weight="2.5"
+                        android:width="0px"
+                        android:height="80dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="대인" />
+
+
+                    <TableLayout android:layout_weight="4.5">
+                        <TextView
+                            android:width="0px"
+                            android:height="40dp"
+                            android:background="@drawable/cellbg"
+                            android:gravity="center"
+                            android:text="6000원" />
+                        <TextView
+                            android:width="0px"
+                            android:height="40dp"
+                            android:background="@drawable/cellbg"
+                            android:gravity="center"
+                            android:text="(5000원)" />
+                    </TableLayout>
+
+                    <TableLayout android:layout_weight="4.5">
+                        <TextView
+                            android:width="0px"
+                            android:height="40dp"
+                            android:background="@drawable/cellbg"
+                            android:gravity="center"
+                            android:text="8500원" />
+                        <TextView
+                            android:width="0px"
+                            android:height="40dp"
+                            android:background="@drawable/cellbg"
+                            android:gravity="center"
+                            android:text="(7000원)" />
+                    </TableLayout>
+                </TableRow>
+                <TableRow android:weightSum="15">
+
+                    <TextView
+                        android:layout_weight="3.5"
+                        android:width="0px"
+                        android:height="80dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="개별/(단체)" />
+
+                    <TextView
+                        android:layout_weight="2.5"
+                        android:width="0px"
+                        android:height="80dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="소인" />
+
+
+
+                    <TableLayout android:layout_weight="4.5">
+                        <TextView
+                            android:width="0px"
+                            android:height="40dp"
+                            android:background="@drawable/cellbg"
+                            android:gravity="center"
+                            android:text="3500원" />
+                        <TextView
+                            android:width="0px"
+                            android:height="40dp"
+                            android:background="@drawable/cellbg"
+                            android:gravity="center"
+                            android:text="(3000원)" />
+                    </TableLayout>
+
+                    <TableLayout android:layout_weight="4.5">
+                        <TextView
+                            android:width="0px"
+                            android:height="40dp"
+                            android:background="@drawable/cellbg"
+                            android:gravity="center"
+                            android:text="5500원" />
+                        <TextView
+                            android:width="0px"
+                            android:height="40dp"
+                            android:background="@drawable/cellbg"
+                            android:gravity="center"
+                            android:text="(4500원)" />
+                    </TableLayout>
+                </TableRow>
+
+                <!--비고-->
+                <TableRow android:weightSum="15">
+                    <TextView
+                        android:layout_weight="6"
+                        android:width="0px"
+                        android:height="40dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="비고" />
+
+                    <TableLayout
+                        android:layout_weight="9">
+
+                        <TextView
+                            android:layout_weight="9"
+                            android:width="0px"
+                            android:height="40dp"
+                            android:background="@drawable/cellbg"
+                            android:gravity="center"
+                            android:text="단체 30인 이상" />
+
+                    </TableLayout>
+
+                </TableRow>
+
+            </TableLayout>
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

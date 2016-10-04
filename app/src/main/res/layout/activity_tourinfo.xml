@@ -20,7 +20,6 @@
         android:background="#fff3f3f3"
         android:elevation="6dp"
         android:minHeight="?attr/actionBarSize"
-        app:tabBackground="@drawable/tab_bg"
         app:tabIndicatorHeight="4dp"
         app:tabTextAppearance="@style/AppTabTextAppearance"
         app:tabSelectedTextColor="#df5539"

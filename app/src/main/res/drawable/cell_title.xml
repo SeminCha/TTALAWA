@@ -17,6 +17,26 @@
         </shape>
     </item>
 
+    <!--right-->
+    <item android:top="-3dp" android:left="-3dp">
+        <shape>
+            <solid android:color="@android:color/transparent" />
+            <stroke
+                android:width="0.7dp"
+                android:color="#bebebe" />
+        </shape>
+    </item>
+
+    <!--left-->
+    <item android:top="-3dp" android:right="-3dp">
+        <shape>
+            <solid android:color="@android:color/transparent" />
+            <stroke
+                android:width="0.7dp"
+                android:color="#bebebe" />
+        </shape>
+    </item>
+
     <!--top-->
     <item android:left="-3dp" android:right="-3dp" android:bottom="-3dp">
         <shape>

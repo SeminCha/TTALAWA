@@ -4,20 +4,49 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    >
+    android:weightSum="10">
 
     <ImageView
         android:id="@+id/spot_img"
         android:layout_width="fill_parent"
-        android:layout_height="250dp"
-        android:scaleType="fitXY"
+        android:layout_height="0dp"
         android:layout_alignParentTop="true"
-        />
+        android:layout_weight="4"
+        android:scaleType="fitXY"
+        android:src="@drawable/sungryemun_img"/>
 
-    <TextView
-        android:id="@+id/tab1_spotname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/grey_dark" />
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tab1_spotname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_dark" />
+
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="전화 연결"
+            android:id="@+id/btn_call"
+            android:layout_marginBottom="35dp"
+            android:layout_marginStart="40dp"
+            android:layout_alignParentBottom="true"
+            />
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="사이트로 연결"
+            android:id="@+id/btn_website"
+            android:layout_alignTop="@+id/btn_call"
+            android:layout_toEndOf="@+id/btn_call" />
+
+    </RelativeLayout>
 
 </LinearLayout>

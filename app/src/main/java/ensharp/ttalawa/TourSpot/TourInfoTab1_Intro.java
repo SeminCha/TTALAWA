@@ -1,10 +1,12 @@
 package ensharp.ttalawa.TourSpot;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,11 +18,20 @@ public class TourInfoTab1_Intro extends Fragment{
     public String spotName;
     private View inflatedView;
     private ImageView imageView;
+    private Intent callIntent;
+    private Intent webIntent;
+    private Button callBtn;
+    private Button webBtn;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         inflatedView=inflater.inflate(R.layout.spot_tab1_intro, container, false);
+        callBtn=(Button)inflatedView.findViewById(R.id.btn_call);
+        webBtn=(Button)inflatedView.findViewById(R.id.btn_website);
+        callBtn.setOnClickListener(btnListener);
+        webBtn.setOnClickListener(btnListener);
+
         spotName=TourInfoActivity.spotName;
         setContentView(spotName);
         return inflatedView;
@@ -108,5 +119,121 @@ public class TourInfoTab1_Intro extends Fragment{
                 break;
         }
     }
+
+    //case에 따른 전화 연결 및 인터넷 연결
+    Button.OnClickListener btnListener=new View.OnClickListener() {
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.btn_call:
+                    switch(spotName){
+                        case "덕수궁 돌담길":
+                            break;
+                        case "명동":
+                            break;
+                        case "남산골 한옥마을":
+                            break;
+                        case "숭례문":
+                            break;
+                        case "남산 공원":
+                            break;
+                        case "N 서울타워":
+                            break;
+                        case "경복궁":
+                            break;
+                        case "광화문 광장":
+                            break;
+                        case "종묘":
+                            break;
+                        case "보신각 터":
+                            break;
+                        case "쌈지길":
+                            break;
+                        case "인사동":
+                            break;
+                        case "창덕궁과 후원":
+                            break;
+                        case "창경궁":
+                            break;
+                        case "북촌 한옥마을":
+                            break;
+                        case "흥인지문":
+                            break;
+                        case "동대문 패션타운":
+                            break;
+                        case "대학로":
+                            break;
+                        case "마로니에 공원":
+                            break;
+                        case "낙산 공원":
+                            break;
+                        case "63스퀘어":
+                            break;
+                        case "여의도 공원":
+                            break;
+                        case "MBC 월드 방송 테마 파크":
+                            break;
+                        case "평화의 공원":
+                            break;
+                        case "하늘 공원":
+                            break;
+                    }
+                    break;
+                case R.id.btn_website:
+                    switch(spotName){
+                        case "덕수궁 돌담길":
+                            break;
+                        case "명동":
+                            break;
+                        case "남산골 한옥마을":
+                            break;
+                        case "숭례문":
+                            break;
+                        case "남산 공원":
+                            break;
+                        case "N 서울타워":
+                            break;
+                        case "경복궁":
+                            break;
+                        case "광화문 광장":
+                            break;
+                        case "종묘":
+                            break;
+                        case "보신각 터":
+                            break;
+                        case "쌈지길":
+                            break;
+                        case "인사동":
+                            break;
+                        case "창덕궁과 후원":
+                            break;
+                        case "창경궁":
+                            break;
+                        case "북촌 한옥마을":
+                            break;
+                        case "흥인지문":
+                            break;
+                        case "동대문 패션타운":
+                            break;
+                        case "대학로":
+                            break;
+                        case "마로니에 공원":
+                            break;
+                        case "낙산 공원":
+                            break;
+                        case "63스퀘어":
+                            break;
+                        case "여의도 공원":
+                            break;
+                        case "MBC 월드 방송 테마 파크":
+                            break;
+                        case "평화의 공원":
+                            break;
+                        case "하늘 공원":
+                            break;
+                    }
+                    break;
+            }
+        }
+    };
 
 }

@@ -110,7 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="210dp"
                 android:layout_gravity="bottom"
-                android:background="@drawable/stationinfo_layout_style"
+                android:background="@drawable/upper_shadow_style"
                 android:clickable="true"
                 android:orientation="vertical"
                 android:paddingBottom="10dp"

@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mGoogleMap.getUiSettings().setMyLocationButtonEnabled(false);
 
         mapButtonSetting();
-        TmapAuthentication();
+        //TmapAuthentication();
 
         markerMap = new HashMap();
         stationMarkerMap = new HashMap();

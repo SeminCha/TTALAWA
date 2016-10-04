@@ -179,6 +179,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mGoogleMap.setOnMapClickListener(this);
         mGoogleMap.setInfoWindowAdapter(this);
         mGoogleMap.getUiSettings().setMyLocationButtonEnabled(false);
+        mGoogleMap.getUiSettings().setCompassEnabled(false);
 
         mapButtonSetting();
         TmapAuthentication();
@@ -768,6 +769,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 insertInfoLayoutContent(marker, stationInfoLayout);
                 changeInfoLayoutVisibility(stationInfoLayout, true);
                 marker = (Marker) stationRedMarkMap.get("selected");
+                LatLng latLng = new LatLng(marker.getPosition().latitude, marker.getPosition().longitude);
+                mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(14));
                 Log.i("일반", "일반");
             } else if (neartourSpotStationMarkerMap.containsKey(String.valueOf(resultCode))) {
                 marker = (Marker) neartourSpotStationMarkerMap.get(String.valueOf(resultCode));
@@ -776,6 +780,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 insertInfoLayoutContent(marker, stationInfoLayout);
                 changeInfoLayoutVisibility(stationInfoLayout, true);
                 marker = (Marker) stationRedMarkMap.get("selected");
+                LatLng latLng = new LatLng(marker.getPosition().latitude, marker.getPosition().longitude);
+                mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(14));
                 Log.i("관광지근처", "관광지근처");
             } else {
                 marker = (Marker) stationRedMarkMap.get(String.valueOf(resultCode));

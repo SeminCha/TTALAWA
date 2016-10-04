@@ -1,4 +1,4 @@
-package ensharp.ttalawa;
+package ensharp.ttalawa.DBAdapter;
 
 import android.content.ContentValues;
 import android.content.Context;

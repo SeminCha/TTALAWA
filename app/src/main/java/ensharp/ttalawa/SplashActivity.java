@@ -9,6 +9,8 @@ import android.util.Log;
 
 import java.io.InputStream;
 
+import ensharp.ttalawa.DBAdapter.SpotsDbAdapter;
+import ensharp.ttalawa.DBAdapter.StationDbAdapter;
 import jxl.Sheet;
 import jxl.Workbook;
 
@@ -19,7 +21,7 @@ import jxl.Workbook;
 public class SplashActivity extends Activity {
 
     /* 스플래쉬 화면이 뜨는 시간 */
-    private final int SPLASH_DISPLAY_LENGTH = 2000;
+    private final int SPLASH_DISPLAY_LENGTH = 500;
 
     private StationDbAdapter dbAdapter;
     private SpotsDbAdapter spotDbAdapter;

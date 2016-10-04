@@ -1,9 +1,38 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorPrimary">@color/green_lighter</item>
-        <item name="colorPrimaryDark">@color/black</item>
-        <item name="colorAccent">@color/green_dark</item>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#fff3f3f3</item>
+        <!--   darker variant for the status bar and contextual app bars -->
+        <item name="colorPrimaryDark">@color/grey_light</item>
+        <!--   theme UI controls like checkboxes and text fields -->
+        <item name="colorAccent">#df5539</item>
     </style>
+
+    <style name="AppTabLayout" parent="Widget.Design.TabLayout">
+        <!--<item name="tabMaxWidth">@dimen/tab_max_width</item>-->
+        <item name="tabIndicatorColor">@color/colorAccent</item>
+        <item name="tabIndicatorHeight">4dp</item>
+        <item name="tabPaddingStart">6dp</item>
+        <item name="tabPaddingEnd">6dp</item>
+        <item name="tabBackground">@color/grey</item>
+        <item name="tabTextAppearance">@style/AppTabTextAppearance</item>
+        <item name="tabSelectedTextColor">#df5539</item>
+    </style>
+
+    <!-- for text -->
+    <style name="AppTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">#eb9988</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <!--<style name="tab_selected">-->
+        <!--<item name="android:background">@drawable/tab_selected</item>-->
+        <!--<item name="android:textColor">#df5539</item>-->
+    <!--</style>-->
+    <!--<style name="tab_unselected">-->
+        <!--<item name="android:background">@drawable/tab_unselected</item>-->
+        <!--<item name="android:textColor">#eb9988</item>-->
+    <!--</style>-->
 </resources>

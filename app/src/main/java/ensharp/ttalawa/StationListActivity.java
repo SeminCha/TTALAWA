@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
+import ensharp.ttalawa.DBAdapter.StationDbAdapter;
+
 /**
  * Created by Semin on 2016-09-30.
  */
@@ -103,6 +105,7 @@ public class StationListActivity extends Activity implements AdapterView.OnItemC
 
         stationList = new ArrayList();
         while (!result.isAfterLast()) {
+            content_name = result.getString(1);
             content_name = result.getString(1);
             content_num = result.getString(6);
             addr_gu = result.getString(2);

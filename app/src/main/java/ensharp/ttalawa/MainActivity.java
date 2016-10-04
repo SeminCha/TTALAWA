@@ -55,6 +55,11 @@ import com.skp.Tmap.TMapTapi;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import ensharp.ttalawa.DBAdapter.SpotsDbAdapter;
+import ensharp.ttalawa.DBAdapter.StationDbAdapter;
+import ensharp.ttalawa.TourSpot.TourInfoActivity;
+import ensharp.ttalawa.TourSpot.TourSpotListActivity;
+
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
@@ -96,12 +101,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     String networkoper;
     TMapTapi tmaptapi;
     Marker navigationMarker;
-
+    private Button btn_tourspot;
     RelativeLayout rentInfoLayout;
     RelativeLayout alarmSettingLayout;
     Toolbar alarmSettingToolbar;
 
     SharedPreferences pref;
+//    요청코드정의
+    public static final int REQUEST_CODE_ANOTHER = 1001;
 
 
     @Override
@@ -133,7 +140,24 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapFrag = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         //구글맵 인스턴스(지도)가 사용될 준비가 되면 this라는 콜백객체를 발생시킨다.
         mapFrag.getMapAsync(this);
+
+        btn_tourspot=(Button)findViewById(R.id.btn_tourspot);
+        btn_tourspot.setOnClickListener(btnClickListener);
+
     }
+
+    Button.OnClickListener btnClickListener=new View.OnClickListener() {
+        public void onClick(View v) {
+            switch (v.getId()) {
+
+                case R.id.btn_tourspot:
+                    Intent intent = new Intent(getBaseContext(), TourSpotListActivity.class);
+                    startActivityForResult(intent, REQUEST_CODE_ANOTHER);
+                    break;
+
+            }
+        }
+    };
 
     //액티비티가 중지되거나 다시 시작될 때 현재위치표시를 새로고침 해주는 함수
     @Override
@@ -474,6 +498,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         // 관광명소 정보 레이아웃에 대한 정보
         TextView tourSpotName = (TextView) findViewById(R.id.tourSpotNameTxt);
         Button tourSpotNavigation = (Button) findViewById(R.id.tourSpotNavigationBtn);
+        Button btn_tourSpotInfo=(Button)findViewById(R.id.btn_tourspot);
 
         navigationMarker = marker;
 
@@ -517,7 +542,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     TmapNavigation(navigationMarker, false);
                 }
             });
-
+            //여행명소 상세 페이지(TourInfoActivity)로 이동
+            btn_tourSpotInfo.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    Intent intent = new Intent(getBaseContext(), TourInfoActivity.class);
+                    intent.putExtra("관광명소",navigationMarker.getTitle());
+                    startActivityForResult(intent,0);
+                }
+            });
         }
     }
 
@@ -551,6 +584,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 tmaptapi.invokeRoute(marker.getTitle() + " " + "거치소", (float) marker.getPosition().longitude, (float) marker.getPosition().latitude);
             } else {
                 tmaptapi.invokeRoute(marker.getTitle(), (float) marker.getPosition().longitude, (float) marker.getPosition().latitude);
+
             }
         } else {
             showTmapInstallDialog();
@@ -706,7 +740,17 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Marker marker;
 
-        if (requestCode == REQUEST_SELECT_PLACE) {
+        //추천관광명소activity(TourSpotListActivity)에서 돌아왔을 때
+        if(requestCode==REQUEST_CODE_ANOTHER){
+//            Toast toast = Toast.makeText(getBaseContext(), "onActivityResult() 메소드가 호출됨. 요청코드 : " + requestCode + ", 결과코드 : " + resultCode, Toast.LENGTH_LONG);
+//            toast.show();
+
+            if (resultCode == RESULT_OK) {
+//                String name = data.getExtras().getString("name");
+//                toast = Toast.makeText(getBaseContext(), "응답으로 전달된 name : " + name, Toast.LENGTH_LONG);
+//                toast.show();
+            }
+        } else if (requestCode == REQUEST_SELECT_PLACE) {
             if (resultCode == RESULT_OK) {
                 Place place = PlaceAutocomplete.getPlace(this, data);
                 this.onPlaceSelected(place);

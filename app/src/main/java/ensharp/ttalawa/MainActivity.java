@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         getStationMarkerItems();
         getTourSpotMarkerItems();
 
-        LatLng latLng = new LatLng(Double.parseDouble(pref.getValue("위도","37.57142486","위치")),Double.parseDouble(pref.getValue("경도","126.985440","위치")));
+        LatLng latLng = new LatLng(Double.parseDouble(pref.getValue("위도", "37.57142486", "위치")), Double.parseDouble(pref.getValue("경도", "126.985440", "위치")));
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(14));
 
@@ -347,12 +347,19 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         myLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Location location = mGoogleMap.getMyLocation();
 
-                if (location != null) {
-                    LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-                    mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-                    mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+                final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+                if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                    buildAlertMessageNoGps();
+                } else {
+                    Location location = mGoogleMap.getMyLocation();
+
+                    if (location != null) {
+                        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+                    }
                 }
             }
         });
@@ -1116,21 +1123,21 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     // Defines the contents of the InfoWindow
     @Override
     public View getInfoContents(Marker marker) {
-            // Getting view from the layout file info_window_layout
+        // Getting view from the layout file info_window_layout
 
-        if(marker.equals(tourSpotMarkerMap.get("S" + marker.getTitle()))) {
+        if (marker.equals(tourSpotMarkerMap.get("S" + marker.getTitle()))) {
             View v = getLayoutInflater().inflate(R.layout.infowindow_tourspotmarker, null);
             // Getting reference to the TextView to set latitude
             TextView tourSpotName = (TextView) v.findViewById(R.id.tourspot_name);
             tourSpotName.setText(marker.getTitle());
-            Log.i("마커이름",marker.getTitle());
+            Log.i("마커이름", marker.getTitle());
             return v;
         } else {
             View v = getLayoutInflater().inflate(R.layout.infowindow_tourspotmarker, null);
             // Getting reference to the TextView to set latitude
             TextView tourSpotName = (TextView) v.findViewById(R.id.tourspot_name);
             tourSpotName.setText(marker.getTitle());
-            Log.i("마커이름",marker.getTitle());
+            Log.i("마커이름", marker.getTitle());
             return v;
         }
     }
@@ -1141,8 +1148,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onBackPressed() {
         LatLng center = mGoogleMap.getCameraPosition().target;
         if (exit) {
-            pref.putValue("위도",String.valueOf(center.latitude),"위치");
-            pref.putValue("경도",String.valueOf(center.longitude),"위치");
+            pref.putValue("위도", String.valueOf(center.latitude), "위치");
+            pref.putValue("경도", String.valueOf(center.longitude), "위치");
             finish(); // finish activity
         } else {
             if (stationInfoLayout.getVisibility() == View.VISIBLE || tourSpotInfoLayout.getVisibility() == View.VISIBLE) {

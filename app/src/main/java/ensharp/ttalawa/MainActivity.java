@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         PlaceSelectionListener,
         GoogleMap.OnMarkerClickListener,
         GoogleMap.OnMapClickListener,
+        GoogleMap.InfoWindowAdapter,
         com.google.android.gms.location.LocationListener {
 
     GoogleMap mGoogleMap;
@@ -149,6 +150,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mGoogleMap.setOnMarkerClickListener(this);
         mGoogleMap.setOnMapClickListener(this);
+        mGoogleMap.setInfoWindowAdapter(this);
         mGoogleMap.getUiSettings().setMyLocationButtonEnabled(false);
 
         mapButtonSetting();
@@ -415,12 +417,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public boolean onMarkerClick(Marker marker) {
         Marker selectedMarker;
         if (marker.equals(markerMap.get("searched"))) {
+            marker.showInfoWindow();
             uncheckNearStationMarker();
         } else if (marker.equals(tourSpotMarkerMap.get("S" + marker.getTitle()))) {
             changeSelectedMarker(null);
             insertInfoLayoutContent(marker, tourSpotInfoLayout);
             changeInfoLayoutVisibility(tourSpotInfoLayout, true);
             uncheckNearStationMarker();
+            marker.showInfoWindow();
             checkNearStationMarker(marker);
         } else if (marker.equals(neartourSpotStationMarkerMap.get(marker.getSnippet()))) {
             insertInfoLayoutContent(marker, stationInfoLayout);
@@ -672,9 +676,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         LatLng latLng = new LatLng(place.getLatLng().latitude, place.getLatLng().longitude);
         markerOptions.position(latLng);
         markerOptions.title(place.getName().toString());
-        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.yellowmarker)));
+        //markerOptions.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.yellowmarker)));
+        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("searchmarker", 120, 125)));
         markerMap.put("searched", mGoogleMap.addMarker(markerOptions));
         Marker marker = (Marker) markerMap.get("searched");
+        marker.showInfoWindow();
         changeInfoLayoutVisibility(stationInfoLayout, false);
         changeInfoLayoutVisibility(tourSpotInfoLayout, false);
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
@@ -799,8 +805,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     public Bitmap resizeMapIcons(String iconName, int width, int height) {
         Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(), getResources().getIdentifier(iconName, "drawable", getPackageName()));
-        Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, width, height, false);
+        Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, width, height, true);
         return resizedBitmap;
+
     }
 
     private void addMarker(Marker marker, String markerMode) {
@@ -825,13 +832,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         markerOptions.snippet(stationNumber);
 
         if (markerMode.equals("red")) {
-            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("redmarker", 110, 180)));
+            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("redmarker", 100, 165)));
             stationRedMarkMap.put("selected", mGoogleMap.addMarker(markerOptions));
         } else if (markerMode.equals("green")) {
             markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("greenmarker", 100, 165)));
             stationMarkerMap.put(stationNumber, mGoogleMap.addMarker(markerOptions));
         } else if (markerMode.equals("nearStation")) {
-            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("redmarker", 110, 180)));
+            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("redmarker", 100, 165)));
             neartourSpotStationMarkerMap.put(stationNumber, mGoogleMap.addMarker(markerOptions));
         }
 
@@ -853,7 +860,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.title(tourSpotName);
         markerOptions.position(position);
-        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bluemarker)));
+        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("yellowmarker", 95, 155)));
         tourSpotMarkerMap.put("S" + tourSpotName, mGoogleMap.addMarker(markerOptions));
     }
 
@@ -1090,6 +1097,33 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             removeMarker = (Marker) stationMarkerMap.get(BackupStationList.get(i).contentNum.toString());
             removeMarker.remove();
             addMarker(BackupStationList.get(i), "nearStation");
+        }
+    }
+
+    @Override
+    public View getInfoWindow(Marker marker) {
+        return null;
+    }
+
+    // Defines the contents of the InfoWindow
+    @Override
+    public View getInfoContents(Marker marker) {
+            // Getting view from the layout file info_window_layout
+
+        if(marker.equals(tourSpotMarkerMap.get("S" + marker.getTitle()))) {
+            View v = getLayoutInflater().inflate(R.layout.infowindow_tourspotmarker, null);
+            // Getting reference to the TextView to set latitude
+            TextView tourSpotName = (TextView) v.findViewById(R.id.tourspot_name);
+            tourSpotName.setText(marker.getTitle());
+            Log.i("마커이름",marker.getTitle());
+            return v;
+        } else {
+            View v = getLayoutInflater().inflate(R.layout.infowindow_tourspotmarker, null);
+            // Getting reference to the TextView to set latitude
+            TextView tourSpotName = (TextView) v.findViewById(R.id.tourspot_name);
+            tourSpotName.setText(marker.getTitle());
+            Log.i("마커이름",marker.getTitle());
+            return v;
         }
     }
 

@@ -110,6 +110,19 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     //    요청코드정의
     public static final int REQUEST_CODE_ANOTHER = 1001;
 
+    // MMS관련 변수
+    public static TextView mainTxtView;
+
+    public static TextView overChargingView;
+    public static Context mContext;
+    public static int mode;
+    public static int nonRent = 0;
+    public static int rent = 1;
+    public static int returned = 2;
+    public static int firstOver = 3;
+    public static int secondOver = 4;
+    public static int thirdOver = 5;
+    public static int fourthOver = 6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,6 +156,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         btn_tourspot = (Button) findViewById(R.id.btn_tourspot);
         btn_tourspot.setOnClickListener(btnClickListener);
+
+        mContext = this;
+        mainTxtView =(TextView)findViewById(R.id.restTimetxtView);
+        overChargingView = (TextView)findViewById(R.id.overChargingView);
+        mode = nonRent;
 
     }
 

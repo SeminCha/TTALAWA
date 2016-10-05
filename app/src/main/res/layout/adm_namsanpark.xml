@@ -24,7 +24,7 @@
                 android:layout_marginTop="20dp"
                 android:gravity="top"
                 android:paddingLeft="17dp"
-                android:text="주요 시설"
+                android:text="이용 요금"
                 android:textSize="8pt" />
 
             <!--주요시설 및 이용요금 표-->

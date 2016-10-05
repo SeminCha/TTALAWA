@@ -114,16 +114,16 @@
                 android:clickable="true"
                 android:orientation="vertical"
                 android:paddingBottom="10dp"
-                android:paddingEnd="13dp"
-                android:paddingStart="13dp"
+                android:paddingEnd="15dp"
+                android:paddingStart="15dp"
                 android:paddingTop="15dp"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:weightSum="100">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="33"
+                    android:layout_weight="32"
                     android:orientation="horizontal"
                     android:weightSum="10">
 
@@ -144,7 +144,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="top"
-                        android:layout_weight="9">
+                        android:layout_weight="9"
+                        android:paddingStart="5dp">
 
                         <TextView
                             android:id="@+id/stationNameTxt"
@@ -163,16 +164,18 @@
                     android:layout_height="0dp"
                     android:layout_weight="40"
                     android:orientation="horizontal"
+                    android:paddingBottom="5dp"
                     android:weightSum="10">
 
                     <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:layout_weight="1.9"
+                        android:layout_weight="1.7"
                         android:layout_marginRight="13dp"
                         android:layout_marginTop="3dp"
                         android:layout_marginBottom="3dp"
+                        android:layout_marginStart="2dp"
                         android:background="@drawable/stationinfo_imageview_style">
 
                         <ImageView
@@ -187,7 +190,8 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:layout_weight="8.1"
+                        android:layout_weight="8.3"
+                        android:layout_marginStart="5dp"
                         android:orientation="vertical"
                         android:weightSum="10">
 
@@ -220,8 +224,8 @@
                                     android:layout_alignParentEnd="true"
                                     android:layout_centerVertical="true"
                                     android:text=""
-                                    android:textColor="@color/grey_dark"
-                                    android:textSize="18dp" />
+                                    android:textColor="@color/grey_darker"
+                                    android:textSize="22dp" />
                             </RelativeLayout>
 
                             <RelativeLayout
@@ -246,8 +250,8 @@
                                     android:layout_alignParentEnd="true"
                                     android:layout_centerVertical="true"
                                     android:text=""
-                                    android:textColor="@color/grey_light"
-                                    android:textSize="18dp" />
+                                    android:textColor="@color/grey_dark"
+                                    android:textSize="19dp" />
                             </RelativeLayout>
 
                         </LinearLayout>
@@ -271,11 +275,13 @@
                                 android:id="@+id/stationAddressTxt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
+                                android:paddingStart="1dp"
+                                android:paddingEnd="8dp"
                                 android:layout_centerVertical="true"
+                                android:layout_alignParentEnd="true"
                                 android:text=""
-                                android:textColor="@color/grey_light"
-                                android:textSize="18dp" />
+                                android:textColor="@color/grey_dark"
+                                android:textSize="19dp" />
 
                         </RelativeLayout>
 
@@ -285,25 +291,30 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="27"
+                    android:layout_weight="28"
                     android:orientation="horizontal"
-                    android:weightSum="10">
+                    android:weightSum="10"
+                    android:paddingBottom="5dp">
 
                     <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_gravity="center"
                         android:layout_weight="5"
                         android:gravity="left">
 
                         <Button
                             android:id="@+id/stationNavigationBtn"
-                            android:layout_width="1890dp"
+                            android:layout_width="180dp"
                             android:layout_height="48dp"
                             android:layout_alignParentBottom="true"
-                            android:layout_alignParentStart="true"
+                            android:drawableLeft="@drawable/navigation_image_style"
+                            android:paddingLeft="42dip"
+                            android:drawablePadding="10dip"
+                            android:gravity="left|center_vertical"
                             android:text="길안내"
-                            android:textSize="22dp" />
+                            android:textSize="22dp"
+                            android:layout_alignParentStart="true"
+                            android:background="@drawable/info_button_style"/>
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -316,9 +327,14 @@
                             android:layout_width="180dp"
                             android:layout_height="48dp"
                             android:layout_alignParentBottom="true"
-                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:drawableLeft="@drawable/rent_image_style"
+                            android:paddingLeft="35dip"
+                            android:drawablePadding="10dip"
+                            android:gravity="left|center_vertical"
                             android:text="대여하기"
-                            android:textSize="22dp" />
+                            android:textSize="22dp"
+                            android:background="@drawable/info_button_style"/>
                     </RelativeLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -332,16 +348,16 @@
                 android:clickable="true"
                 android:orientation="vertical"
                 android:paddingBottom="10dp"
-                android:paddingEnd="13dp"
-                android:paddingStart="13dp"
+                android:paddingEnd="15dp"
+                android:paddingStart="15dp"
                 android:paddingTop="15dp"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:weightSum="100">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="36"
+                    android:layout_weight="32"
                     android:orientation="horizontal"
                     android:weightSum="10">
 
@@ -349,7 +365,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="top"
-                        android:layout_weight="1.2">
+                        android:layout_weight="1">
 
                         <ImageView
                             android:layout_width="40dp"
@@ -362,7 +378,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="top"
-                        android:layout_weight="8.8">
+                        android:layout_weight="9">
 
                         <TextView
                             android:id="@+id/tourSpotNameTxt"
@@ -370,7 +386,8 @@
                             android:layout_height="wrap_content"
                             android:text=""
                             android:textColor="@color/black"
-                            android:textSize="20dp" />
+                            android:textSize="20dp"
+                            android:paddingStart="5dp"/>
 
                     </RelativeLayout>
 
@@ -379,20 +396,27 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="37"
+                    android:layout_weight="40"
                     android:orientation="horizontal"
+                    android:paddingBottom="5dp"
                     android:weightSum="10">
 
                     <RelativeLayout
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:layout_weight="2">
+                        android:layout_weight="1.7"
+                        android:layout_marginRight="13dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginStart="2dp"
+                        android:background="@drawable/stationinfo_imageview_style">
 
                         <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_alignParentStart="true"
+                            android:layout_width="57dp"
+                            android:layout_height="70dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
                             android:src="@drawable/seoul_logo" />
                     </RelativeLayout>
 
@@ -400,9 +424,11 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:layout_weight="8"
+                        android:layout_weight="8.3"
+                        android:layout_marginStart="5dp"
                         android:orientation="vertical"
-                        android:weightSum="10">
+                        android:weightSum="10"
+                        android:paddingEnd="15dp">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -411,17 +437,17 @@
                             android:orientation="horizontal"
                             android:weightSum="10">
 
-
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
                                 android:layout_centerVertical="true"
-                                android:text="내용"
+                                android:text="소개"
                                 android:textColor="@color/black"
                                 android:textSize="15dp" />
 
                             <TextView
+                                android:id="@+id/tourSpotIntroTxt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
@@ -434,7 +460,8 @@
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="5">
+                            android:layout_weight="5"
+                            android:background="@drawable/layout_top_seperator">
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -446,6 +473,7 @@
                                 android:textSize="15dp" />
 
                             <TextView
+                                android:id="@+id/tourSpotAdressTxt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
@@ -461,9 +489,10 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="27"
+                    android:layout_weight="28"
                     android:orientation="horizontal"
-                    android:weightSum="10">
+                    android:weightSum="10"
+                    android:paddingBottom="5dp">
 
                     <RelativeLayout
                         android:layout_width="0dp"
@@ -473,10 +502,15 @@
 
                         <Button
                             android:id="@+id/tourSpotNavigationBtn"
-                            android:layout_width="1890dp"
+                            android:layout_width="180dp"
                             android:layout_height="48dp"
                             android:layout_alignParentBottom="true"
                             android:layout_alignParentStart="true"
+                            android:drawableLeft="@drawable/navigation_image_style"
+                            android:paddingLeft="42dip"
+                            android:drawablePadding="10dip"
+                            android:gravity="left|center_vertical"
+                            android:background="@drawable/info_button_style"
                             android:text="길안내"
                             android:textSize="22dp" />
                     </RelativeLayout>
@@ -492,10 +526,14 @@
                             android:layout_height="48dp"
                             android:layout_alignParentBottom="true"
                             android:layout_alignParentEnd="true"
+                            android:drawableLeft="@drawable/tourspotinfo_image_style"
+                            android:paddingLeft="35dip"
+                            android:drawablePadding="10dip"
+                            android:gravity="left|center_vertical"
                             android:text="상세보기"
+                            android:background="@drawable/info_button_style"
                             android:textSize="22dp" />
                     </RelativeLayout>
-
                 </LinearLayout>
             </LinearLayout>
         </FrameLayout>

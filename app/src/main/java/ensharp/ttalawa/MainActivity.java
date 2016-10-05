@@ -498,6 +498,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         // 관광명소 정보 레이아웃에 대한 정보
         TextView tourSpotName = (TextView) findViewById(R.id.tourSpotNameTxt);
+        TextView
         Button tourSpotNavigation = (Button) findViewById(R.id.tourSpotNavigationBtn);
         Button btn_tourSpotInfo=(Button)findViewById(R.id.btn_tourspot);
 

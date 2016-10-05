@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginTop="20dp"
+        android:gravity="top"
+        android:paddingLeft="17dp"
+        android:text="이용 시간"
+        android:textSize="8pt" />
+    <!--주요시설 표-->
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:textSize="10pt">
+        <!--1열(시설명)-->
 
+            <TextView
+                android:width="0px"
+                android:height="40dp"
+                android:background="@drawable/cellbg"
+                android:gravity="center"
+                android:text="매일 10:30~20:30" />
+
+            <TextView
+                android:width="0px"
+                android:height="40dp"
+                android:background="@drawable/cellbg"
+                android:gravity="center"
+                android:text="공휴일 휴무 설날 / 추석 당일" />
+
+
+    </TableLayout>
 </LinearLayout>

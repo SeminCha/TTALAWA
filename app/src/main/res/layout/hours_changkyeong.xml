@@ -1,6 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginTop="20dp"
+        android:gravity="top"
+        android:paddingLeft="17dp"
+        android:text="이용 시간"
+        android:textSize="8pt" />
+    <!--관람요금 안내-->
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:textSize="10pt">
+
+        <!--타이틀-->
+        <TableRow android:weightSum="14">
+
+            <TextView
+                android:layout_weight="4"
+                android:width="0px"
+                android:height="40dp"
+                android:background="@drawable/cell_title"
+                android:gravity="center"
+                android:text="관람 기간" />
+
+            <TextView
+                android:layout_weight="5"
+                android:width="0px"
+                android:height="40dp"
+                android:background="@drawable/cell_title"
+                android:gravity="center"
+                android:text="매표 시간" />
+
+            <TextView
+                android:layout_weight="5"
+                android:width="0px"
+                android:height="40dp"
+                android:background="@drawable/cell_title"
+                android:gravity="center"
+                android:text="관람 시간" />
+        </TableRow>
+
+        <!--1~2월-->
+        <TableRow android:weightSum="14">
+
+            <TableLayout android:layout_weight="4">
+
+                <TextView
+                    android:width="0px"
+                    android:height="20dp"
+                    android:background="@drawable/cellbg"
+                    android:gravity="bottom"
+                    android:text="2월~5월"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:width="0px"
+                    android:height="20dp"
+                    android:background="@drawable/cellbg"
+                    android:gravity="top"
+                    android:text="/ 9월~10월"
+                    android:textAlignment="center" />
+            </TableLayout>
+
+            <TextView
+                android:layout_weight="5"
+                android:width="0px"
+                android:height="40dp"
+                android:background="@drawable/cellbg"
+                android:gravity="center"
+                android:text="09:00~17:00" />
+
+            <TextView
+                android:layout_weight="5"
+                android:width="0px"
+                android:height="40dp"
+                android:background="@drawable/cellbg"
+                android:gravity="center"
+                android:text="09:00~18:00" />
+        </TableRow>
+
+        <!--1열(시설명)-->
+        <TableRow android:weightSum="14">
+
+            <TextView
+                android:layout_weight="4"
+                android:width="0px"
+                android:height="40dp"
+                android:background="@drawable/cellbg"
+                android:gravity="center"
+                android:text="6월~8월" />
+
+            <TextView
+                android:layout_weight="5"
+                android:width="0px"
+                android:height="40dp"
+                android:background="@drawable/cellbg"
+                android:gravity="center"
+                android:text="09:00~17:30" />
+
+            <TextView
+                android:layout_weight="5"
+                android:width="0px"
+                android:height="40dp"
+                android:background="@drawable/cellbg"
+                android:gravity="center"
+                android:text="09:00~18:30" />
+        </TableRow>
+
+        <!--1열(시설명)-->
+        <TableRow android:weightSum="14">
+
+            <TextView
+                android:layout_weight="4"
+                android:width="0px"
+                android:height="40dp"
+                android:background="@drawable/cellbg"
+                android:gravity="center"
+                android:text="11월~1월" />
+
+            <TextView
+                android:layout_weight="5"
+                android:width="0px"
+                android:height="40dp"
+                android:background="@drawable/cellbg"
+                android:gravity="center"
+                android:text="09:00~16:30" />
+
+            <TextView
+                android:layout_weight="5"
+                android:width="0px"
+                android:height="40dp"
+                android:background="@drawable/cellbg"
+                android:gravity="center"
+                android:text="09:00~17:30" />
+        </TableRow>
+
+        <TextView
+            android:width="0px"
+            android:height="40dp"
+            android:background="@drawable/cell_title"
+            android:gravity="center"
+            android:text="비고" />
+        <TextView
+            android:width="0px"
+            android:height="40dp"
+            android:background="@drawable/cellbg"
+            android:gravity="center"
+            android:text="※ 휴관일 : 매주 월요일" />
+    </TableLayout>
 </LinearLayout>

@@ -34,9 +34,6 @@ public class TourInfoTab3_Admissions extends Fragment {
             case "종묘":
                 inflatedLayout = (LinearLayout) inflater.inflate(R.layout.adm_jongmyo, container, false);
                 break;
-            case "쌈지길":
-                inflatedLayout = (LinearLayout) inflater.inflate(R.layout.adm_samziegil, container, false);
-                break;
             case "창덕궁과 후원":
                 inflatedLayout = (LinearLayout) inflater.inflate(R.layout.adm_changdeok, container, false);
                 break;

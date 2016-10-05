@@ -1,6 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginTop="20dp"
+        android:gravity="top"
+        android:paddingLeft="17dp"
+        android:text="이용 요금"
+        android:textSize="8pt" />
+    <!--관람요금 안내-->
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:textSize="10pt">
+
+        <!--타이틀-->
+        <TableRow android:weightSum="14">
+
+            <TableLayout android:layout_weight="5">
+                <TextView
+                    android:width="0px"
+                    android:height="20dp"
+                    android:background="@drawable/cell_title"
+                    android:gravity="bottom"
+                    android:textAlignment="center"
+                    android:text="대인" />
+                <TextView
+                    android:width="0px"
+                    android:height="20dp"
+                    android:background="@drawable/cell_title"
+                    android:gravity="top"
+                    android:textAlignment="center"
+                    android:text="(만 25세~만 64세)" />
+            </TableLayout>
+
+            <TextView
+                android:layout_weight="9"
+                android:width="0px"
+                android:height="40dp"
+                android:background="@drawable/cellbg"
+                android:gravity="center"
+                android:text="3,000원" />
+
+        </TableRow>
+
+        <!--타이틀-->
+        <TableRow android:weightSum="14">
+
+            <TableLayout android:layout_weight="5">
+                <TextView
+                    android:width="0px"
+                    android:height="20dp"
+                    android:background="@drawable/cell_title"
+                    android:gravity="bottom"
+                    android:textAlignment="center"
+                    android:text="소인" />
+                <TextView
+                    android:width="0px"
+                    android:height="20dp"
+                    android:background="@drawable/cell_title"
+                    android:gravity="top"
+                    android:textAlignment="center"
+                    android:text="(만 24세 이하)" />
+            </TableLayout>
+
+            <TextView
+                android:layout_weight="9"
+                android:width="0px"
+                android:height="40dp"
+                android:background="@drawable/cellbg"
+                android:gravity="center"
+                android:text="무료(외국인 제외)" />
+
+        </TableRow>
+
+        <!--타이틀-->
+        <TableRow android:weightSum="14">
+
+            <TableLayout android:layout_weight="5">
+                <TextView
+                    android:width="0px"
+                    android:height="20dp"
+                    android:background="@drawable/cell_title"
+                    android:gravity="bottom"
+                    android:textAlignment="center"
+                    android:text="단체" />
+                <TextView
+                    android:width="0px"
+                    android:height="20dp"
+                    android:background="@drawable/cell_title"
+                    android:gravity="top"
+                    android:textAlignment="center"
+                    android:text="(10명 이상)" />
+            </TableLayout>
+
+            <TableLayout android:layout_weight="9">
+                <TextView
+                    android:width="0px"
+                    android:height="20dp"
+                    android:background="@drawable/cellbg"
+                    android:gravity="bottom"
+                    android:textAlignment="center"
+                    android:text="무료 대상자를 제외하고 10명" />
+                <TextView
+                    android:width="0px"
+                    android:height="20dp"
+                    android:background="@drawable/cellbg"
+                    android:gravity="top"
+                    android:textAlignment="center"
+                    android:text="이상일 경우 전각 요금 20% 할인" />
+            </TableLayout>
+
+        </TableRow>
+
+        <TableRow android:weightSum="14">
+            <TextView
+                android:layout_weight="5"
+                android:width="0px"
+                android:height="170dp"
+                android:background="@drawable/cell_title"
+                android:gravity="center"
+                android:text="무료" />
+            <TableLayout
+                android:layout_weight="9">
+                <TextView
+                    android:layout_weight="5"
+                    android:width="0px"
+                    android:height="30dp"
+                    android:background="@drawable/cellbg"
+                    android:gravity="bottom"
+                    android:text="    ※ 무료관람에 해당되시는 분은" />
+                <TextView
+                    android:layout_weight="5"
+                    android:width="0px"
+                    android:height="30dp"
+                    android:background="@drawable/cellbg"
+                    android:gravity="center_vertical"
+                    android:text="      신분증을 제시하여 주시고 무료" />
+                <TextView
+                    android:layout_weight="5"
+                    android:width="0px"
+                    android:height="30dp"
+                    android:background="@drawable/cellbg"
+                    android:gravity="top"
+                    android:text="      입장권을 발권받아 입장" />
+                <TextView
+                    android:layout_weight="5"
+                    android:width="0px"
+                    android:height="40dp"
+                    android:background="@drawable/cellbg"
+                    android:gravity="center_vertical"
+                    android:text="      - 만 24세 이하 청소년" />
+                <TextView
+                    android:layout_weight="5"
+                    android:width="0px"
+                    android:height="40dp"
+                    android:background="@drawable/cellbg"
+                    android:gravity="center_vertical"
+                    android:text="      - 만 65세 이상 어르신" />
+            </TableLayout>
+
+
+            </TableRow>
+    </TableLayout>
 </LinearLayout>

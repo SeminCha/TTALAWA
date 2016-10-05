@@ -1,6 +1,7 @@
 package ensharp.ttalawa.TourSpot;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -127,8 +128,11 @@ public class TourInfoTab1_Intro extends Fragment{
                 case R.id.btn_call:
                     switch(spotName){
                         case "덕수궁 돌담길":
+                            callIntent=new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-771-9951"));
+                            startActivity(callIntent);
                             break;
                         case "명동":
+
                             break;
                         case "남산골 한옥마을":
                             break;
@@ -181,6 +185,8 @@ public class TourInfoTab1_Intro extends Fragment{
                 case R.id.btn_website:
                     switch(spotName){
                         case "덕수궁 돌담길":
+                            webIntent=new Intent(Intent.ACTION_VIEW,Uri.parse("http://www.deoksugung.go.kr/"));
+                            startActivity(webIntent);
                             break;
                         case "명동":
                             break;

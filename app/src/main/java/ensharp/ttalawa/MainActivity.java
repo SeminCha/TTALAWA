@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     Toolbar alarmSettingToolbar;
 
     SharedPreferences pref;
-//    요청코드정의
+    //    요청코드정의
     public static final int REQUEST_CODE_ANOTHER = 1001;
 
 
@@ -141,12 +141,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         //구글맵 인스턴스(지도)가 사용될 준비가 되면 this라는 콜백객체를 발생시킨다.
         mapFrag.getMapAsync(this);
 
-        btn_tourspot=(Button)findViewById(R.id.btn_tourspot);
+        btn_tourspot = (Button) findViewById(R.id.btn_tourspot);
         btn_tourspot.setOnClickListener(btnClickListener);
 
     }
 
-    Button.OnClickListener btnClickListener=new View.OnClickListener() {
+    Button.OnClickListener btnClickListener = new View.OnClickListener() {
         public void onClick(View v) {
             switch (v.getId()) {
 
@@ -498,9 +498,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         // 관광명소 정보 레이아웃에 대한 정보
         TextView tourSpotName = (TextView) findViewById(R.id.tourSpotNameTxt);
-        TextView
+        TextView tourSpotIntro = (TextView) findViewById(R.id.tourSpotIntroTxt);
+        TextView tourSpotAddress = (TextView) findViewById(R.id.tourSpotAdressTxt);
         Button tourSpotNavigation = (Button) findViewById(R.id.tourSpotNavigationBtn);
-        Button btn_tourSpotInfo=(Button)findViewById(R.id.btn_tourspot);
+        Button btn_tourSpotInfo = (Button) findViewById(R.id.btn_tourspot);
 
         navigationMarker = marker;
 
@@ -538,6 +539,19 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         } else {
             tourSpotName.setText(marker.getTitle());
 
+            spotDbAdapter.open();
+            Cursor result = spotDbAdapter.fetchSpotByTitle(marker.getTitle());
+            result.moveToFirst();
+
+            String address = "";
+
+            while (!result.isAfterLast()) {
+                address = result.getString(4);
+                result.moveToNext();
+            }
+
+            tourSpotAddress.setText(address);
+            tourSpotIntro.setText(getTourSpotIntro(marker.getTitle()));
             tourSpotNavigation.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -545,15 +559,103 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
             });
             //여행명소 상세 페이지(TourInfoActivity)로 이동
-            btn_tourSpotInfo.setOnClickListener(new View.OnClickListener(){
+            btn_tourSpotInfo.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v){
+                public void onClick(View v) {
                     Intent intent = new Intent(getBaseContext(), TourInfoActivity.class);
-                    intent.putExtra("관광명소",navigationMarker.getTitle());
-                    startActivityForResult(intent,0);
+                    intent.putExtra("관광명소", navigationMarker.getTitle());
+                    startActivityForResult(intent, 0);
                 }
             });
         }
+    }
+
+    private String getTourSpotIntro(String spotName) {
+
+        String introContent;
+
+        switch (spotName) {
+            case "덕수궁 돌담길":
+                introContent = "연인과 함께 걷고 싶은 길";
+                break;
+            case "명동":
+                introContent = "대한민국 예술과 패션 1번지";
+                break;
+            case "남산골 한옥마을":
+                introContent = "전통 가옥에서 만나는 우리 문화";
+                break;
+            case "숭례문":
+                introContent = "서울의 정문, 국보 1호";
+                break;
+            case "남산 공원":
+                introContent = "도심에 위치한 자연 휴식처";
+                break;
+            case "N 서울타워":
+                introContent = "도심 속 로맨틱 아일랜드";
+                break;
+            case "경복궁":
+                introContent = "조선 왕조의 법궁, 조선의 중심지";
+                break;
+            case "광화문 광장":
+                introContent = "한국을 대표하는 도심 속의 광장";
+                break;
+            case "종묘":
+                introContent = "조선왕조의 신조를 모신 유교사당";
+                break;
+            case "보신각 터":
+                introContent = "'제야의 종' 타종행사가 열리는 곳";
+                break;
+            case "쌈지길":
+                introContent = "인사동 속의 새로운 인사동";
+                break;
+            case "인사동":
+                introContent = "도심에서 느끼는 전통의 멋";
+                break;
+            case "창덕궁과 후원":
+                introContent = "조선의 왕들, 후원에 취하다";
+                break;
+            case "창경궁":
+                introContent = "조선 왕조 역사의 중요한 무대";
+                break;
+            case "북촌 한옥마을":
+                introContent = "옛집 사이사이 골목길 따라 걷는 여행";
+                break;
+            case "흥인지문":
+                introContent = "국가지정 보물 1호";
+                break;
+            case "동대문 패션타운":
+                introContent = "세계적인 의류패션산업의 메카";
+                break;
+            case "대학로":
+                introContent = "문화 예술의 거리";
+                break;
+            case "마로니에 공원":
+                introContent = "문화 예술의 터전";
+                break;
+            case "낙산 공원":
+                introContent = "북악의 좌청룡에 올라 서울을 조망하자";
+                break;
+            case "63스퀘어":
+                introContent = "여의도의 복합 문화 공간";
+                break;
+            case "여의도 공원":
+                introContent = "서울의 센트럴 파크";
+                break;
+            case "MBC 월드 방송 테마 파크":
+                introContent = "TV 속 환상의 세계, MBC월드";
+                break;
+            case "평화의 공원":
+                introContent = "사람과 자연의 조화로운 만남";
+                break;
+            case "하늘 공원":
+                introContent = "하늘과 맞닿은 초원";
+                break;
+            default:
+                introContent = "없음";
+                break;
+        }
+
+        return introContent;
     }
 
     private void TmapAuthentication() {
@@ -743,7 +845,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         Marker marker;
 
         //추천관광명소activity(TourSpotListActivity)에서 돌아왔을 때
-        if(requestCode==REQUEST_CODE_ANOTHER){
+        if (requestCode == REQUEST_CODE_ANOTHER) {
 //            Toast toast = Toast.makeText(getBaseContext(), "onActivityResult() 메소드가 호출됨. 요청코드 : " + requestCode + ", 결과코드 : " + resultCode, Toast.LENGTH_LONG);
 //            toast.show();
 

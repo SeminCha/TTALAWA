@@ -351,7 +351,7 @@
                 android:paddingEnd="15dp"
                 android:paddingStart="15dp"
                 android:paddingTop="15dp"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:weightSum="100">
 
                 <LinearLayout
@@ -454,7 +454,7 @@
                                 android:layout_centerVertical="true"
                                 android:text=""
                                 android:textColor="@color/grey_dark"
-                                android:textSize="18dp" />
+                                android:textSize="17dp" />
                         </RelativeLayout>
 
                         <RelativeLayout

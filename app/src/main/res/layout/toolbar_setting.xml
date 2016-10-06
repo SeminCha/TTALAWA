@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="-10dp"
-    android:background="@color/green_lighter"
+    android:background="@color/toolbar"
     android:clickable="true"
     android:visibility="gone"
     android:id="@+id/toolBar_alarmsetting">

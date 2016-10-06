@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="-10dp"
-    android:background="@color/grey">
+    android:background="@color/toolbar">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,7 +33,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/grey"
+                android:background="@color/toolbar"
                 android:orientation="horizontal"
                 android:weightSum="10">
 
@@ -60,8 +60,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="장소, 주소입력"
-                        android:textColor="@color/white"
+                        android:text="장소, 주소 입력"
+                        android:textColor="@color/grey_dark"
                         android:textSize="18dp"
                         android:layout_centerVertical="true"
                         android:layout_alignParentStart="true" />

@@ -16,4 +16,12 @@
     <color name="green_light">#4da197</color>
     <color name="green_lighter">#26c9a1</color>
     <color name="green_blue">#56e3dc</color>
+    <color name="toolbar">@color/white</color>
+    <color name="primaryDark">@color/grey_dark</color>
+    <color name="grey1">#E8E8E8</color>
+
+    <color name="grey2">#D4D4D4</color>
+    <color name="grey_accent1">#C2CBDB</color>
+    <color name="grey_accent2">#B7B7B7</color>
+
 </resources>

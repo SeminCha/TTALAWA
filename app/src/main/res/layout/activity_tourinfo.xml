@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".TourSpot.TourInfoActivity">
 
@@ -15,27 +15,25 @@
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tab_layout"
+        style="@style/AppTabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/tablayout_bg"
+        android:elevation="6dp"
         android:minHeight="?attr/actionBarSize"
         app:tabIndicatorHeight="4dp"
-        app:tabTextAppearance="@style/AppTabTextAppearance"
         app:tabSelectedTextColor="#df5539"
-        android:elevation="6dp"
-        />
-        <!--style="@style/AppTabLayout"-->
-        <!--app:tabTextAppearance="@style/AppTabTextAppearance"/>-->
-        <!--android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"-->
-        <!--android:theme="@style/Theme.AppCompat.Light"/>-->
+        app:tabTextAppearance="@style/AppTabTextAppearance" />
 
+    <!--app:tabTextAppearance="@style/AppTabTextAppearance"/>-->
+    <!--android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"-->
+    <!--android:theme="@style/Theme.AppCompat.Light"/>-->
 
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:background="@color/white2"
-        />
+        android:background="@color/white2" />
 
 </LinearLayout>

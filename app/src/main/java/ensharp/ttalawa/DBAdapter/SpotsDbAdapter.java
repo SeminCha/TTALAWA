@@ -110,4 +110,5 @@ public class SpotsDbAdapter {
         }
         return mCursor;
     }
+
 }

@@ -13,39 +13,97 @@
         android:layout_alignParentTop="true"
         android:layout_weight="4"
         android:scaleType="fitXY"
-        android:src="@drawable/sungryemun_img"/>
+        android:src="@drawable/sungryemun_img" />
 
+    <!--관광소명-->
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="6"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:layout_gravity="center_vertical"
         android:orientation="vertical">
 
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="25dp"
+            android:src="@drawable/tourspot_label" />
+
         <TextView
+            android:gravity="center_vertical"
             android:id="@+id/tab1_spotname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/grey_dark" />
+            android:paddingLeft="70dp"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+    </RelativeLayout>
+    <!--관광지 설명 텍스트-->
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.3"
+        android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/tab1_spottext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="60dp"
+            android:paddingRight="50dp"
+            android:textColor="@color/grey_dark"
+            android:textSize="15sp" />
+    </RelativeLayout>
+    <!--관광지 주소-->
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="25dp"
+            android:src="@drawable/map_pin" />
+        <TextView
+            android:id="@+id/tab1_spotaddr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_dark"
+            android:paddingLeft="65dp"
+            android:textSize="15sp"/>
+    </RelativeLayout>
+
+    <!--연결버튼-->
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.7"
+        android:orientation="vertical">
 
         <Button
+            android:id="@+id/btn_call"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="전화 연결"
-            android:id="@+id/btn_call"
+            android:layout_alignParentBottom="true"
             android:layout_marginBottom="35dp"
             android:layout_marginStart="40dp"
-            android:layout_alignParentBottom="true"
-            />
+            android:text="전화 연결" />
 
         <Button
+            android:id="@+id/btn_website"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="사이트로 연결"
-            android:id="@+id/btn_website"
             android:layout_alignTop="@+id/btn_call"
-            android:layout_toEndOf="@+id/btn_call" />
+            android:layout_toEndOf="@+id/btn_call"
+            android:text="사이트로 연결" />
 
     </RelativeLayout>
 

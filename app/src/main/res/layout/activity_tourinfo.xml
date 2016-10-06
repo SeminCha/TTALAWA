@@ -17,12 +17,12 @@
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#fff3f3f3"
-        android:elevation="6dp"
+        android:background="@drawable/tablayout_bg"
         android:minHeight="?attr/actionBarSize"
         app:tabIndicatorHeight="4dp"
         app:tabTextAppearance="@style/AppTabTextAppearance"
         app:tabSelectedTextColor="#df5539"
+        android:elevation="6dp"
         />
         <!--style="@style/AppTabLayout"-->
         <!--app:tabTextAppearance="@style/AppTabTextAppearance"/>-->
@@ -35,7 +35,7 @@
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:background="#fff3f3f3"
+        android:background="@color/white2"
         />
 
 </LinearLayout>

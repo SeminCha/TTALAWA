@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">따라와</string>
+    <string name="station">거치소</string>
+    <string name="spot">관광지</string>
 </resources>

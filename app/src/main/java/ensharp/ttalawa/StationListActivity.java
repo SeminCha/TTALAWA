@@ -38,7 +38,7 @@ public class StationListActivity extends Activity implements AdapterView.OnItemC
         setContentView(R.layout.activity_nearbystationlist);
 
         activityNameTxt = (TextView) findViewById(R.id.activityName);
-        activityNameTxt.setText("거치소 목록");
+        activityNameTxt.setText("거치소 목록(거리 순)");
         currentLocation = getIntent().getParcelableExtra("location");
 
         getStationData();

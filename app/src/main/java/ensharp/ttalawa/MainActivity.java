@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -376,16 +377,16 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             alarmSettingToolbar.setVisibility(View.GONE);
             alarmSettingLayout.startAnimation(slide_out);
             alarmSettingLayout.setVisibility(View.GONE);
-            rentInfoLayout.setBackgroundColor(Color.parseColor("#CCffffff"));
+            rentInfoLayout.setBackground(getResources().getDrawable(R.drawable.rent_bg));
         }
     }
 
 
     private void mapButtonSetting() {
 
-        Button myLocation = (Button) findViewById(R.id.myLocationBtn);
-        Button stationList = (Button) findViewById(R.id.stationListBtn);
-        Button tourSpotMarker = (Button) findViewById(R.id.tourSpotMarkerBtn);
+        FloatingActionButton myLocation = (FloatingActionButton) findViewById(R.id.myLocationBtn);
+        FloatingActionButton stationList = (FloatingActionButton) findViewById(R.id.stationListBtn);
+        FloatingActionButton tourSpotMarker = (FloatingActionButton) findViewById(R.id.tourSpotMarkerBtn);
 
         myLocation.setOnClickListener(new View.OnClickListener() {
             @Override

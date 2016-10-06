@@ -75,15 +75,15 @@ public class TourSpotListActivity extends ActionBarActivity implements TourSpotR
 
         for(int i=0;i<spotList.size();i++){
             if(i<=5) {
-                dataset.add(new TourData(spotList.get(i).toString(), "도심"));
+                dataset.add(new TourData(spotList.get(i).toString(), "도심 코스"));
             }else if(i<=14){
-                dataset.add(new TourData(spotList.get(i).toString(),"고궁"));
+                dataset.add(new TourData(spotList.get(i).toString(),"고궁 코스"));
             }else if(i<=19){
-                dataset.add(new TourData(spotList.get(i).toString(),"동대문 & 대학로"));
+                dataset.add(new TourData(spotList.get(i).toString(),"동대문 & 대학로 코스"));
             }else if(i<=21){
-                dataset.add(new TourData(spotList.get(i).toString(),"여의도"));
+                dataset.add(new TourData(spotList.get(i).toString(),"여의도 코스"));
             }else if(i<=24){
-                dataset.add(new TourData(spotList.get(i).toString(),"상암"));
+                dataset.add(new TourData(spotList.get(i).toString(),"상암 코스"));
             }
         }
 

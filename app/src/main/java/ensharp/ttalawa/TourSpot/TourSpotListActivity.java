@@ -1,5 +1,6 @@
 package ensharp.ttalawa.TourSpot;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -16,6 +17,8 @@ import ensharp.ttalawa.DBAdapter.SpotsDbAdapter;
 import ensharp.ttalawa.R;
 
 public class TourSpotListActivity extends ActionBarActivity implements TourSpotRecyclerAdapter.OnItemClickListener{
+
+    public static Context mmContext;
 
     SpotsDbAdapter dbAdapter;
     private TextView activityNameTxt;
@@ -40,6 +43,8 @@ public class TourSpotListActivity extends ActionBarActivity implements TourSpotR
         adapter = new TourSpotRecyclerAdapter(getDataset());
         adapter.setOnItemClickListener(this);
         mTimeRecyclerView.setAdapter(adapter);
+
+        mmContext = this;
     }
 
     @Override
@@ -123,5 +128,10 @@ public class TourSpotListActivity extends ActionBarActivity implements TourSpotR
         finish();
     }
 
-
+    public static void toastA(String position){
+        Toast.makeText(mmContext,position,Toast.LENGTH_LONG).show();
+    }
+    public static void toastB(){
+        Toast.makeText(mmContext,"B",Toast.LENGTH_LONG).show();
+    }
 }

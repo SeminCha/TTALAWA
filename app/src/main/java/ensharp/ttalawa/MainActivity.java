@@ -23,6 +23,7 @@ import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -103,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     String networkoper;
     TMapTapi tmaptapi;
     Marker navigationMarker;
-    private Button btn_tourspot;
+    private LinearLayout btn_tourspot;
     RelativeLayout rentInfoLayout;
     RelativeLayout alarmSettingLayout;
     Toolbar alarmSettingToolbar;
@@ -158,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         //구글맵 인스턴스(지도)가 사용될 준비가 되면 this라는 콜백객체를 발생시킨다.
         mapFrag.getMapAsync(this);
 
-        btn_tourspot = (Button) findViewById(R.id.btn_tourspot);
+        btn_tourspot = (LinearLayout) findViewById(R.id.btn_tourspot);
         btn_tourspot.setOnClickListener(btnClickListener);
 
         mContext = this;
@@ -621,13 +622,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         TextView stationNumber = (TextView) findViewById(R.id.stationNumberTxt);
         TextView stationRack = (TextView) findViewById(R.id.stationRackTxt);
         TextView stationAddress = (TextView) findViewById(R.id.stationAddressTxt);
-        Button stationNavigation = (Button) findViewById(R.id.stationNavigationBtn);
+        LinearLayout stationNavigation = (LinearLayout) findViewById(R.id.stationNavigationLayout);
 
         // 관광명소 정보 레이아웃에 대한 정보
         TextView tourSpotName = (TextView) findViewById(R.id.tourSpotNameTxt);
         TextView tourSpotIntro = (TextView) findViewById(R.id.tourSpotIntroTxt);
         TextView tourSpotAddress = (TextView) findViewById(R.id.tourSpotAdressTxt);
-        Button tourSpotNavigation = (Button) findViewById(R.id.tourSpotNavigationBtn);
+        LinearLayout tourSpotNavigation = (LinearLayout) findViewById(R.id.tourSpotNavigationLayout);
 
         navigationMarker = marker;
 
@@ -654,12 +655,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             stationRack.setText(rack_count + "대");
             stationAddress.setText(addr_gu + " " + new_addr);
 
-            stationNavigation.setOnClickListener(new View.OnClickListener() {
+            stationNavigation.setOnTouchListener(new View.OnTouchListener() {
                 @Override
-                public void onClick(View v) {
+                public boolean onTouch(View view, MotionEvent motionEvent) {
                     TmapNavigation(navigationMarker, true);
+
+                    return true;
                 }
             });
+
 
 
         } else {
@@ -678,10 +682,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             tourSpotAddress.setText(address);
             tourSpotIntro.setText(getTourSpotIntro(marker.getTitle()));
-            tourSpotNavigation.setOnClickListener(new View.OnClickListener() {
+            tourSpotNavigation.setOnTouchListener(new View.OnTouchListener() {
                 @Override
-                public void onClick(View v) {
-                    TmapNavigation(navigationMarker, false);
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    TmapNavigation(navigationMarker, true);
+
+                    return true;
                 }
             });
 

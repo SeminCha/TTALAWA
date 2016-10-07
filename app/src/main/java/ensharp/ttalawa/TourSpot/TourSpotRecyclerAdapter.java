@@ -17,6 +17,8 @@ public class TourSpotRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     private OnItemClickListener listener;
 
+    public static int btn_check = 0;
+
     public static class CourseViewHolder extends RecyclerView.ViewHolder {
         public TextView courseTitleView;
 
@@ -61,8 +63,9 @@ public class TourSpotRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         Button.OnClickListener btnListener=new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                if(listener != null)
-                    listener.onViewHolderClick(getPosition());
+                if(listener != null) {
+                    TourSpotListActivity.toastA(String.valueOf(getPosition()));
+                }
             }
         };
 

@@ -1,5 +1,6 @@
 package ensharp.ttalawa.TourSpot;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -16,6 +17,8 @@ import ensharp.ttalawa.DBAdapter.SpotsDbAdapter;
 import ensharp.ttalawa.R;
 
 public class TourSpotListActivity extends ActionBarActivity implements TourSpotRecyclerAdapter.OnItemClickListener{
+
+    public static Context mmContext;
 
     SpotsDbAdapter dbAdapter;
     private TextView activityNameTxt;
@@ -40,6 +43,8 @@ public class TourSpotListActivity extends ActionBarActivity implements TourSpotR
         adapter = new TourSpotRecyclerAdapter(getDataset());
         adapter.setOnItemClickListener(this);
         mTimeRecyclerView.setAdapter(adapter);
+
+        mmContext = this;
     }
 
     @Override
@@ -56,14 +61,14 @@ public class TourSpotListActivity extends ActionBarActivity implements TourSpotR
         super.onActivityResult(requestCode, resultCode, intent);
 
 //        if (requestCode == REQUEST_CODE_SPOTINFO) {
-            Toast toast = Toast.makeText(getBaseContext(), "onActivityResult() 메소드가 호출됨. 요청코드 : " + requestCode + ", 결과코드 : " + resultCode, Toast.LENGTH_LONG);
-            toast.show();
+        Toast toast = Toast.makeText(getBaseContext(), "onActivityResult() 메소드가 호출됨. 요청코드 : " + requestCode + ", 결과코드 : " + resultCode, Toast.LENGTH_LONG);
+        toast.show();
 
-            if (resultCode == RESULT_OK) {
+        if (resultCode == RESULT_OK) {
 //                String name = intent.getExtras().getString("name");
 //                toast = Toast.makeText(getBaseContext(), "응답으로 전달된 name : " + name, Toast.LENGTH_LONG);
 //                toast.show();
-            }
+        }
 //        }
     }
 
@@ -123,5 +128,10 @@ public class TourSpotListActivity extends ActionBarActivity implements TourSpotR
         finish();
     }
 
-
+    public static void toastA(String position){
+        Toast.makeText(mmContext,position,Toast.LENGTH_LONG).show();
+    }
+    public static void toastB(){
+        Toast.makeText(mmContext,"B",Toast.LENGTH_LONG).show();
+    }
 }

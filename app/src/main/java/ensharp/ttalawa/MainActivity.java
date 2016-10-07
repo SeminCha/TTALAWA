@@ -947,8 +947,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         LatLng latLng = new LatLng(place.getLatLng().latitude, place.getLatLng().longitude);
         markerOptions.position(latLng);
         markerOptions.title(place.getName().toString());
-        //markerOptions.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.yellowmarker)));
-        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("searchmarker", 120, 125)));
+        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("searchmarker")));
         markerMap.put("searched", mGoogleMap.addMarker(markerOptions));
         Marker marker = (Marker) markerMap.get("searched");
         marker.showInfoWindow();
@@ -1109,13 +1108,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         return resizedBitmap;
     }
 
-    public Bitmap resizeMapIcons(String iconName, int width, int height) {
-        Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(), getResources().getIdentifier(iconName, "drawable", getPackageName()));
-        Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, width, height, true);
-        return resizedBitmap;
-
-    }
-
     private void addMarker(Marker marker, String markerMode) {
         double latitude = marker.getPosition().latitude;
         double longitude = marker.getPosition().longitude;
@@ -1139,15 +1131,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         if (markerMode.equals("red")) {
             markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("redmarker")));
-//            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("redmarker", 100, 165)));
             stationRedMarkMap.put("selected", mGoogleMap.addMarker(markerOptions));
         } else if (markerMode.equals("green")) {
             markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("greenmarker")));
-//            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("greenmarker", 100, 165)));
             stationMarkerMap.put(stationNumber, mGoogleMap.addMarker(markerOptions));
         } else if (markerMode.equals("nearStation")) {
             markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("redmarker")));
-//            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("redmarker", 100, 165)));
             neartourSpotStationMarkerMap.put(stationNumber, mGoogleMap.addMarker(markerOptions));
         }
 
@@ -1169,7 +1158,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.title(tourSpotName);
         markerOptions.position(position);
-        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("yellowmarker", 95, 155)));
+        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("yellowmarker")));
         tourSpotMarkerMap.put("S" + tourSpotName, mGoogleMap.addMarker(markerOptions));
     }
 

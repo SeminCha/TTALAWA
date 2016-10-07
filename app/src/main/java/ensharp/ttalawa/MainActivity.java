@@ -21,6 +21,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -162,8 +163,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mainTxtView =(TextView)findViewById(R.id.restTimetxtView);
         overChargingView = (TextView)findViewById(R.id.overChargingView);
         mode = nonRent;
-
     }
+
 
     Button.OnClickListener btnClickListener = new View.OnClickListener() {
         public void onClick(View v) {
@@ -991,6 +992,25 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
+    private Bitmap resizeMapIcons(String iconName) {
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+        int displaywidth = metrics.widthPixels;
+        int displayheight = metrics.heightPixels;
+        int width, height;
+        if (iconName.contains("green")) {
+            width = (int) (displaywidth * 0.08f);
+            height = (int) (width * 1.6f);
+        } else {
+            width = (int) (displaywidth * 0.075f);
+            height = (int) (width * 1.6f);
+        }
+        Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(), getResources().getIdentifier(iconName, "drawable", getPackageName()));
+        Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, width, height, true);
+        return resizedBitmap;
+    }
+
     public Bitmap resizeMapIcons(String iconName, int width, int height) {
         Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(), getResources().getIdentifier(iconName, "drawable", getPackageName()));
         Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, width, height, true);
@@ -1023,7 +1043,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("redmarker", 100, 165)));
             stationRedMarkMap.put("selected", mGoogleMap.addMarker(markerOptions));
         } else if (markerMode.equals("green")) {
-            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("greenmarker", 100, 165)));
+            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("greenmarker")));
+//            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("greenmarker", 100, 165)));
             stationMarkerMap.put(stationNumber, mGoogleMap.addMarker(markerOptions));
         } else if (markerMode.equals("nearStation")) {
             markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("redmarker", 100, 165)));

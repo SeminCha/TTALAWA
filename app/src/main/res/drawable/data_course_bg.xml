@@ -8,25 +8,28 @@
     </item>
 
     <!--bottom-->
-    <item android:top="-3dp" android:right="-3dp" android:left="-3dp">
+    <item android:top="-57dp" android:left="-57dp" android:right="-57dp">
         <shape>
             <!--<solid android:color="@android:color/transparent" />-->
             <stroke
-                android:width="2dp"
+                android:width="2.3dp"
                 android:color="@color/grey_light" />
         </shape>
     </item>
 
-    <!--top-->
-    <item android:bottom="-15dp" android:right="-15dp" android:left="-15dp">
-        <shape>
-            <!--<solid android:color="@android:color/transparent" />-->
-            <stroke
-                android:width="15dp"
-                android:color="#EAEAEA" />
-        </shape>
-    </item>
+    <!--&lt;!&ndash;top&ndash;&gt;-->
+    <!--<item android:bottom="-15dp" android:right="-15dp" android:left="-15dp">-->
+        <!--<shape>-->
+            <!--&lt;!&ndash;<solid android:color="@android:color/transparent" />&ndash;&gt;-->
+            <!--&lt;!&ndash;<stroke&ndash;&gt;-->
+                <!--&lt;!&ndash;android:width="15dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:color="#EAEAEA" />&ndash;&gt;-->
+            <!---->
+        <!--</shape>-->
+    <!--</item>-->
 
-
+    <item
+        android:drawable="@drawable/tourcoursetitle_top"
+        android:bottom="45dp"></item>
 
 </layer-list>

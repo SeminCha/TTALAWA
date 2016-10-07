@@ -20,9 +20,9 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_gravity="center_vertical"
         android:layout_weight="1"
         android:gravity="center_vertical"
-        android:layout_gravity="center_vertical"
         android:orientation="vertical">
 
         <ImageView
@@ -32,10 +32,10 @@
             android:src="@drawable/tourspot_label" />
 
         <TextView
-            android:gravity="center_vertical"
             android:id="@+id/tab1_spotname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:paddingLeft="70dp"
             android:textColor="@color/black"
             android:textSize="18sp" />
@@ -62,22 +62,24 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical"
         android:layout_gravity="center_vertical"
-        android:gravity="center_vertical">
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginLeft="25dp"
             android:src="@drawable/map_pin" />
+
         <TextView
             android:id="@+id/tab1_spotaddr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/grey_dark"
             android:paddingLeft="65dp"
-            android:textSize="15sp"/>
+            android:textColor="@color/grey_dark"
+            android:textSize="15sp" />
     </RelativeLayout>
 
     <!--연결버튼-->
@@ -88,23 +90,32 @@
         android:layout_weight="1.5"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btn_call"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="35dp"
-            android:layout_marginStart="40dp"
-            android:text="전화 연결" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:weightSum="10">
 
-        <Button
-            android:id="@+id/btn_website"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/btn_call"
-            android:layout_toEndOf="@+id/btn_call"
-            android:text="사이트로 연결" />
-
+            <Button
+                android:layout_weight="4"
+                android:id="@+id/btn_call"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:textSize="17sp"
+                android:text="전화 연결" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"/>
+            <Button
+                android:layout_weight="4"
+                android:id="@+id/btn_website"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:textSize="17sp"
+                android:text="사이트로 연결" />
+        </LinearLayout>
     </RelativeLayout>
 
 </LinearLayout>

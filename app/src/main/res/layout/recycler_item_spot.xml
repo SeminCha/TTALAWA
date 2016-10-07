@@ -8,6 +8,7 @@
     android:paddingRight="10dp"
     android:clickable="false"
     android:weightSum="10">
+
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"

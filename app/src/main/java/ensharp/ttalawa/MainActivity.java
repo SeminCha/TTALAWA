@@ -60,7 +60,6 @@ import java.util.HashMap;
 
 import ensharp.ttalawa.DBAdapter.SpotsDbAdapter;
 import ensharp.ttalawa.DBAdapter.StationDbAdapter;
-import ensharp.ttalawa.TourSpot.TourInfoActivity;
 import ensharp.ttalawa.TourSpot.TourSpotListActivity;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback,
@@ -629,7 +628,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         TextView tourSpotIntro = (TextView) findViewById(R.id.tourSpotIntroTxt);
         TextView tourSpotAddress = (TextView) findViewById(R.id.tourSpotAdressTxt);
         Button tourSpotNavigation = (Button) findViewById(R.id.tourSpotNavigationBtn);
-        Button btn_tourSpotInfo = (Button) findViewById(R.id.btn_tourspot);
 
         navigationMarker = marker;
 
@@ -686,15 +684,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     TmapNavigation(navigationMarker, false);
                 }
             });
-            //여행명소 상세 페이지(TourInfoActivity)로 이동
-            btn_tourSpotInfo.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(getBaseContext(), TourInfoActivity.class);
-                    intent.putExtra("관광명소", navigationMarker.getTitle());
-                    startActivityForResult(intent, 0);
-                }
-            });
+
         }
     }
 
@@ -1148,14 +1138,16 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         markerOptions.snippet(stationNumber);
 
         if (markerMode.equals("red")) {
-            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("redmarker", 100, 165)));
+            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("redmarker")));
+//            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("redmarker", 100, 165)));
             stationRedMarkMap.put("selected", mGoogleMap.addMarker(markerOptions));
         } else if (markerMode.equals("green")) {
             markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("greenmarker")));
 //            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("greenmarker", 100, 165)));
             stationMarkerMap.put(stationNumber, mGoogleMap.addMarker(markerOptions));
         } else if (markerMode.equals("nearStation")) {
-            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("redmarker", 100, 165)));
+            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("redmarker")));
+//            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("redmarker", 100, 165)));
             neartourSpotStationMarkerMap.put(stationNumber, mGoogleMap.addMarker(markerOptions));
         }
 

@@ -46,8 +46,6 @@
                 tools:context="com.iotaconcepts.aurum.MapLocationActivity" />
         </LinearLayout>
 
-
-
         <RelativeLayout
             android:id="@+id/rentInfoLayout"
             android:layout_width="match_parent"

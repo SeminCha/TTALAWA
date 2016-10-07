@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clickable="true"
-    android:visibility="gone"
+    android:visibility="visible"
     android:id="@+id/alarmSettingLayout">
 
     <LinearLayout
@@ -78,14 +78,14 @@
                 android:layout_height="30dp"
                 android:elevation="30dp"
                 android:text="알람 시간 설정"
-                android:id="@+id/textView2"
+                android:id="@+id/alarm_time"
                 android:layout_marginTop="40dp"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="100dp" />
             <Switch
                 android:layout_width="60dp"
                 android:layout_height="50dp"
-                android:id="@+id/switch1"
+                android:id="@+id/time_switch"
                 android:elevation="30dp"
                 android:checked="false"
                 android:layout_marginTop="25dp"
@@ -122,7 +122,7 @@
                 android:layout_height="30dp"
                 android:elevation="30dp"
                 android:text="알람 종류 설정"
-                android:id="@+id/textView3"
+                android:id="@+id/alarm_type"
                 android:layout_marginTop="45dp"
                 android:layout_marginStart="100dp" />
 
@@ -130,7 +130,7 @@
                 android:layout_width="60dp"
                 android:layout_height="50dp"
                 android:elevation="30dp"
-                android:id="@+id/switch2"
+                android:id="@+id/type_switch"
                 android:checked="false"
                 android:layout_marginTop="30dp"
                 android:layout_marginStart="200dp" />

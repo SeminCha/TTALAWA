@@ -30,6 +30,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -125,6 +126,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public static int secondOver = 4;
     public static int thirdOver = 5;
     public static int fourthOver = 6;
+    private Switch time_switch, type_switch;
+    private Button btn_five, btn_ten, btn_twenty, btn_thirty, btn_sound, btn_vib;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,16 +166,121 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mainTxtView =(TextView)findViewById(R.id.restTimetxtView);
         overChargingView = (TextView)findViewById(R.id.overChargingView);
         mode = nonRent;
+
+        time_switch = (Switch)findViewById(R.id.time_switch);
+        type_switch = (Switch)findViewById(R.id.type_switch);
+        btn_five = (Button)findViewById(R.id.button_5);
+        btn_ten = (Button)findViewById(R.id.button_10);
+        btn_twenty = (Button)findViewById(R.id.button_20);
+        btn_thirty = (Button)findViewById(R.id.button_30);
+        btn_sound = (Button)findViewById(R.id.button_sound);
+        btn_vib = (Button)findViewById(R.id.button_vib);
     }
 
 
-    Button.OnClickListener btnClickListener = new View.OnClickListener() {
+    Switch.OnClickListener switchClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId())
+            {
+                case R.id.time_switch:
+                    if(time_switch.isChecked()) {
+                        time_switch.setChecked(false);
+                        btn_five.setEnabled(false);
+                        btn_ten.setEnabled(false);
+                        btn_twenty.setEnabled(false);
+                        btn_thirty.setEnabled(false);
+                    }
+                    else{
+                        time_switch.setChecked(true);
+                        btn_five.setEnabled(true);
+                        btn_ten.setEnabled(true);
+                        btn_twenty.setEnabled(true);
+                        btn_thirty.setEnabled(true);
+                    }
+                    break;
+                case R.id.type_switch:
+                    if(type_switch.isChecked()){
+                        type_switch.setChecked(false);
+                        btn_sound.setEnabled(false);
+                        btn_vib.setEnabled(false);
+                    }
+                    else{
+                        type_switch.setChecked(true);
+                        btn_sound.setEnabled(true);
+                        btn_vib.setEnabled(true);
+                    }
+                    break;
+            }
+        }
+    };
+    Button.OnClickListener btnClickListener=new View.OnClickListener() {
         public void onClick(View v) {
             switch (v.getId()) {
 
                 case R.id.btn_tourspot:
                     Intent intent = new Intent(getBaseContext(), TourSpotListActivity.class);
                     startActivityForResult(intent, REQUEST_CODE_ANOTHER);
+                    break;
+                case R.id.button_5:
+                    if(btn_five.isPressed()){//isSelected
+                        btn_five.setSelected(false);
+
+                    }
+                    else {
+                        btn_five.setSelected(true);
+
+                    }
+                    break;
+                case R.id.button_10:
+                    if(btn_ten.isPressed()){//isSelected
+                        btn_ten.setSelected(false);
+
+                    }
+                    else {
+                        btn_ten.setSelected(true);
+
+                    }
+                    break;
+                case R.id.button_20:
+                    if(btn_twenty.isPressed()){//isSelected
+                        btn_twenty.setSelected(false);
+
+                    }
+                    else {
+                        btn_twenty.setSelected(true);
+
+                    }
+                    break;
+                case R.id.button_30:
+                    if(btn_thirty.isPressed()){//isSelected
+                        btn_thirty.setSelected(false);
+
+                    }
+                    else {
+                        btn_thirty.setSelected(true);
+
+                    }
+                    break;
+                case R.id.button_sound:
+                    if(btn_sound.isPressed()){//isSelected
+                        btn_sound.setSelected(false);
+
+                    }
+                    else {
+                        btn_sound.setSelected(true);
+
+                    }
+                    break;
+                case R.id.button_vib:
+                    if(btn_vib.isPressed()){//isSelected
+                        btn_vib.setSelected(false);
+
+                    }
+                    else {
+                        btn_vib.setSelected(true);
+
+                    }
                     break;
 
             }

@@ -1,122 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="10">
+    android:layout_gravity="right"
+    android:fillViewport="false"
+    android:visibility="visible">
 
-    <ImageView
-        android:id="@+id/spot_img"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_alignParentTop="true"
-        android:layout_weight="4"
-        android:scaleType="fitXY"
-        android:src="@drawable/sungryemun_img" />
-
-    <!--관광소명-->
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="0.8"
-        android:gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginLeft="25dp"
-            android:src="@drawable/tourspot_label" />
-
-        <TextView
-            android:id="@+id/tab1_spotname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:paddingLeft="70dp"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
-    </RelativeLayout>
-    <!--관광지 주소-->
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="0.7"
-        android:gravity="center_vertical"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="25dp"
-            android:src="@drawable/map_pin" />
-
-        <TextView
-            android:id="@+id/tab1_spotaddr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="65dp"
-            android:textColor="@color/grey_dark"
-            android:textSize="15sp" />
-    </RelativeLayout>
-    <!--관광지 설명 텍스트-->
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2.5"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/tab1_spottext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="60dp"
-            android:paddingRight="50dp"
-            android:textColor="@color/grey_dark"
-            android:textSize="15sp" />
-    </RelativeLayout>
+            android:id="@+id/spot_img"
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
+            android:layout_alignParentTop="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/sungryemun_img" />
 
 
-    <!--연결버튼-->
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:orientation="vertical">
-
-        <LinearLayout
+        <!--관광소명-->
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:weightSum="10">
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
 
-            <Button
-                android:layout_weight="4"
-                android:id="@+id/btn_call"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_alignParentBottom="true"
-                android:textSize="17sp"
-                android:text="전화 연결" />
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="25dp"
+                android:src="@drawable/tourspot_label" />
+
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.3"/>
-            <Button
-                android:layout_weight="4"
-                android:id="@+id/btn_website"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:textSize="17sp"
-                android:text="사이트로 연결" />
-        </LinearLayout>
-    </RelativeLayout>
+                android:id="@+id/tab1_spotname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingLeft="70dp"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+        </RelativeLayout>
+        <!--관광지 주소-->
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
 
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="25dp"
+                android:src="@drawable/map_pin" />
+
+            <TextView
+                android:id="@+id/tab1_spotaddr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="65dp"
+                android:textColor="@color/grey_dark"
+                android:textSize="15sp" />
+        </RelativeLayout>
+        <!--관광지 설명 텍스트-->
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tab1_spottext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="60dp"
+                android:paddingRight="50dp"
+                android:textColor="@color/grey_dark"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+
+        <!--연결버튼1-->
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:gravity="center"
+                android:weightSum="10">
+
+                <Button
+                    android:id="@+id/btn_call"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_weight="4"
+                    android:text="전화 연결"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3" />
+
+                <Button
+                    android:id="@+id/btn_website"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="4"
+                    android:text="사이트로 연결"
+                    android:textSize="17sp" />
+            </LinearLayout>
+        </RelativeLayout>
+        <!--연결버튼2-->
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:weightSum="10">
+
+                <Button
+                    android:id="@+id/showmap_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_weight="4"
+                    android:text="지도 보기"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3" />
+
+                <Button
+                    android:id="@+id/navi_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="4"
+                    android:text="길찾기"
+                    android:textSize="17sp" />
+            </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
+</ScrollView>

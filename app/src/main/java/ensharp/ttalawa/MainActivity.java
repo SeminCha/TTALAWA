@@ -194,8 +194,53 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         btn_sound.setOnClickListener(btnClickListener);
         btn_vib = (Button)findViewById(R.id.button_vib);
         btn_vib.setOnClickListener(btnClickListener);
+        initSetting();
     }
 
+    // 버튼 초기화
+    private void initSetting(){
+        Animation slide_in = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slide_in);
+
+        Animation slide_out = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slide_out);
+
+        Animation slide_in2 = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slide_in_2);
+
+        Animation slide_out2 = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slide_out_2);
+        if(pref.getValue("alarm","off","alarm").equals("off")){
+            alarm_check.setChecked(false);
+        } else{
+            alarm_check.setChecked(true);
+            rion_layout.startAnimation(slide_out2);
+            rion_layout.setVisibility(View.GONE);
+            time_layout.setVisibility(View.VISIBLE);
+            mode_layout.setVisibility(View.VISIBLE);
+            time_layout.startAnimation(slide_in);
+            mode_layout.startAnimation(slide_in);
+            if(pref.getValue("sound", "off", "alarm").equals("on")){
+                btn_sound.setBackgroundColor(Color.BLUE);
+            }
+            if(pref.getValue("vib", "off","alarm").equals("on")){
+                btn_vib.setBackgroundColor(Color.BLUE);
+            }
+            if(pref.getValue("5","off","alarm").equals("on")){
+                btn_five.setBackgroundColor(Color.BLUE);
+            }
+            if(pref.getValue("10", "off", "alarm").equals("on")){
+                btn_ten.setBackgroundColor(Color.BLUE);
+            }
+            if(pref.getValue("20", "off", "alarm").equals("on")){
+                btn_twenty.setBackgroundColor(Color.BLUE);
+            }
+            if(pref.getValue("30", "off", "alarm").equals("on")){
+                btn_thirty.setBackgroundColor(Color.BLUE);
+            }
+        }
+
+    }
     CheckBox.OnClickListener checkClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -204,7 +249,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             Animation slide_out = AnimationUtils.loadAnimation(getApplicationContext(),
                     R.anim.slide_out);
-            
+
             Animation slide_in2 = AnimationUtils.loadAnimation(getApplicationContext(),
                     R.anim.slide_in_2);
 
@@ -219,6 +264,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         mode_layout.setVisibility(View.VISIBLE);
                         time_layout.startAnimation(slide_in);
                         mode_layout.startAnimation(slide_in);
+                        pref.putValue("alarm","on","alarm");
                     }
                     else {
                         time_layout.startAnimation(slide_out);
@@ -227,6 +273,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         mode_layout.setVisibility(View.GONE);
                         rion_layout.setVisibility(View.VISIBLE);
                         rion_layout.startAnimation(slide_in2);
+                        pref.putValue("alarm","off","alarm");
                     }
                     break;
             }
@@ -291,63 +338,75 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     startActivityForResult(intent, REQUEST_CODE_ANOTHER);
                     break;
                 case R.id.button_5:
-                    if(btn_five.isPressed()){//isSelected
-                        btn_five.setSelected(true);
-
+                    if(btn_five.isSelected()){//isSelected
+                        btn_five.setSelected(false);
+                        btn_five.setBackgroundColor(Color.WHITE);
+                        pref.putValue("5","off","alarm");
                     }
                     else {
-                        btn_five.setSelected(false);
-
+                        btn_five.setSelected(true);
+                        btn_five.setBackgroundColor(Color.BLUE);
+                        pref.putValue("5","on","alarm");
                     }
                     break;
                 case R.id.button_10:
-                    if(btn_ten.isPressed()){//isSelected
+                    if(btn_ten.isSelected()){//isSelected
                         btn_ten.setSelected(false);
-
+                        btn_ten.setBackgroundColor(Color.WHITE);
+                        pref.putValue("10","off","alarm");
                     }
                     else {
                         btn_ten.setSelected(true);
-
+                        btn_ten.setBackgroundColor(Color.BLUE);
+                        pref.putValue("10","on","alarm");
                     }
                     break;
                 case R.id.button_20:
-                    if(btn_twenty.isPressed()){//isSelected
+                    if(btn_twenty.isSelected()){//isSelected
                         btn_twenty.setSelected(false);
-
+                        btn_twenty.setBackgroundColor(Color.WHITE);
+                        pref.putValue("20", "off", "alarm");
                     }
                     else {
                         btn_twenty.setSelected(true);
-
+                        btn_twenty.setBackgroundColor(Color.BLUE);
+                        pref.putValue("20", "on", "alarm");
                     }
                     break;
                 case R.id.button_30:
-                    if(btn_thirty.isPressed()){//isSelected
+                    if(btn_thirty.isSelected()){//isSelected
                         btn_thirty.setSelected(false);
-
+                        btn_thirty.setBackgroundColor(Color.WHITE);
+                        pref.putValue("30", "off", "alarm");
                     }
                     else {
                         btn_thirty.setSelected(true);
-
+                        btn_thirty.setBackgroundColor(Color.BLUE);
+                        pref.putValue("30", "on", "alarm");
                     }
                     break;
                 case R.id.button_sound:
-                    if(btn_sound.isPressed()){//isSelected
+                    if(btn_sound.isSelected()){//isSelected
                         btn_sound.setSelected(false);
-
+                        btn_sound.setBackgroundColor(Color.WHITE);
+                        pref.putValue("sound", "off", "alarm");
                     }
                     else {
                         btn_sound.setSelected(true);
-
+                        btn_sound.setBackgroundColor(Color.BLUE);
+                        pref.putValue("sound", "on", "alarm");
                     }
                     break;
                 case R.id.button_vib:
-                    if(btn_vib.isPressed()){//isSelected
+                    if(btn_vib.isSelected()){//isSelected
                         btn_vib.setSelected(false);
-
+                        btn_vib.setBackgroundColor(Color.WHITE);
+                        pref.putValue("vib", "off", "alarm");
                     }
                     else {
                         btn_vib.setSelected(true);
-
+                        btn_vib.setBackgroundColor(Color.BLUE);
+                        pref.putValue("vib", "on", "alarm");
                     }
                     break;
 

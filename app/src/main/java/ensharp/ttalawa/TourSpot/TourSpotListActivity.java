@@ -19,10 +19,11 @@ import ensharp.ttalawa.R;
 public class TourSpotListActivity extends ActionBarActivity implements TourSpotRecyclerAdapter.OnItemClickListener{
 
     public static Context mmContext;
+    private static boolean change;
 
     SpotsDbAdapter dbAdapter;
     private TextView activityNameTxt;
-    private TourSpotRecyclerAdapter adapter;
+    public static TourSpotRecyclerAdapter adapter;
     private ArrayList<String> spotList;
     //    요청코드정의
     public static final int REQUEST_CODE_SPOTINFO = 1001;
@@ -130,6 +131,11 @@ public class TourSpotListActivity extends ActionBarActivity implements TourSpotR
 
     public static void toastA(String position){
         Toast.makeText(mmContext,position,Toast.LENGTH_LONG).show();
+        if(change)//이미지변화 조건 -> sharedpreference 비교
+        {
+            TourSpotRecyclerAdapter.refresh(Integer.valueOf(position));
+            adapter.notifyDataSetChanged();
+        }
     }
     public static void toastB(){
         Toast.makeText(mmContext,"B",Toast.LENGTH_LONG).show();

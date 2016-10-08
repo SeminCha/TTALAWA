@@ -1,5 +1,6 @@
 package ensharp.ttalawa.TourSpot;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +15,18 @@ import ensharp.ttalawa.R;
 
 public class TourSpotRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private ArrayList<TourAdapterItem> itemList;
-
+    public static Context mContext;
     private OnItemClickListener listener;
 
-    public static int btn_check = 0;
+    public static int btn_check = -1;
+    public static void refresh(int position){
+        btn_check = position;
+    }
+    public void update(ArrayList<TourAdapterItem> items){
+        itemList.clear();
+        itemList.addAll(items);
+        notifyDataSetChanged();
+    }
 
     public static class CourseViewHolder extends RecyclerView.ViewHolder {
         public TextView courseTitleView;
@@ -55,8 +64,14 @@ public class TourSpotRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         public DataViewHolder(View v, OnViewHolderClickListener listener) {
             super(v);
             spotItemView = (TextView) v.findViewById(R.id.spotItemView);
-            tourspotCheckBtn=(Button)v.findViewById(R.id.tourcheck_btn);
+            if(btn_check == -1) {
+                tourspotCheckBtn = (Button) v.findViewById(R.id.tourcheck_btn);
+            }
+            else{
+                tourspotCheckBtn = (Button) v.findViewById(R.id.button_5);
+            }
             tourspotCheckBtn.setOnClickListener(btnListener);
+
             v.setOnClickListener(this);
             this.listener = listener;
         }
@@ -65,6 +80,7 @@ public class TourSpotRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             public void onClick(View v){
                 if(listener != null) {
                     TourSpotListActivity.toastA(String.valueOf(getPosition()));
+
                 }
             }
         };

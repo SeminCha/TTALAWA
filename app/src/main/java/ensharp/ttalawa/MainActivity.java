@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     RelativeLayout time_layout;
     RelativeLayout mode_layout;
+    RelativeLayout rion_layout;
 
     TelephonyManager telephonyManager;
     String networkoper;
@@ -159,6 +160,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         rentInfoLayout = (RelativeLayout) findViewById(R.id.rentInfoLayout);
         time_layout = (RelativeLayout) findViewById(R.id.timeLayout);
         mode_layout = (RelativeLayout) findViewById(R.id.modeLayout);
+        rion_layout = (RelativeLayout) findViewById(R.id.rion);
 
         alarmButtonSetting();
         pref = new SharedPreferences(this);
@@ -202,9 +204,17 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             Animation slide_out = AnimationUtils.loadAnimation(getApplicationContext(),
                     R.anim.slide_out);
+            
+            Animation slide_in2 = AnimationUtils.loadAnimation(getApplicationContext(),
+                    R.anim.slide_in_2);
+
+            Animation slide_out2 = AnimationUtils.loadAnimation(getApplicationContext(),
+                    R.anim.slide_out_2);
             switch (view.getId()) {
                 case R.id.alarm_check:
                     if(alarm_check.isChecked()){
+                        rion_layout.startAnimation(slide_out2);
+                        rion_layout.setVisibility(View.GONE);
                         time_layout.setVisibility(View.VISIBLE);
                         mode_layout.setVisibility(View.VISIBLE);
                         time_layout.startAnimation(slide_in);
@@ -215,6 +225,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         mode_layout.startAnimation(slide_out);
                         time_layout.setVisibility(View.GONE);
                         mode_layout.setVisibility(View.GONE);
+                        rion_layout.setVisibility(View.VISIBLE);
+                        rion_layout.startAnimation(slide_in2);
                     }
                     break;
             }

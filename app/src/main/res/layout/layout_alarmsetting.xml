@@ -141,6 +141,16 @@
                 <!--android:layout_marginTop="30dp"-->
                 <!--android:layout_marginStart="200dp" />-->
         </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="35dp"
+            android:background="@drawable/rion"
+            android:id="@+id/rion">
+
+        </RelativeLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -161,4 +171,5 @@
             android:layout_marginTop="12dp"
             android:layout_marginStart="250dp" />
     </RelativeLayout>
+
 </RelativeLayout>

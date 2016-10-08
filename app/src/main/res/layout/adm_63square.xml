@@ -1,6 +1,221 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:fillViewport="false"
+        android:visibility="visible">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="25dp"
+                android:gravity="top"
+                android:paddingLeft="17dp"
+                android:text="이용 요금"
+                android:textColor="@color/maincolor"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <!--주요시설 표-->
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+
+                <!--1열(시설명)-->
+                <TableRow android:weightSum="10.5">
+
+                    <TextView
+                        android:layout_weight="3"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/celltitle"
+                        android:gravity="center"
+                        android:text="관람시설"
+                        android:textColor="@color/tablecolor"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_weight="2.5"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/celltitle"
+                        android:gravity="center"
+                        android:text="어른"
+                        android:textColor="@color/tablecolor"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_weight="2.5"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/celltitle"
+                        android:gravity="center"
+                        android:text="청소년"
+                        android:textColor="@color/tablecolor"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_weight="2.5"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/celltitle"
+                        android:gravity="center"
+                        android:text="어린이"
+                        android:textColor="@color/tablecolor"
+                        android:textSize="16sp" />
+                </TableRow>
+
+                <TableRow android:weightSum="10.5">
+
+                    <TextView
+                        android:layout_weight="3"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="63아트"
+                        android:textColor="@color/tablecolor"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_weight="2.5"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="13,000원"
+                        android:textColor="@color/tablecolor"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_weight="2.5"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="12,000원"
+                        android:textColor="@color/tablecolor"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_weight="2.5"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="11,000원"
+                        android:textColor="@color/tablecolor"
+                        android:textSize="16sp" />
+                </TableRow>
+
+                <TableRow android:weightSum="10.5">
+
+                    <TextView
+                        android:layout_weight="3"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="아쿠아플라넷"
+                        android:textColor="@color/tablecolor"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_weight="2.5"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="25,000원"
+                        android:textColor="@color/tablecolor"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_weight="2.5"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="23,000원"
+                        android:textColor="@color/tablecolor"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_weight="2.5"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="21,000원"
+                        android:textColor="@color/tablecolor"
+                        android:textSize="16sp" />
+                </TableRow>
+                <TextView
+                    android:layout_weight="15"
+                    android:width="0px"
+                    android:height="45dp"
+                    android:background="@drawable/celltitle"
+                    android:gravity="center"
+                    android:text="비고"
+                    android:textColor="@color/tablecolor"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_weight="15"
+                    android:width="0px"
+                    android:height="45dp"
+                    android:paddingLeft="25dp"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/cellbg_top"
+                    android:text="※ 어른 : 만 19세 이상"
+                    android:textColor="@color/tablecolor"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:paddingLeft="25dp"
+                    android:gravity="center_vertical"
+                    android:layout_weight="15"
+                    android:width="0px"
+                    android:height="45dp"
+                    android:background="@drawable/cellbg_center"
+                    android:text="※ 청소년 : 만 13세 이상 ~ 만 18세 이하"
+                    android:textColor="@color/tablecolor"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:paddingLeft="25dp"
+                    android:gravity="center_vertical"
+                    android:layout_weight="15"
+                    android:width="0px"
+                    android:height="45dp"
+                    android:background="@drawable/cellbg_btm"
+                    android:text="※ 어린이 : 36개월 이상 ~ 만 12세 이하"
+                    android:textColor="@color/tablecolor"
+                    android:textSize="16sp" />
+
+
+
+            </TableLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
 </LinearLayout>

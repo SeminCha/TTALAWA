@@ -3,7 +3,6 @@
     android:id="@+id/toolBar_back"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="-10dp"
     android:background="@drawable/toolbar_bg"
     >
     <LinearLayout
@@ -14,7 +13,11 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1.2">
+            android:layout_weight="0.2"></RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0">
             <ImageButton
                 android:id="@+id/back_button"
                 android:onClick="btn_Back_Click"

@@ -6,16 +6,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:gravity="top"
         android:paddingLeft="17dp"
         android:text="이용 시간"
-        android:textSize="8pt" />
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/maincolor" />
     <!--관람요금 안내-->
     <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:textSize="10pt">
@@ -23,24 +25,30 @@
         <!--타이틀-->
         <TableRow android:weightSum="14">
             <TextView
-            android:layout_weight="4"
+                android:textSize="16sp"
+                android:textColor="@color/tablecolor"
+                android:layout_weight="4"
             android:width="0px"
-            android:height="40dp"
-            android:background="@drawable/cell_title"
+            android:height="45dp"
+            android:background="@drawable/celltitle"
             android:gravity="center"
             android:text="관람 기간" />
             <TextView
-            android:layout_weight="5"
+                android:textSize="16sp"
+                android:textColor="@color/tablecolor"
+                android:layout_weight="5"
             android:width="0px"
-            android:height="40dp"
-            android:background="@drawable/cell_title"
+            android:height="45dp"
+            android:background="@drawable/celltitle"
             android:gravity="center"
             android:text="관람 시간" />
             <TextView
+                android:textSize="16sp"
+                android:textColor="@color/tablecolor"
                 android:layout_weight="5"
                 android:width="0px"
-                android:height="40dp"
-                android:background="@drawable/cell_title"
+                android:height="45dp"
+                android:background="@drawable/celltitle"
                 android:gravity="center"
                 android:text="입장 마감" />
             </TableRow>
@@ -48,23 +56,29 @@
         <!--1~2월-->
         <TableRow android:weightSum="14">
             <TextView
+                android:textSize="16sp"
+                android:textColor="@color/tablecolor"
                 android:layout_weight="4"
                 android:width="0px"
-                android:height="40dp"
+                android:height="45dp"
                 android:background="@drawable/cellbg"
                 android:gravity="center"
                 android:text="1월~2월" />
             <TextView
+                android:textSize="16sp"
+                android:textColor="@color/tablecolor"
                 android:layout_weight="5"
                 android:width="0px"
-                android:height="40dp"
+                android:height="45dp"
                 android:background="@drawable/cellbg"
                 android:gravity="center"
                 android:text="09:00~17:00" />
             <TextView
+                android:textSize="16sp"
+                android:textColor="@color/tablecolor"
                 android:layout_weight="5"
                 android:width="0px"
-                android:height="40dp"
+                android:height="45dp"
                 android:background="@drawable/cellbg"
                 android:gravity="center"
                 android:text="16:00" />
@@ -73,23 +87,29 @@
         <!--1열(시설명)-->
         <TableRow android:weightSum="14">
             <TextView
+                android:textSize="16sp"
+                android:textColor="@color/tablecolor"
                 android:layout_weight="4"
                 android:width="0px"
-                android:height="40dp"
+                android:height="45dp"
                 android:background="@drawable/cellbg"
                 android:gravity="center"
                 android:text="3월~5월" />
             <TextView
+                android:textSize="16sp"
+                android:textColor="@color/tablecolor"
                 android:layout_weight="5"
                 android:width="0px"
-                android:height="40dp"
+                android:height="45dp"
                 android:background="@drawable/cellbg"
                 android:gravity="center"
                 android:text="09:00~18:00" />
             <TextView
+                android:textSize="16sp"
+                android:textColor="@color/tablecolor"
                 android:layout_weight="5"
                 android:width="0px"
-                android:height="40dp"
+                android:height="45dp"
                 android:background="@drawable/cellbg"
                 android:gravity="center"
                 android:text="17:00" />
@@ -98,23 +118,29 @@
         <!--1열(시설명)-->
         <TableRow android:weightSum="14">
             <TextView
+                android:textSize="16sp"
+                android:textColor="@color/tablecolor"
                 android:layout_weight="4"
                 android:width="0px"
-                android:height="40dp"
+                android:height="45dp"
                 android:background="@drawable/cellbg"
                 android:gravity="center"
                 android:text="6월~8월" />
             <TextView
+                android:textSize="16sp"
+                android:textColor="@color/tablecolor"
                 android:layout_weight="5"
                 android:width="0px"
-                android:height="40dp"
+                android:height="45dp"
                 android:background="@drawable/cellbg"
                 android:gravity="center"
                 android:text="09:00~18:30" />
             <TextView
+                android:textSize="16sp"
+                android:textColor="@color/tablecolor"
                 android:layout_weight="5"
                 android:width="0px"
-                android:height="40dp"
+                android:height="45dp"
                 android:background="@drawable/cellbg"
                 android:gravity="center"
                 android:text="17:30" />
@@ -123,23 +149,29 @@
         <!--1열(시설명)-->
         <TableRow android:weightSum="14">
             <TextView
+                android:textSize="16sp"
+                android:textColor="@color/tablecolor"
                 android:layout_weight="4"
                 android:width="0px"
-                android:height="40dp"
+                android:height="45dp"
                 android:background="@drawable/cellbg"
                 android:gravity="center"
                 android:text="9월~10월" />
             <TextView
+                android:textSize="16sp"
+                android:textColor="@color/tablecolor"
                 android:layout_weight="5"
                 android:width="0px"
-                android:height="40dp"
+                android:height="45dp"
                 android:background="@drawable/cellbg"
                 android:gravity="center"
                 android:text="09:00~18:00" />
             <TextView
+                android:textSize="16sp"
+                android:textColor="@color/tablecolor"
                 android:layout_weight="5"
                 android:width="0px"
-                android:height="40dp"
+                android:height="45dp"
                 android:background="@drawable/cellbg"
                 android:gravity="center"
                 android:text="17:00" />
@@ -148,23 +180,29 @@
         <!--1열(시설명)-->
         <TableRow android:weightSum="14">
             <TextView
+                android:textSize="16sp"
+                android:textColor="@color/tablecolor"
                 android:layout_weight="4"
                 android:width="0px"
-                android:height="40dp"
+                android:height="45dp"
                 android:background="@drawable/cellbg"
                 android:gravity="center"
                 android:text="11월~12월" />
             <TextView
+                android:textSize="16sp"
+                android:textColor="@color/tablecolor"
                 android:layout_weight="5"
                 android:width="0px"
-                android:height="40dp"
+                android:height="45dp"
                 android:background="@drawable/cellbg"
                 android:gravity="center"
                 android:text="09:00~17:00" />
             <TextView
+                android:textSize="16sp"
+                android:textColor="@color/tablecolor"
                 android:layout_weight="5"
                 android:width="0px"
-                android:height="40dp"
+                android:height="45dp"
                 android:background="@drawable/cellbg"
                 android:gravity="center"
                 android:text="16:00" />

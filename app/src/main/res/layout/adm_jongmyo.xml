@@ -21,16 +21,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="25dp"
                 android:gravity="top"
                 android:paddingLeft="17dp"
                 android:text="이용 요금"
-                android:textSize="8pt" />
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/maincolor"/>
             <!--관람요금 안내-->
             <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 android:paddingBottom="50dp"
@@ -39,18 +41,22 @@
                 <TableRow android:weightSum="14">
 
                     <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
                         android:layout_weight="10"
                         android:width="0px"
-                        android:height="40dp"
-                        android:background="@drawable/cell_title"
+                        android:height="45dp"
+                        android:background="@drawable/celltitle"
                         android:gravity="center"
                         android:text="대상" />
 
                     <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
                         android:layout_weight="4"
                         android:width="0px"
-                        android:height="40dp"
-                        android:background="@drawable/cell_title"
+                        android:height="45dp"
+                        android:background="@drawable/celltitle"
                         android:gravity="center"
                         android:text="관람 요금" />
 
@@ -62,24 +68,30 @@
                     <TableLayout android:layout_weight="10">
 
                         <TextView
+                            android:textSize="16sp"
+                            android:textColor="@color/tablecolor"
                             android:width="0px"
-                            android:height="40dp"
+                            android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
                             android:text="만 25세~64세(내국인)" />
 
                         <TextView
+                            android:textSize="16sp"
+                            android:textColor="@color/tablecolor"
                             android:width="0px"
-                            android:height="40dp"
+                            android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
                             android:text="만 19세 이상 외국인" />
                     </TableLayout>
 
                     <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
                         android:layout_weight="4"
                         android:width="0px"
-                        android:height="80dp"
+                        android:height="90dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
                         android:text="1,000원" />
@@ -90,24 +102,30 @@
                     <TableLayout android:layout_weight="10">
 
                         <TextView
+                            android:textSize="16sp"
+                            android:textColor="@color/tablecolor"
                             android:width="0px"
-                            android:height="40dp"
+                            android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
                             android:text="만 24세 이하, 만 65세 이상(내국인)" />
 
                         <TextView
+                            android:textSize="16sp"
+                            android:textColor="@color/tablecolor"
                             android:width="0px"
-                            android:height="40dp"
+                            android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
                             android:text="만 6세 이하 외국인" />
                     </TableLayout>
 
                     <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
                         android:layout_weight="4"
                         android:width="0px"
-                        android:height="80dp"
+                        android:height="90dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
                         android:text="외국인" />
@@ -115,55 +133,69 @@
 
                 <TableRow android:weightSum="14">
                     <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
                         android:layout_weight="10"
                         android:width="0px"
-                        android:height="80dp"
+                        android:height="90dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
                         android:text="만 7세 이상~만 18세 이상 외국인" />
                     <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
                         android:layout_weight="4"
                         android:width="0px"
-                        android:height="80dp"
+                        android:height="90dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
                         android:text="500원" />
                 </TableRow>
 
                 <TextView
+                    android:textSize="16sp"
+                    android:textColor="@color/tablecolor"
                     android:layout_weight="14"
                     android:width="0px"
-                    android:height="40dp"
-                    android:background="@drawable/cell_title"
+                    android:height="45dp"
+                    android:background="@drawable/celltitle"
                     android:gravity="center"
                     android:text="비고" />
 
                 <TextView
+                    android:textSize="16sp"
+                    android:textColor="@color/tablecolor"
                     android:layout_weight="14"
                     android:width="0px"
-                    android:height="40dp"
-                    android:background="@drawable/cellbg"
+                    android:height="45dp"
+                    android:background="@drawable/cellbg_top"
                     android:gravity="center"
-                    android:text="※ 무료관람대상자 (대상자는 반드시 관련 증빙을 제시)" />
+                    android:text="※ 무료관람대상자 (반드시 관련 증빙 제시)" />
                 <TextView
+                    android:textSize="16sp"
+                    android:textColor="@color/tablecolor"
                     android:layout_weight="14"
                     android:width="0px"
-                    android:height="40dp"
-                    android:background="@drawable/cellbg"
+                    android:height="45dp"
+                    android:background="@drawable/cellbg_center"
                     android:gravity="center_vertical"
                     android:text="      - 만 24세 이하 청소년(학생증 또는 신분증 지참)" />
                 <TextView
+                    android:textSize="16sp"
+                    android:textColor="@color/tablecolor"
                     android:layout_weight="14"
                     android:width="0px"
-                    android:height="40dp"
-                    android:background="@drawable/cellbg"
+                    android:height="45dp"
+                    android:background="@drawable/cellbg_center"
                     android:gravity="center_vertical"
-                    android:text="      - 만 6세 이하 어린이, 만 65세 이상 국민(신분증 지참)" />
+                    android:text="      - 만 6세 이하, 만 65세 이상 국민(신분증 지참)" />
                 <TextView
+                    android:textSize="16sp"
+                    android:textColor="@color/tablecolor"
                     android:layout_weight="14"
                     android:width="0px"
-                    android:height="40dp"
-                    android:background="@drawable/cellbg"
+                    android:height="45dp"
+                    android:background="@drawable/cellbg_btm"
                     android:gravity="center_vertical"
                     android:text="      - 만 6세 이하 및 만 65세 이상 외국인" />
             </TableLayout>

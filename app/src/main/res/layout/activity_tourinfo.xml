@@ -21,7 +21,7 @@
         android:background="@drawable/tablayout_bg"
         android:elevation="6dp"
         android:minHeight="?attr/actionBarSize"
-        app:tabIndicatorHeight="4dp"
+        app:tabIndicatorHeight="2.8dp"
         app:tabSelectedTextColor="#df5539"
         app:tabTextAppearance="@style/AppTabTextAppearance" />
 

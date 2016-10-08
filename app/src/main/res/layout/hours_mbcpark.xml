@@ -1,6 +1,340 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:fillViewport="false"
+        android:visibility="visible">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="25dp"
+                android:gravity="top"
+                android:paddingLeft="17dp"
+                android:text="이용 시간"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/maincolor"/>
+
+            <!--주요시설 표-->
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="50dp"
+                >
+
+
+                <!--1열(시설명)-->
+                <TableRow android:weightSum="15">
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="6"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/celltitle"
+                        android:gravity="center"
+                        android:text="구분" />
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="9"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/celltitle"
+                        android:gravity="center"
+                        android:text="시작시간" />
+
+                </TableRow>
+
+                <TableRow android:weightSum="15">
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="6"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="1회차" />
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="9"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="10:00" />
+                </TableRow>
+                <TableRow android:weightSum="15">
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="6"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="2회차" />
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="9"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="10:30" />
+                </TableRow>
+                <TableRow android:weightSum="15">
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="6"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="3회차" />
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="9"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="11:00" />
+                </TableRow>
+                <TableRow android:weightSum="15">
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="6"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="4회차" />
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="9"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="11:30" />
+                </TableRow>
+                <TableRow android:weightSum="15">
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="6"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="5회차" />
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="9"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="12:30" />
+                </TableRow>
+                <TableRow android:weightSum="15">
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="6"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="6회차" />
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="9"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="13:30" />
+                </TableRow>
+                <TableRow android:weightSum="15">
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="6"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="7회차" />
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="9"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="14:00" />
+                </TableRow>
+                <TableRow android:weightSum="15">
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="6"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="8회차" />
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="9"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="14:30" />
+                </TableRow>
+                <TableRow android:weightSum="15">
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="6"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="9회차" />
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="9"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="15:00" />
+                </TableRow>
+                <TableRow android:weightSum="15">
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="6"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="10회차" />
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="9"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="15:30" />
+                </TableRow>
+                <TableRow android:weightSum="15">
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="6"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="11회차" />
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="9"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="16:00" />
+                </TableRow>
+
+
+
+                <TextView
+                    android:textSize="16sp"
+                    android:textColor="@color/tablecolor"
+                    android:width="0px"
+                    android:height="45dp"
+                    android:background="@drawable/celltitle"
+                    android:gravity="center"
+                    android:text="비고" />
+                <TextView
+                    android:paddingLeft="15dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/tablecolor"
+                    android:width="0px"
+                    android:height="45dp"
+                    android:background="@drawable/cellbg_top"
+                    android:gravity="center_vertical"
+                    android:text="- 10:00~18:00 연중무휴 운영" />
+                <TextView
+                    android:paddingLeft="25dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/tablecolor"
+                    android:width="0px"
+                    android:height="45dp"
+                    android:background="@drawable/cellbg_btm"
+                    android:gravity="top"
+                    android:text="(단, 설날/추석 당일은 휴관)" />
+
+                <TextView
+                    android:paddingLeft="15dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/tablecolor"
+                    android:width="0px"
+                    android:height="45dp"
+                    android:background="@drawable/cellbg"
+                    android:gravity="center_vertical"
+                    android:text="- 운영종료 2시간 전(16:00)까지만 입장 가능" />
+                <TextView
+                    android:paddingLeft="15dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/tablecolor"
+                    android:width="0px"
+                    android:height="45dp"
+                    android:background="@drawable/cellbg"
+                    android:gravity="center_vertical"
+                    android:text="- 하루 11회 투어 운영, 1회 투어 소요시간은 90분" />
+            </TableLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
 </LinearLayout>

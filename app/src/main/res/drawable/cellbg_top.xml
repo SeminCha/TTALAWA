@@ -7,15 +7,6 @@
         </shape>
     </item>
 
-    <!--bottom-->
-    <item android:top="-3dp" android:right="-3dp" android:left="-3dp">
-        <shape>
-            <solid android:color="@android:color/transparent" />
-            <stroke
-                android:width="0.6dp"
-                android:color="#c3cdd9" />
-        </shape>
-    </item>
 
     <!--top-->
     <item android:left="-3dp" android:right="-3dp" android:bottom="-3dp">

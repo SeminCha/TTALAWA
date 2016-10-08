@@ -185,7 +185,6 @@
                 android:background="@drawable/stationinfo_layout_style"
                 android:clickable="true"
                 android:orientation="vertical"
-                android:paddingBottom="10dp"
                 android:paddingEnd="15dp"
                 android:paddingStart="15dp"
                 android:paddingTop="15dp"
@@ -195,7 +194,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="29"
+                    android:layout_weight="23"
                     android:orientation="horizontal"
                     android:weightSum="10">
 
@@ -234,9 +233,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="40"
+                    android:layout_weight="41"
                     android:orientation="horizontal"
-                    android:paddingBottom="5dp"
+                    android:paddingBottom="4dp"
                     android:weightSum="10">
 
                     <RelativeLayout
@@ -246,7 +245,7 @@
                         android:layout_marginBottom="3dp"
                         android:layout_marginRight="13dp"
                         android:layout_marginStart="2dp"
-                        android:layout_marginTop="3dp"
+                        android:layout_marginTop="4dp"
                         android:layout_weight="1.89"
                         android:background="@drawable/stationinfo_imageview_style">
 
@@ -363,8 +362,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="31"
+                    android:layout_weight="36"
                     android:orientation="horizontal"
+                    android:paddingTop="9dp"
                     android:paddingBottom="5dp"
                     android:weightSum="10">
 
@@ -484,6 +484,7 @@
                     </RelativeLayout>
                 </LinearLayout>
             </LinearLayout>
+
 
             <LinearLayout
                 android:id="@+id/tourSpotInfoLayout"

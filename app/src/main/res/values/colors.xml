@@ -27,8 +27,10 @@
     <color name="grey_accent2">#B7B7B7</color>
     <color name="orangered">#df5539</color>
     <color name="orangered_comple">#227585</color>
+    <color name="maincolor">#6B82A1</color>
     <color name="rent">#E2E3E7</color>
     <color name="white2">#F9F9F9</color>
     <color name="fabcolor">#92a2bf</color>
     <color name="ttarung">#3C9E64</color>
+    <color name="tablecolor">#4a5b70</color>
 </resources>

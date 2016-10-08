@@ -20,16 +20,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="25dp"
                 android:gravity="top"
                 android:paddingLeft="17dp"
                 android:text="이용 요금"
-                android:textSize="8pt" />
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/maincolor"/>
             <!--이용요금 표-->
             <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 android:textSize="10pt">
@@ -37,25 +39,31 @@
                 <TableRow android:weightSum="15">
 
                     <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
                         android:layout_weight="3"
                         android:width="0px"
-                        android:height="40dp"
-                        android:background="@drawable/cellbg"
+                        android:height="45dp"
+                        android:background="@drawable/celltitle"
                         android:gravity="center"
                         android:text="구분" />
 
                     <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
                         android:layout_weight="6"
                         android:width="0px"
-                        android:height="40dp"
+                        android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
                         android:text="대인" />
 
                     <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
                         android:layout_weight="6"
                         android:width="0px"
-                        android:height="40dp"
+                        android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
                         android:text="소인" />
@@ -64,25 +72,31 @@
                 <TableRow android:weightSum="15">
 
                     <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
                         android:layout_weight="3"
                         android:width="0px"
-                        android:height="40dp"
-                        android:background="@drawable/cellbg"
+                        android:height="45dp"
+                        android:background="@drawable/celltitle_btm"
                         android:gravity="center"
                         android:text="전망대" />
 
                     <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
                         android:layout_weight="6"
                         android:width="0px"
-                        android:height="40dp"
+                        android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
                         android:text="10,000원" />
 
                     <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
                         android:layout_weight="6"
                         android:width="0px"
-                        android:height="40dp"
+                        android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
                         android:text="8,000원" />
@@ -91,32 +105,40 @@
                 <TableRow android:weightSum="15">
 
                     <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
                         android:layout_weight="3"
                         android:width="0px"
-                        android:height="120dp"
-                        android:background="@drawable/cellbg"
+                        android:height="135dp"
+                        android:background="@drawable/celltitle_btm"
                         android:gravity="center"
                         android:text="비고" />
 
                     <TableLayout android:layout_weight="12">
 
                         <TextView
+                            android:textSize="16sp"
+                            android:textColor="@color/tablecolor"
                             android:width="0px"
-                            android:height="40dp"
+                            android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
                             android:text="대인 : 만 13세 이상" />
 
                         <TextView
+                            android:textSize="16sp"
+                            android:textColor="@color/tablecolor"
                             android:width="0px"
-                            android:height="40dp"
+                            android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
                             android:text="소인 : 만 3세~ 만 12세" />
 
                         <TextView
+                            android:textSize="16sp"
+                            android:textColor="@color/tablecolor"
                             android:width="0px"
-                            android:height="40dp"
+                            android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
                             android:text="경로 : 소인 요금과 동일" />

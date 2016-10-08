@@ -21,17 +21,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="25dp"
                 android:gravity="top"
                 android:paddingLeft="17dp"
                 android:text="이용 시간"
-                android:textSize="8pt" />
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/maincolor" />
 
             <!--주요시설 표-->
             <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="15dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 android:textSize="10pt">
@@ -40,18 +42,22 @@
                 <TableRow android:weightSum="15">
 
                     <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
                         android:layout_weight="6"
                         android:width="0px"
-                        android:height="40dp"
-                        android:background="@drawable/cell_title"
+                        android:height="45dp"
+                        android:background="@drawable/celltitle"
                         android:gravity="center"
                         android:text="시설명" />
 
                     <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
                         android:layout_weight="9"
                         android:width="0px"
-                        android:height="40dp"
-                        android:background="@drawable/cell_title"
+                        android:height="45dp"
+                        android:background="@drawable/celltitle"
                         android:gravity="center"
                         android:text="서울 타워" />
 
@@ -61,17 +67,21 @@
                 <TableRow android:weightSum="15">
 
                     <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
                         android:layout_weight="6"
                         android:width="0px"
-                        android:height="40dp"
+                        android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
                         android:text="(종별)" />
 
                     <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
                         android:layout_weight="9"
                         android:width="0px"
-                        android:height="40dp"
+                        android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
                         android:text="전망대" />
@@ -84,9 +94,11 @@
                 <TableRow android:weightSum="15">
 
                     <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
                         android:layout_weight="6"
                         android:width="0px"
-                        android:height="120dp"
+                        android:height="135dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
                         android:text="비고" />
@@ -94,25 +106,31 @@
                     <TableLayout android:layout_weight="9">
 
                         <TextView
+                            android:textSize="16sp"
+                            android:textColor="@color/tablecolor"
                             android:layout_weight="9"
                             android:width="0px"
-                            android:height="40dp"
+                            android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
                             android:text="관람시간" />
 
                         <TextView
+                            android:textSize="16sp"
+                            android:textColor="@color/tablecolor"
                             android:layout_weight="9"
                             android:width="0px"
-                            android:height="40dp"
+                            android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
                             android:text="주중/일 10:00~23:00" />
 
                         <TextView
+                            android:textSize="16sp"
+                            android:textColor="@color/tablecolor"
                             android:layout_weight="9"
                             android:width="0px"
-                            android:height="40dp"
+                            android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
                             android:text="토 10:00~24:00" />
@@ -130,7 +148,7 @@
             <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="35dp"
                 android:paddingBottom="50dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
@@ -140,20 +158,24 @@
                 <TableRow android:weightSum="15">
 
                     <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
                         android:layout_weight="6"
                         android:width="0px"
-                        android:height="40dp"
-                        android:background="@drawable/cell_title"
+                        android:height="45dp"
+                        android:background="@drawable/celltitle"
                         android:gravity="center"
                         android:text="시설명" />
 
 
                     <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
                         android:layout_gravity="center"
                         android:layout_weight="9"
                         android:width="0px"
-                        android:height="40dp"
-                        android:background="@drawable/cell_title"
+                        android:height="45dp"
+                        android:background="@drawable/celltitle"
                         android:gravity="center"
                         android:text="케이블카" />
                 </TableRow>
@@ -161,26 +183,32 @@
                 <TableRow android:weightSum="15">
 
                     <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
                         android:layout_weight="6"
                         android:width="0px"
-                        android:height="40dp"
+                        android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
                         android:text="(종별)" />
 
 
                     <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
                         android:layout_weight="4.5"
                         android:width="0px"
-                        android:height="40dp"
+                        android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
                         android:text="편도" />
 
                     <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
                         android:layout_weight="4.5"
                         android:width="0px"
-                        android:height="40dp"
+                        android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
                         android:text="왕복" />
@@ -190,9 +218,11 @@
                 <TableRow android:weightSum="15">
 
                     <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
                         android:layout_weight="6"
                         android:width="0px"
-                        android:height="80dp"
+                        android:height="90dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
                         android:text="비고" />
@@ -200,17 +230,21 @@
                     <TableLayout android:layout_weight="9">
 
                         <TextView
+                            android:textSize="16sp"
+                            android:textColor="@color/tablecolor"
                             android:layout_weight="9"
                             android:width="0px"
-                            android:height="40dp"
+                            android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
                             android:text="운행시간" />
 
                         <TextView
+                            android:textSize="16sp"
+                            android:textColor="@color/tablecolor"
                             android:layout_weight="9"
                             android:width="0px"
-                            android:height="40dp"
+                            android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
                             android:text="10:00~23:00" />

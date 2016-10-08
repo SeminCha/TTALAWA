@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import ensharp.ttalawa.R;
@@ -21,30 +22,32 @@ public class TourInfoTab1_Intro extends Fragment {
     private ImageView imageView;
     private Intent callIntent;
     private Intent webIntent;
-    private Button callBtn;
-    private Button webBtn;
     private TextView spotText;
     private TextView spotAddr;
-    private Button mapBtn;
-    private Button naviBtn;
+    private RelativeLayout mapBtn;
+    private RelativeLayout naviBtn;
+    private RelativeLayout callBtn;
+    private RelativeLayout webBtn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         inflatedView = inflater.inflate(R.layout.spot_tab1_intro, container, false);
-        callBtn = (Button) inflatedView.findViewById(R.id.btn_call);
-        webBtn = (Button) inflatedView.findViewById(R.id.btn_website);
-        mapBtn = (Button) inflatedView.findViewById(R.id.showmap_btn);
-        naviBtn = (Button) inflatedView.findViewById(R.id.navi_btn);
+        callBtn = (RelativeLayout) inflatedView.findViewById(R.id.btn_call);
+        webBtn = (RelativeLayout) inflatedView.findViewById(R.id.btn_website);
+        mapBtn = (RelativeLayout) inflatedView.findViewById(R.id.showmap_btn);
+        naviBtn = (RelativeLayout) inflatedView.findViewById(R.id.navi_btn);
 
         callBtn.setOnClickListener(btnListener);
         webBtn.setOnClickListener(btnListener);
         mapBtn.setOnClickListener(btnListener);
         naviBtn.setOnClickListener(btnListener);
 
+
         spotName = TourInfoActivity.spotName;
         setContentView(spotName);
         return inflatedView;
     }
+
 
     public void setContentView(String spotName) {
         nameText = (TextView) inflatedView.findViewById(R.id.tab1_spotname);

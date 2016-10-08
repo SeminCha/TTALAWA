@@ -1,6 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:fillViewport="false"
+        android:visibility="visible">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="25dp"
+                android:gravity="top"
+                android:paddingLeft="17dp"
+                android:text="이용 요금"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/maincolor"/>
+
+            <!--주요시설 표-->
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="50dp"
+                >
+
+                <!--1열(시설명)-->
+                <TableRow android:weightSum="15">
+
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="6"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/celltitle"
+                        android:gravity="center"
+                        android:text="입장료" />
+
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="9"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/celltitle"
+                        android:gravity="center"
+                        android:text="개인" />
+
+
+                </TableRow>
+
+                <TableRow android:weightSum="15">
+
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="6"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="어른" />
+
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="9"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="18,000원" />
+
+
+                </TableRow>
+
+                <TableRow android:weightSum="15">
+
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="6"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="청소년" />
+
+                    <TextView
+                        android:textSize="16sp"
+                        android:layout_weight="9"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:textColor="@color/tablecolor"
+                        android:text="13,000원" />
+                </TableRow>
+
+                <TableRow android:weightSum="15">
+
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="6"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="어린이" />
+
+                    <TextView
+                        android:textSize="16sp"
+                        android:layout_weight="9"
+                        android:width="0px"
+                        android:height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:textColor="@color/tablecolor"
+                        android:text="9,000원" />
+                </TableRow>
+                <TextView
+                    android:textSize="16sp"
+                    android:textColor="@color/tablecolor"
+                    android:layout_weight="9"
+                    android:width="0px"
+                    android:height="45dp"
+                    android:background="@drawable/celltitle"
+                    android:gravity="center"
+                    android:text="비고" />
+                <TextView
+                    android:textSize="16sp"
+                    android:textColor="@color/tablecolor"
+                    android:layout_weight="9"
+                    android:width="0px"
+                    android:height="45dp"
+                    android:background="@drawable/cellbg"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:text="※ 어린이: 36개월 이상~초등학교 6학년생" />
+
+                <TextView
+                    android:textSize="16sp"
+                    android:textColor="@color/tablecolor"
+                    android:layout_weight="9"
+                    android:width="0px"
+                    android:height="45dp"
+                    android:background="@drawable/cellbg"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:text="※ 청소년 : 중고등학생" />
+
+                <TextView
+                    android:textSize="16sp"
+                    android:textColor="@color/tablecolor"
+                    android:layout_weight="9"
+                    android:width="0px"
+                    android:height="45dp"
+                    android:background="@drawable/celltitle"
+                    android:gravity="center"
+                    android:text="이용시간 / 요금사항 할인 혜택" />
+                <TextView
+                    android:textSize="16sp"
+                    android:textColor="@color/tablecolor"
+                    android:layout_weight="9"
+                    android:width="0px"
+                    android:height="45dp"
+                    android:background="@drawable/cellbg"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:text="- 대상: 장애인, 국가보훈자, 경로, 군경찰" />
+                <TextView
+                    android:textSize="16sp"
+                    android:textColor="@color/tablecolor"
+                    android:layout_weight="9"
+                    android:width="0px"
+                    android:height="45dp"
+                    android:background="@drawable/cellbg"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:text="- 할인 내용: 입장료 13,000원" />
+                <TextView
+                    android:textSize="16sp"
+                    android:textColor="@color/tablecolor"
+                    android:layout_weight="9"
+                    android:width="0px"
+                    android:height="45dp"
+                    android:background="@drawable/cellbg"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:text="※ 확인 가능한 관련 증빙 서류 지참" />
+            </TableLayout>
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
 </LinearLayout>

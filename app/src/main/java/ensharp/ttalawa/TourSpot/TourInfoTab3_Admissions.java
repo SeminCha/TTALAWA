@@ -46,9 +46,6 @@ public class TourInfoTab3_Admissions extends Fragment {
             case "MBC 월드 방송 테마 파크":
                 inflatedLayout = (LinearLayout) inflater.inflate(R.layout.adm_mbcpark, container, false);
                 break;
-            case "하늘 공원":
-                inflatedLayout = (LinearLayout) inflater.inflate(R.layout.adm_skypark, container, false);
-                break;
             default:
                 inflatedLayout = (LinearLayout) inflater.inflate(R.layout.spot_tab_null, container, false);
                 break;

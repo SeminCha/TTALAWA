@@ -58,6 +58,7 @@ import com.skp.Tmap.TMapTapi;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import ensharp.ttalawa.DBAdapter.SpotsDbAdapter;
 import ensharp.ttalawa.DBAdapter.StationDbAdapter;
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         GoogleMap.InfoWindowAdapter,
         com.google.android.gms.location.LocationListener {
 
-    GoogleMap mGoogleMap;
+    static GoogleMap mGoogleMap;
     MapFragment mapFrag;
     LocationRequest mLocationRequest;
     GoogleApiClient mGoogleApiClient;
@@ -128,6 +129,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public static int fourthOver = 6;
     private Switch time_switch, type_switch;
     private Button btn_five, btn_ten, btn_twenty, btn_thirty, btn_sound, btn_vib;
+    public static String mLocationService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,6 +179,42 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         btn_vib = (Button)findViewById(R.id.button_vib);
     }
 
+    public static Location getMyLocation() {
+        if (ActivityCompat.checkSelfPermission(mContext, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mContext, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return null;
+        }
+
+        Location bestLocation = null;
+
+        while (bestLocation == null) {
+            LocationManager mLocationManager = (LocationManager)mContext.getSystemService(mLocationService);
+
+            List<String> providers = mLocationManager.getProviders(true);
+
+            for (String provider : providers) {
+                Location l = mLocationManager.getLastKnownLocation(provider);
+                if (l == null) {
+                    continue;
+                }
+                if (bestLocation == null || l.getAccuracy() < bestLocation.getAccuracy()) {
+                    // Found best last known location: %s", l);
+                    bestLocation = l;
+                }
+            }
+        }
+        // }while (bestLocation!=null);
+        return bestLocation;
+    }
+
+    public static boolean isOnGps() {
+        final LocationManager manager = (LocationManager) mContext.getSystemService(mLocationService);
+
+        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     Switch.OnClickListener switchClickListener = new View.OnClickListener() {
         @Override
@@ -220,6 +258,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                 case R.id.btn_tourspot:
                     Intent intent = new Intent(getBaseContext(), TourSpotListActivity.class);
+                    Location location = mGoogleMap.getMyLocation();
+                    intent.putExtra("location", location);
                     startActivityForResult(intent, REQUEST_CODE_ANOTHER);
                     break;
                 case R.id.button_5:
@@ -367,7 +407,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 == PackageManager.PERMISSION_GRANTED) {
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
         }
-
+        mLocationService = Context.LOCATION_SERVICE;
         final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
     }
 

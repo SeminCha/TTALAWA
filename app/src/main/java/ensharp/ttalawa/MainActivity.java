@@ -622,13 +622,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         TextView stationNumber = (TextView) findViewById(R.id.stationNumberTxt);
         TextView stationRack = (TextView) findViewById(R.id.stationRackTxt);
         TextView stationAddress = (TextView) findViewById(R.id.stationAddressTxt);
-        LinearLayout stationNavigation = (LinearLayout) findViewById(R.id.stationNavigationLayout);
+        final LinearLayout stationNavigation = (LinearLayout) findViewById(R.id.stationNavigationLayout);
+        final LinearLayout stationRent = (LinearLayout) findViewById(R.id.stationRentLayout);
 
         // 관광명소 정보 레이아웃에 대한 정보
         TextView tourSpotName = (TextView) findViewById(R.id.tourSpotNameTxt);
         TextView tourSpotIntro = (TextView) findViewById(R.id.tourSpotIntroTxt);
         TextView tourSpotAddress = (TextView) findViewById(R.id.tourSpotAdressTxt);
-        LinearLayout tourSpotNavigation = (LinearLayout) findViewById(R.id.tourSpotNavigationLayout);
+        final LinearLayout tourSpotNavigation = (LinearLayout) findViewById(R.id.tourSpotNavigationLayout);
+        final LinearLayout tourSpotDetails = (LinearLayout) findViewById(R.id.tourSpotDetailsLayout);
 
         navigationMarker = marker;
 
@@ -658,14 +660,44 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             stationNavigation.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View view, MotionEvent motionEvent) {
-                    TmapNavigation(navigationMarker, true);
-
-                    return true;
+                    switch (motionEvent.getAction()) {
+                        case MotionEvent.ACTION_DOWN: {
+                            stationNavigation.setBackgroundResource(R.drawable.info_btn_pressed);
+                            return true;
+                        }
+                        case MotionEvent.ACTION_MOVE: {
+                            return true;
+                        }
+                        case MotionEvent.ACTION_UP: {
+                            stationNavigation.setBackgroundResource(R.drawable.info_btn_unpressed);
+                            TmapNavigation(navigationMarker, true);
+                            return true;
+                        }
+                        default:return false;
+                    }
                 }
             });
 
-
-
+            stationRent.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    switch (motionEvent.getAction()) {
+                        case MotionEvent.ACTION_DOWN: {
+                            stationRent.setBackgroundResource(R.drawable.info_btn_pressed);
+                            return true;
+                        }
+                        case MotionEvent.ACTION_MOVE: {
+                            return true;
+                        }
+                        case MotionEvent.ACTION_UP: {
+                            stationRent.setBackgroundResource(R.drawable.info_btn_unpressed);
+                            // 여기다가 따릉이 어플로 연동하는 코드 삽입
+                            return true;
+                        }
+                        default:return false;
+                    }
+                }
+            });
         } else {
             tourSpotName.setText(marker.getTitle());
 
@@ -682,12 +714,46 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             tourSpotAddress.setText(address);
             tourSpotIntro.setText(getTourSpotIntro(marker.getTitle()));
+
             tourSpotNavigation.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View view, MotionEvent motionEvent) {
-                    TmapNavigation(navigationMarker, true);
+                    switch (motionEvent.getAction()) {
+                        case MotionEvent.ACTION_DOWN: {
+                            tourSpotNavigation.setBackgroundResource(R.drawable.info_btn_pressed);
+                            return true;
+                        }
+                        case MotionEvent.ACTION_MOVE: {
+                            return true;
+                        }
+                        case MotionEvent.ACTION_UP: {
+                            tourSpotNavigation.setBackgroundResource(R.drawable.info_btn_unpressed);
+                            TmapNavigation(navigationMarker, true);
+                            return true;
+                        }
+                        default:return false;
+                    }
+                }
+            });
 
-                    return true;
+            tourSpotDetails.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    switch (motionEvent.getAction()) {
+                        case MotionEvent.ACTION_DOWN: {
+                            tourSpotDetails.setBackgroundResource(R.drawable.info_btn_pressed);
+                            return true;
+                        }
+                        case MotionEvent.ACTION_MOVE: {
+                            return true;
+                        }
+                        case MotionEvent.ACTION_UP: {
+                            tourSpotDetails.setBackgroundResource(R.drawable.info_btn_unpressed);
+
+                            return true;
+                        }
+                        default:return false;
+                    }
                 }
             });
 
@@ -742,7 +808,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 introContent = "조선 왕조 역사의 중요한 무대";
                 break;
             case "북촌 한옥마을":
-                introContent = "옛집 사이사이 골목길 따라 걷는 여행";
+                introContent = "옛집 골목길 따라 걷는 여행";
                 break;
             case "흥인지문":
                 introContent = "국가지정 보물 1호";
@@ -757,7 +823,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 introContent = "문화 예술의 터전";
                 break;
             case "낙산 공원":
-                introContent = "북악의 좌청룡에 올라 서울을 조망하자";
+                introContent = "북악의 좌청룡에서 서울을 조망하자";
                 break;
             case "63스퀘어":
                 introContent = "여의도의 복합 문화 공간";
@@ -977,6 +1043,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 //                toast = Toast.makeText(getBaseContext(), "응답으로 전달된 name : " + name, Toast.LENGTH_LONG);
 //                toast.show();
             }
+          // 검색 결과에 따른 부분
         } else if (requestCode == REQUEST_SELECT_PLACE) {
             if (resultCode == RESULT_OK) {
                 Place place = PlaceAutocomplete.getPlace(this, data);
@@ -987,6 +1054,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         } else if (resultCode == 0) {
 
+            // 거치소 목록 액티비에 따른 결과
         } else {
             if (stationMarkerMap.containsKey(String.valueOf(resultCode))) {
                 marker = (Marker) stationMarkerMap.get(String.valueOf(resultCode));

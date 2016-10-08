@@ -185,7 +185,6 @@
                 android:background="@drawable/stationinfo_layout_style"
                 android:clickable="true"
                 android:orientation="vertical"
-                android:paddingBottom="10dp"
                 android:paddingEnd="15dp"
                 android:paddingStart="15dp"
                 android:paddingTop="15dp"
@@ -195,7 +194,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="29"
+                    android:layout_weight="23"
                     android:orientation="horizontal"
                     android:weightSum="10">
 
@@ -234,9 +233,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="40"
+                    android:layout_weight="41"
                     android:orientation="horizontal"
-                    android:paddingBottom="5dp"
+                    android:paddingBottom="4dp"
                     android:weightSum="10">
 
                     <RelativeLayout
@@ -246,7 +245,7 @@
                         android:layout_marginBottom="3dp"
                         android:layout_marginRight="13dp"
                         android:layout_marginStart="2dp"
-                        android:layout_marginTop="3dp"
+                        android:layout_marginTop="4dp"
                         android:layout_weight="1.89"
                         android:background="@drawable/stationinfo_imageview_style">
 
@@ -363,8 +362,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="31"
+                    android:layout_weight="36"
                     android:orientation="horizontal"
+                    android:paddingTop="9dp"
                     android:paddingBottom="5dp"
                     android:weightSum="10">
 
@@ -378,7 +378,7 @@
                             android:id="@+id/stationNavigationLayout"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/info_button_style1"
+                            android:background="@drawable/info_btn_unpressed"
                             android:elevation="3dp"
                             android:orientation="horizontal"
                             android:weightSum="100">
@@ -438,7 +438,8 @@
                             android:id="@+id/stationRentLayout"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/info_button_style2"
+                            android:background="@drawable/info_btn_unpressed"
+                            android:splitMotionEvents="true"
                             android:elevation="3dp"
                             android:orientation="horizontal"
                             android:weightSum="100">
@@ -493,19 +494,19 @@
                 android:background="@drawable/stationinfo_layout_style"
                 android:clickable="true"
                 android:orientation="vertical"
-                android:paddingBottom="10dp"
                 android:paddingEnd="15dp"
                 android:paddingStart="15dp"
                 android:paddingTop="15dp"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:weightSum="100">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="29"
-                    android:orientation="horizontal"
-                    android:weightSum="10">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="23"
+                android:orientation="horizontal"
+                android:weightSum="10">
 
                     <RelativeLayout
                         android:layout_width="0dp"
@@ -524,9 +525,11 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="top"
-                        android:layout_weight="9">
+                        android:layout_weight="9"
+                        android:paddingStart="5dp">
 
-                        <TextView
+
+                    <TextView
                             android:id="@+id/tourSpotNameTxt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -542,9 +545,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="40"
+                    android:layout_weight="41"
                     android:orientation="horizontal"
-                    android:paddingBottom="5dp"
+                    android:paddingBottom="4dp"
                     android:weightSum="10">
 
                     <RelativeLayout
@@ -554,7 +557,7 @@
                         android:layout_marginBottom="3dp"
                         android:layout_marginRight="13dp"
                         android:layout_marginStart="2dp"
-                        android:layout_marginTop="3dp"
+                        android:layout_marginTop="4dp"
                         android:layout_weight="1.89"
                         android:background="@drawable/stationinfo_imageview_style">
 
@@ -624,7 +627,7 @@
                                 android:layout_alignParentEnd="true"
                                 android:layout_centerVertical="true"
                                 android:text=""
-                                android:textColor="@color/grey_light"
+                                android:textColor="@color/grey_dark"
                                 android:textSize="19dp" />
                         </RelativeLayout>
 
@@ -634,8 +637,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="31"
+                    android:layout_weight="36"
                     android:orientation="horizontal"
+                    android:paddingTop="9dp"
                     android:paddingBottom="5dp"
                     android:weightSum="10">
 
@@ -649,7 +653,7 @@
                             android:id="@+id/tourSpotNavigationLayout"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/info_button_style1"
+                            android:background="@drawable/info_btn_unpressed"
                             android:elevation="3dp"
                             android:orientation="horizontal"
                             android:weightSum="100">
@@ -707,9 +711,10 @@
                         android:gravity="end">
 
                         <LinearLayout
+                            android:id="@+id/tourSpotDetailsLayout"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/info_button_style1"
+                            android:background="@drawable/info_btn_unpressed"
                             android:elevation="3dp"
                             android:orientation="horizontal"
                             android:weightSum="100">

@@ -85,9 +85,9 @@
 
                     <Button
                         android:id="@+id/alarmSettingBtn"
-                        android:background="@drawable/notificationsccc"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
+                        android:background="@drawable/settings_dark"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="15dp"
@@ -102,6 +102,18 @@
                     android:layout_width="fill_parent"
                     android:layout_height="250dp"
                     android:orientation="horizontal">
+                    <!--GPS버튼-->
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/myLocationBtn"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:alpha="0.6"
+                        android:elevation="10dp"
+                        android:src="@drawable/gps_indicator"
+                        app:backgroundTint="@color/fabcolor" />
                     <!--관광지마크 버튼-->
                     <FrameLayout
                         android:layout_width="wrap_content"
@@ -148,18 +160,18 @@
                             android:textColor="@android:color/white"
                             android:textSize="16dp" />
                     </FrameLayout>
-                    <!--GPS버튼-->
-                    <android.support.design.widget.FloatingActionButton
-                        android:id="@+id/myLocationBtn"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginTop="135dp"
-                        android:alpha="0.6"
-                        android:elevation="10dp"
-                        android:src="@drawable/gps_indicator"
-                        app:backgroundTint="@color/fabcolor" />
+                    <!--&lt;!&ndash;GPS버튼&ndash;&gt;-->
+                    <!--<android.support.design.widget.FloatingActionButton-->
+                        <!--android:id="@+id/myLocationBtn"-->
+                        <!--android:layout_width="50dp"-->
+                        <!--android:layout_height="50dp"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:layout_marginRight="15dp"-->
+                        <!--android:layout_marginTop="135dp"-->
+                        <!--android:alpha="0.6"-->
+                        <!--android:elevation="10dp"-->
+                        <!--android:src="@drawable/gps_indicator"-->
+                        <!--app:backgroundTint="@color/fabcolor" />-->
                 </RelativeLayout>
             </LinearLayout>
 

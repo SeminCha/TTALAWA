@@ -27,6 +27,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -100,6 +101,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     LinearLayout stationInfoLayout;
     LinearLayout tourSpotInfoLayout;
 
+    RelativeLayout time_layout;
+    RelativeLayout mode_layout;
+
     TelephonyManager telephonyManager;
     String networkoper;
     TMapTapi tmaptapi;
@@ -126,7 +130,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public static int secondOver = 4;
     public static int thirdOver = 5;
     public static int fourthOver = 6;
-    private Switch time_switch, type_switch;
+    private Switch time_switch, type_switch, alarm_switch;
+    private CheckBox alarm_check;
     private Button btn_five, btn_ten, btn_twenty, btn_thirty, btn_sound, btn_vib;
 
     @Override
@@ -152,6 +157,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         alarmSettingLayout = (RelativeLayout) findViewById(R.id.alarmSettingLayout);
         alarmSettingToolbar = (Toolbar) findViewById(R.id.toolBar_alarmsetting);
         rentInfoLayout = (RelativeLayout) findViewById(R.id.rentInfoLayout);
+        time_layout = (RelativeLayout) findViewById(R.id.timeLayout);
+        mode_layout = (RelativeLayout) findViewById(R.id.modeLayout);
 
         alarmButtonSetting();
         pref = new SharedPreferences(this);
@@ -167,53 +174,102 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         overChargingView = (TextView)findViewById(R.id.overChargingView);
         mode = nonRent;
 
-        time_switch = (Switch)findViewById(R.id.time_switch);
-        type_switch = (Switch)findViewById(R.id.type_switch);
+//        time_switch = (Switch)findViewById(R.id.time_switch);
+//        type_switch = (Switch)findViewById(R.id.type_switch);
+//        alarm_switch = (Switch)findViewById(R.id.alarm_set_switch);
+//        alarm_switch.setOnClickListener(switchClickListener);
+        alarm_check = (CheckBox)findViewById(R.id.alarm_check);
+        alarm_check.setOnClickListener(checkClickListener);
         btn_five = (Button)findViewById(R.id.button_5);
+        btn_five.setOnClickListener(btnClickListener);
         btn_ten = (Button)findViewById(R.id.button_10);
+        btn_ten.setOnClickListener(btnClickListener);
         btn_twenty = (Button)findViewById(R.id.button_20);
+        btn_twenty.setOnClickListener(btnClickListener);
         btn_thirty = (Button)findViewById(R.id.button_30);
+        btn_thirty.setOnClickListener(btnClickListener);
         btn_sound = (Button)findViewById(R.id.button_sound);
+        btn_sound.setOnClickListener(btnClickListener);
         btn_vib = (Button)findViewById(R.id.button_vib);
+        btn_vib.setOnClickListener(btnClickListener);
     }
 
-
-    Switch.OnClickListener switchClickListener = new View.OnClickListener() {
+    CheckBox.OnClickListener checkClickListener = new View.OnClickListener() {
         @Override
-        public void onClick(View v) {
-            switch (v.getId())
-            {
-                case R.id.time_switch:
-                    if(time_switch.isChecked()) {
-                        time_switch.setChecked(false);
-                        btn_five.setEnabled(false);
-                        btn_ten.setEnabled(false);
-                        btn_twenty.setEnabled(false);
-                        btn_thirty.setEnabled(false);
+        public void onClick(View view) {
+            Animation slide_in = AnimationUtils.loadAnimation(getApplicationContext(),
+                    R.anim.slide_in);
+
+            Animation slide_out = AnimationUtils.loadAnimation(getApplicationContext(),
+                    R.anim.slide_out);
+            switch (view.getId()) {
+                case R.id.alarm_check:
+                    if(alarm_check.isChecked()){
+                        time_layout.setVisibility(View.VISIBLE);
+                        mode_layout.setVisibility(View.VISIBLE);
+                        time_layout.startAnimation(slide_in);
+                        mode_layout.startAnimation(slide_in);
                     }
-                    else{
-                        time_switch.setChecked(true);
-                        btn_five.setEnabled(true);
-                        btn_ten.setEnabled(true);
-                        btn_twenty.setEnabled(true);
-                        btn_thirty.setEnabled(true);
-                    }
-                    break;
-                case R.id.type_switch:
-                    if(type_switch.isChecked()){
-                        type_switch.setChecked(false);
-                        btn_sound.setEnabled(false);
-                        btn_vib.setEnabled(false);
-                    }
-                    else{
-                        type_switch.setChecked(true);
-                        btn_sound.setEnabled(true);
-                        btn_vib.setEnabled(true);
+                    else {
+                        time_layout.startAnimation(slide_out);
+                        mode_layout.startAnimation(slide_out);
+                        time_layout.setVisibility(View.GONE);
+                        mode_layout.setVisibility(View.GONE);
                     }
                     break;
             }
         }
     };
+//    Switch.OnClickListener switchClickListener = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            switch (v.getId())
+//            {
+//                case R.id.alarm_set_switch:
+//                    if(alarm_switch.isChecked())
+//                    {
+//                        alarm_switch.setChecked(false);
+//                        time_layout.setVisibility(View.GONE);
+//                        mode_layout.setVisibility(View.GONE);
+//                    }
+//                    else
+//                    {
+//                        alarm_switch.setChecked(true);
+//                        time_layout.setVisibility(View.VISIBLE);
+//                        mode_layout.setVisibility(View.VISIBLE);
+//                    }
+//                    break;
+//                case R.id.time_switch:
+//                    if(time_switch.isChecked()) {
+//                        time_switch.setChecked(false);
+//                        btn_five.setEnabled(false);
+//                        btn_ten.setEnabled(false);
+//                        btn_twenty.setEnabled(false);
+//                        btn_thirty.setEnabled(false);
+//                    }
+//                    else{
+//                        time_switch.setChecked(true);
+//                        btn_five.setEnabled(true);
+//                        btn_ten.setEnabled(true);
+//                        btn_twenty.setEnabled(true);
+//                        btn_thirty.setEnabled(true);
+//                    }
+//                    break;
+//                case R.id.type_switch:
+//                    if(type_switch.isChecked()){
+//                        type_switch.setChecked(false);
+//                        btn_sound.setEnabled(false);
+//                        btn_vib.setEnabled(false);
+//                    }
+//                    else{
+//                        type_switch.setChecked(true);
+//                        btn_sound.setEnabled(true);
+//                        btn_vib.setEnabled(true);
+//                    }
+//                    break;
+//            }
+//        }
+//    };
     Button.OnClickListener btnClickListener=new View.OnClickListener() {
         public void onClick(View v) {
             switch (v.getId()) {
@@ -224,11 +280,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     break;
                 case R.id.button_5:
                     if(btn_five.isPressed()){//isSelected
-                        btn_five.setSelected(false);
+                        btn_five.setSelected(true);
 
                     }
                     else {
-                        btn_five.setSelected(true);
+                        btn_five.setSelected(false);
 
                     }
                     break;

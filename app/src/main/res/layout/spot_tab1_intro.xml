@@ -50,12 +50,6 @@
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New Button"
-                android:id="@+id/check" />
-
         </LinearLayout>
         <!--관광지 주소-->
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

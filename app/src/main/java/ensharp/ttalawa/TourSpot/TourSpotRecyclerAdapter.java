@@ -15,11 +15,10 @@ import ensharp.ttalawa.R;
 
 public class TourSpotRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private ArrayList<TourAdapterItem> itemList;
-
     private OnItemClickListener listener;
 
-    public static int btn_check = 0;
 
+    //코스 뷰어
     public static class CourseViewHolder extends RecyclerView.ViewHolder {
         public TextView courseTitleView;
 
@@ -29,35 +28,26 @@ public class TourSpotRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         }
     }
 
-    public static class BtnViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        public Button button;
-
-        //private BtnViewHolderClickListener listener;
-
-        public BtnViewHolder(View itemView) {
-            super(itemView);
-            button = (Button) itemView.findViewById(R.id.tourcheck_btn);
-        }
-
-
-        @Override
-        public void onClick(View view) {
-
-        }
-    }
-
+    //관광지 데이터 뷰어(관광지명 + 인증여부 + 버튼)
     public static class DataViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public TextView spotItemView;
-        public Button tourspotCheckBtn;
+        public TextView spotItemView;  //관광지명
+        public Button tourspotCheckBtn; //버튼
 
         private OnViewHolderClickListener listener;
+
+        public TextView checkTour;
+
+
 
         public DataViewHolder(View v, OnViewHolderClickListener listener) {
             super(v);
             spotItemView = (TextView) v.findViewById(R.id.spotItemView);
             tourspotCheckBtn=(Button)v.findViewById(R.id.tourcheck_btn);
             tourspotCheckBtn.setOnClickListener(btnListener);
+
+            checkTour =(TextView)v.findViewById(R.id.tempTxt);
+
             v.setOnClickListener(this);
             this.listener = listener;
         }
@@ -65,9 +55,8 @@ public class TourSpotRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             @Override
             public void onClick(View v){
                 if(listener != null) {
-                    TourSpotListActivity.toastA(String.valueOf(getPosition()));
                     Log.i("되냐고!!!",String.valueOf(getPosition()));
-
+                    TourSpotListActivity.TempClass.checkPopUp(String.valueOf(getPosition()));
                 }
             }
         };
@@ -82,6 +71,7 @@ public class TourSpotRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             void onViewHolderClick(int position);
         }
     }
+
 
     public TourSpotRecyclerAdapter(ArrayList<TourData> dataset) {
         itemList = initItemList(dataset);
@@ -130,26 +120,25 @@ public class TourSpotRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             );
     }
 
+    public CourseViewHolder tHolder;
+    public DataViewHolder dHolder;
+
+    //    리스트 뿌려주는 곳
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder,final int position) {
+
         if(holder instanceof CourseViewHolder) {
-            CourseViewHolder tHolder = (CourseViewHolder) holder;
+            tHolder = (CourseViewHolder) holder;
             tHolder.courseTitleView.setText(itemList.get(position).getCourseToString());
-        } else if (holder instanceof DataViewHolder) {
-            DataViewHolder dHolder = (DataViewHolder) holder;
+        }
+        else if (holder instanceof DataViewHolder) {
+            dHolder = (DataViewHolder) holder;
             dHolder.spotItemView.setText(
                     ((TourData)itemList.get(position))
                             .getSpotName());
-        }else if (holder instanceof BtnViewHolder) {
-            final BtnViewHolder bHolder = (BtnViewHolder) holder;
-            bHolder.button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    getItem(position);
-
-                }
-            });
+            dHolder.checkTour.setText(((TourData)itemList.get(position)).getTemp());
         }
+
     }
 
     @Override
@@ -168,4 +157,5 @@ public class TourSpotRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
+
 }

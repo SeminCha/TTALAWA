@@ -457,9 +457,9 @@
 //    }
 //
 //    @Override
-//    public void onItemClick(int position) {
+//    public void onItemClick(int tempPosition) {
 //        //재생되는지 테스팅
-//        mBtnStartPlayOnClick(adapter.getItem(position).getName());
+//        mBtnStartPlayOnClick(adapter.getItem(tempPosition).getName());
 //    }
 //
 //    // 특정 폴더의 파일 목록을 구해서 반환

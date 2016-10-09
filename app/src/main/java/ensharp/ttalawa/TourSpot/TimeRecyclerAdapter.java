@@ -77,7 +77,7 @@
 //        }
 //
 //        public interface OnViewHolderClickListener {
-//            void onViewHolderClick(int position);
+//            void onViewHolderClick(int tempPosition);
 //        }
 //    }
 //
@@ -118,8 +118,8 @@
 //    }
 //
 //    @Override
-//    public int getItemViewType(int position) {
-//        return itemList.get(position).getType();
+//    public int getItemViewType(int tempPosition) {
+//        return itemList.get(tempPosition).getType();
 //    }
 //
 //    @Override
@@ -135,9 +135,9 @@
 //                            .inflate(R.layout.recycler_item_data, parent, false),
 //                    new DataViewHolder.OnViewHolderClickListener() {
 //                        @Override
-//                        public void onViewHolderClick(int position) {
+//                        public void onViewHolderClick(int tempPosition) {
 //                            if (listener != null)
-//                                listener.onItemClick(position);
+//                                listener.onItemClick(tempPosition);
 //                        }
 //                    }
 //
@@ -152,22 +152,22 @@
 //    }
 //
 //    @Override
-//    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+//    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int tempPosition) {
 //        if (holder instanceof TimeViewHolder) {
 //            TimeViewHolder tHolder = (TimeViewHolder) holder;
-//            tHolder.timeItemView.setText(itemList.get(position).getShortTimeToString());
+//            tHolder.timeItemView.setText(itemList.get(tempPosition).getShortTimeToString());
 //        } else if (holder instanceof DataViewHolder) {
 //            DataViewHolder dHolder = (DataViewHolder) holder;
-//            dHolder.timeView.setText(itemList.get(position).getLongTimeToString());
+//            dHolder.timeView.setText(itemList.get(tempPosition).getLongTimeToString());
 //            dHolder.nameView.setText(
-//                    ((MyData) itemList.get(position))
+//                    ((MyData) itemList.get(tempPosition))
 //                            .getName());
 //        } else if (holder instanceof BtnViewHolder) {
 //            final BtnViewHolder bHolder = (BtnViewHolder) holder;
 //            bHolder.button.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View view) {
-//                    getItem(position);
+//                    getItem(tempPosition);
 //
 //                }
 //            });
@@ -180,12 +180,12 @@
 //        return itemList.size();
 //    }
 //
-//    public MyData getItem(int position) {
-//        return (MyData) itemList.get(position);
+//    public MyData getItem(int tempPosition) {
+//        return (MyData) itemList.get(tempPosition);
 //    }
 //
 //    public interface OnItemClickListener {
-//        public void onItemClick(int position);
+//        public void onItemClick(int tempPosition);
 //
 //        boolean canPause();
 //

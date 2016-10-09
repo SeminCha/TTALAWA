@@ -28,6 +28,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -129,6 +130,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private Switch time_switch, type_switch;
     private Button btn_five, btn_ten, btn_twenty, btn_thirty, btn_sound, btn_vib;
 
+    RelativeLayout time_layout;
+    RelativeLayout mode_layout;
+    RelativeLayout rion_layout;
+    private CheckBox alarm_check;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -152,6 +158,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         alarmSettingLayout = (RelativeLayout) findViewById(R.id.alarmSettingLayout);
         alarmSettingToolbar = (Toolbar) findViewById(R.id.toolBar_alarmsetting);
         rentInfoLayout = (RelativeLayout) findViewById(R.id.rentInfoLayout);
+        time_layout = (RelativeLayout) findViewById(R.id.timeLayout);
+        mode_layout = (RelativeLayout) findViewById(R.id.modeLayout);
+        rion_layout = (RelativeLayout) findViewById(R.id.rion);
 
         alarmButtonSetting();
         pref = new SharedPreferences(this);
@@ -167,53 +176,149 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         overChargingView = (TextView)findViewById(R.id.overChargingView);
         mode = nonRent;
 
-        time_switch = (Switch)findViewById(R.id.time_switch);
-        type_switch = (Switch)findViewById(R.id.type_switch);
+        alarm_check = (CheckBox)findViewById(R.id.alarm_check);
+        alarm_check.setOnClickListener(checkClickListener);
         btn_five = (Button)findViewById(R.id.button_5);
+        btn_five.setOnClickListener(btnClickListener);
         btn_ten = (Button)findViewById(R.id.button_10);
+        btn_ten.setOnClickListener(btnClickListener);
         btn_twenty = (Button)findViewById(R.id.button_20);
+        btn_twenty.setOnClickListener(btnClickListener);
         btn_thirty = (Button)findViewById(R.id.button_30);
+        btn_thirty.setOnClickListener(btnClickListener);
         btn_sound = (Button)findViewById(R.id.button_sound);
+        btn_sound.setOnClickListener(btnClickListener);
         btn_vib = (Button)findViewById(R.id.button_vib);
+        btn_vib.setOnClickListener(btnClickListener);
+        initSetting();
     }
 
+    private void initSetting(){
+        Animation slide_in = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slide_in);
 
-    Switch.OnClickListener switchClickListener = new View.OnClickListener() {
+        Animation slide_out = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slide_out);
+
+        Animation slide_in2 = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slide_in_2);
+
+        Animation slide_out2 = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slide_out_2);
+        if(pref.getValue("alarm","off","alarm").equals("off")){
+            alarm_check.setChecked(false);
+        } else{
+            alarm_check.setChecked(true);
+            rion_layout.startAnimation(slide_out2);
+            rion_layout.setVisibility(View.GONE);
+            time_layout.setVisibility(View.VISIBLE);
+            mode_layout.setVisibility(View.VISIBLE);
+            time_layout.startAnimation(slide_in);
+            mode_layout.startAnimation(slide_in);
+            if(pref.getValue("sound", "off", "alarm").equals("on")){
+                btn_sound.setBackgroundColor(Color.BLUE);
+                btn_sound.setSelected(true);
+            }
+            if(pref.getValue("vib", "off","alarm").equals("on")){
+                btn_vib.setBackgroundColor(Color.BLUE);
+                btn_vib.setSelected(true);
+            }
+            if(pref.getValue("5","off","alarm").equals("on")){
+                btn_five.setBackgroundColor(Color.BLUE);
+                btn_five.setSelected(true);
+            }
+            if(pref.getValue("10", "off", "alarm").equals("on")){
+                btn_ten.setBackgroundColor(Color.BLUE);
+                btn_ten.setSelected(true);
+            }
+            if(pref.getValue("20", "off", "alarm").equals("on")){
+                btn_twenty.setBackgroundColor(Color.BLUE);
+                btn_twenty.setSelected(true);
+            }
+            if(pref.getValue("30", "off", "alarm").equals("on")){
+                btn_thirty.setBackgroundColor(Color.BLUE);
+                btn_thirty.setSelected(true);
+            }
+        }
+
+    }
+    CheckBox.OnClickListener checkClickListener = new View.OnClickListener() {
         @Override
-        public void onClick(View v) {
-            switch (v.getId())
-            {
-                case R.id.time_switch:
-                    if(time_switch.isChecked()) {
-                        time_switch.setChecked(false);
-                        btn_five.setEnabled(false);
-                        btn_ten.setEnabled(false);
-                        btn_twenty.setEnabled(false);
-                        btn_thirty.setEnabled(false);
+        public void onClick(View view) {
+            Animation slide_in = AnimationUtils.loadAnimation(getApplicationContext(),
+                    R.anim.slide_in);
+
+            Animation slide_out = AnimationUtils.loadAnimation(getApplicationContext(),
+                    R.anim.slide_out);
+
+            Animation slide_in2 = AnimationUtils.loadAnimation(getApplicationContext(),
+                    R.anim.slide_in_2);
+
+            Animation slide_out2 = AnimationUtils.loadAnimation(getApplicationContext(),
+                    R.anim.slide_out_2);
+            switch (view.getId()) {
+                case R.id.alarm_check:
+                    if(alarm_check.isChecked()){
+                        rion_layout.startAnimation(slide_out2);
+                        rion_layout.setVisibility(View.GONE);
+                        time_layout.setVisibility(View.VISIBLE);
+                        mode_layout.setVisibility(View.VISIBLE);
+                        time_layout.startAnimation(slide_in);
+                        mode_layout.startAnimation(slide_in);
+                        pref.putValue("alarm","on","alarm");
                     }
-                    else{
-                        time_switch.setChecked(true);
-                        btn_five.setEnabled(true);
-                        btn_ten.setEnabled(true);
-                        btn_twenty.setEnabled(true);
-                        btn_thirty.setEnabled(true);
-                    }
-                    break;
-                case R.id.type_switch:
-                    if(type_switch.isChecked()){
-                        type_switch.setChecked(false);
-                        btn_sound.setEnabled(false);
-                        btn_vib.setEnabled(false);
-                    }
-                    else{
-                        type_switch.setChecked(true);
-                        btn_sound.setEnabled(true);
-                        btn_vib.setEnabled(true);
+                    else {
+                        time_layout.startAnimation(slide_out);
+                        mode_layout.startAnimation(slide_out);
+                        time_layout.setVisibility(View.GONE);
+                        mode_layout.setVisibility(View.GONE);
+                        rion_layout.setVisibility(View.VISIBLE);
+                        rion_layout.startAnimation(slide_in2);
+                        pref.putValue("alarm","off","alarm");
                     }
                     break;
             }
         }
     };
+
+//    Switch.OnClickListener switchClickListener = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            switch (v.getId())
+//            {
+//                case R.id.time_switch:
+//                    if(time_switch.isChecked()) {
+//                        time_switch.setChecked(false);
+//                        btn_five.setEnabled(false);
+//                        btn_ten.setEnabled(false);
+//                        btn_twenty.setEnabled(false);
+//                        btn_thirty.setEnabled(false);
+//                    }
+//                    else{
+//                        time_switch.setChecked(true);
+//                        btn_five.setEnabled(true);
+//                        btn_ten.setEnabled(true);
+//                        btn_twenty.setEnabled(true);
+//                        btn_thirty.setEnabled(true);
+//                    }
+//                    break;
+//                case R.id.type_switch:
+//                    if(type_switch.isChecked()){
+//                        type_switch.setChecked(false);
+//                        btn_sound.setEnabled(false);
+//                        btn_vib.setEnabled(false);
+//                    }
+//                    else{
+//                        type_switch.setChecked(true);
+//                        btn_sound.setEnabled(true);
+//                        btn_vib.setEnabled(true);
+//                    }
+//                    break;
+//            }
+//        }
+//    };
+
+
     Button.OnClickListener btnClickListener=new View.OnClickListener() {
         public void onClick(View v) {
             switch (v.getId()) {
@@ -223,69 +328,82 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     startActivityForResult(intent, REQUEST_CODE_ANOTHER);
                     break;
                 case R.id.button_5:
-                    if(btn_five.isPressed()){//isSelected
+                    if(btn_five.isSelected()){//isSelected
                         btn_five.setSelected(false);
-
+                        btn_five.setBackgroundColor(Color.WHITE);
+                        pref.putValue("5","off","alarm");
                     }
                     else {
                         btn_five.setSelected(true);
-
+                        btn_five.setBackgroundColor(Color.BLUE);
+                        pref.putValue("5","on","alarm");
                     }
                     break;
                 case R.id.button_10:
-                    if(btn_ten.isPressed()){//isSelected
+                    if(btn_ten.isSelected()){//isSelected
                         btn_ten.setSelected(false);
-
+                        btn_ten.setBackgroundColor(Color.WHITE);
+                        pref.putValue("10","off","alarm");
                     }
                     else {
                         btn_ten.setSelected(true);
-
+                        btn_ten.setBackgroundColor(Color.BLUE);
+                        pref.putValue("10","on","alarm");
                     }
                     break;
                 case R.id.button_20:
-                    if(btn_twenty.isPressed()){//isSelected
+                    if(btn_twenty.isSelected()){//isSelected
                         btn_twenty.setSelected(false);
-
+                        btn_twenty.setBackgroundColor(Color.WHITE);
+                        pref.putValue("20", "off", "alarm");
                     }
                     else {
                         btn_twenty.setSelected(true);
-
+                        btn_twenty.setBackgroundColor(Color.BLUE);
+                        pref.putValue("20", "on", "alarm");
                     }
                     break;
                 case R.id.button_30:
-                    if(btn_thirty.isPressed()){//isSelected
+                    if(btn_thirty.isSelected()){//isSelected
                         btn_thirty.setSelected(false);
-
+                        btn_thirty.setBackgroundColor(Color.WHITE);
+                        pref.putValue("30", "off", "alarm");
                     }
                     else {
                         btn_thirty.setSelected(true);
-
+                        btn_thirty.setBackgroundColor(Color.BLUE);
+                        pref.putValue("30", "on", "alarm");
                     }
                     break;
                 case R.id.button_sound:
-                    if(btn_sound.isPressed()){//isSelected
+                    if(btn_sound.isSelected()){//isSelected
                         btn_sound.setSelected(false);
-
+                        btn_sound.setBackgroundColor(Color.WHITE);
+                        pref.putValue("sound", "off", "alarm");
                     }
                     else {
                         btn_sound.setSelected(true);
-
+                        btn_sound.setBackgroundColor(Color.BLUE);
+                        pref.putValue("sound", "on", "alarm");
                     }
                     break;
                 case R.id.button_vib:
-                    if(btn_vib.isPressed()){//isSelected
+                    if(btn_vib.isSelected()){//isSelected
                         btn_vib.setSelected(false);
-
+                        btn_vib.setBackgroundColor(Color.WHITE);
+                        pref.putValue("vib", "off", "alarm");
                     }
                     else {
                         btn_vib.setSelected(true);
-
+                        btn_vib.setBackgroundColor(Color.BLUE);
+                        pref.putValue("vib", "on", "alarm");
                     }
                     break;
 
             }
         }
     };
+
 
     //액티비티가 중지되거나 다시 시작될 때 현재위치표시를 새로고침 해주는 함수
     @Override
@@ -310,7 +428,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mGoogleMap.getUiSettings().setCompassEnabled(false);
 
         mapButtonSetting();
-        //TmapAuthentication();
+        TmapAuthentication();
 
         markerMap = new HashMap();
         stationMarkerMap = new HashMap();
@@ -615,6 +733,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         changeInfoLayoutVisibility(tourSpotInfoLayout, false);
     }
 
+
     private void insertInfoLayoutContent(Marker marker, LinearLayout view) {
 
         // 거치소 정보 레이아웃에 대한 정보
@@ -622,13 +741,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         TextView stationNumber = (TextView) findViewById(R.id.stationNumberTxt);
         TextView stationRack = (TextView) findViewById(R.id.stationRackTxt);
         TextView stationAddress = (TextView) findViewById(R.id.stationAddressTxt);
-        LinearLayout stationNavigation = (LinearLayout) findViewById(R.id.stationNavigationLayout);
+        final LinearLayout stationNavigation = (LinearLayout) findViewById(R.id.stationNavigationLayout);
+        final LinearLayout stationRent = (LinearLayout) findViewById(R.id.stationRentLayout);
 
         // 관광명소 정보 레이아웃에 대한 정보
         TextView tourSpotName = (TextView) findViewById(R.id.tourSpotNameTxt);
         TextView tourSpotIntro = (TextView) findViewById(R.id.tourSpotIntroTxt);
         TextView tourSpotAddress = (TextView) findViewById(R.id.tourSpotAdressTxt);
-        LinearLayout tourSpotNavigation = (LinearLayout) findViewById(R.id.tourSpotNavigationLayout);
+        final LinearLayout tourSpotNavigation = (LinearLayout) findViewById(R.id.tourSpotNavigationLayout);
+        final LinearLayout tourSpotDetails = (LinearLayout) findViewById(R.id.tourSpotDetailsLayout);
 
         navigationMarker = marker;
 
@@ -658,14 +779,44 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             stationNavigation.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View view, MotionEvent motionEvent) {
-                    TmapNavigation(navigationMarker, true);
-
-                    return true;
+                    switch (motionEvent.getAction()) {
+                        case MotionEvent.ACTION_DOWN: {
+                            stationNavigation.setBackgroundResource(R.drawable.info_btn_pressed);
+                            return true;
+                        }
+                        case MotionEvent.ACTION_MOVE: {
+                            return true;
+                        }
+                        case MotionEvent.ACTION_UP: {
+                            stationNavigation.setBackgroundResource(R.drawable.info_btn_unpressed);
+                            TmapNavigation(navigationMarker, true);
+                            return true;
+                        }
+                        default:return false;
+                    }
                 }
             });
 
-
-
+            stationRent.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    switch (motionEvent.getAction()) {
+                        case MotionEvent.ACTION_DOWN: {
+                            stationRent.setBackgroundResource(R.drawable.info_btn_pressed);
+                            return true;
+                        }
+                        case MotionEvent.ACTION_MOVE: {
+                            return true;
+                        }
+                        case MotionEvent.ACTION_UP: {
+                            stationRent.setBackgroundResource(R.drawable.info_btn_unpressed);
+                            // 여기다가 따릉이 어플로 연동하는 코드 삽입
+                            return true;
+                        }
+                        default:return false;
+                    }
+                }
+            });
         } else {
             tourSpotName.setText(marker.getTitle());
 
@@ -682,17 +833,52 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             tourSpotAddress.setText(address);
             tourSpotIntro.setText(getTourSpotIntro(marker.getTitle()));
+
             tourSpotNavigation.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View view, MotionEvent motionEvent) {
-                    TmapNavigation(navigationMarker, true);
+                    switch (motionEvent.getAction()) {
+                        case MotionEvent.ACTION_DOWN: {
+                            tourSpotNavigation.setBackgroundResource(R.drawable.info_btn_pressed);
+                            return true;
+                        }
+                        case MotionEvent.ACTION_MOVE: {
+                            return true;
+                        }
+                        case MotionEvent.ACTION_UP: {
+                            tourSpotNavigation.setBackgroundResource(R.drawable.info_btn_unpressed);
+                            TmapNavigation(navigationMarker, true);
+                            return true;
+                        }
+                        default:return false;
+                    }
+                }
+            });
 
-                    return true;
+            tourSpotDetails.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    switch (motionEvent.getAction()) {
+                        case MotionEvent.ACTION_DOWN: {
+                            tourSpotDetails.setBackgroundResource(R.drawable.info_btn_pressed);
+                            return true;
+                        }
+                        case MotionEvent.ACTION_MOVE: {
+                            return true;
+                        }
+                        case MotionEvent.ACTION_UP: {
+                            tourSpotDetails.setBackgroundResource(R.drawable.info_btn_unpressed);
+
+                            return true;
+                        }
+                        default:return false;
+                    }
                 }
             });
 
         }
     }
+
 
     private String getTourSpotIntro(String spotName) {
 
@@ -742,7 +928,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 introContent = "조선 왕조 역사의 중요한 무대";
                 break;
             case "북촌 한옥마을":
-                introContent = "옛집 사이사이 골목길 따라 걷는 여행";
+                introContent = "옛집 골목길 따라 걷는 여행";
                 break;
             case "흥인지문":
                 introContent = "국가지정 보물 1호";
@@ -757,7 +943,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 introContent = "문화 예술의 터전";
                 break;
             case "낙산 공원":
-                introContent = "북악의 좌청룡에 올라 서울을 조망하자";
+                introContent = "북악의 좌청룡에서 서울을 조망하자";
                 break;
             case "63스퀘어":
                 introContent = "여의도의 복합 문화 공간";

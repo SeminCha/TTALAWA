@@ -4,25 +4,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clickable="true"
-    android:visibility="visible"
+    android:visibility="gone"
     android:id="@+id/alarmSettingLayout">
 
-    <!--검색창메인툴바-->
     <LinearLayout
         android:id="@+id/voidLayout"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
         android:orientation="vertical"/>
-    <!--대여창툴바-->
     <RelativeLayout
         android:id="@+id/alarmInfoLayout"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="49dp"
         android:layout_below="@+id/voidLayout"
         android:elevation="6dp"
         android:background="#CCffffff">
     </RelativeLayout>
-
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

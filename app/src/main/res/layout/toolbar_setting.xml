@@ -2,6 +2,7 @@
 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginLeft="-10dp"
     android:background="@color/toolbar"
     android:clickable="true"
     android:visibility="gone"
@@ -35,9 +36,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="알람 설정"
-                android:textColor="@color/maincolor"
-                android:textStyle="bold"
-                android:textSize="17dp" />
+                android:textColor="@color/black"
+                android:textSize="20dp" />
         </RelativeLayout>
     </LinearLayout>
 </android.support.v7.widget.Toolbar>

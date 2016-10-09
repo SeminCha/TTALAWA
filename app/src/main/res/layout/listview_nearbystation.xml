@@ -5,47 +5,36 @@
     android:background="@drawable/data_item_bg"
     android:orientation="vertical"
     android:weightSum="10"
-    android:paddingBottom="10dp"
+    android:paddingBottom="13dp"
     android:paddingEnd="13dp"
     android:paddingStart="13dp"
-    android:paddingTop="10dp">
+    android:paddingTop="13dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="6"
         android:orientation="horizontal"
-        android:weightSum="10">
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.5">
+        android:gravity="center_horizontal"
+        android:weightSum="5.5">
             <TextView
-                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
                 android:id="@+id/placenumber"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center|left"
-                android:textColor="@color/orangered_comple"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/maincolor"
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:text="123"/>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="8.5">
             <TextView
-                android:layout_marginLeft="10dp"
+                android:layout_weight="4"
                 android:id="@+id/placename"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:textColor="@color/black"
+                android:text="대여소 이름"
                 android:textSize="18sp"/>
-        </RelativeLayout>
-
     </LinearLayout>
 
 

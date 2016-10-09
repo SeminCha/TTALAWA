@@ -1,6 +1,7 @@
 package ensharp.ttalawa.TourSpot;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,6 +66,8 @@ public class TourSpotRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             public void onClick(View v){
                 if(listener != null) {
                     TourSpotListActivity.toastA(String.valueOf(getPosition()));
+                    Log.i("되냐고!!!",String.valueOf(getPosition()));
+
                 }
             }
         };

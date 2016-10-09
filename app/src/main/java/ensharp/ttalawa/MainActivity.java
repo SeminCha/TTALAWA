@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     TMapTapi tmaptapi;
     Marker navigationMarker;
     private LinearLayout btn_tourspot;
-    RelativeLayout rentInfoLayout;
+    LinearLayout rentInfoLayout;
     RelativeLayout alarmSettingLayout;
     Toolbar alarmSettingToolbar;
 
@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         tourSpotInfoLayout = (LinearLayout) findViewById(R.id.tourSpotInfoLayout);
         alarmSettingLayout = (RelativeLayout) findViewById(R.id.alarmSettingLayout);
         alarmSettingToolbar = (Toolbar) findViewById(R.id.toolBar_alarmsetting);
-        rentInfoLayout = (RelativeLayout) findViewById(R.id.rentInfoLayout);
+        rentInfoLayout = (LinearLayout) findViewById(R.id.rentInfoLayout);
         time_layout = (RelativeLayout) findViewById(R.id.timeLayout);
         mode_layout = (RelativeLayout) findViewById(R.id.modeLayout);
         rion_layout = (RelativeLayout) findViewById(R.id.rion);
@@ -428,7 +428,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mGoogleMap.getUiSettings().setCompassEnabled(false);
 
         mapButtonSetting();
-        TmapAuthentication();
+//        TmapAuthentication();
 
         markerMap = new HashMap();
         stationMarkerMap = new HashMap();

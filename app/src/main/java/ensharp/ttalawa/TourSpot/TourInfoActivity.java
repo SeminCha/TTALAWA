@@ -25,7 +25,7 @@ public class TourInfoActivity extends AppCompatActivity{
         // 현재 활성화된 액티비티를 시작하게 한 인텐트 호출
         Intent intent = getIntent();
         spotName=intent.getStringExtra("관광명소");
-        Log.d("test", "checkPopUp"+spotName);
+        Log.d("test", "temp"+spotName);
         setTourInfoView(spotName);
 
         //탭 레이아웃

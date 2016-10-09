@@ -12,7 +12,9 @@ import android.view.accessibility.AccessibilityEvent;
 public class MmsAccesService extends AccessibilityService {
 
     static final String TAG = "MmsAccesService";
-    private AsyncTask restTimeTask;
+    private static AsyncTask restTimeTask;
+    SharedPreferences pref;
+
     @Override
     public void onAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
         Log.v(TAG, getEventText(accessibilityEvent));
@@ -42,12 +44,15 @@ public class MmsAccesService extends AccessibilityService {
         }
         // 가져온 sb에 따릉이라는 문자가 포함되어있나?
         if (sb.toString().contains("<따릉이>") && sb.toString().contains("대여완료")) {
-            if(MainActivity.mode != MainActivity.rent) {
-                MainActivity.mode = MainActivity.rent;
+            pref = new SharedPreferences(MainActivity.mContext);
+            if(pref.getValue("state", "nonRent", "state").equals("nonRent")){
                 restTimeTask = new RestTimeTask().execute();
             }
         } else if (sb.toString().contains("<따릉이>") && sb.toString().contains("반납되었습니다")) {
-            MainActivity.mode = MainActivity.returned;
+            pref = new SharedPreferences(MainActivity.mContext);
+            if(!pref.getValue("state", "nonRent", "state").equals("nonRent")){
+                pref.putValue("state", "nonRent", "state");
+            }
         }
         return sb.toString();
     }

@@ -119,14 +119,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     public static TextView overChargingView;
     public static Context mContext;
-    public static int mode;
-    public static int nonRent = 0;
-    public static int rent = 1;
-    public static int returned = 2;
-    public static int firstOver = 3;
-    public static int secondOver = 4;
-    public static int thirdOver = 5;
-    public static int fourthOver = 6;
     private Switch time_switch, type_switch;
     private Button btn_five, btn_ten, btn_twenty, btn_thirty, btn_sound, btn_vib;
 
@@ -174,7 +166,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mContext = this;
         mainTxtView =(TextView)findViewById(R.id.restTimetxtView);
         overChargingView = (TextView)findViewById(R.id.overChargingView);
-        mode = nonRent;
 
         alarm_check = (CheckBox)findViewById(R.id.alarm_check);
         alarm_check.setOnClickListener(checkClickListener);

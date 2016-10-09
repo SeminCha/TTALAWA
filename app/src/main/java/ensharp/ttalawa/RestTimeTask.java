@@ -8,12 +8,15 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.CountDownTimer;
+import android.speech.tts.TextToSpeech;
 import android.support.v4.app.NotificationCompat;
+
+import java.util.Locale;
 
 /**
  * Created by mh on 2016-08-01.
  */
-public class RestTimeTask extends AsyncTask<Void, Void, Void> {
+public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToSpeech.OnInitListener {
 
     public NotificationCompat.Builder notificationBuilder;
     public NotificationManager notificationManager;
@@ -26,6 +29,7 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> {
     private boolean twentyArm;
     private boolean tenArm;
     private boolean fiveArm;
+    TextToSpeech ttsArm;
 
     SharedPreferences pref;
 
@@ -40,6 +44,8 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> {
         twentyArm = true;
         tenArm = true;
         fiveArm = true;
+        ttsArm = new TextToSpeech(MainActivity.mContext, this);
+        onInit(ttsArm.SUCCESS);
         //큰 아이콘
         notificationManager = (NotificationManager) MainActivity.mContext.getSystemService(MainActivity.mContext.NOTIFICATION_SERVICE);
 
@@ -48,19 +54,46 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> {
             public void onTick(long millisUntilFinished) {
                 if ((millisUntilFinished < 1800000) && (thirtyArm == true)) {
                     thirtyArm = false;
-                    notification(notificationManager, notificationBuilder, "30분 남았습니다", charging);
-
+                    if(pref.getValue("30", "off", "alarm").equals("on")){
+                        notification(notificationManager, notificationBuilder, "30분 남았습니다", charging);
+                        if(pref.getValue("sound", "off", "alarm").equals("on")){
+                            ttsArm.setLanguage(Locale.KOREA);
+                            ttsArm.speak("따릉이 자전거 반납까지 30분 남았습니다.",
+                                    TextToSpeech.QUEUE_FLUSH, null);
+                        }
+                    }
                 } else if ((millisUntilFinished < 1200000) && (twentyArm == true)) {
                     twentyArm = false;
-                    notification(notificationManager, notificationBuilder, "20분 남았습니다", charging);
+                    if(pref.getValue("20", "off", "alarm").equals("on")){
+                        notification(notificationManager, notificationBuilder, "20분 남았습니다", charging);
+                        if(pref.getValue("sound", "off", "alarm").equals("on")) {
+                            ttsArm.setLanguage(Locale.KOREA);
+                            ttsArm.speak("따릉이 자전거 반납까지 20분 남았습니다.",
+                                    TextToSpeech.QUEUE_FLUSH, null);
+                        }
+                    }
                 } else if ((millisUntilFinished < 600000) && (tenArm == true)) {
                     tenArm = false;
                     MainActivity.mainTxtView.setTextColor(Color.parseColor("#FF0000"));
-                    notification(notificationManager, notificationBuilder, "10분 남았습니다", charging);
+                    if(pref.getValue("10", "off", "alarm").equals("on")){
+                        notification(notificationManager, notificationBuilder, "10분 남았습니다", charging);
+                        if(pref.getValue("sound", "off", "alarm").equals("on")) {
+                            ttsArm.setLanguage(Locale.KOREA);
+                            ttsArm.speak("따릉이 자전거 반납까지 10분 남았습니다.",
+                                    TextToSpeech.QUEUE_FLUSH, null);
+                        }
+                    }
                 } else if ((millisUntilFinished < 300000) && (fiveArm == true)) {
                     fiveArm = false;
                     MainActivity.mainTxtView.setTextColor(Color.parseColor("#FF0000"));
-                    notification(notificationManager, notificationBuilder, "5분 남았습니다", charging);
+                    if(pref.getValue("5", "off", "alarm").equals("on")){
+                        notification(notificationManager, notificationBuilder, "5분 남았습니다", charging);
+                        if(pref.getValue("sound", "off", "alarm").equals("on")) {
+                            ttsArm.setLanguage(Locale.KOREA);
+                            ttsArm.speak("따릉이 자전거 반납까지 5분 남았습니다.",
+                                    TextToSpeech.QUEUE_FLUSH, null);
+                        }
+                    }
                 }
                 MainActivity.mainTxtView.setText("반납까지 " + millisUntilFinished / 1000 / 60 % 60 + "분");
                 MainActivity.overChargingView.setText(charging);
@@ -96,30 +129,50 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> {
     }
 
     public void timeOver() {
-        timer = new CountDownTimer(1810000, 1000) {
+        timer = new CountDownTimer(1820000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 if ((millisUntilFinished < 1800000) && (thirtyArm == true)) {
                     thirtyArm = false;
                     if(pref.getValue("30", "off", "alarm").equals("on")){
                         notification(notificationManager, notificationBuilder, "30분 남았습니다", charging);
+                        if(pref.getValue("sound", "off", "alarm").equals("on")) {
+                            ttsArm.setLanguage(Locale.KOREA);
+                            ttsArm.speak("따릉이 자전거 반납까지 30분 남았습니다.",
+                                    TextToSpeech.QUEUE_FLUSH, null);
+                        }
                     }
                 } else if ((millisUntilFinished < 1200000) && (twentyArm == true)) {
                     twentyArm = false;
                     if(pref.getValue("20", "off", "alarm").equals("on")){
                         notification(notificationManager, notificationBuilder, "20분 남았습니다", charging);
+                        if(pref.getValue("sound", "off", "alarm").equals("on")) {
+                            ttsArm.setLanguage(Locale.KOREA);
+                            ttsArm.speak("따릉이 자전거 반납까지 20분 남았습니다.",
+                                    TextToSpeech.QUEUE_FLUSH, null);
+                        }
                     }
                 } else if ((millisUntilFinished < 600000) && (tenArm == true)) {
                     tenArm = false;
                     MainActivity.mainTxtView.setTextColor(Color.parseColor("#FF0000"));
                     if(pref.getValue("10", "off", "alarm").equals("on")){
                         notification(notificationManager, notificationBuilder, "10분 남았습니다", charging);
+                        if(pref.getValue("sound", "off", "alarm").equals("on")) {
+                            ttsArm.setLanguage(Locale.KOREA);
+                            ttsArm.speak("따릉이 자전거 반납까지 10분 남았습니다.",
+                                    TextToSpeech.QUEUE_FLUSH, null);
+                        }
                     }
                 } else if ((millisUntilFinished < 300000) && (fiveArm == true)) {
                     fiveArm = false;
                     MainActivity.mainTxtView.setTextColor(Color.parseColor("#FF0000"));
                     if(pref.getValue("5", "off", "alarm").equals("on")){
                         notification(notificationManager, notificationBuilder, "5분 남았습니다", charging);
+                        if(pref.getValue("sound", "off", "alarm").equals("on")) {
+                            ttsArm.setLanguage(Locale.KOREA);
+                            ttsArm.speak("따릉이 자전거 반납까지 5분 남았습니다.",
+                                    TextToSpeech.QUEUE_FLUSH, null);
+                        }
                     }
                 }
                 MainActivity.mainTxtView.setText("반납까지 " + millisUntilFinished / 1000 / 60 % 60 + "분");
@@ -185,21 +238,29 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> {
             case "3":
                 if (pref.getValue("vib", "off", "alarm").equals("on")) {
                     pNotificationBuilder.setVibrate(new long[]{1000, 1000, 1000, 1000, 1000});
+                } else{
+                    pNotificationBuilder.setVibrate(new long[]{0, 0, 0, 0, 0});
                 }
                 break;
             case "2":
                 if (pref.getValue("vib", "off", "alarm").equals("on")) {
                     pNotificationBuilder.setVibrate(new long[]{1000, 1000, 1000, 1000, 1000});
+                } else{
+                    pNotificationBuilder.setVibrate(new long[]{0, 0, 0, 0, 0});
                 }
                 break;
             case "1":
                 if (pref.getValue("vib", "off", "alarm").equals("on")) {
                     pNotificationBuilder.setVibrate(new long[]{1000, 1000, 1000, 1000, 1000});
+                } else{
+                    pNotificationBuilder.setVibrate(new long[]{0, 0, 0, 0, 0});
                 }
                 break;
             case "5":
                 if (pref.getValue("vib", "off", "alarm").equals("on")) {
                     pNotificationBuilder.setVibrate(new long[]{1000, 1000, 1000, 1000, 1000});
+                } else{
+                    pNotificationBuilder.setVibrate(new long[]{0, 0, 0, 0, 0});
                 }
                 break;
             default:
@@ -209,4 +270,8 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> {
         pNotificationManager.notify(1, pNotificationBuilder.build());
     }
 
+    @Override
+    public void onInit(int i) {
+        // for TextToSpeech
+    }
 }

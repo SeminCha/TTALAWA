@@ -46,6 +46,7 @@ public class MmsAccesService extends AccessibilityService {
         if (sb.toString().contains("<따릉이>") && sb.toString().contains("대여완료")) {
             pref = new SharedPreferences(MainActivity.mContext);
             if(pref.getValue("state", "nonRent", "state").equals("nonRent")){
+                pref.putValue("state", "Rent", "state");
                 restTimeTask = new RestTimeTask().execute();
             }
         } else if (sb.toString().contains("<따릉이>") && sb.toString().contains("반납되었습니다")) {

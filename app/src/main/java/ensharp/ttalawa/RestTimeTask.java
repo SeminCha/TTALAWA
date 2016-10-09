@@ -22,7 +22,13 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> {
     public final Bitmap bitmap = BitmapFactory.decodeResource(MainActivity.mContext.getResources(), android.R.drawable.ic_menu_gallery); // 아이콘 ic_menu_gallery를 띄워준다.;
     public CountDownTimer timer;
     private String charging;
+    private boolean thirtyArm;
+    private boolean twentyArm;
+    private boolean tenArm;
+    private boolean fiveArm;
+
     SharedPreferences pref;
+
 
     protected void onPreExecute() {
 
@@ -30,22 +36,29 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> {
         contentIntent = PendingIntent.getActivity(MainActivity.mContext, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         charging = "과금 0 원";
         pref = new SharedPreferences(MainActivity.mContext);
-        pref.putValue("state", "Rent", "state");
+        thirtyArm = true;
+        twentyArm = true;
+        tenArm = true;
+        fiveArm = true;
         //큰 아이콘
         notificationManager = (NotificationManager) MainActivity.mContext.getSystemService(MainActivity.mContext.NOTIFICATION_SERVICE);
 
-
-        timer = new CountDownTimer(3600000, 1000) {
+        timer = new CountDownTimer(1815000, 1000) {
 
             public void onTick(long millisUntilFinished) {
-                if ((millisUntilFinished < 1800000) && (millisUntilFinished > 1709000)) {
+                if ((millisUntilFinished < 1800000) && (thirtyArm == true)) {
+                    thirtyArm = false;
                     notification(notificationManager, notificationBuilder, "30분 남았습니다", charging);
-                } else if ((millisUntilFinished < 1200000) && (millisUntilFinished > 1109000)) {
+
+                } else if ((millisUntilFinished < 1200000) && (twentyArm == true)) {
+                    twentyArm = false;
                     notification(notificationManager, notificationBuilder, "20분 남았습니다", charging);
-                } else if ((millisUntilFinished < 600000) && (millisUntilFinished > 509000)) {
+                } else if ((millisUntilFinished < 600000) && (tenArm == true)) {
+                    tenArm = false;
                     MainActivity.mainTxtView.setTextColor(Color.parseColor("#FF0000"));
                     notification(notificationManager, notificationBuilder, "10분 남았습니다", charging);
-                } else if ((millisUntilFinished < 300000) && (millisUntilFinished > 209000)) {
+                } else if ((millisUntilFinished < 300000) && (fiveArm == true)) {
+                    fiveArm = false;
                     MainActivity.mainTxtView.setTextColor(Color.parseColor("#FF0000"));
                     notification(notificationManager, notificationBuilder, "5분 남았습니다", charging);
                 }
@@ -54,11 +67,15 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> {
             }
 
             public void onFinish() {
-                if(pref.getValue("state", "nonRent", "state").equals("Rent")){
+                if (pref.getValue("state", "nonRent", "state").equals("Rent")) {
                     pref.putValue("state", "firstOver", "state");
                     charging = "과금 1000원";
+                    thirtyArm = true;
+                    twentyArm = true;
+                    tenArm = true;
+                    fiveArm = true;
                     timeOver();
-                } else{
+                } else {
                     initData();
                 }
             }
@@ -67,7 +84,7 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected Void doInBackground(Void... voids) {
-        if(pref.getValue("state", "Rent", "state").equals("nonRent")){
+        if (pref.getValue("state", "Rent", "state").equals("nonRent")) {
             timer.cancel(); // 타이머 중지
             initData();
         }
@@ -79,21 +96,35 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> {
     }
 
     public void timeOver() {
-        timer = new CountDownTimer(1800000, 1000) {
+        timer = new CountDownTimer(1810000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                if ((millisUntilFinished < 1800000) && (millisUntilFinished > 1799000)){
-                    notification(notificationManager, notificationBuilder, "30분 남았습니다", charging);
-                } else if ((millisUntilFinished < 1200000) && (millisUntilFinished > 1109000)) {
-                    notification(notificationManager, notificationBuilder, "20분 남았습니다", charging);
-                } else if ((millisUntilFinished < 600000) && (millisUntilFinished > 509000)) {
-                    notification(notificationManager, notificationBuilder, "10분 남았습니다", charging);
-                } else if ((millisUntilFinished < 300000) && (millisUntilFinished > 209000)) {
-                    notification(notificationManager, notificationBuilder, "5분 남았습니다", charging);
+                if ((millisUntilFinished < 1800000) && (thirtyArm == true)) {
+                    thirtyArm = false;
+                    if(pref.getValue("30", "off", "alarm").equals("on")){
+                        notification(notificationManager, notificationBuilder, "30분 남았습니다", charging);
+                    }
+                } else if ((millisUntilFinished < 1200000) && (twentyArm == true)) {
+                    twentyArm = false;
+                    if(pref.getValue("20", "off", "alarm").equals("on")){
+                        notification(notificationManager, notificationBuilder, "20분 남았습니다", charging);
+                    }
+                } else if ((millisUntilFinished < 600000) && (tenArm == true)) {
+                    tenArm = false;
+                    MainActivity.mainTxtView.setTextColor(Color.parseColor("#FF0000"));
+                    if(pref.getValue("10", "off", "alarm").equals("on")){
+                        notification(notificationManager, notificationBuilder, "10분 남았습니다", charging);
+                    }
+                } else if ((millisUntilFinished < 300000) && (fiveArm == true)) {
+                    fiveArm = false;
+                    MainActivity.mainTxtView.setTextColor(Color.parseColor("#FF0000"));
+                    if(pref.getValue("5", "off", "alarm").equals("on")){
+                        notification(notificationManager, notificationBuilder, "5분 남았습니다", charging);
+                    }
                 }
                 MainActivity.mainTxtView.setText("반납까지 " + millisUntilFinished / 1000 / 60 % 60 + "분");
                 MainActivity.overChargingView.setText(charging);
-                if(pref.getValue("state", "nonRent", "state").equals("nonRent")){
+                if (pref.getValue("state", "nonRent", "state").equals("nonRent")) {
                     timer.cancel();
                     initData();
                 }
@@ -101,7 +132,11 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> {
 
             @Override
             public void onFinish() {
-                switch (pref.getValue("state", "nonRent", "state")){
+                thirtyArm = true;
+                twentyArm = true;
+                tenArm = true;
+                fiveArm = true;
+                switch (pref.getValue("state", "nonRent", "state")) {
                     case "firstOver": // 첫번째 과금
                         timer.cancel();
                         pref.putValue("state", "secondOver", "state");
@@ -132,9 +167,10 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> {
         MainActivity.overChargingView.setText("");
         pref.putValue("state", "nonRent", "state");
     }
+
     // 노티피케이션
     public void notification(NotificationManager pNotificationManager,
-                             NotificationCompat.Builder pNotificationBuilder, String restTime, String charging){
+                             NotificationCompat.Builder pNotificationBuilder, String restTime, String charging) {
         pNotificationBuilder = new NotificationCompat.Builder(MainActivity.mContext);
         pNotificationBuilder
                 .setLargeIcon(bitmap) // 이미지 띄워주기
@@ -144,6 +180,33 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> {
                 .setTicker(restTime) // 상태 바에 뜨는 문구
                 .setContentIntent(contentIntent)
                 .setAutoCancel(true);
+
+        switch (restTime.substring(0, 1)) {
+            case "3":
+                if (pref.getValue("vib", "off", "alarm").equals("on")) {
+                    pNotificationBuilder.setVibrate(new long[]{1000, 1000, 1000, 1000, 1000});
+                }
+                break;
+            case "2":
+                if (pref.getValue("vib", "off", "alarm").equals("on")) {
+                    pNotificationBuilder.setVibrate(new long[]{1000, 1000, 1000, 1000, 1000});
+                }
+                break;
+            case "1":
+                if (pref.getValue("vib", "off", "alarm").equals("on")) {
+                    pNotificationBuilder.setVibrate(new long[]{1000, 1000, 1000, 1000, 1000});
+                }
+                break;
+            case "5":
+                if (pref.getValue("vib", "off", "alarm").equals("on")) {
+                    pNotificationBuilder.setVibrate(new long[]{1000, 1000, 1000, 1000, 1000});
+                }
+                break;
+            default:
+                break;
+        }
+
         pNotificationManager.notify(1, pNotificationBuilder.build());
     }
+
 }

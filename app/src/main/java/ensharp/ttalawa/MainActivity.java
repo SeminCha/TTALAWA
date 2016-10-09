@@ -222,21 +222,27 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             mode_layout.startAnimation(slide_in);
             if(pref.getValue("sound", "off", "alarm").equals("on")){
                 btn_sound.setBackgroundColor(Color.BLUE);
+                btn_sound.setSelected(true);
             }
             if(pref.getValue("vib", "off","alarm").equals("on")){
                 btn_vib.setBackgroundColor(Color.BLUE);
+                btn_vib.setSelected(true);
             }
             if(pref.getValue("5","off","alarm").equals("on")){
                 btn_five.setBackgroundColor(Color.BLUE);
+                btn_five.setSelected(true);
             }
             if(pref.getValue("10", "off", "alarm").equals("on")){
                 btn_ten.setBackgroundColor(Color.BLUE);
+                btn_ten.setSelected(true);
             }
             if(pref.getValue("20", "off", "alarm").equals("on")){
                 btn_twenty.setBackgroundColor(Color.BLUE);
+                btn_twenty.setSelected(true);
             }
             if(pref.getValue("30", "off", "alarm").equals("on")){
                 btn_thirty.setBackgroundColor(Color.BLUE);
+                btn_thirty.setSelected(true);
             }
         }
 

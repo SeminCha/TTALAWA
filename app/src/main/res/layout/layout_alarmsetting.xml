@@ -44,7 +44,7 @@
                 android:elevation="10dp"
                 android:text="5"
                 android:id="@+id/button_5"
-                android:background="@drawable/roundedbutton"
+                android:background="@drawable/btn_mode"
                 android:layout_marginTop="105dp"
                 android:layout_marginStart="25dp"
                 android:layout_marginLeft="0dp" />
@@ -56,7 +56,7 @@
                 android:id="@+id/button_10"
                 android:layout_marginTop="105dp"
                 android:layout_marginStart="99dp"
-                android:background="@drawable/roundedbutton" />
+                android:background="@drawable/btn_mode" />
             <Button
                 android:layout_width="60dp"
                 android:layout_height="60dp"
@@ -65,7 +65,7 @@
                 android:id="@+id/button_20"
                 android:layout_marginTop="105dp"
                 android:layout_marginStart="173dp"
-                android:background="@drawable/roundedbutton" />
+                android:background="@drawable/btn_mode" />
             <Button
                 android:layout_width="60dp"
                 android:layout_height="60dp"
@@ -74,7 +74,7 @@
                 android:id="@+id/button_30"
                 android:layout_marginTop="105dp"
                 android:layout_marginStart="247dp"
-                android:background="@drawable/roundedbutton" />
+                android:background="@drawable/btn_mode" />
             <TextView
                 android:layout_width="120dp"
                 android:layout_height="40dp"
@@ -111,7 +111,7 @@
                 android:id="@+id/button_sound"
                 android:layout_marginTop="90dp"
                 android:layout_marginStart="75dp"
-                android:background="@drawable/roundedbutton" />
+                android:background="@drawable/btn_mode" />
             <Button
                 android:layout_width="80dp"
                 android:layout_height="80dp"
@@ -120,7 +120,7 @@
                 android:id="@+id/button_vib"
                 android:layout_marginTop="90dp"
                 android:layout_marginStart="180dp"
-                android:background="@drawable/roundedbutton"/>
+                android:background="@drawable/btn_mode"/>
 
             <TextView
                 android:layout_width="100dp"

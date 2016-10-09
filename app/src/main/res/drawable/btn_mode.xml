@@ -3,4 +3,5 @@
 
     <item android:drawable="@color/white"/>
     <item android:state_selected="true" android:drawable="@color/green_lighter"/>
+    <item android:drawable="@drawable/roundedbutton"/>
 </selector>

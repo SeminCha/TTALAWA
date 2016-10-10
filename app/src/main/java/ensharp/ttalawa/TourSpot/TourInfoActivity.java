@@ -1,5 +1,6 @@
 package ensharp.ttalawa.TourSpot;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -16,12 +17,13 @@ public class TourInfoActivity extends AppCompatActivity{
 
     private TextView activityNameTxt;
     public static String spotName;
+    public static Context mContextTourInfo;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tourinfo);
-
+        mContextTourInfo = this;
         // 현재 활성화된 액티비티를 시작하게 한 인텐트 호출
         Intent intent = getIntent();
         spotName=intent.getStringExtra("관광명소");

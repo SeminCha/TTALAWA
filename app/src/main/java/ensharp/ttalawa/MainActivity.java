@@ -59,6 +59,7 @@ import com.skp.Tmap.TMapTapi;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import ensharp.ttalawa.DBAdapter.SpotsDbAdapter;
 import ensharp.ttalawa.DBAdapter.StationDbAdapter;
@@ -134,6 +135,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     RelativeLayout mode_layout;
     RelativeLayout rion_layout;
     private CheckBox alarm_check;
+
+    public static String mLocationService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -485,7 +488,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 == PackageManager.PERMISSION_GRANTED) {
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
         }
-
+        mLocationService = Context.LOCATION_SERVICE;
         final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
     }
 
@@ -875,7 +878,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     }
                 }
             });
-
         }
     }
 
@@ -1616,6 +1618,44 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             return v;
         }
     }
+
+    public static Location getMyLocation() {
+        if (ActivityCompat.checkSelfPermission(mContext, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mContext, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return null;
+        }
+
+        Location bestLocation = null;
+
+        while (bestLocation == null) {
+            LocationManager mLocationManager = (LocationManager)mContext.getSystemService(mLocationService);
+
+            List<String> providers = mLocationManager.getProviders(true);
+
+            for (String provider : providers) {
+                Location l = mLocationManager.getLastKnownLocation(provider);
+                if (l == null) {
+                    continue;
+                }
+                if (bestLocation == null || l.getAccuracy() < bestLocation.getAccuracy()) {
+                    // Found best last known location: %s", l);
+                    bestLocation = l;
+                }
+            }
+        }
+        // }while (bestLocation!=null);
+        return bestLocation;
+    }
+
+    public static boolean isOnGps() {
+        final LocationManager manager = (LocationManager) mContext.getSystemService(mLocationService);
+
+        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 
     private Boolean exit = false;
 

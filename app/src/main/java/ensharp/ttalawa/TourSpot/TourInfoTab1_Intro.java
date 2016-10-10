@@ -42,12 +42,10 @@ public class TourInfoTab1_Intro extends Fragment {
         mapBtn.setOnClickListener(btnListener);
         naviBtn.setOnClickListener(btnListener);
 
-
         spotName = TourInfoActivity.spotName;
         setContentView(spotName);
         return inflatedView;
     }
-
 
     public void setContentView(String spotName) {
         nameText = (TextView) inflatedView.findViewById(R.id.tab1_spotname);

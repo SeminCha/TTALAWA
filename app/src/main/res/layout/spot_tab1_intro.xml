@@ -16,7 +16,7 @@
         <ImageView
             android:id="@+id/spot_img"
             android:layout_width="fill_parent"
-            android:layout_height="270dp"
+            android:layout_height="240dp"
             android:layout_alignParentTop="true"
             android:scaleType="fitXY"
             android:src="@drawable/sungryemun_img" />
@@ -29,7 +29,7 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/spotnamelayout"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="38dp"
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -51,9 +51,12 @@
                 android:textSize="18sp" />
 
             <Button
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Button"
+                android:text="관광인증"
+                android:textSize="15dp"
                 android:id="@+id/check" />
 
         </LinearLayout>

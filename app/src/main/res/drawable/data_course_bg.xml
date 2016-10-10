@@ -13,23 +13,12 @@
             <!--<solid android:color="@android:color/transparent" />-->
             <stroke
                 android:width="2.3dp"
-                android:color="#b5c0d0" />
+                android:color="#95AECC" />
         </shape>
     </item>
 
-    <!--&lt;!&ndash;top&ndash;&gt;-->
-    <!--<item android:bottom="-15dp" android:right="-15dp" android:left="-15dp">-->
-        <!--<shape>-->
-            <!--&lt;!&ndash;<solid android:color="@android:color/transparent" />&ndash;&gt;-->
-            <!--&lt;!&ndash;<stroke&ndash;&gt;-->
-                <!--&lt;!&ndash;android:width="15dp"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:color="#EAEAEA" />&ndash;&gt;-->
-            <!---->
-        <!--</shape>-->
-    <!--</item>-->
-
     <item
-        android:drawable="@drawable/tourcoursetitle_top"
+        android:drawable="@drawable/data_coursetitle_top"
         android:bottom="45dp"></item>
 
 </layer-list>

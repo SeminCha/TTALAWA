@@ -5,10 +5,12 @@ package ensharp.ttalawa.TourSpot;
  */
 public class TourData extends TourAdapterItem {
     private String spotName;
+    private String checkTour;
 
-    public TourData(String spotName, String course) {
+    public TourData(String spotName, String course,String checkTour) {
         super(course);
         this.spotName = spotName;
+        this.checkTour=checkTour;
     }
 
     @Override
@@ -23,4 +25,6 @@ public class TourData extends TourAdapterItem {
     public void setSpotName(String spotName) {
         this.spotName = spotName;
     }
+
+    public String getCheckTour(){return checkTour;}
 }

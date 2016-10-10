@@ -80,15 +80,15 @@ public class TourSpotListActivity extends ActionBarActivity implements TourSpotR
 
         for(int i=0;i<spotList.size();i++){
             if(i<=5) {
-                dataset.add(new TourData(spotList.get(i).toString(), "도심 코스"));
+                dataset.add(new TourData(spotList.get(i).toString(), "도심 코스","방문완료"));
             }else if(i<=14){
-                dataset.add(new TourData(spotList.get(i).toString(),"고궁 코스"));
+                dataset.add(new TourData(spotList.get(i).toString(),"고궁 코스","방문완료"));
             }else if(i<=19){
-                dataset.add(new TourData(spotList.get(i).toString(),"동대문 & 대학로 코스"));
+                dataset.add(new TourData(spotList.get(i).toString(),"동대문 & 대학로 코스","방문완료"));
             }else if(i<=21){
-                dataset.add(new TourData(spotList.get(i).toString(),"여의도 코스"));
+                dataset.add(new TourData(spotList.get(i).toString(),"여의도 코스","방문완료"));
             }else if(i<=24){
-                dataset.add(new TourData(spotList.get(i).toString(),"상암 코스"));
+                dataset.add(new TourData(spotList.get(i).toString(),"상암 코스","방문완료"));
             }
         }
 
@@ -128,10 +128,4 @@ public class TourSpotListActivity extends ActionBarActivity implements TourSpotR
         finish();
     }
 
-    public static void toastA(String position){
-        Toast.makeText(mmContext,position,Toast.LENGTH_LONG).show();
-    }
-    public static void toastB(){
-        Toast.makeText(mmContext,"B",Toast.LENGTH_LONG).show();
-    }
 }

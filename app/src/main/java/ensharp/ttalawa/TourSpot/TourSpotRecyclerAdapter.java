@@ -1,11 +1,9 @@
 package ensharp.ttalawa.TourSpot;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -18,7 +16,6 @@ public class TourSpotRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     private OnItemClickListener listener;
 
-    public static int btn_check = 0;
 
     public static class CourseViewHolder extends RecyclerView.ViewHolder {
         public TextView courseTitleView;
@@ -28,49 +25,19 @@ public class TourSpotRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             courseTitleView = (TextView) v.findViewById(R.id.courseTitleView);
         }
     }
-
-    public static class BtnViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        public Button button;
-
-        //private BtnViewHolderClickListener listener;
-
-        public BtnViewHolder(View itemView) {
-            super(itemView);
-            button = (Button) itemView.findViewById(R.id.tourcheck_btn);
-        }
-
-
-        @Override
-        public void onClick(View view) {
-
-        }
-    }
-
     public static class DataViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView spotItemView;
-        public Button tourspotCheckBtn;
-
+        public TextView tourCheckText;
         private OnViewHolderClickListener listener;
 
         public DataViewHolder(View v, OnViewHolderClickListener listener) {
             super(v);
             spotItemView = (TextView) v.findViewById(R.id.spotItemView);
-            tourspotCheckBtn=(Button)v.findViewById(R.id.tourcheck_btn);
-            tourspotCheckBtn.setOnClickListener(btnListener);
+            tourCheckText=(TextView)v.findViewById(R.id.tourCheck);
             v.setOnClickListener(this);
             this.listener = listener;
         }
-        Button.OnClickListener btnListener=new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                if(listener != null) {
-                    TourSpotListActivity.toastA(String.valueOf(getPosition()));
-                    Log.i("되냐고!!!",String.valueOf(getPosition()));
-
-                }
-            }
-        };
 
         @Override
         public void onClick(View v) {
@@ -138,17 +105,12 @@ public class TourSpotRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         } else if (holder instanceof DataViewHolder) {
             DataViewHolder dHolder = (DataViewHolder) holder;
             dHolder.spotItemView.setText(
-                    ((TourData)itemList.get(position))
+                    ((TourData) itemList.get(position))
                             .getSpotName());
-        }else if (holder instanceof BtnViewHolder) {
-            final BtnViewHolder bHolder = (BtnViewHolder) holder;
-            bHolder.button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    getItem(position);
+            dHolder.tourCheckText.setText(
+                    ((TourData) itemList.get(position))
+                            .getCheckTour());
 
-                }
-            });
         }
     }
 

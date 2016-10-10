@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clickable="false"
-    android:visibility="visible">
+    android:visibility="gone">
 
     <!--검색창메인툴바-->
     <LinearLayout
@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:orientation="vertical" />
+
     <!--대여창툴바-->
     <RelativeLayout
         android:id="@+id/alarmInfoLayout"
@@ -70,7 +71,7 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="15dp"
+            android:layout_height="20dp"
             android:background="#d2d9e2" />
 
         <RelativeLayout
@@ -99,7 +100,7 @@
                     <TextView
                         android:id="@+id/alarm_time"
                         android:layout_width="0dp"
-                        android:layout_height="45dp"
+                        android:layout_height="50dp"
                         android:layout_weight="7"
                         android:gravity="center_vertical|center"
                         android:text="반납 시간 전"
@@ -180,7 +181,7 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="15dp"
+            android:layout_height="20dp"
             android:background="#d2d9e2" />
 
         <RelativeLayout
@@ -211,7 +212,7 @@
                     <TextView
                         android:id="@+id/alarm_type"
                         android:layout_width="0dp"
-                        android:layout_height="45dp"
+                        android:layout_height="50dp"
                         android:layout_weight="7"
                         android:gravity="center_vertical|center"
                         android:text="알람 방식"
@@ -265,7 +266,7 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="15dp"
+            android:layout_height="20dp"
             android:background="#d2d9e2" />
 
 

@@ -1,12 +1,17 @@
 package ensharp.ttalawa.TourSpot;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +19,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.skp.Tmap.TMapTapi;
+
+import ensharp.ttalawa.DBAdapter.SpotsDbAdapter;
 import ensharp.ttalawa.MainActivity;
 import ensharp.ttalawa.R;
 import ensharp.ttalawa.SharedPreferences;
@@ -37,6 +46,10 @@ public class TourInfoTab1_Intro extends Fragment {
     private Button tourSpotVisitCheck;
     SharedPreferences pref;
     String key;
+    TelephonyManager telephonyManager;
+    String networkoper;
+    TMapTapi tmaptapi;
+    private SpotsDbAdapter spotDbAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,14 +69,14 @@ public class TourInfoTab1_Intro extends Fragment {
         pref = new SharedPreferences(TourInfoActivity.mContextTourInfo);
         spotName = TourInfoActivity.spotName;
         setContentView(spotName);
-
+        TmapAuthentication();
 
         return inflatedView;
     }
 
     public void setTourCheckBtnImage(String key) {
         // 방문한 경우
-        if(pref.getValue(key,false,"방문여부")) {
+        if (pref.getValue(key, false, "방문여부")) {
             tourSpotVisitCheck.setBackgroundColor(getResources().getColor(R.color.green_light));
         }
         // 방문 안한 경우
@@ -453,9 +466,84 @@ public class TourInfoTab1_Intro extends Fragment {
                     break;
 
                 case R.id.navi_btn:
-
-
                     ////////////////////////////////////// 네비 연결 ////////////////////////////////////////////////////////
+                    switch (spotName) {
+                        case "덕수궁 돌담길":
+                            TmapNavigation("덕수궁 돌담길");
+                            break;
+                        case "명동":
+                            TmapNavigation("명동");
+                            break;
+                        case "남산골 한옥마을":
+                            TmapNavigation("남산골 한옥마을");
+                            break;
+                        case "숭례문":
+                            TmapNavigation("숭례문");
+                            break;
+                        case "남산 공원":
+                            TmapNavigation("남산 공원");
+                            break;
+                        case "N 서울타워":
+                            TmapNavigation("N 서울타워");
+                            break;
+                        case "경복궁":
+                            TmapNavigation("경복궁");
+                            break;
+                        case "광화문 광장":
+                            TmapNavigation("광화문 광장");
+                            break;
+                        case "종묘":
+                            TmapNavigation("종묘");
+                            break;
+                        case "보신각 터":
+                            TmapNavigation("보신각 터");
+                            break;
+                        case "쌈지길":
+                            TmapNavigation("쌈지길");
+                            break;
+                        case "인사동":
+                            TmapNavigation("인사동");
+                            break;
+                        case "창덕궁과 후원":
+                            TmapNavigation("창덕궁과 후원");
+                            break;
+                        case "창경궁":
+                            TmapNavigation("창경궁");
+                            break;
+                        case "북촌 한옥마을":
+                            TmapNavigation("북촌 한옥마을");
+                            break;
+                        case "흥인지문":
+                            TmapNavigation("흥인지문");
+                            break;
+                        case "동대문 패션타운":
+                            TmapNavigation("동대문 패션타운");
+                            break;
+                        case "대학로":
+                            TmapNavigation("대학로");
+                            break;
+                        case "마로니에 공원":
+                            TmapNavigation("마로니에 공원");
+                            break;
+                        case "낙산 공원":
+                            TmapNavigation("낙산 공원");
+                            break;
+                        case "63스퀘어":
+                            TmapNavigation("63스퀘어");
+                            break;
+                        case "여의도 공원":
+                            TmapNavigation("여의도 공원");
+                            break;
+                        case "MBC 월드 방송 테마 파크":
+                            TmapNavigation("MBC 월드 방송 테마 파크");
+                            break;
+                        case "평화의 공원":
+                            TmapNavigation(("평화의 공원");
+                            break;
+                        case "하늘 공원":
+                            TmapNavigation("하늘 공원");
+                            break;
+                    }
                     break;
                 case R.id.visitCheckBtn:
                     switch (spotName) {
@@ -549,13 +637,13 @@ public class TourInfoTab1_Intro extends Fragment {
         // 방문을 안했을 경우
         else {
             if (!MainActivity.isOnGps()) {
-                buildAlertMessage("GPS","");
+                buildAlertMessage("GPS", "");
             } else {
                 Location location = MainActivity.getMyLocation();
                 if (checkPosition(location, Integer.valueOf(position))) {
                     buildAlertMessage("성공", position);
                 } else {
-                    buildAlertMessage("실패","");
+                    buildAlertMessage("실패", "");
                 }
             }
         }
@@ -581,7 +669,7 @@ public class TourInfoTab1_Intro extends Fragment {
                     .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                         public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
                             tourSpotVisitCheck.setBackgroundColor(getResources().getColor(R.color.green_light));
-                            pref.putValue(key,true,"방문여부");
+                            pref.putValue(key, true, "방문여부");
                             dialog.cancel();
                         }
                     });
@@ -603,7 +691,7 @@ public class TourInfoTab1_Intro extends Fragment {
                     .setPositiveButton("예", new DialogInterface.OnClickListener() {
                         public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
                             tourSpotVisitCheck.setBackgroundColor(getResources().getColor(R.color.grey));
-                            pref.putValue(key,false,"방문여부");
+                            pref.putValue(key, false, "방문여부");
                             dialog.cancel();
                         }
                     })
@@ -847,4 +935,99 @@ public class TourInfoTab1_Intro extends Fragment {
         return result;
     }
 
+    private void TmapNavigation(String spotName) {
+        boolean isTmapApp_1 = appInstalledOrNot("com.skt.skaf.l001mtm091");
+        boolean isTmapApp_2 = appInstalledOrNot("com.skt.tmap.ku");
+        boolean isTmapApp_3 = appInstalledOrNot("com.skt.skaf.l001mtm092");
+        String latitude = "37.5648988447", longitude = "126.9764934725";
+        this.spotDbAdapter = new SpotsDbAdapter(TourInfoActivity.mContextTourInfo);
+        spotDbAdapter.open();
+        Cursor result = spotDbAdapter.fetchSpotByTitle(spotName);
+        result.moveToFirst();
+
+        while (!result.isAfterLast()) {
+            latitude = result.getString(1);
+            Log.i("위도", latitude);
+            longitude = result.getString(2);
+            Log.i("위도", longitude);
+            result.moveToNext();
+        }
+        if (isTmapApp_1 || isTmapApp_2 || isTmapApp_3) {
+            tmaptapi.invokeRoute(spotName, Float.parseFloat(longitude), Float.parseFloat(latitude));
+        } else {
+            showTmapInstallDialog();
+        }
+    }
+
+
+    private void TmapAuthentication() {
+        tmaptapi = new TMapTapi(TourInfoActivity.mContextTourInfo);
+        tmaptapi.setSKPMapAuthentication("593851f2-df66-33d7-ae97-52ef7278295f");
+
+        tmaptapi.setOnAuthenticationListener(new TMapTapi.OnAuthenticationListenerCallback() {
+
+            @Override
+            public void SKPMapApikeySucceed() {
+                Log.i("키인증", "성공");
+            }
+
+            @Override
+            public void SKPMapApikeyFailed(String errorMsg) {
+                Log.i("키인증", "실패");
+                Toast.makeText(TourInfoActivity.mContextTourInfo, "네비게이션 안내 오류로 다음에 이용해 주시기 바랍니다.", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void showTmapInstallDialog() {
+
+        telephonyManager = (TelephonyManager) TourInfoActivity.mContextTourInfo.getSystemService(Context.TELEPHONY_SERVICE);
+        networkoper = telephonyManager.getNetworkOperatorName();
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                TourInfoActivity.mContextTourInfo);
+
+        alertDialogBuilder
+                .setMessage("T map 설치가 필요합니다.")
+                .setCancelable(false)
+                .setPositiveButton("설치하기",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(
+                                    DialogInterface dialog, int id) {
+                                if (networkoper.equals("SKTelecom")) {
+                                    Log.i("통신사", "skt");
+                                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://onesto.re/0000163382"));
+                                    startActivity(intent);
+                                } else {
+                                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.skt.tmap.ku"));
+                                    startActivity(intent);
+                                }
+                            }
+                        })
+                .setNegativeButton("취소",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(
+                                    DialogInterface dialog, int id) {
+                                // 다이얼로그를 취소한다
+                                dialog.cancel();
+                            }
+                        });
+
+        // 다이얼로그 생성
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        // 다이얼로그 보여주기
+        alertDialog.show();
+    }
+
+    private boolean appInstalledOrNot(String uri) {
+        PackageManager pm = getActivity().getPackageManager();
+        boolean app_installed;
+        try {
+            pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
+            app_installed = true;
+        } catch (PackageManager.NameNotFoundException e) {
+            app_installed = false;
+        }
+        return app_installed;
+    }
 }

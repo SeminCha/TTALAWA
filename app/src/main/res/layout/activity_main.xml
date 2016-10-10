@@ -85,16 +85,15 @@
 
                     <Button
                         android:id="@+id/alarmSettingBtn"
-                        android:background="@drawable/settings_dark"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="15dp"
-                        />
-                        <!--android:text="설정"-->
-                        <!--android:textColor="@color/white"-->
-                        <!--/>-->
+                        android:background="@drawable/settings_dark" />
+                    <!--android:text="설정"-->
+                    <!--android:textColor="@color/white"-->
+                    <!--/>-->
                 </RelativeLayout>
                 <!--플로팅버튼레이아웃-->
                 <RelativeLayout
@@ -121,19 +120,21 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="15dp"
                         android:layout_marginTop="15dp">
-                    <android.support.design.widget.FloatingActionButton
-                        android:id="@+id/tourSpotMarkerBtn"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:alpha="0.6"
-                        android:elevation="10dp"
-                        app:backgroundTint="@color/fabcolor" />
+
+                        <android.support.design.widget.FloatingActionButton
+                            android:id="@+id/tourSpotMarkerBtn"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:alpha="0.6"
+                            android:elevation="10dp"
+                            app:backgroundTint="@color/fabcolor" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="관광지"
                             android:elevation="16dp"
+                            android:text="관광지"
                             android:textColor="@android:color/white"
                             android:textSize="16dp" />
                     </FrameLayout>
@@ -144,34 +145,36 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="15dp"
                         android:layout_marginTop="75dp">
-                    <android.support.design.widget.FloatingActionButton
-                        android:id="@+id/stationListBtn"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:alpha="0.6"
-                        android:elevation="10dp"
-                        app:backgroundTint="@color/fabcolor" />
+
+                        <android.support.design.widget.FloatingActionButton
+                            android:id="@+id/stationListBtn"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:alpha="0.6"
+                            android:elevation="10dp"
+                            app:backgroundTint="@color/fabcolor" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="대여소"
                             android:elevation="16dp"
+                            android:text="대여소"
                             android:textColor="@android:color/white"
                             android:textSize="16dp" />
                     </FrameLayout>
                     <!--&lt;!&ndash;GPS버튼&ndash;&gt;-->
                     <!--<android.support.design.widget.FloatingActionButton-->
-                        <!--android:id="@+id/myLocationBtn"-->
-                        <!--android:layout_width="50dp"-->
-                        <!--android:layout_height="50dp"-->
-                        <!--android:layout_alignParentRight="true"-->
-                        <!--android:layout_marginRight="15dp"-->
-                        <!--android:layout_marginTop="135dp"-->
-                        <!--android:alpha="0.6"-->
-                        <!--android:elevation="10dp"-->
-                        <!--android:src="@drawable/gps_indicator"-->
-                        <!--app:backgroundTint="@color/fabcolor" />-->
+                    <!--android:id="@+id/myLocationBtn"-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_marginRight="15dp"-->
+                    <!--android:layout_marginTop="135dp"-->
+                    <!--android:alpha="0.6"-->
+                    <!--android:elevation="10dp"-->
+                    <!--android:src="@drawable/gps_indicator"-->
+                    <!--app:backgroundTint="@color/fabcolor" />-->
                 </RelativeLayout>
             </LinearLayout>
 
@@ -364,8 +367,8 @@
                     android:layout_height="0dp"
                     android:layout_weight="36"
                     android:orientation="horizontal"
-                    android:paddingTop="9dp"
                     android:paddingBottom="5dp"
+                    android:paddingTop="9dp"
                     android:weightSum="10">
 
                     <RelativeLayout
@@ -439,9 +442,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/info_btn_unpressed"
-                            android:splitMotionEvents="true"
                             android:elevation="3dp"
                             android:orientation="horizontal"
+                            android:splitMotionEvents="true"
                             android:weightSum="100">
 
                             <RelativeLayout
@@ -639,8 +642,8 @@
                     android:layout_height="0dp"
                     android:layout_weight="36"
                     android:orientation="horizontal"
-                    android:paddingTop="9dp"
                     android:paddingBottom="5dp"
+                    android:paddingTop="9dp"
                     android:weightSum="10">
 
                     <RelativeLayout

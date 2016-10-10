@@ -1,5 +1,6 @@
 package ensharp.ttalawa.TourSpot;
 
+import android.location.LocationManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +18,9 @@ public class TourSpotRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     private OnItemClickListener listener;
 
+
     public static int btn_check = 0;
+    LocationManager mLocationManager;
 
     public static class CourseViewHolder extends RecyclerView.ViewHolder {
         public TextView courseTitleView;
@@ -64,7 +67,7 @@ public class TourSpotRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             @Override
             public void onClick(View v){
                 if(listener != null) {
-                    TourSpotListActivity.toastA(String.valueOf(getPosition()));
+                    TourSpotListActivity.tourVisitCheck(getPosition());
                 }
             }
         };
@@ -165,4 +168,6 @@ public class TourSpotRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
+
+    LocationManager manager;
 }

@@ -63,6 +63,7 @@ import java.util.List;
 
 import ensharp.ttalawa.DBAdapter.SpotsDbAdapter;
 import ensharp.ttalawa.DBAdapter.StationDbAdapter;
+import ensharp.ttalawa.TourSpot.TourInfoActivity;
 import ensharp.ttalawa.TourSpot.TourSpotListActivity;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback,
@@ -83,7 +84,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private static final String LOG_TAG = "PlaceSelectionListener";
     private static final LatLngBounds BOUNDS_MOUNTAIN_VIEW = new LatLngBounds(
             new LatLng(37.398160, -122.180831), new LatLng(37.430610, -121.972090));
-    private static final int REQUEST_SELECT_PLACE = 1000;
+
+    //요청코드
+    private static final int REQUEST_SELECT_PLACE = 1000; /// 검색
+    public static final int REQUEST_TOURSPOT_LIST = 1001; /// 관광지 목록
+    public static final int REQUEST_STATION_LIST = 1002; /// 대여소 목록
 
     private StationDbAdapter dbAdapter;
     private SpotsDbAdapter spotDbAdapter;
@@ -112,8 +117,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     Toolbar alarmSettingToolbar;
 
     SharedPreferences pref;
-    //    요청코드정의
-    public static final int REQUEST_CODE_ANOTHER = 1001;
 
     // MMS관련 변수
     public static TextView mainTxtView;
@@ -175,28 +178,28 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         btn_tourspot.setOnClickListener(btnClickListener);
 
         mContext = this;
-        mainTxtView =(TextView)findViewById(R.id.restTimetxtView);
-        overChargingView = (TextView)findViewById(R.id.overChargingView);
+        mainTxtView = (TextView) findViewById(R.id.restTimetxtView);
+        overChargingView = (TextView) findViewById(R.id.overChargingView);
         mode = nonRent;
 
-        alarm_check = (CheckBox)findViewById(R.id.alarm_check);
+        alarm_check = (CheckBox) findViewById(R.id.alarm_check);
         alarm_check.setOnClickListener(checkClickListener);
-        btn_five = (Button)findViewById(R.id.button_5);
+        btn_five = (Button) findViewById(R.id.button_5);
         btn_five.setOnClickListener(btnClickListener);
-        btn_ten = (Button)findViewById(R.id.button_10);
+        btn_ten = (Button) findViewById(R.id.button_10);
         btn_ten.setOnClickListener(btnClickListener);
-        btn_twenty = (Button)findViewById(R.id.button_20);
+        btn_twenty = (Button) findViewById(R.id.button_20);
         btn_twenty.setOnClickListener(btnClickListener);
-        btn_thirty = (Button)findViewById(R.id.button_30);
+        btn_thirty = (Button) findViewById(R.id.button_30);
         btn_thirty.setOnClickListener(btnClickListener);
-        btn_sound = (Button)findViewById(R.id.button_sound);
+        btn_sound = (Button) findViewById(R.id.button_sound);
         btn_sound.setOnClickListener(btnClickListener);
-        btn_vib = (Button)findViewById(R.id.button_vib);
+        btn_vib = (Button) findViewById(R.id.button_vib);
         btn_vib.setOnClickListener(btnClickListener);
         initSetting();
     }
 
-    private void initSetting(){
+    private void initSetting() {
         Animation slide_in = AnimationUtils.loadAnimation(getApplicationContext(),
                 R.anim.slide_in);
 
@@ -208,9 +211,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         Animation slide_out2 = AnimationUtils.loadAnimation(getApplicationContext(),
                 R.anim.slide_out_2);
-        if(pref.getValue("alarm","off","alarm").equals("off")){
+        if (pref.getValue("alarm", "off", "alarm").equals("off")) {
             alarm_check.setChecked(false);
-        } else{
+        } else {
             alarm_check.setChecked(true);
             rion_layout.startAnimation(slide_out2);
             rion_layout.setVisibility(View.GONE);
@@ -218,33 +221,34 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             mode_layout.setVisibility(View.VISIBLE);
             time_layout.startAnimation(slide_in);
             mode_layout.startAnimation(slide_in);
-            if(pref.getValue("sound", "off", "alarm").equals("on")){
+            if (pref.getValue("sound", "off", "alarm").equals("on")) {
                 btn_sound.setBackgroundColor(Color.BLUE);
                 btn_sound.setSelected(true);
             }
-            if(pref.getValue("vib", "off","alarm").equals("on")){
+            if (pref.getValue("vib", "off", "alarm").equals("on")) {
                 btn_vib.setBackgroundColor(Color.BLUE);
                 btn_vib.setSelected(true);
             }
-            if(pref.getValue("5","off","alarm").equals("on")){
+            if (pref.getValue("5", "off", "alarm").equals("on")) {
                 btn_five.setBackgroundColor(Color.BLUE);
                 btn_five.setSelected(true);
             }
-            if(pref.getValue("10", "off", "alarm").equals("on")){
+            if (pref.getValue("10", "off", "alarm").equals("on")) {
                 btn_ten.setBackgroundColor(Color.BLUE);
                 btn_ten.setSelected(true);
             }
-            if(pref.getValue("20", "off", "alarm").equals("on")){
+            if (pref.getValue("20", "off", "alarm").equals("on")) {
                 btn_twenty.setBackgroundColor(Color.BLUE);
                 btn_twenty.setSelected(true);
             }
-            if(pref.getValue("30", "off", "alarm").equals("on")){
+            if (pref.getValue("30", "off", "alarm").equals("on")) {
                 btn_thirty.setBackgroundColor(Color.BLUE);
                 btn_thirty.setSelected(true);
             }
         }
 
     }
+
     CheckBox.OnClickListener checkClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -261,23 +265,22 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     R.anim.slide_out_2);
             switch (view.getId()) {
                 case R.id.alarm_check:
-                    if(alarm_check.isChecked()){
+                    if (alarm_check.isChecked()) {
                         rion_layout.startAnimation(slide_out2);
                         rion_layout.setVisibility(View.GONE);
                         time_layout.setVisibility(View.VISIBLE);
                         mode_layout.setVisibility(View.VISIBLE);
                         time_layout.startAnimation(slide_in);
                         mode_layout.startAnimation(slide_in);
-                        pref.putValue("alarm","on","alarm");
-                    }
-                    else {
+                        pref.putValue("alarm", "on", "alarm");
+                    } else {
                         time_layout.startAnimation(slide_out);
                         mode_layout.startAnimation(slide_out);
                         time_layout.setVisibility(View.GONE);
                         mode_layout.setVisibility(View.GONE);
                         rion_layout.setVisibility(View.VISIBLE);
                         rion_layout.startAnimation(slide_in2);
-                        pref.putValue("alarm","off","alarm");
+                        pref.putValue("alarm", "off", "alarm");
                     }
                     break;
             }
@@ -322,81 +325,75 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 //    };
 
 
-    Button.OnClickListener btnClickListener=new View.OnClickListener() {
+    Button.OnClickListener btnClickListener = new View.OnClickListener() {
         public void onClick(View v) {
             switch (v.getId()) {
 
                 case R.id.btn_tourspot:
                     Intent intent = new Intent(getBaseContext(), TourSpotListActivity.class);
-                    startActivityForResult(intent, REQUEST_CODE_ANOTHER);
+                    startActivityForResult(intent, REQUEST_TOURSPOT_LIST);
                     break;
                 case R.id.button_5:
-                    if(btn_five.isSelected()){//isSelected
+                    if (btn_five.isSelected()) {//isSelected
                         btn_five.setSelected(false);
                         btn_five.setBackgroundColor(Color.WHITE);
-                        pref.putValue("5","off","alarm");
-                    }
-                    else {
+                        pref.putValue("5", "off", "alarm");
+                    } else {
                         btn_five.setSelected(true);
                         btn_five.setBackgroundColor(Color.BLUE);
-                        pref.putValue("5","on","alarm");
+                        pref.putValue("5", "on", "alarm");
                     }
                     break;
                 case R.id.button_10:
-                    if(btn_ten.isSelected()){//isSelected
+                    if (btn_ten.isSelected()) {//isSelected
                         btn_ten.setSelected(false);
                         btn_ten.setBackgroundColor(Color.WHITE);
-                        pref.putValue("10","off","alarm");
-                    }
-                    else {
+                        pref.putValue("10", "off", "alarm");
+                    } else {
                         btn_ten.setSelected(true);
                         btn_ten.setBackgroundColor(Color.BLUE);
-                        pref.putValue("10","on","alarm");
+                        pref.putValue("10", "on", "alarm");
                     }
                     break;
                 case R.id.button_20:
-                    if(btn_twenty.isSelected()){//isSelected
+                    if (btn_twenty.isSelected()) {//isSelected
                         btn_twenty.setSelected(false);
                         btn_twenty.setBackgroundColor(Color.WHITE);
                         pref.putValue("20", "off", "alarm");
-                    }
-                    else {
+                    } else {
                         btn_twenty.setSelected(true);
                         btn_twenty.setBackgroundColor(Color.BLUE);
                         pref.putValue("20", "on", "alarm");
                     }
                     break;
                 case R.id.button_30:
-                    if(btn_thirty.isSelected()){//isSelected
+                    if (btn_thirty.isSelected()) {//isSelected
                         btn_thirty.setSelected(false);
                         btn_thirty.setBackgroundColor(Color.WHITE);
                         pref.putValue("30", "off", "alarm");
-                    }
-                    else {
+                    } else {
                         btn_thirty.setSelected(true);
                         btn_thirty.setBackgroundColor(Color.BLUE);
                         pref.putValue("30", "on", "alarm");
                     }
                     break;
                 case R.id.button_sound:
-                    if(btn_sound.isSelected()){//isSelected
+                    if (btn_sound.isSelected()) {//isSelected
                         btn_sound.setSelected(false);
                         btn_sound.setBackgroundColor(Color.WHITE);
                         pref.putValue("sound", "off", "alarm");
-                    }
-                    else {
+                    } else {
                         btn_sound.setSelected(true);
                         btn_sound.setBackgroundColor(Color.BLUE);
                         pref.putValue("sound", "on", "alarm");
                     }
                     break;
                 case R.id.button_vib:
-                    if(btn_vib.isSelected()){//isSelected
+                    if (btn_vib.isSelected()) {//isSelected
                         btn_vib.setSelected(false);
                         btn_vib.setBackgroundColor(Color.WHITE);
                         pref.putValue("vib", "off", "alarm");
-                    }
-                    else {
+                    } else {
                         btn_vib.setSelected(true);
                         btn_vib.setBackgroundColor(Color.BLUE);
                         pref.putValue("vib", "on", "alarm");
@@ -431,7 +428,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mGoogleMap.getUiSettings().setCompassEnabled(false);
 
         mapButtonSetting();
-       TmapAuthentication();
+        //TmapAuthentication();
 
         markerMap = new HashMap();
         stationMarkerMap = new HashMap();
@@ -644,7 +641,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 LatLng center = mGoogleMap.getCameraPosition().target;
                 Intent intent = new Intent(MainActivity.this, StationListActivity.class);
                 intent.putExtra("location", center);
-                startActivityForResult(intent, 0);
+                startActivityForResult(intent, REQUEST_STATION_LIST);
             }
         });
 
@@ -795,7 +792,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                             TmapNavigation(navigationMarker, true);
                             return true;
                         }
-                        default:return false;
+                        default:
+                            return false;
                     }
                 }
             });
@@ -816,7 +814,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                             // 여기다가 따릉이 어플로 연동하는 코드 삽입
                             return true;
                         }
-                        default:return false;
+                        default:
+                            return false;
                     }
                 }
             });
@@ -853,7 +852,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                             TmapNavigation(navigationMarker, true);
                             return true;
                         }
-                        default:return false;
+                        default:
+                            return false;
                     }
                 }
             });
@@ -871,10 +871,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         }
                         case MotionEvent.ACTION_UP: {
                             tourSpotDetails.setBackgroundResource(R.drawable.info_btn_unpressed);
-
+                            Intent intent = new Intent(getBaseContext(), TourInfoActivity.class);
+                            intent.putExtra("관광명소", navigationMarker.getTitle());
+                            startActivityForResult(intent,  REQUEST_TOURSPOT_LIST);
                             return true;
                         }
-                        default:return false;
+                        default:
+                            return false;
                     }
                 }
             });
@@ -1154,17 +1157,25 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     // 결과에 대한 함수
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Marker marker;
-
-        //추천관광명소activity(TourSpotListActivity)에서 돌아왔을 때
-        if (requestCode == REQUEST_CODE_ANOTHER) {
-//            Toast toast = Toast.makeText(getBaseContext(), "onActivityResult() 메소드가 호출됨. 요청코드 : " + requestCode + ", 결과코드 : " + resultCode, Toast.LENGTH_LONG);
-//            toast.show();
-
-            if (resultCode == RESULT_OK) {
-//                String name = data.getExtras().getString("name");
-//                toast = Toast.makeText(getBaseContext(), "응답으로 전달된 name : " + name, Toast.LENGTH_LONG);
-//                toast.show();
+        Log.i("결과값","requestCode : "+requestCode+", resultCode : "+resultCode);
+        //추천관광명소activity(TourSpotListActivity)에서 돌아온 경우
+        if (requestCode == REQUEST_TOURSPOT_LIST) {
+            if (resultCode == 1) {
+                String value = data.getStringExtra("key");
+                if (tourSpotMarkerMap.containsKey("S" + value)) {
+                    marker = (Marker) tourSpotMarkerMap.get("S" + value);
+                    changeSelectedMarker(null);
+                    insertInfoLayoutContent(marker, tourSpotInfoLayout);
+                    changeInfoLayoutVisibility(tourSpotInfoLayout, true);
+                    uncheckNearStationMarker();
+                    marker.showInfoWindow();
+                    checkNearStationMarker(marker);
+                    LatLng latLng = new LatLng(marker.getPosition().latitude, (marker.getPosition().longitude));
+                    mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                    mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(14));
+                }
             }
+            //검색결과에 대한 경우
         } else if (requestCode == REQUEST_SELECT_PLACE) {
             if (resultCode == RESULT_OK) {
                 Place place = PlaceAutocomplete.getPlace(this, data);
@@ -1173,8 +1184,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 Status status = PlaceAutocomplete.getStatus(this, data);
                 this.onError(status);
             }
-        } else if (resultCode == 0) {
-
+            // 대여소 목록리스트에서 돌아온 경우
         } else {
             if (stationMarkerMap.containsKey(String.valueOf(resultCode))) {
                 marker = (Marker) stationMarkerMap.get(String.valueOf(resultCode));
@@ -1293,7 +1303,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (iconName.contains("green")) {
             width = (int) (displaywidth * 0.08f);
             height = (int) (width * 1.6f);
-        } else if(iconName.contains("search")) {
+        } else if (iconName.contains("search")) {
             width = (int) (displaywidth * 0.073f);
             height = (int) (width * 1.35f);
         } else {
@@ -1630,7 +1640,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         Location bestLocation = null;
 
         while (bestLocation == null) {
-            LocationManager mLocationManager = (LocationManager)mContext.getSystemService(mLocationService);
+            LocationManager mLocationManager = (LocationManager) mContext.getSystemService(mLocationService);
 
             List<String> providers = mLocationManager.getProviders(true);
 

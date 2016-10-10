@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clickable="true"
-    android:visibility="visible"
+    android:visibility="gone"
     android:id="@+id/alarmSettingLayout">
 
     <!--검색창메인툴바-->
@@ -12,7 +11,8 @@
         android:id="@+id/voidLayout"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:orientation="vertical"/>
+        android:orientation="vertical"
+        android:clickable="false"/>
     <!--대여창툴바-->
     <RelativeLayout
         android:id="@+id/alarmInfoLayout"
@@ -20,6 +20,7 @@
         android:layout_height="48dp"
         android:layout_below="@+id/voidLayout"
         android:elevation="6dp"
+        android:clickable="true"
         android:background="#CCffffff">
     </RelativeLayout>
 
@@ -28,6 +29,7 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/alarmInfoLayout"
         android:background="@color/grey_lighter"
+        android:clickable="true"
         android:elevation="10dp">
 
         <RelativeLayout
@@ -104,6 +106,7 @@
             android:background="@drawable/roundedviewcorner"
             android:elevation="10dp"
             android:id="@+id/modeLayout"
+            android:clickable="true"
             android:visibility="gone">
             <Button
                 android:layout_width="80dp"

@@ -147,12 +147,10 @@ public class TourInfoActivity extends AppCompatActivity{
         setResult(0);
         finish();
     }
+
     @Override
     public void onBackPressed(){
-        Intent resultIntent = new Intent();
-
-        // 응답을 전달하고 이 액티비티를 종료합니다.
-        setResult(0, resultIntent);
+        setResult(0);
         finish();
     }
 

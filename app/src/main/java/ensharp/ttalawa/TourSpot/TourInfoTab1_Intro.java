@@ -69,7 +69,7 @@ public class TourInfoTab1_Intro extends Fragment {
         pref = new SharedPreferences(TourInfoActivity.mContextTourInfo);
         spotName = TourInfoActivity.spotName;
         setContentView(spotName);
-        TmapAuthentication();
+        //TmapAuthentication();
 
         return inflatedView;
     }
@@ -459,12 +459,88 @@ public class TourInfoTab1_Intro extends Fragment {
                     }
                     break;
                 case R.id.showmap_btn:
-
                     ///////////////////////////////////////지도 연결 ///////////////////////////////////////////////////////
-
-
+                    Intent intent = new Intent();
+                    switch (spotName) {
+                        case "덕수궁 돌담길":
+                            intent.putExtra("key", "덕수궁 돌담길");
+                            break;
+                        case "명동":
+                            intent.putExtra("key", "명동");
+                            break;
+                        case "남산골 한옥마을":
+                            intent.putExtra("key", "남산골 한옥마을");
+                            break;
+                        case "숭례문":
+                            intent.putExtra("key", "숭례문");
+                            break;
+                        case "남산 공원":
+                            intent.putExtra("key", "남산 공원");
+                            break;
+                        case "N 서울타워":
+                            intent.putExtra("key", "N 서울타워");
+                            break;
+                        case "경복궁":
+                            intent.putExtra("key", "경복궁");
+                            break;
+                        case "광화문 광장":
+                            intent.putExtra("key", "광화문 광장");
+                            break;
+                        case "종묘":
+                            intent.putExtra("key", "종묘");
+                            break;
+                        case "보신각 터":
+                            intent.putExtra("key", "보신각 터");
+                            break;
+                        case "쌈지길":
+                            intent.putExtra("key", "쌈지길");
+                            break;
+                        case "인사동":
+                            intent.putExtra("key", "인사동");
+                            break;
+                        case "창덕궁과 후원":
+                            intent.putExtra("key", "창덕궁과 후원");
+                            break;
+                        case "창경궁":
+                            intent.putExtra("key", "창경궁");
+                            break;
+                        case "북촌 한옥마을":
+                            intent.putExtra("key", "북촌 한옥마을");
+                            break;
+                        case "흥인지문":
+                            intent.putExtra("key", "흥인지문");
+                            break;
+                        case "동대문 패션타운":
+                            intent.putExtra("key", "동대문 패션타운");
+                            break;
+                        case "대학로":
+                            intent.putExtra("key", "대학로");
+                            break;
+                        case "마로니에 공원":
+                            intent.putExtra("key", "마로니에 공원");
+                            break;
+                        case "낙산 공원":
+                            intent.putExtra("key", "낙산 공원");
+                            break;
+                        case "63스퀘어":
+                            intent.putExtra("key", "63스퀘어");
+                            break;
+                        case "여의도 공원":
+                            intent.putExtra("key", "여의도 공원");
+                            break;
+                        case "MBC 월드 방송 테마 파크":
+                            intent.putExtra("key", "MBC 월드 방송 테마 파크");
+                            break;
+                        case "평화의 공원":
+                            intent.putExtra("key", "평화의 공원");
+                            break;
+                        case "하늘 공원":
+                            intent.putExtra("key", "하늘 공원");
+                            break;
+                    }
+                    getActivity().setResult(1, intent);
+                    getActivity().finish();
                     break;
-
                 case R.id.navi_btn:
                     ////////////////////////////////////// 네비 연결 ////////////////////////////////////////////////////////
                     switch (spotName) {
@@ -538,7 +614,7 @@ public class TourInfoTab1_Intro extends Fragment {
                             TmapNavigation("MBC 월드 방송 테마 파크");
                             break;
                         case "평화의 공원":
-                            TmapNavigation(("평화의 공원");
+                            TmapNavigation(("평화의 공원"));
                             break;
                         case "하늘 공원":
                             TmapNavigation("하늘 공원");

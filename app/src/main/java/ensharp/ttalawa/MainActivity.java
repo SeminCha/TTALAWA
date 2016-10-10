@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -811,7 +812,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         }
                         case MotionEvent.ACTION_UP: {
                             stationRent.setBackgroundResource(R.drawable.info_btn_unpressed);
-                            // 여기다가 따릉이 어플로 연동하는 코드 삽입
+                            if (getPackageList()) {
+                                Intent intent = getPackageManager().getLaunchIntentForPackage("com.dki.spb_android");
+                                startActivity(intent);
+                            } else {
+                                String url = "market://details?id=" + "com.dki.spb_android";
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                                startActivity(intent);
+                            }
                             return true;
                         }
                         default:
@@ -873,7 +881,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                             tourSpotDetails.setBackgroundResource(R.drawable.info_btn_unpressed);
                             Intent intent = new Intent(getBaseContext(), TourInfoActivity.class);
                             intent.putExtra("관광명소", navigationMarker.getTitle());
-                            startActivityForResult(intent,  REQUEST_TOURSPOT_LIST);
+                            startActivityForResult(intent, REQUEST_TOURSPOT_LIST);
                             return true;
                         }
                         default:
@@ -882,6 +890,29 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
             });
         }
+    }
+
+    //해당앱이 설치되어있는지 확인
+    public boolean getPackageList() {
+        boolean isExist = false;
+
+        PackageManager pkgMgr = getPackageManager();
+        List<ResolveInfo> mApps;
+        Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        mApps = pkgMgr.queryIntentActivities(mainIntent, 0);
+
+        try {
+            for (int i = 0; i < mApps.size(); i++) {
+                if (mApps.get(i).activityInfo.packageName.startsWith("com.dki.spb_android")) {
+                    isExist = true;
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            isExist = false;
+        }
+        return isExist;
     }
 
 
@@ -1157,7 +1188,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     // 결과에 대한 함수
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Marker marker;
-        Log.i("결과값","requestCode : "+requestCode+", resultCode : "+resultCode);
+        Log.i("결과값", "requestCode : " + requestCode + ", resultCode : " + resultCode);
         //추천관광명소activity(TourSpotListActivity)에서 돌아온 경우
         if (requestCode == REQUEST_TOURSPOT_LIST) {
             if (resultCode == 1) {

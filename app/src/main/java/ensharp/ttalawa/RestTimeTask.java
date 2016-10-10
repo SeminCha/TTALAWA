@@ -129,7 +129,7 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
     }
 
     public void timeOver() {
-        timer = new CountDownTimer(1820000, 1000) {
+        timer = new CountDownTimer(3600000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 if ((millisUntilFinished < 1800000) && (thirtyArm == true)) {

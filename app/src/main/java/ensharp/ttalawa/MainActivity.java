@@ -170,9 +170,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mContext = this;
         mainTxtView = (TextView) findViewById(R.id.restTimetxtView);
         overChargingView = (TextView) findViewById(R.id.overChargingView);
-        mode = nonRent;
-        mainTxtView =(TextView)findViewById(R.id.restTimetxtView);
-        overChargingView = (TextView)findViewById(R.id.overChargingView);
+
+        mainTxtView = (TextView) findViewById(R.id.restTimetxtView);
+        overChargingView = (TextView) findViewById(R.id.overChargingView);
 
         alarm_check = (CheckBox) findViewById(R.id.alarm_check);
         alarm_check.setOnClickListener(checkClickListener);
@@ -565,7 +565,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 LatLng center = mGoogleMap.getCameraPosition().target;
                 Intent intent = new Intent(MainActivity.this, StationListActivity.class);
                 intent.putExtra("location", center);
-                startActivityForResult(intent, 0);
+                startActivityForResult(intent, REQUEST_STATION_LIST);
             }
         });
 
@@ -1142,35 +1142,37 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
             // 대여소 목록리스트에서 돌아온 경우
         } else {
-            if (stationMarkerMap.containsKey(String.valueOf(resultCode))) {
-                marker = (Marker) stationMarkerMap.get(String.valueOf(resultCode));
-                uncheckNearStationMarker();
-                changeSelectedMarker(marker);
-                insertInfoLayoutContent(marker, stationInfoLayout);
-                changeInfoLayoutVisibility(stationInfoLayout, true);
-                marker = (Marker) stationRedMarkMap.get("selected");
-                LatLng latLng = new LatLng(marker.getPosition().latitude, marker.getPosition().longitude);
-                mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-                mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(14));
-                Log.i("일반", "일반");
-            } else if (neartourSpotStationMarkerMap.containsKey(String.valueOf(resultCode))) {
-                marker = (Marker) neartourSpotStationMarkerMap.get(String.valueOf(resultCode));
-                uncheckNearStationMarker();
-                changeSelectedMarker(marker);
-                insertInfoLayoutContent(marker, stationInfoLayout);
-                changeInfoLayoutVisibility(stationInfoLayout, true);
-                marker = (Marker) stationRedMarkMap.get("selected");
-                LatLng latLng = new LatLng(marker.getPosition().latitude, marker.getPosition().longitude);
-                mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-                mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(14));
-                Log.i("관광지근처", "관광지근처");
-            } else {
-                marker = (Marker) stationRedMarkMap.get(String.valueOf(resultCode));
-                Log.i("선택됨", "선택됨");
-            }
+            if (resultCode == 1) {
+                if (stationMarkerMap.containsKey(String.valueOf(resultCode))) {
+                    marker = (Marker) stationMarkerMap.get(String.valueOf(resultCode));
+                    uncheckNearStationMarker();
+                    changeSelectedMarker(marker);
+                    insertInfoLayoutContent(marker, stationInfoLayout);
+                    changeInfoLayoutVisibility(stationInfoLayout, true);
+                    marker = (Marker) stationRedMarkMap.get("selected");
+                    LatLng latLng = new LatLng(marker.getPosition().latitude, marker.getPosition().longitude);
+                    mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                    mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(14));
+                    Log.i("일반", "일반");
+                } else if (neartourSpotStationMarkerMap.containsKey(String.valueOf(resultCode))) {
+                    marker = (Marker) neartourSpotStationMarkerMap.get(String.valueOf(resultCode));
+                    uncheckNearStationMarker();
+                    changeSelectedMarker(marker);
+                    insertInfoLayoutContent(marker, stationInfoLayout);
+                    changeInfoLayoutVisibility(stationInfoLayout, true);
+                    marker = (Marker) stationRedMarkMap.get("selected");
+                    LatLng latLng = new LatLng(marker.getPosition().latitude, marker.getPosition().longitude);
+                    mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                    mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(14));
+                    Log.i("관광지근처", "관광지근처");
+                } else {
+                    marker = (Marker) stationRedMarkMap.get(String.valueOf(resultCode));
+                    Log.i("선택됨", "선택됨");
+                }
 
-            CameraUpdate center = CameraUpdateFactory.newLatLng(marker.getPosition());
-            mGoogleMap.animateCamera(center);
+                CameraUpdate center = CameraUpdateFactory.newLatLng(marker.getPosition());
+                mGoogleMap.animateCamera(center);
+            }
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

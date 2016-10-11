@@ -27,7 +27,9 @@
     <color name="grey_accent2">#B7B7B7</color>
     <color name="orangered">#df5539</color>
     <color name="orangered_comple">#227585</color>
-    <color name="maincolor">#556880</color>
+    <color name="maincolor">#4a5b70</color>
+    <!--<color name="maincolor">#404e60</color>-->
+    <!--<color name="maincolor">#556880</color>-->
     <!--&lt;!&ndash;<color name="maincolor">#607590</color>&ndash;&gt; original2-->
     <!--&lt;!&ndash;<color name="maincolor">#6B82A1</color>&ndash;&gt; original1-->
     <color name="rent">#E2E3E7</color>

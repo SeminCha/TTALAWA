@@ -1,6 +1,7 @@
 package ensharp.ttalawa;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.location.Location;
 import android.os.Bundle;
@@ -49,7 +50,9 @@ public class StationListActivity extends Activity implements AdapterView.OnItemC
     public void onItemClick(AdapterView parent, View v, int position, long id) {
         StationListViewAdapter.ListViewItem item = (StationListViewAdapter.ListViewItem) parent.getItemAtPosition(position);
         String stationNumber = item.getStationNumber();
-        setResult(Integer.parseInt(stationNumber));
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("key", stationNumber);
+        setResult(1, resultIntent);
         finish();
     }
 

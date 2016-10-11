@@ -4,14 +4,14 @@
     android:id="@+id/alarmSettingLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clickable="false"
-    android:visibility="gone">
+    android:visibility="visible">
 
     <!--검색창메인툴바-->
     <LinearLayout
         android:id="@+id/voidLayout"
         android:layout_width="match_parent"
         android:layout_height="55dp"
+        android:clickable="false"
         android:orientation="vertical" />
 
     <!--대여창툴바-->
@@ -20,7 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_below="@+id/voidLayout"
-        android:background="#CCE1E4EB"></RelativeLayout>
+        android:background="#CCE1E4EB"
+        android:clickable="true"></RelativeLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -28,13 +29,15 @@
         android:layout_below="@+id/alarmInfoLayout"
         android:orientation="vertical"
         android:background="@color/grey"
-        android:id="@+id/linearLayout">
+        android:id="@+id/linearLayout"
+        android:clickable="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:background="@drawable/setting_title"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            >
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -78,7 +81,7 @@
             android:id="@+id/timeLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/data_item_bg"
+            android:background="@drawable/data_item_unpressed"
             android:visibility="visible">
 
             <LinearLayout
@@ -188,7 +191,7 @@
             android:id="@+id/modeLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/data_item_bg"
+            android:background="@drawable/data_item_unpressed"
             android:visibility="visible">
 
             <LinearLayout
@@ -286,7 +289,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/relativeLayout"
-        android:layout_centerHorizontal="true"></LinearLayout>
+        android:layout_centerHorizontal="true"
+        android:clickable="true"></LinearLayout>
 
     <!--<RelativeLayout-->
         <!--android:layout_width="match_parent"-->

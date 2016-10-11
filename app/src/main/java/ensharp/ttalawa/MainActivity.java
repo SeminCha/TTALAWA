@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -59,9 +60,11 @@ import com.skp.Tmap.TMapTapi;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import ensharp.ttalawa.DBAdapter.SpotsDbAdapter;
 import ensharp.ttalawa.DBAdapter.StationDbAdapter;
+import ensharp.ttalawa.TourSpot.TourInfoActivity;
 import ensharp.ttalawa.TourSpot.TourSpotListActivity;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback,
@@ -82,7 +85,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private static final String LOG_TAG = "PlaceSelectionListener";
     private static final LatLngBounds BOUNDS_MOUNTAIN_VIEW = new LatLngBounds(
             new LatLng(37.398160, -122.180831), new LatLng(37.430610, -121.972090));
-    private static final int REQUEST_SELECT_PLACE = 1000;
 
     private StationDbAdapter dbAdapter;
     private SpotsDbAdapter spotDbAdapter;
@@ -111,8 +113,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     Toolbar alarmSettingToolbar;
 
     SharedPreferences pref;
-    //    요청코드정의
-    public static final int REQUEST_CODE_ANOTHER = 1001;
 
     // MMS관련 변수
     public static TextView mainTxtView;
@@ -134,6 +134,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     RelativeLayout mode_layout;
     RelativeLayout rion_layout;
     private CheckBox alarm_check;
+
+    //요청코드
+    private static final int REQUEST_SELECT_PLACE = 1000; /// 검색
+    public static final int REQUEST_TOURSPOT_LIST = 1001; /// 관광지 목록
+    public static final int REQUEST_STATION_LIST = 1002; /// 대여소 목록
+    public static String mLocationService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -256,7 +262,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                 case R.id.btn_tourspot:
                     Intent intent = new Intent(getBaseContext(), TourSpotListActivity.class);
-                    startActivityForResult(intent, REQUEST_CODE_ANOTHER);
+                    startActivityForResult(intent, REQUEST_TOURSPOT_LIST);
                     break;
                 case R.id.button_5:
                     if (btn_five.isSelected()) {//isSelected
@@ -410,7 +416,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 == PackageManager.PERMISSION_GRANTED) {
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
         }
-
+        mLocationService = Context.LOCATION_SERVICE;
         final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
     }
 
@@ -736,7 +742,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         }
                         case MotionEvent.ACTION_UP: {
                             stationRent.setBackgroundResource(R.drawable.info_btn_unpressed);
-                            // 여기다가 따릉이 어플로 연동하는 코드 삽입
+                            if (getPackageList()) {
+                                Intent intent = getPackageManager().getLaunchIntentForPackage("com.dki.spb_android");
+                                startActivity(intent);
+                            } else {
+                                String url = "market://details?id=" + "com.dki.spb_android";
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                                startActivity(intent);
+                            }
                             return true;
                         }
                         default:
@@ -744,6 +757,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     }
                 }
             });
+
         } else {
             tourSpotName.setText(marker.getTitle());
 
@@ -796,7 +810,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         }
                         case MotionEvent.ACTION_UP: {
                             tourSpotDetails.setBackgroundResource(R.drawable.info_btn_unpressed);
-
+                            Intent intent = new Intent(getBaseContext(), TourInfoActivity.class);
+                            intent.putExtra("관광명소", navigationMarker.getTitle());
+                            startActivityForResult(intent, REQUEST_TOURSPOT_LIST);
                             return true;
                         }
                         default:
@@ -808,6 +824,29 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
+
+    //해당앱이 설치되어있는지 확인
+    public boolean getPackageList() {
+        boolean isExist = false;
+
+        PackageManager pkgMgr = getPackageManager();
+        List<ResolveInfo> mApps;
+        Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        mApps = pkgMgr.queryIntentActivities(mainIntent, 0);
+
+        try {
+            for (int i = 0; i < mApps.size(); i++) {
+                if (mApps.get(i).activityInfo.packageName.startsWith("com.dki.spb_android")) {
+                    isExist = true;
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            isExist = false;
+        }
+        return isExist;
+    }
 
     private String getTourSpotIntro(String spotName) {
 
@@ -1081,17 +1120,25 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     // 결과에 대한 함수
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Marker marker;
-
-        //추천관광명소activity(TourSpotListActivity)에서 돌아왔을 때
-        if (requestCode == REQUEST_CODE_ANOTHER) {
-//            Toast toast = Toast.makeText(getBaseContext(), "onActivityResult() 메소드가 호출됨. 요청코드 : " + requestCode + ", 결과코드 : " + resultCode, Toast.LENGTH_LONG);
-//            toast.show();
-
-            if (resultCode == RESULT_OK) {
-//                String name = data.getExtras().getString("name");
-//                toast = Toast.makeText(getBaseContext(), "응답으로 전달된 name : " + name, Toast.LENGTH_LONG);
-//                toast.show();
+        Log.i("결과값", "requestCode : " + requestCode + ", resultCode : " + resultCode);
+        //추천관광명소activity(TourSpotListActivity)에서 돌아온 경우
+        if (requestCode == REQUEST_TOURSPOT_LIST) {
+            if (resultCode == 1) {
+                String value = data.getStringExtra("key");
+                if (tourSpotMarkerMap.containsKey("S" + value)) {
+                    marker = (Marker) tourSpotMarkerMap.get("S" + value);
+                    changeSelectedMarker(null);
+                    insertInfoLayoutContent(marker, tourSpotInfoLayout);
+                    changeInfoLayoutVisibility(tourSpotInfoLayout, true);
+                    uncheckNearStationMarker();
+                    marker.showInfoWindow();
+                    checkNearStationMarker(marker);
+                    LatLng latLng = new LatLng(marker.getPosition().latitude, (marker.getPosition().longitude));
+                    mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                    mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(14));
+                }
             }
+            //검색결과에 대한 경우
         } else if (requestCode == REQUEST_SELECT_PLACE) {
             if (resultCode == RESULT_OK) {
                 Place place = PlaceAutocomplete.getPlace(this, data);
@@ -1100,8 +1147,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 Status status = PlaceAutocomplete.getStatus(this, data);
                 this.onError(status);
             }
-        } else if (resultCode == 0) {
-
+            // 대여소 목록리스트에서 돌아온 경우
         } else {
             if (stationMarkerMap.containsKey(String.valueOf(resultCode))) {
                 marker = (Marker) stationMarkerMap.get(String.valueOf(resultCode));
@@ -1135,7 +1181,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
-
 
     @Override
     public void onError(Status status) {
@@ -1220,6 +1265,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (iconName.contains("green")) {
             width = (int) (displaywidth * 0.08f);
             height = (int) (width * 1.6f);
+        } else if (iconName.contains("search")) {
+            width = (int) (displaywidth * 0.073f);
+            height = (int) (width * 1.35f);
         } else {
             width = (int) (displaywidth * 0.075f);
             height = (int) (width * 1.6f);
@@ -1543,6 +1591,43 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             tourSpotName.setText(marker.getTitle());
             Log.i("마커이름", marker.getTitle());
             return v;
+        }
+    }
+
+    public static Location getMyLocation() {
+        if (ActivityCompat.checkSelfPermission(mContext, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mContext, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return null;
+        }
+
+        Location bestLocation = null;
+
+        while (bestLocation == null) {
+            LocationManager mLocationManager = (LocationManager) mContext.getSystemService(mLocationService);
+
+            List<String> providers = mLocationManager.getProviders(true);
+
+            for (String provider : providers) {
+                Location l = mLocationManager.getLastKnownLocation(provider);
+                if (l == null) {
+                    continue;
+                }
+                if (bestLocation == null || l.getAccuracy() < bestLocation.getAccuracy()) {
+                    // Found best last known location: %s", l);
+                    bestLocation = l;
+                }
+            }
+        }
+        // }while (bestLocation!=null);
+        return bestLocation;
+    }
+
+    public static boolean isOnGps() {
+        final LocationManager manager = (LocationManager) mContext.getSystemService(mLocationService);
+
+        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            return false;
+        } else {
+            return true;
         }
     }
 

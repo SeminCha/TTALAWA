@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:text="관광인증"
                 android:textSize="15dp"
-                android:id="@+id/check" />
+                android:id="@+id/visitCheckBtn" />
 
         </LinearLayout>
         <!--관광지 주소-->

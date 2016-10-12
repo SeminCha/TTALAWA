@@ -19,6 +19,6 @@
 
     <item
         android:drawable="@drawable/data_coursetitle_top"
-        android:bottom="45dp"></item>
+        android:bottom="47dp"></item>
 
 </layer-list>

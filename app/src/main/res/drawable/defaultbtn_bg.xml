@@ -4,6 +4,6 @@
         <color android:color="@color/white" />
     </item>
     <item android:state_pressed="true">
-        <color android:color="@color/grey" />
+        <color android:color="@color/pressedbgcolor" />
     </item>
 </selector>

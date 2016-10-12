@@ -50,15 +50,16 @@
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
-            <!--<Button-->
-                <!--android:layout_marginLeft="10dp"-->
-                <!--android:background="@drawable/info_btn_unpressed"-->
-                <!--android:gravity="center"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="26dp"-->
-                <!--android:text="관광인증"-->
-                <!--android:textSize="14dp"-->
-                <!--android:id="@+id/visitCheckBtn" />-->
+            <Button
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/visit_btn"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
+                android:text="방문인증"
+                android:textSize="14dp"
+                android:id="@+id/visitCheckBtn"
+                android:elevation="5dp" />
 
         </LinearLayout>
         <!--관광지 주소-->
@@ -237,6 +238,7 @@
                 android:id="@+id/textView2" />
 
             <TextView
+                android:lineSpacingExtra="5dp"
                 android:layout_marginLeft="35dp"
                 android:layout_marginRight="35dp"
                 android:id="@+id/tab1_spottext"

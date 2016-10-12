@@ -6,7 +6,7 @@
     <!--<color android:color="#F9F9F9" />-->
 </item>
 <item android:state_pressed="true">
-    <color android:color="@color/grey" />
+    <color android:color="@color/pressedbgcolor" />
 </item>
 
 </selector>

@@ -78,11 +78,12 @@ public class TourInfoTab1_Intro extends Fragment {
     public void setTourCheckBtnImage(String key) {
         // 방문한 경우
         if (pref.getValue(key, false, "방문여부")) {
-            tourSpotVisitCheck.setBackgroundColor(getResources().getColor(R.color.green_light));
+//            tourSpotVisitCheck.setBackground(getResources().getDrawable(R.drawable.visited_btn));
+         //   tourSpotVisitCheck.setBackgroundColor(getResources().getColor(R.color.green_light));
         }
         // 방문 안한 경우
         else {
-            tourSpotVisitCheck.setBackgroundColor(getResources().getColor(R.color.grey_dark));
+           // tourSpotVisitCheck.setBackgroundColor(getResources().getColor(R.color.grey_dark));
         }
     }
 
@@ -138,7 +139,7 @@ public class TourInfoTab1_Intro extends Fragment {
                 break;
             case "광화문 광장":
                 imageView.setImageResource(R.drawable.gwanghwamun_img);
-                spotText.setText("경복궁의 정문 광화문 앞에 조성된 길이 555m, 너비 34m의 대형 광장. 한국인들이 가 장 존경하는 위인 세종대왕과 이순신 장군의 동상이 있다.");
+                spotText.setText("경복궁의 정문 광화문 앞에 조성된 길이 555m, 너비 34m의 대형 광장. 한국인들이 가장 존경하는 위인 세종대왕과 이순신 장군의 동상이 있다.");
                 spotAddr.setText("종로구 세종로 1-68");
                 setTourCheckBtnImage("7");
                 break;
@@ -745,7 +746,8 @@ public class TourInfoTab1_Intro extends Fragment {
                     .setCancelable(false)
                     .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                         public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
-                            tourSpotVisitCheck.setBackgroundColor(getResources().getColor(R.color.green_light));
+//                            tourSpotVisitCheck.setBackground(getResources().getDrawable(R.drawable.visited_btn));
+                            //tourSpotVisitCheck.setBackgroundColor(getResources().getColor(R.color.green_light));
                             pref.putValue(key, true, "방문여부");
                             dialog.cancel();
                         }
@@ -767,7 +769,7 @@ public class TourInfoTab1_Intro extends Fragment {
                     .setCancelable(false)
                     .setPositiveButton("예", new DialogInterface.OnClickListener() {
                         public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
-                            tourSpotVisitCheck.setBackgroundColor(getResources().getColor(R.color.grey));
+                           // tourSpotVisitCheck.setBackgroundColor(getResources().getColor(R.color.grey));
                             pref.putValue(key, false, "방문여부");
                             dialog.cancel();
                         }

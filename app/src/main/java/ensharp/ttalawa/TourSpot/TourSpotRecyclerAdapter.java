@@ -116,9 +116,12 @@ public class TourSpotRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             //Log.i("onbindviewholderBef",position+"번 "+dHolder.tourCheckText.getText());
             if(((TourData) itemList.get(position)).getCheckTour()=="방문완료"){
                 Log.w("setText","삽입 완료");
-                dHolder.tourCheckText.setTextColor(Color.parseColor("#df5539"));
+//                dHolder.tourCheckText.setTextColor(Color.parseColor("#df5539"));
+                dHolder.tourCheckText.setTextColor(Color.WHITE);
+                dHolder.tourCheckText.setBackgroundResource(R.drawable.recycler_complete_btn);
             }else{
                 dHolder.tourCheckText.setTextColor(Color.parseColor("#C2CBDB"));
+                dHolder.tourCheckText.setBackgroundResource(R.drawable.recycler_btn_bg);
             }
             //Log.i("onbindviewholderAft",position+"번 "+dHolder.tourCheckText.getText());
         }

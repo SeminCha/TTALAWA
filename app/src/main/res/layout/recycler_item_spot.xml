@@ -12,18 +12,22 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="7.5"
+        android:layout_weight="8"
         android:layout_gravity="center_vertical"
         android:gravity="center_vertical"
         android:clickable="false">
         <TextView
             android:layout_weight="1.8"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:id="@+id/tourCheck"
+            android:background="@drawable/recycler_btn_bg"
             android:layout_centerVertical="true"
+            android:gravity="center"
             android:textStyle="bold"
-            android:text="방문완료" />
+            android:textAlignment="center"
+            android:text="방문완료"
+            android:layout_marginRight="10dp" />
         <TextView
             android:layout_weight="5.7"
             android:id="@+id/spotItemView"

@@ -15,8 +15,9 @@ import java.util.ArrayList;
 
 import ensharp.ttalawa.DBAdapter.SpotsDbAdapter;
 import ensharp.ttalawa.R;
+import ensharp.ttalawa.SharedPreferences;
 
-public class TourSpotListActivity extends ActionBarActivity implements TourSpotRecyclerAdapter.OnItemClickListener{
+public class TourSpotListActivity extends ActionBarActivity implements TourSpotRecyclerAdapter.OnItemClickListener {
 
     public static Context mmContext;
 
@@ -24,7 +25,7 @@ public class TourSpotListActivity extends ActionBarActivity implements TourSpotR
     private TextView activityNameTxt;
     private TourSpotRecyclerAdapter adapter;
     private ArrayList<String> spotList;
-
+    SharedPreferences pref;
     //    요청코드정의
     public static final int REQUEST_TOURSPOT_DETAILS = 1003;
 
@@ -34,7 +35,7 @@ public class TourSpotListActivity extends ActionBarActivity implements TourSpotR
         setContentView(R.layout.activity_tourspotlist);
         activityNameTxt = (TextView) findViewById(R.id.activityName);
         activityNameTxt.setText("추천 관광 명소");
-
+        pref = new SharedPreferences(this);
         RecyclerView mTimeRecyclerView = (RecyclerView) findViewById(R.id.tourSpotRecyclerView);
         mTimeRecyclerView.setHasFixedSize(true);
 
@@ -60,7 +61,7 @@ public class TourSpotListActivity extends ActionBarActivity implements TourSpotR
 
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
-        Log.i("결과값","requestCode : "+requestCode+", resultCode : "+resultCode);
+        Log.i("결과값", "requestCode : " + requestCode + ", resultCode : " + resultCode);
         if (resultCode == 1) {
             String value = intent.getStringExtra("key");
             Intent resultIntent = new Intent();
@@ -76,24 +77,44 @@ public class TourSpotListActivity extends ActionBarActivity implements TourSpotR
 
         ArrayList<TourData> dataset = new ArrayList<>();
 
-        for(int i=0;i<spotList.size();i++){
-            if(i<=5) {
-                dataset.add(new TourData(spotList.get(i).toString(), "도심 코스","방문완료"));
-            }else if(i<=14){
-                dataset.add(new TourData(spotList.get(i).toString(),"고궁 코스","방문완료"));
-            }else if(i<=19){
-                dataset.add(new TourData(spotList.get(i).toString(),"동대문 & 대학로 코스","방문완료"));
-            }else if(i<=21){
-                dataset.add(new TourData(spotList.get(i).toString(),"여의도 코스","방문완료"));
-            }else if(i<=24){
-                dataset.add(new TourData(spotList.get(i).toString(),"상암 코스","방문완료"));
+        for (int i = 0; i < spotList.size(); i++) {
+
+            //인증완료
+            if (pref.getValue(String.valueOf(i), false, "방문여부")) {
+                if (i <= 5) {
+                    dataset.add(new TourData(spotList.get(i).toString(), "도심 코스", "방문완료"));
+                } else if (i <= 14) {
+                    dataset.add(new TourData(spotList.get(i).toString(), "고궁 코스", "방문완료"));
+                } else if (i <= 19) {
+                    dataset.add(new TourData(spotList.get(i).toString(), "동대문 & 대학로 코스", "방문완료"));
+                } else if (i <= 21) {
+                    dataset.add(new TourData(spotList.get(i).toString(), "여의도 코스", "방문완료"));
+                } else if (i <= 24) {
+                    dataset.add(new TourData(spotList.get(i).toString(), "상암 코스", "방문완료"));
+                }
             }
+            //미인증
+            else if (pref.getValue(String.valueOf(i), false, "방문여부") == false) {
+                if (i <= 5) {
+                    dataset.add(new TourData(spotList.get(i).toString(), "도심 코스", "미방문"));
+                } else if (i <= 14) {
+                    dataset.add(new TourData(spotList.get(i).toString(), "고궁 코스", "미방문"));
+                } else if (i <= 19) {
+                    dataset.add(new TourData(spotList.get(i).toString(), "동대문 & 대학로 코스", "미방문"));
+                } else if (i <= 21) {
+                    dataset.add(new TourData(spotList.get(i).toString(), "여의도 코스", "미방문"));
+                } else if (i <= 24) {
+                    dataset.add(new TourData(spotList.get(i).toString(), "상암 코스", "미방문"));
+                }
+
+            }
+
         }
 
         return dataset;
     }
 
-    private void getDbTourSpot(){
+    private void getDbTourSpot() {
         this.dbAdapter = new SpotsDbAdapter(this);
 
         dbAdapter.open();

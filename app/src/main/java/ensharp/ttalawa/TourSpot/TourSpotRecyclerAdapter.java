@@ -1,6 +1,7 @@
 package ensharp.ttalawa.TourSpot;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -98,19 +99,27 @@ public class TourSpotRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder,final int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+
         if(holder instanceof CourseViewHolder) {
             CourseViewHolder tHolder = (CourseViewHolder) holder;
             tHolder.courseTitleView.setText(itemList.get(position).getCourseToString());
-        } else if (holder instanceof DataViewHolder) {
+        }
+        else if (holder instanceof DataViewHolder) {
             DataViewHolder dHolder = (DataViewHolder) holder;
+            //관광명소 이름
             dHolder.spotItemView.setText(
                     ((TourData) itemList.get(position))
                             .getSpotName());
-            dHolder.tourCheckText.setText(
-                    ((TourData) itemList.get(position))
-                            .getCheckTour());
-
+            //인증여부
+            //Log.i("onbindviewholderBef",position+"번 "+dHolder.tourCheckText.getText());
+            if(((TourData) itemList.get(position)).getCheckTour()=="방문완료"){
+                Log.w("setText","삽입 완료");
+                dHolder.tourCheckText.setText("방문완료");
+            }else{
+                dHolder.tourCheckText.setText("");
+            }
+            //Log.i("onbindviewholderAft",position+"번 "+dHolder.tourCheckText.getText());
         }
     }
 

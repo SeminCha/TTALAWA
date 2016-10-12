@@ -20,11 +20,10 @@
             android:layout_weight="1.8"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="방문여부"
             android:id="@+id/tourCheck"
             android:layout_centerVertical="true"
-            android:layout_gravity="left|center_vertical"
-             />
+            android:textStyle="bold"
+            android:textColor="@color/orangered" />
         <TextView
             android:layout_weight="5.7"
             android:id="@+id/spotItemView"

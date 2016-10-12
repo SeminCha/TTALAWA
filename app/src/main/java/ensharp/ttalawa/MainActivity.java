@@ -1291,8 +1291,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             width = (int) (displaywidth * 0.08f);
             height = (int) (width * 1.6f);
         } else if (iconName.contains("search")) {
-            width = (int) (displaywidth * 0.073f);
-            height = (int) (width * 1.35f);
+            width = (int) (displaywidth * 0.093f);
+            height = (int) (width * 1.25f);
         } else {
             width = (int) (displaywidth * 0.075f);
             height = (int) (width * 1.6f);

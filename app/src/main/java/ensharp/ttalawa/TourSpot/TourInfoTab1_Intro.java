@@ -742,7 +742,7 @@ public class TourInfoTab1_Intro extends Fragment {
             final AlertDialog alert = builder.create();
             alert.show();
         } else if (mode.equals("성공")) {
-            builder.setMessage("즐거운 라이딩 되셨나요? \n해당 관광지 방문이 확인되었습니다!")
+            builder.setMessage("즐거운 관광 되셨나요? \n해당 관광지 방문이 확인되었습니다!")
                     .setCancelable(false)
                     .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                         public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
@@ -765,7 +765,7 @@ public class TourInfoTab1_Intro extends Fragment {
             final AlertDialog alert = builder.create();
             alert.show();
         } else if (mode.equals("이미방문")) {
-            builder.setMessage("이미 방문해 주셨네요! \n방문기록을 삭제할까요?")
+            builder.setMessage("이미 방문하셨습니다! \n방문기록을 삭제할까요?")
                     .setCancelable(false)
                     .setPositiveButton("예", new DialogInterface.OnClickListener() {
                         public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {

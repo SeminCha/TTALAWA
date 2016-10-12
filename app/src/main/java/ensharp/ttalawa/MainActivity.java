@@ -379,7 +379,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mGoogleMap.getUiSettings().setCompassEnabled(false);
 
         mapButtonSetting();
-//        TmapAuthentication();
+       // TmapAuthentication();
 
         markerMap = new HashMap();
         stationMarkerMap = new HashMap();

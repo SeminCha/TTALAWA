@@ -59,7 +59,7 @@
                 android:text="방문인증"
                 android:textSize="14dp"
                 android:id="@+id/visitCheckBtn"
-                android:elevation="5dp" />
+                android:elevation="10dp" />
 
         </LinearLayout>
         <!--관광지 주소-->
@@ -221,9 +221,10 @@
         <!--관광지 설명 텍스트-->
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="190dp"
+            android:layout_height="wrap_content"
             android:elevation="1.5dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginBottom="50dp">
             <!--android:background="@drawable/spotinfo_bg"-->
 
             <TextView
@@ -248,7 +249,8 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:layout_below="@+id/textView2"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"
+                />
         </RelativeLayout>
 
 

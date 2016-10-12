@@ -68,7 +68,7 @@ public class TourInfoTab1_Intro extends Fragment {
         pref = new SharedPreferences(TourInfoActivity.mContextTourInfo);
         spotName = TourInfoActivity.spotName;
         setContentView(spotName);
-        //TmapAuthentication();
+       // TmapAuthentication();
 
         spotName = TourInfoActivity.spotName;
         setContentView(spotName);
@@ -133,7 +133,7 @@ public class TourInfoTab1_Intro extends Fragment {
                 break;
             case "경복궁":
                 imageView.setImageResource(R.drawable.gyeongbokgung_img);
-                spotText.setText("조선시대 최초의 궁궐로 조선왕조 500년의 역사가 시작된 곳이다. 서울에 남아 있는 5대 궁궐 중에서 가장 크고 웅장하며, 근정전, 경회루 등 대표 전각을 통해 격조 높은 조선 왕실 문화 와 생활상, 당시의 건축문화까지 엿볼 수 있다. 궁중 문화를 전시한 고궁박물관과 한국 생활사를 볼 수 있는 민속박물관도 있다.");
+                spotText.setText("조선시대 최초의 궁궐로 조선왕조 500년의 역사가 시작된 곳이다. 서울에 남아 있는 5대 궁궐 중에서 가장 크고 웅장하며, 근정전, 경회루 등 대표 전각을 통해 격조 높은 조선 왕실 문화와 생활상, 당시의 건축문화까지 엿볼 수 있다. 궁중 문화를 전시한 고궁박물관과 한국 생활사를 볼 수 있는 민속박물관도 있다.");
                 spotAddr.setText("종로구 사직로 161");
                 setTourCheckBtnImage("6");
                 break;

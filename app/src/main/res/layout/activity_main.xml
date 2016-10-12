@@ -128,10 +128,11 @@
                         android:layout_alignParentLeft="true"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="15dp"
-                        android:alpha="0.6"
+                        android:alpha="0.7"
                         android:elevation="10dp"
                         android:src="@drawable/gps_indicator"
                         app:backgroundTint="@color/fabcolor" />
+
                     <!--관광지마크 버튼-->
                     <FrameLayout
                         android:layout_width="wrap_content"
@@ -144,7 +145,7 @@
                             android:id="@+id/tourSpotMarkerBtn"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:alpha="0.6"
+                            android:alpha="0.7"
                             android:elevation="10dp"
                             app:backgroundTint="@color/fabcolor" />
 
@@ -169,7 +170,7 @@
                             android:id="@+id/stationListBtn"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:alpha="0.6"
+                            android:alpha="0.7"
                             android:elevation="10dp"
                             app:backgroundTint="@color/fabcolor" />
 

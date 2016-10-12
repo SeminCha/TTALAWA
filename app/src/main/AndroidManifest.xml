@@ -19,8 +19,8 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDiWUglTUAIS0UwGbUz7yg-z0acrD1rYRI" />
 
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".StationListActivity"/>
+        <activity android:name=".MainActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".StationListActivity" android:screenOrientation="portrait"/>
         <activity android:name=".SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -29,8 +29,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TourSpot.TourSpotListActivity"/>
-        <activity android:name=".TourSpot.TourInfoActivity"/>
+        <activity android:name=".TourSpot.TourSpotListActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".TourSpot.TourInfoActivity" android:screenOrientation="portrait"/>
         <service
             android:name=".MmsAccesService"
             android:enabled="true"

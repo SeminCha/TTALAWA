@@ -58,7 +58,8 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:text="따릉이 반납 알람"
-                android:textColor="@color/black"
+                android:textColor="@color/maincolor"
+                android:textStyle="bold"
                 android:textSize="18sp" />
 
             <CheckBox
@@ -106,7 +107,7 @@
                         android:layout_weight="7"
                         android:gravity="center_vertical|center"
                         android:text="반납 시간 전"
-                        android:textColor="@color/maincolor"
+                        android:textColor="#354150"
                         android:textSize="17.5sp"
                         android:textStyle="bold" />
 
@@ -218,7 +219,7 @@
                         android:layout_weight="7"
                         android:gravity="center_vertical|center"
                         android:text="알람 방식"
-                        android:textColor="@color/maincolor"
+                        android:textColor="#354150"
                         android:textSize="17.5sp"
                         android:textIsSelectable="true"
                         android:textStyle="bold" />

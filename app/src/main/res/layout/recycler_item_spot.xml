@@ -23,7 +23,7 @@
             android:id="@+id/tourCheck"
             android:layout_centerVertical="true"
             android:textStyle="bold"
-            android:textColor="@color/orangered" />
+            android:text="방문완료" />
         <TextView
             android:layout_weight="5.7"
             android:id="@+id/spotItemView"

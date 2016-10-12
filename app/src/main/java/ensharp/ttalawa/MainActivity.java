@@ -195,10 +195,24 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         if (pref.getValue("alarm", "off", "alarm").equals("off")) {
             alarm_check.setChecked(false);
+
             time_layout.setAlpha(0.3f);
             mode_layout.setAlpha(0.3f);
+            btn_sound.setClickable(false);
+            btn_vib.setClickable(false);
+            btn_five.setClickable(false);
+            btn_ten.setClickable(false);
+            btn_twenty.setClickable(false);
+            btn_thirty.setClickable(false);
+
         } else {
             alarm_check.setChecked(true);
+            btn_sound.setClickable(true);
+            btn_vib.setClickable(true);
+            btn_five.setClickable(true);
+            btn_ten.setClickable(true);
+            btn_twenty.setClickable(true);
+            btn_thirty.setClickable(true);
             time_layout.setAlpha(1.0f);
             mode_layout.setAlpha(1.0f);
             if (pref.getValue("sound", "off", "alarm").equals("on")) {
@@ -236,10 +250,23 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             switch (view.getId()) {
                 case R.id.alarm_check:
                     if (alarm_check.isChecked()) {
+                        alarm_check.setChecked(true);
+                        btn_sound.setClickable(true);
+                        btn_vib.setClickable(true);
+                        btn_five.setClickable(true);
+                        btn_ten.setClickable(true);
+                        btn_twenty.setClickable(true);
+                        btn_thirty.setClickable(true);
                         time_layout.setAlpha(1.0f);
                         mode_layout.setAlpha(1.0f);
                         pref.putValue("alarm", "on", "alarm");
                     } else {
+                        btn_sound.setClickable(false);
+                        btn_vib.setClickable(false);
+                        btn_five.setClickable(false);
+                        btn_ten.setClickable(false);
+                        btn_twenty.setClickable(false);
+                        btn_thirty.setClickable(false);
                         time_layout.setAlpha(0.3f);
                         mode_layout.setAlpha(0.3f);
                         pref.putValue("alarm", "off", "alarm");

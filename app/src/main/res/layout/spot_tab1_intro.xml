@@ -29,7 +29,7 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/spotnamelayout"
             android:layout_width="match_parent"
-            android:layout_height="38dp"
+            android:layout_height="45dp"
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -50,14 +50,15 @@
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
-            <Button
-                android:layout_marginLeft="10dp"
-                android:gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="관광인증"
-                android:textSize="15dp"
-                android:id="@+id/visitCheckBtn" />
+            <!--<Button-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:background="@drawable/info_btn_unpressed"-->
+                <!--android:gravity="center"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="26dp"-->
+                <!--android:text="관광인증"-->
+                <!--android:textSize="14dp"-->
+                <!--android:id="@+id/visitCheckBtn" />-->
 
         </LinearLayout>
         <!--관광지 주소-->
@@ -65,7 +66,7 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/spotaddrlayout"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="45dp"
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -91,7 +92,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="15dp"></LinearLayout>
+            android:layout_height="10dp"></LinearLayout>
 
         <!--버튼 레이아웃-->
         <LinearLayout
@@ -214,7 +215,7 @@
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="15dp"></LinearLayout>
+            android:layout_height="10dp"></LinearLayout>
 
         <!--관광지 설명 텍스트-->
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -227,7 +228,7 @@
             <TextView
                 android:gravity="center_vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="45dp"
                 android:layout_marginLeft="30dp"
                 android:text="소개"
                 android:textColor="@color/maincolor"

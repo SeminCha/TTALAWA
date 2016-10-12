@@ -1,5 +1,6 @@
 package ensharp.ttalawa.TourSpot;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -115,9 +116,9 @@ public class TourSpotRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             //Log.i("onbindviewholderBef",position+"번 "+dHolder.tourCheckText.getText());
             if(((TourData) itemList.get(position)).getCheckTour()=="방문완료"){
                 Log.w("setText","삽입 완료");
-                dHolder.tourCheckText.setText("방문완료");
+                dHolder.tourCheckText.setTextColor(Color.parseColor("#df5539"));
             }else{
-                dHolder.tourCheckText.setText("");
+                dHolder.tourCheckText.setTextColor(Color.parseColor("#C2CBDB"));
             }
             //Log.i("onbindviewholderAft",position+"번 "+dHolder.tourCheckText.getText());
         }

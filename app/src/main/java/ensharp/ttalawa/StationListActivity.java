@@ -90,7 +90,7 @@ public class StationListActivity extends Activity implements AdapterView.OnItemC
         Collections.sort(distanceList);
         for (int i = 0; i < distanceList.size(); i++) {
             stationData = (StationData) placeDistance.get(distanceList.get(i));
-            adapter.addItem(stationData.getNumber(), stationData.getName(), stationData.getAddress(), distanceList.get(i), stationData.getLatitude(), stationData.getLongitude());
+            adapter.addItem(stationData.getNumber(), stationData.getName(), stationData.getAddress(), distanceList.get(i));
         }
     }
 

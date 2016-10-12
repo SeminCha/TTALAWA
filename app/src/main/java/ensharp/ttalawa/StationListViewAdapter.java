@@ -1,26 +1,19 @@
 package ensharp.ttalawa;
 
+import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.support.v7.app.AlertDialog;
 import android.telephony.TelephonyManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.skp.Tmap.TMapTapi;
 
 import java.util.ArrayList;
-
-import ensharp.ttalawa.TourSpot.TourInfoActivity;
 
 /**
  * Created by Semin on 2016-07-25.
@@ -48,12 +41,12 @@ public class StationListViewAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         final int pos = position;
-        final String stationName;
-        final double stationLatitude;
-        final double stationLongitude;
+        final String stationNumber;
+
         final Context context = parent.getContext();
+        final Activity myActivity = (Activity) StationListActivity.mStationContext;
         String convertString;
-        TmapAuthentication();
+
         // "listview_item" Layout을 inflate하여 convertView 참조 획득.
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -70,7 +63,8 @@ public class StationListViewAdapter extends BaseAdapter {
         ListViewItem listViewItem = listViewItemList.get(position);
 
         // 아이템 내 각 위젯에 데이터 반영
-        numberTextView.setText(listViewItem.getStationNumber());
+        stationNumber = listViewItem.getStationNumber();
+        numberTextView.setText(stationNumber);
 
         nameTextView.setText(listViewItem.getStationName());
 
@@ -81,18 +75,16 @@ public class StationListViewAdapter extends BaseAdapter {
             distanceView.setText(convertString);
         }
 
-        stationName = listViewItem.getStationName();
-        stationLatitude = listViewItem.getStationLatitude();
-        stationLongitude = listViewItem.getStationLongitude();
-
-
         Button directNavigation = (Button) convertView.findViewById(R.id.directNavigationBtn);
 
-        // 가장 가까운 대여소
+         //가장 가까운 대여소
         if(pos == 0) {
             directNavigation.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
-                    TmapNavigation(stationName + " 거치소", stationLatitude, stationLongitude);
+                    Intent resultIntent = new Intent();
+                    resultIntent.putExtra("key", stationNumber);
+                    myActivity.setResult(2, resultIntent);
+                    myActivity.finish();
                 }
             });
             directNavigation.setVisibility(View.VISIBLE);
@@ -117,14 +109,12 @@ public class StationListViewAdapter extends BaseAdapter {
     }
 
     // 아이템 데이터 추가를 위한 함수. 개발자가 원하는대로 작성 가능.
-    public void addItem(String number, String name, String address, float distance, double latitude, double longitude) {
+    public void addItem(String number, String name, String address, float distance) {
         ListViewItem item = new ListViewItem();
         item.setNumber(number);
         item.setName(name);
         item.setAddress(address);
         item.setDistance(distance);
-        item.setLatitude(latitude);
-        item.setLongitude(longitude);
         listViewItemList.add(item);
     }
 
@@ -168,106 +158,6 @@ public class StationListViewAdapter extends BaseAdapter {
         public float getDistance() {
             return this.placeDistance;
         }
-
-        public void setLatitude(double latitude) {
-            stationLatitude = latitude;
-        }
-
-        public double getStationLatitude() {
-            return this.stationLatitude;
-        }
-
-        public void setLongitude(double longitude) {
-            stationLongitude = longitude;
-        }
-
-        public double getStationLongitude() {
-            return this.stationLongitude;
-        }
-    }
-
-    private void TmapNavigation(String spotName, double latitude, double longitude) {
-        boolean isTmapApp_1 = appInstalledOrNot("com.skt.skaf.l001mtm091");
-        boolean isTmapApp_2 = appInstalledOrNot("com.skt.tmap.ku");
-        boolean isTmapApp_3 = appInstalledOrNot("com.skt.skaf.l001mtm092");
-
-        if (isTmapApp_1 || isTmapApp_2 || isTmapApp_3) {
-            tmaptapi.invokeRoute(spotName, (float) longitude, (float) latitude);
-        } else {
-            showTmapInstallDialog();
-        }
-    }
-
-
-    private void TmapAuthentication() {
-        tmaptapi = new TMapTapi(StationListActivity.mStationContext);
-        tmaptapi.setSKPMapAuthentication("593851f2-df66-33d7-ae97-52ef7278295f");
-
-        tmaptapi.setOnAuthenticationListener(new TMapTapi.OnAuthenticationListenerCallback() {
-
-            @Override
-            public void SKPMapApikeySucceed() {
-                Log.i("키인증", "성공");
-            }
-
-            @Override
-            public void SKPMapApikeyFailed(String errorMsg) {
-                Log.i("키인증", "실패");
-                Toast.makeText(StationListActivity.mStationContext, "네비게이션 안내 오류로 다음에 이용해 주시기 바랍니다.", Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-
-    private void showTmapInstallDialog() {
-
-        telephonyManager = (TelephonyManager) TourInfoActivity.mContextTourInfo.getSystemService(Context.TELEPHONY_SERVICE);
-        networkoper = telephonyManager.getNetworkOperatorName();
-
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                TourInfoActivity.mContextTourInfo);
-
-        alertDialogBuilder
-                .setMessage("T map 설치가 필요합니다.")
-                .setCancelable(false)
-                .setPositiveButton("설치하기",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(
-                                    DialogInterface dialog, int id) {
-                                if (networkoper.equals("SKTelecom")) {
-                                    Log.i("통신사", "skt");
-                                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://onesto.re/0000163382"));
-                                    StationListActivity.mStationContext.startActivity(intent);
-                                } else {
-                                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.skt.tmap.ku"));
-                                    StationListActivity.mStationContext.startActivity(intent);
-                                }
-                            }
-                        })
-                .setNegativeButton("취소",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(
-                                    DialogInterface dialog, int id) {
-                                // 다이얼로그를 취소한다
-                                dialog.cancel();
-                            }
-                        });
-
-        // 다이얼로그 생성
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        // 다이얼로그 보여주기
-        alertDialog.show();
-    }
-
-    private boolean appInstalledOrNot(String uri) {
-        PackageManager pm = StationListActivity.mStationContext.getPackageManager();
-        boolean app_installed;
-        try {
-            pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
-            app_installed = true;
-        } catch (PackageManager.NameNotFoundException e) {
-            app_installed = false;
-        }
-        return app_installed;
     }
 }
 

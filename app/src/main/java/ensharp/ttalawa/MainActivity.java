@@ -393,7 +393,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mGoogleMap.getUiSettings().setCompassEnabled(false);
 
         mapButtonSetting();
-        // TmapAuthentication();
+        //TmapAuthentication();
 
         markerMap = new HashMap();
         stationMarkerMap = new HashMap();
@@ -1232,6 +1232,18 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                 CameraUpdate center = CameraUpdateFactory.newLatLng(marker.getPosition());
                 mGoogleMap.animateCamera(center);
+            } else if (resultCode == 2) {
+                value = data.getStringExtra("key");
+                if (stationMarkerMap.containsKey(value)) {
+                    marker = (Marker) stationMarkerMap.get(value);
+                    TmapNavigation(marker, true);
+                } else if (neartourSpotStationMarkerMap.containsKey(value)) {
+                    marker = (Marker) neartourSpotStationMarkerMap.get(value);
+                    TmapNavigation(marker, true);
+                } else {
+                    marker = (Marker) stationRedMarkMap.get(value);
+                    TmapNavigation(marker, true);
+                }
             }
         }
         super.onActivityResult(requestCode, resultCode, data);

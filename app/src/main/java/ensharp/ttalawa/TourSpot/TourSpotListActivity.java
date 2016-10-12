@@ -26,6 +26,8 @@ public class TourSpotListActivity extends ActionBarActivity implements TourSpotR
     private TourSpotRecyclerAdapter adapter;
     private ArrayList<String> spotList;
     SharedPreferences pref;
+    RecyclerView mTimeRecyclerView;
+    RecyclerView.LayoutManager layoutManager;
     //    요청코드정의
     public static final int REQUEST_TOURSPOT_DETAILS = 1003;
 
@@ -36,10 +38,10 @@ public class TourSpotListActivity extends ActionBarActivity implements TourSpotR
         activityNameTxt = (TextView) findViewById(R.id.activityName);
         activityNameTxt.setText("추천 관광 명소");
         pref = new SharedPreferences(this);
-        RecyclerView mTimeRecyclerView = (RecyclerView) findViewById(R.id.tourSpotRecyclerView);
+        mTimeRecyclerView = (RecyclerView) findViewById(R.id.tourSpotRecyclerView);
         mTimeRecyclerView.setHasFixedSize(true);
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager = new LinearLayoutManager(this);
         mTimeRecyclerView.setLayoutManager(layoutManager);
 
         adapter = new TourSpotRecyclerAdapter(getDataset());
@@ -68,6 +70,16 @@ public class TourSpotListActivity extends ActionBarActivity implements TourSpotR
             resultIntent.putExtra("key", value);
             setResult(1, resultIntent);
             finish();
+        } else {
+            mTimeRecyclerView = (RecyclerView) findViewById(R.id.tourSpotRecyclerView);
+            mTimeRecyclerView.setHasFixedSize(true);
+
+            layoutManager = new LinearLayoutManager(this);
+            mTimeRecyclerView.setLayoutManager(layoutManager);
+
+            adapter = new TourSpotRecyclerAdapter(getDataset());
+            adapter.setOnItemClickListener(this);
+            mTimeRecyclerView.setAdapter(adapter);
         }
     }
 

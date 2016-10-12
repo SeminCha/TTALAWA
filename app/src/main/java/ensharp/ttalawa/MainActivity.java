@@ -8,7 +8,6 @@ import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -108,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     Marker navigationMarker;
     private LinearLayout btn_tourspot;
     LinearLayout rentInfoLayout;
+    LinearLayout rentInfoBackLayout;
     RelativeLayout alarmSettingLayout;
     Toolbar alarmSettingToolbar;
 
@@ -154,6 +154,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         alarmSettingLayout = (RelativeLayout) findViewById(R.id.alarmSettingLayout);
         alarmSettingToolbar = (Toolbar) findViewById(R.id.toolBar_alarmsetting);
         rentInfoLayout = (LinearLayout) findViewById(R.id.rentInfoLayout);
+        rentInfoBackLayout = (LinearLayout) findViewById(R.id.rentInfoBackLayout);
         time_layout = (RelativeLayout) findViewById(R.id.timeLayout);
         mode_layout = (RelativeLayout) findViewById(R.id.modeLayout);
 
@@ -521,13 +522,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             alarmSettingToolbar.setVisibility(View.VISIBLE);
             alarmSettingLayout.setVisibility(View.VISIBLE);
             alarmSettingLayout.startAnimation(slide_in);
-            rentInfoLayout.setBackgroundColor(Color.WHITE);
-
+            rentInfoBackLayout.setVisibility(View.VISIBLE);
+            rentInfoBackLayout.startAnimation(slide_in);
         } else {
             alarmSettingToolbar.setVisibility(View.GONE);
             alarmSettingLayout.startAnimation(slide_out);
             alarmSettingLayout.setVisibility(View.GONE);
-            rentInfoLayout.setBackground(getResources().getDrawable(R.drawable.rent_bg));
+            rentInfoBackLayout.startAnimation(slide_out);
+            rentInfoBackLayout.setVisibility(View.GONE);
         }
     }
 
@@ -1112,11 +1114,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     // 결과에 대한 함수
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Marker marker;
+        String value;
         Log.i("결과값", "requestCode : " + requestCode + ", resultCode : " + resultCode);
         //추천관광명소activity(TourSpotListActivity)에서 돌아온 경우
         if (requestCode == REQUEST_TOURSPOT_LIST) {
             if (resultCode == 1) {
-                String value = data.getStringExtra("key");
+                value = data.getStringExtra("key");
                 if (tourSpotMarkerMap.containsKey("S" + value)) {
                     marker = (Marker) tourSpotMarkerMap.get("S" + value);
                     changeSelectedMarker(null);
@@ -1142,8 +1145,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             // 대여소 목록리스트에서 돌아온 경우
         } else {
             if (resultCode == 1) {
-                if (stationMarkerMap.containsKey(String.valueOf(resultCode))) {
-                    marker = (Marker) stationMarkerMap.get(String.valueOf(resultCode));
+                value = data.getStringExtra("key");
+                if (stationMarkerMap.containsKey(value)) {
+                    marker = (Marker) stationMarkerMap.get(value);
                     uncheckNearStationMarker();
                     changeSelectedMarker(marker);
                     insertInfoLayoutContent(marker, stationInfoLayout);
@@ -1153,8 +1157,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                     mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(14));
                     Log.i("일반", "일반");
-                } else if (neartourSpotStationMarkerMap.containsKey(String.valueOf(resultCode))) {
-                    marker = (Marker) neartourSpotStationMarkerMap.get(String.valueOf(resultCode));
+                } else if (neartourSpotStationMarkerMap.containsKey(value)) {
+                    marker = (Marker) neartourSpotStationMarkerMap.get(value);
                     uncheckNearStationMarker();
                     changeSelectedMarker(marker);
                     insertInfoLayoutContent(marker, stationInfoLayout);
@@ -1165,7 +1169,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(14));
                     Log.i("관광지근처", "관광지근처");
                 } else {
-                    marker = (Marker) stationRedMarkMap.get(String.valueOf(resultCode));
+                    marker = (Marker) stationRedMarkMap.get(value);
                     Log.i("선택됨", "선택됨");
                 }
 

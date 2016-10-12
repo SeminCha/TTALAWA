@@ -53,54 +53,67 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <!--대여창-->
-                <LinearLayout
-                    android:id="@+id/rentInfoLayout"
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:background="@drawable/rent_bg"
-                    android:gravity="center_vertical"
-                    android:weightSum="10">
+                    android:layout_height="48dp">
+                    <LinearLayout
+                        android:id="@+id/rentInfoBackLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:orientation="vertical"
+                        android:background="@color/white"
+                        android:visibility="gone"/>
+                    <LinearLayout
+                        android:id="@+id/rentInfoLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@drawable/rent_bg"
+                        android:gravity="center_vertical"
+                        android:clickable="true"
+                        android:weightSum="10">
 
-                    <!--남은시간뷰-->
-                    <TextView
-                        android:id="@+id/restTimetxtView"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="25dp"
-                        android:layout_weight="4"
-                        android:text="따릉이를 대여하세요"
-                        android:textColor="#354150"
-                        android:textSize="17dp"
-                        android:textStyle="bold" />
+                        <!--남은시간뷰-->
+                        <TextView
+                            android:id="@+id/restTimetxtView"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="25dp"
+                            android:layout_weight="4"
+                            android:text="따릉이를 대여하세요"
+                            android:textColor="#354150"
+                            android:textSize="17dp"
+                            android:textStyle="bold" />
 
-                    <!--과금텍스트뷰-->
-                    <TextView
-                        android:id="@+id/overChargingView"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="4"
-                        android:textColor="#000000"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
+                        <!--과금텍스트뷰-->
+                        <TextView
+                            android:id="@+id/overChargingView"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4"
+                            android:textColor="#000000"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
 
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2">
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2">
 
-                        <Button
-                            android:id="@+id/alarmSettingBtn"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="25dp"
-                            android:background="@drawable/settings_dark" />
-                    </RelativeLayout>
-                    <!--android:text="설정"-->
-                    <!--android:textColor="@color/white"-->
-                    <!--/>-->
-                </LinearLayout>
+                            <Button
+                                android:id="@+id/alarmSettingBtn"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="25dp"
+                                android:background="@drawable/settings_dark" />
+                        </RelativeLayout>
+                        <!--android:text="설정"-->
+                        <!--android:textColor="@color/white"-->
+                        <!--/>-->
+                    </LinearLayout>
+                </FrameLayout>
+
                 <!--플로팅버튼레이아웃-->
                 <RelativeLayout
                     android:id="@+id/btnviewLayout"
@@ -189,42 +202,43 @@
             <LinearLayout
                 android:id="@+id/stationInfoLayout"
                 android:layout_width="match_parent"
-                android:layout_height="205dp"
+                android:layout_height="215dp"
                 android:layout_gravity="bottom"
                 android:background="@drawable/stationinfo_layout_style"
                 android:clickable="true"
                 android:orientation="vertical"
-                android:paddingEnd="15dp"
-                android:paddingStart="15dp"
-                android:paddingTop="15dp"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp"
+                android:paddingTop="23dp"
                 android:visibility="gone"
-                android:weightSum="102">
+                android:weightSum="97">
 
                 <!--관광지명-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="25"
+                    android:layout_weight="20"
                     android:orientation="horizontal"
                     android:weightSum="10">
 
                     <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
+                        android:layout_gravity="top"
                         android:layout_weight="1">
 
                         <ImageView
                             android:layout_width="40dp"
                             android:layout_height="30dp"
-                            android:layout_alignParentStart="true"
-                            android:src="@drawable/station_label" />
+                            android:src="@drawable/station_label"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentStart="true" />
                     </RelativeLayout>
 
                     <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
+                        android:layout_gravity="top"
                         android:layout_weight="9"
                         android:paddingStart="5dp">
 
@@ -232,6 +246,7 @@
                             android:id="@+id/stationNameTxt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:paddingStart="5dp"
                             android:text=""
                             android:textColor="@color/black"
                             android:textSize="20dp" />
@@ -252,10 +267,10 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:layout_marginBottom="3dp"
+                        android:layout_marginBottom="5dp"
                         android:layout_marginRight="13dp"
                         android:layout_marginStart="2dp"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="6dp"
                         android:layout_weight="1.89"
                         android:background="@drawable/stationinfo_imageview_style">
 
@@ -502,31 +517,30 @@
             <LinearLayout
                 android:id="@+id/tourSpotInfoLayout"
                 android:layout_width="match_parent"
-                android:layout_height="205dp"
+                android:layout_height="215dp"
                 android:layout_gravity="bottom"
                 android:background="@drawable/stationinfo_layout_style"
                 android:clickable="true"
                 android:orientation="vertical"
-                android:paddingEnd="15dp"
-                android:paddingStart="15dp"
-                android:paddingTop="15dp"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp"
+                android:paddingTop="23dp"
                 android:visibility="gone"
-                android:weightSum="102">
+                android:weightSum="97">
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="25"
+                    android:layout_weight="20"
                     android:orientation="horizontal"
                     android:weightSum="10">
 
                     <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
+                        android:layout_gravity="top"
                         android:layout_weight="1">
-
                         <ImageView
                             android:layout_width="40dp"
                             android:layout_height="30dp"
@@ -537,10 +551,9 @@
                     <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
+                        android:layout_gravity="top"
                         android:layout_weight="9"
                         android:paddingStart="5dp">
-
 
                         <TextView
                             android:id="@+id/tourSpotNameTxt"
@@ -550,7 +563,6 @@
                             android:text=""
                             android:textColor="@color/black"
                             android:textSize="20dp" />
-
                     </RelativeLayout>
 
                 </LinearLayout>
@@ -567,10 +579,10 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:layout_marginBottom="3dp"
+                        android:layout_marginBottom="5dp"
                         android:layout_marginRight="13dp"
                         android:layout_marginStart="2dp"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="6dp"
                         android:layout_weight="1.89"
                         android:background="@drawable/stationinfo_imageview_style">
 

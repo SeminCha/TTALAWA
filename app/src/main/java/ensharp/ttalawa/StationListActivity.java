@@ -1,6 +1,7 @@
 package ensharp.ttalawa;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.location.Location;
@@ -32,6 +33,7 @@ public class StationListActivity extends Activity implements AdapterView.OnItemC
     StationData stationData;
     LatLng currentLocation;
     TextView activityNameTxt;
+    public static Context mStationContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,7 @@ public class StationListActivity extends Activity implements AdapterView.OnItemC
         activityNameTxt = (TextView) findViewById(R.id.activityName);
         activityNameTxt.setText("대여소 목록(거리 순)");
         currentLocation = getIntent().getParcelableExtra("location");
-
+        mStationContext = this;
         getStationData();
         sortingStationList();
     }
@@ -88,7 +90,7 @@ public class StationListActivity extends Activity implements AdapterView.OnItemC
         Collections.sort(distanceList);
         for (int i = 0; i < distanceList.size(); i++) {
             stationData = (StationData) placeDistance.get(distanceList.get(i));
-            adapter.addItem(stationData.getNumber(), stationData.getName(), stationData.getAddress(), distanceList.get(i));
+            adapter.addItem(stationData.getNumber(), stationData.getName(), stationData.getAddress(), distanceList.get(i), stationData.getLatitude(), stationData.getLongitude());
         }
     }
 

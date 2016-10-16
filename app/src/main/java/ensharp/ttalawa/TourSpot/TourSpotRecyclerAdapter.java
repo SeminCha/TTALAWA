@@ -109,35 +109,35 @@ public class TourSpotRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         //코스 이름
         if(holder instanceof CourseViewHolder) {
             CourseViewHolder tHolder = (CourseViewHolder) holder;
-            if((itemList.get(position)).getCourseToString()=="도심 코스") {
+            if((itemList.get(position)).getCourseToString()=="도심") {
                 tHolder.courseTitleView.setText(itemList.get(position).getCourseToString());
                 tHolder.layoutCourse.setBackgroundResource(R.drawable.data_course_dosim);
                 tHolder.courseTitleView.setTextColor(Color.parseColor("#9c4876"));
                 tHolder.courseEngTextView.setText("City Center");
                 tHolder.courseEngTextView.setTextColor(Color.parseColor("#be729c"));
             }
-            else if((itemList.get(position)).getCourseToString()=="고궁 코스") {
+            else if((itemList.get(position)).getCourseToString()=="고궁") {
                 tHolder.courseTitleView.setText(itemList.get(position).getCourseToString());
                 tHolder.layoutCourse.setBackgroundResource(R.drawable.data_course_gogung);
                 tHolder.courseTitleView.setTextColor(Color.parseColor("#1189a2"));
                 tHolder.courseEngTextView.setText("Palace Quarter");
                 tHolder.courseEngTextView.setTextColor(Color.parseColor("#44bbd3"));
             }
-            else if((itemList.get(position)).getCourseToString()=="동대문&대학로 코스") {
+            else if((itemList.get(position)).getCourseToString()=="동대문&대학로") {
                 tHolder.courseTitleView.setText(itemList.get(position).getCourseToString());
                 tHolder.layoutCourse.setBackgroundResource(R.drawable.data_course_dong_dae);
                 tHolder.courseTitleView.setTextColor(Color.parseColor("#486d9f"));
                 tHolder.courseEngTextView.setText("Dongdaemun&Around");
                 tHolder.courseEngTextView.setTextColor(Color.parseColor("#7a9fd0"));
             }
-            else if((itemList.get(position)).getCourseToString()=="여의도 코스") {
+            else if((itemList.get(position)).getCourseToString()=="여의도") {
                 tHolder.courseTitleView.setText(itemList.get(position).getCourseToString());
                 tHolder.layoutCourse.setBackgroundResource(R.drawable.data_course_yeouido);
                 tHolder.courseTitleView.setTextColor(Color.parseColor("#875295"));
                 tHolder.courseEngTextView.setText("Yeouido");
                 tHolder.courseEngTextView.setTextColor(Color.parseColor("#ab7cb7"));
             }
-            else if((itemList.get(position)).getCourseToString()=="상암 코스") {
+            else if((itemList.get(position)).getCourseToString()=="상암") {
                 tHolder.courseTitleView.setText(itemList.get(position).getCourseToString());
                 tHolder.layoutCourse.setBackgroundResource(R.drawable.data_course_sangam);
                 tHolder.courseTitleView.setTextColor(Color.parseColor("#b36b24"));

@@ -9,6 +9,7 @@ import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -80,6 +81,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         GoogleMap.InfoWindowAdapter,
         LocationListener {
 
+
+
     GoogleMap mGoogleMap;
     MapFragment mapFrag;
     LocationRequest mLocationRequest;
@@ -142,6 +145,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
+    TextView fab_txt_tour;
+    TextView fab_txt_rental;
+    TextView tool_txt_recommend;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -203,7 +209,22 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+        Typeface tf_nanumsquare_bold=Typeface.createFromAsset(getAssets(),"NanumSquareB.ttf");
+        Typeface tf_nanumsquare_extrabold=Typeface.createFromAsset(getAssets(),"NanumSquareEB.ttf");
+        fab_txt_tour=(TextView)findViewById(R.id.fab_txt_tourspot);
+        fab_txt_rental=(TextView)findViewById(R.id.fab_txt_rentalstation);
+        tool_txt_recommend=(TextView)findViewById(R.id.tool_recommend_txt);
+        fab_txt_tour.setTypeface(tf_nanumsquare_bold);
+        fab_txt_rental.setTypeface(tf_nanumsquare_bold);
+        tool_txt_recommend.setTypeface(tf_nanumsquare_bold);
+        mainTxtView.setTypeface(tf_nanumsquare_bold);
+
+
+
+
     }
+
 
     private void initSetting() {
 

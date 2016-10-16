@@ -94,29 +94,29 @@ public class TourSpotListActivity extends ActionBarActivity implements TourSpotR
             //인증완료
             if (pref.getValue(String.valueOf(i), false, "방문여부")) {
                 if (i <= 5) {
-                    dataset.add(new TourData(spotList.get(i).toString(), "도심 코스", "방문완료"));
+                    dataset.add(new TourData(spotList.get(i).toString(), "도심", "방문완료"));
                 } else if (i <= 14) {
-                    dataset.add(new TourData(spotList.get(i).toString(), "고궁 코스", "방문완료"));
+                    dataset.add(new TourData(spotList.get(i).toString(), "고궁", "방문완료"));
                 } else if (i <= 19) {
-                    dataset.add(new TourData(spotList.get(i).toString(), "동대문&대학로 코스", "방문완료"));
+                    dataset.add(new TourData(spotList.get(i).toString(), "동대문&대학로", "방문완료"));
                 } else if (i <= 21) {
-                    dataset.add(new TourData(spotList.get(i).toString(), "여의도 코스", "방문완료"));
+                    dataset.add(new TourData(spotList.get(i).toString(), "여의도", "방문완료"));
                 } else if (i <= 24) {
-                    dataset.add(new TourData(spotList.get(i).toString(), "상암 코스", "방문완료"));
+                    dataset.add(new TourData(spotList.get(i).toString(), "상암", "방문완료"));
                 }
             }
             //미인증
             else if (pref.getValue(String.valueOf(i), false, "방문여부") == false) {
                 if (i <= 5) {
-                    dataset.add(new TourData(spotList.get(i).toString(), "도심 코스", "미방문"));
+                    dataset.add(new TourData(spotList.get(i).toString(), "도심", "미방문"));
                 } else if (i <= 14) {
-                    dataset.add(new TourData(spotList.get(i).toString(), "고궁 코스", "미방문"));
+                    dataset.add(new TourData(spotList.get(i).toString(), "고궁", "미방문"));
                 } else if (i <= 19) {
-                    dataset.add(new TourData(spotList.get(i).toString(), "동대문&대학로 코스", "미방문"));
+                    dataset.add(new TourData(spotList.get(i).toString(), "동대문&대학로", "미방문"));
                 } else if (i <= 21) {
-                    dataset.add(new TourData(spotList.get(i).toString(), "여의도 코스", "미방문"));
+                    dataset.add(new TourData(spotList.get(i).toString(), "여의도", "미방문"));
                 } else if (i <= 24) {
-                    dataset.add(new TourData(spotList.get(i).toString(), "상암 코스", "미방문"));
+                    dataset.add(new TourData(spotList.get(i).toString(), "상암", "미방문"));
                 }
 
             }

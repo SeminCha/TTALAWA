@@ -25,7 +25,8 @@
     <color name="grey_accent1">#C2CBDB</color>
     <color name="grey_accent_transparent">#7aacb5</color>
     <color name="grey_accent2">#B7B7B7</color>
-    <color name="orangered">#F90101</color>
+    <color name="orangered">#F33F4A</color>
+    <!--<color name="orangered">#F90101</color>-->
     <!--<color name="orangered">#df5539</color>-->
     <color name="orangered_comple">#227585</color>
     <color name="maincolor">#354150</color>

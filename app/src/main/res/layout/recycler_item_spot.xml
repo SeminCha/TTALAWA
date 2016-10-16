@@ -4,8 +4,6 @@
     android:layout_height="55dp"
     android:background="@drawable/data_item_bg"
     android:gravity="center"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
     android:clickable="false"
     android:weightSum="10">
 
@@ -35,7 +33,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="관광지명"
-            android:textColor="@android:color/black"
+            android:textColor="@color/maincolor"
+            android:textStyle="bold"
             android:textSize="18sp" />
     </LinearLayout>
 

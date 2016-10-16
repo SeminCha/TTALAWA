@@ -25,9 +25,11 @@
     <color name="grey_accent1">#C2CBDB</color>
     <color name="grey_accent_transparent">#7aacb5</color>
     <color name="grey_accent2">#B7B7B7</color>
-    <color name="orangered">#df5539</color>
+    <color name="orangered">#F90101</color>
+    <!--<color name="orangered">#df5539</color>-->
     <color name="orangered_comple">#227585</color>
-    <color name="maincolor">#4a5b70</color>
+    <color name="maincolor">#354150</color>
+    <!--<color name="maincolor">#4a5b70</color>-->
     <!--<color name="maincolor">#404e60</color>-->
     <!--<color name="maincolor">#556880</color>-->
     <!--&lt;!&ndash;<color name="maincolor">#607590</color>&ndash;&gt; original2-->
@@ -39,5 +41,13 @@
     <color name="tablecolor">#4a5b70</color>
 
     <color name="titlecolor">#9fb6d1</color>
-    <color name="pressedbgcolor">#d2d9e2</color>
+    <color name="pressedbgcolor">#e1e6ec</color>
+
+    <!--코스별 테마 색상-->
+    <color name="dosim_color">#ae5084</color>
+    <color name="gogung_color">#16abc8</color>
+    <color name="dongdae_color">#5a88c5</color>
+    <color name="yeouido_color">#965CA6</color>
+    <color name="sangam_color">#de852d</color>
+
 </resources>

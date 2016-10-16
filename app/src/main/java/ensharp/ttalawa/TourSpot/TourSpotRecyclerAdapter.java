@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -20,11 +21,15 @@ public class TourSpotRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
 
     public static class CourseViewHolder extends RecyclerView.ViewHolder {
+        public LinearLayout layoutCourse;
         public TextView courseTitleView;
+        public TextView courseEngTextView;
 
         public CourseViewHolder(View v) {
             super(v);
             courseTitleView = (TextView) v.findViewById(R.id.courseTitleView);
+            layoutCourse=(LinearLayout)v.findViewById(R.id.layout_course);
+            courseEngTextView=(TextView)v.findViewById(R.id.courseEngText);
         }
     }
     public static class DataViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -101,11 +106,47 @@ public class TourSpotRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-
+        //코스 이름
         if(holder instanceof CourseViewHolder) {
             CourseViewHolder tHolder = (CourseViewHolder) holder;
-            tHolder.courseTitleView.setText(itemList.get(position).getCourseToString());
+            if((itemList.get(position)).getCourseToString()=="도심 코스") {
+                tHolder.courseTitleView.setText(itemList.get(position).getCourseToString());
+                tHolder.layoutCourse.setBackgroundResource(R.drawable.data_course_dosim);
+                tHolder.courseTitleView.setTextColor(Color.parseColor("#9c4876"));
+                tHolder.courseEngTextView.setText("City Center");
+                tHolder.courseEngTextView.setTextColor(Color.parseColor("#be729c"));
+            }
+            else if((itemList.get(position)).getCourseToString()=="고궁 코스") {
+                tHolder.courseTitleView.setText(itemList.get(position).getCourseToString());
+                tHolder.layoutCourse.setBackgroundResource(R.drawable.data_course_gogung);
+                tHolder.courseTitleView.setTextColor(Color.parseColor("#1189a2"));
+                tHolder.courseEngTextView.setText("Palace Quarter");
+                tHolder.courseEngTextView.setTextColor(Color.parseColor("#44bbd3"));
+            }
+            else if((itemList.get(position)).getCourseToString()=="동대문&대학로 코스") {
+                tHolder.courseTitleView.setText(itemList.get(position).getCourseToString());
+                tHolder.layoutCourse.setBackgroundResource(R.drawable.data_course_dong_dae);
+                tHolder.courseTitleView.setTextColor(Color.parseColor("#486d9f"));
+                tHolder.courseEngTextView.setText("Dongdaemun&Around");
+                tHolder.courseEngTextView.setTextColor(Color.parseColor("#7a9fd0"));
+            }
+            else if((itemList.get(position)).getCourseToString()=="여의도 코스") {
+                tHolder.courseTitleView.setText(itemList.get(position).getCourseToString());
+                tHolder.layoutCourse.setBackgroundResource(R.drawable.data_course_yeouido);
+                tHolder.courseTitleView.setTextColor(Color.parseColor("#875295"));
+                tHolder.courseEngTextView.setText("Yeouido");
+                tHolder.courseEngTextView.setTextColor(Color.parseColor("#ab7cb7"));
+            }
+            else if((itemList.get(position)).getCourseToString()=="상암 코스") {
+                tHolder.courseTitleView.setText(itemList.get(position).getCourseToString());
+                tHolder.layoutCourse.setBackgroundResource(R.drawable.data_course_sangam);
+                tHolder.courseTitleView.setTextColor(Color.parseColor("#b36b24"));
+                tHolder.courseEngTextView.setText("Sangam");
+                tHolder.courseEngTextView.setTextColor(Color.parseColor("#e49d56"));
+            }
         }
+
+        //관광명소 이름 및 인증 여부
         else if (holder instanceof DataViewHolder) {
             DataViewHolder dHolder = (DataViewHolder) holder;
             //관광명소 이름

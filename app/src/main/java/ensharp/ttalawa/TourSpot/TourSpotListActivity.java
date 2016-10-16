@@ -98,7 +98,7 @@ public class TourSpotListActivity extends ActionBarActivity implements TourSpotR
                 } else if (i <= 14) {
                     dataset.add(new TourData(spotList.get(i).toString(), "고궁 코스", "방문완료"));
                 } else if (i <= 19) {
-                    dataset.add(new TourData(spotList.get(i).toString(), "동대문 & 대학로 코스", "방문완료"));
+                    dataset.add(new TourData(spotList.get(i).toString(), "동대문&대학로 코스", "방문완료"));
                 } else if (i <= 21) {
                     dataset.add(new TourData(spotList.get(i).toString(), "여의도 코스", "방문완료"));
                 } else if (i <= 24) {
@@ -112,7 +112,7 @@ public class TourSpotListActivity extends ActionBarActivity implements TourSpotR
                 } else if (i <= 14) {
                     dataset.add(new TourData(spotList.get(i).toString(), "고궁 코스", "미방문"));
                 } else if (i <= 19) {
-                    dataset.add(new TourData(spotList.get(i).toString(), "동대문 & 대학로 코스", "미방문"));
+                    dataset.add(new TourData(spotList.get(i).toString(), "동대문&대학로 코스", "미방문"));
                 } else if (i <= 21) {
                     dataset.add(new TourData(spotList.get(i).toString(), "여의도 코스", "미방문"));
                 } else if (i <= 24) {

@@ -37,7 +37,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="19dp"
                 android:textStyle="bold"
-                android:textColor="@color/maincolor"/>
+                android:textColor="@color/maincolor"
+                android:text="뒤로가기"/>
         </RelativeLayout>
     </LinearLayout>
 </android.support.v7.widget.Toolbar>

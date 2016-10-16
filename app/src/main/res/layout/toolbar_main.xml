@@ -101,16 +101,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="추천 "
+                    android:text="추천"
                     android:textStyle="bold"
                     android:textColor="@color/orangered"
                     android:textSize="17.5dp" />
 
-                <ImageView
-                    android:layout_width="14dp"
-                    android:layout_height="14dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/next_orange" />
+                <!--<ImageView-->
+                    <!--android:layout_width="14dp"-->
+                    <!--android:layout_height="14dp"-->
+                    <!--android:scaleType="fitXY"-->
+                    <!--android:src="@drawable/next_orange" />-->
             </LinearLayout>
         </LinearLayout>
 

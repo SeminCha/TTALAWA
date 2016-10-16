@@ -17,12 +17,11 @@
         android:id="@+id/tab_layout"
         style="@style/AppTabLayout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="48dp"
         android:background="@drawable/tablayout_bg"
         android:elevation="6dp"
         android:minHeight="?attr/actionBarSize"
-        app:tabIndicatorHeight="2.8dp"
-        app:tabSelectedTextColor="#df5539"
+        app:tabSelectedTextColor="@color/orangered"
         app:tabTextAppearance="@style/AppTabTextAppearance" />
 
     <!--app:tabTextAppearance="@style/AppTabTextAppearance"/>-->

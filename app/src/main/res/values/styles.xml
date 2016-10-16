@@ -13,7 +13,7 @@
     <style name="AppTabLayout" parent="Widget.Design.TabLayout">
         <!--<item name="tabMaxWidth">@dimen/tab_max_width</item>-->
         <item name="tabIndicatorColor">@color/orangered</item>
-        <item name="tabIndicatorHeight">1.5dp</item>
+        <item name="tabIndicatorHeight">3dp</item>
         <item name="tabPaddingStart">6dp</item>
         <item name="tabPaddingEnd">6dp</item>
         <item name="tabTextAppearance">@style/AppTabTextAppearance</item>
@@ -22,7 +22,7 @@
 
     <!-- for text -->
     <style name="AppTabTextAppearance" parent="TextAppearance.Design.Tab">
-        <item name="android:textSize">17sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/grey_accent2</item>
         <item name="android:textStyle">bold</item>
         <item name="textAllCaps">false</item>

@@ -82,7 +82,7 @@
                             android:layout_marginLeft="25dp"
                             android:layout_weight="5"
                             android:text="따릉이를 대여하세요"
-                            android:textColor="@color/white"
+                            android:textColor="@color/maincolor"
                             android:textSize="17dp"
                             android:textStyle="bold" />
 
@@ -135,10 +135,10 @@
                             android:id="@+id/myLocationBtn"
                             android:layout_width="45dp"
                             android:layout_height="45dp"
-                            android:alpha="0.5"
+                            android:alpha="0.8"
                             android:elevation="10dp"
                             android:scaleType="fitXY"
-                            app:backgroundTint="@color/maincolor" />
+                            app:backgroundTint="@color/fabcolor" />
 
                         <ImageButton
                             android:layout_width="20dp"
@@ -160,9 +160,9 @@
                             android:id="@+id/tourSpotMarkerBtn"
                             android:layout_width="45dp"
                             android:layout_height="45dp"
-                            android:alpha="0.5"
+                            android:alpha="0.8"
                             android:elevation="10dp"
-                            app:backgroundTint="@color/maincolor" />
+                            app:backgroundTint="@color/fabcolor" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -172,7 +172,7 @@
                             android:text="관광지"
                             android:id="@+id/fab_txt_tourspot"
                             android:textColor="@android:color/white"
-                            android:textSize="15dp" />
+                            android:textSize="14dp" />
                     </FrameLayout>
                     <!--대여소목록 버튼-->
                     <FrameLayout
@@ -187,9 +187,9 @@
                             android:id="@+id/stationListBtn"
                             android:layout_width="45dp"
                             android:layout_height="45dp"
-                            android:alpha="0.5"
+                            android:alpha="0.8"
                             android:elevation="10dp"
-                            app:backgroundTint="@color/maincolor" />
+                            app:backgroundTint="@color/fabcolor" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -199,7 +199,7 @@
                             android:text="대여소"
                             android:id="@+id/fab_txt_rentalstation"
                             android:textColor="@android:color/white"
-                            android:textSize="15dp" />
+                            android:textSize="14dp" />
                     </FrameLayout>
 
                     <!--줌 인-->
@@ -208,11 +208,11 @@
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_marginLeft="15dp"
-                        android:alpha="0.5"
+                        android:alpha="0.8"
                         android:elevation="10dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/zoomin_image"
-                        app:backgroundTint="@color/maincolor"
+                        app:backgroundTint="@color/fabcolor"
                         android:layout_marginBottom="70dp"
                         android:layout_alignParentBottom="true"
                         android:layout_alignEnd="@+id/frameLayout2" />
@@ -223,11 +223,11 @@
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_marginBottom="15dp"
-                        android:alpha="0.5"
+                        android:alpha="0.8"
                         android:elevation="10dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/zoomout_image"
-                        app:backgroundTint="@color/maincolor"
+                        app:backgroundTint="@color/fabcolor"
                         android:layout_above="@+id/zoomInBtn"
                         android:layout_alignParentBottom="true"
                         android:layout_alignEnd="@+id/frameLayout2"

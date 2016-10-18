@@ -3,6 +3,7 @@ package ensharp.ttalawa;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.telephony.TelephonyManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -88,6 +89,7 @@ public class StationListViewAdapter extends BaseAdapter {
                 }
             });
             directNavigation.setVisibility(View.VISIBLE);
+            distanceView.setTextColor(Color.parseColor("#F33F4A"));
         } // 그 외
         else {
             directNavigation.setVisibility(View.GONE);

@@ -375,7 +375,7 @@ public class TourInfoTab1_Intro extends Fragment {
                             startActivity(webIntent);
                             break;
                         case "남산 공원":
-                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://parks.seoul.go.kr/template/default.jsp?park_id=namsan/"));
+                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://parks.seoul.go.kr/namsan/"));
                             startActivity(webIntent);
                             break;
                         case "N 서울타워":
@@ -383,7 +383,7 @@ public class TourInfoTab1_Intro extends Fragment {
                             startActivity(webIntent);
                             break;
                         case "경복궁":
-                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("www.royalpalace.go.kr:8080/"));
+                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.royalpalace.go.kr/"));
                             startActivity(webIntent);
                             break;
                         case "광화문 광장":
@@ -391,7 +391,7 @@ public class TourInfoTab1_Intro extends Fragment {
                             startActivity(webIntent);
                             break;
                         case "종묘":
-                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://jm.cha.go.kr/n_jm/index.html/"));
+                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://jm.cha.go.kr/n_jm/"));
                             startActivity(webIntent);
                             break;
                         case "보신각 터":
@@ -419,7 +419,7 @@ public class TourInfoTab1_Intro extends Fragment {
                             startActivity(webIntent);
                             break;
                         case "흥인지문":
-                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.deoksugung.go.kr/"));
+                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://korean.visitseoul.net/attractions/%ED%9D%A5%EC%9D%B8%EC%A7%80%EB%AC%B8%EB%8F%99%EB%8C%80%EB%AC%B8_/1999"));
                             startActivity(webIntent);
                             break;
                         case "동대문 패션타운":
@@ -439,7 +439,7 @@ public class TourInfoTab1_Intro extends Fragment {
                             startActivity(webIntent);
                             break;
                         case "63스퀘어":
-                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("www.63.co.kr/"));
+                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.63.co.kr/"));
                             startActivity(webIntent);
                             break;
                         case "여의도 공원":

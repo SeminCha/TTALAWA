@@ -237,6 +237,11 @@
                 </RelativeLayout>
             </LinearLayout>
 
+            <include
+                layout="@layout/layout_pathinfo"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_gravity="bottom"/>
 
             <!--마크 누르면 뜨는 대여소 레이아웃-->
             <LinearLayout

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pathInfoLayout"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:layout_gravity="bottom"
+    android:background="@drawable/stationinfo_layout_style"
+    android:clickable="true"
+    android:orientation="vertical"
+    android:paddingEnd="20dp"
+    android:paddingStart="20dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:visibility="gone"
+    android:weightSum="100">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="25"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="추천 이동경로"
+            android:textSize="20dp"
+            android:textColor="@color/orangered"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="75"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:orientation="vertical"
+            android:weightSum="10">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="5"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:text="따릉이 이용시간"
+                    android:textColor="@color/maincolor"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/pathTimeTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:text=""
+                    android:textColor="@color/grey_dark"
+                    android:textSize="19dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="5"
+                android:background="@drawable/layout_top_seperator">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:text="따릉이 이용거리"
+                    android:textColor="@color/maincolor"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/pathDistanceTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:text=""
+                    android:textColor="@color/grey_dark"
+                    android:textSize="19dp" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

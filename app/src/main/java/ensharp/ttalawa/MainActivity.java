@@ -9,10 +9,12 @@ import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -61,9 +63,18 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
+import com.skp.Tmap.TMapData;
+import com.skp.Tmap.TMapPoint;
 import com.skp.Tmap.TMapTapi;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -101,6 +112,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     HashMap stationRedMarkMap;
     HashMap tourSpotMarkerMap;
     HashMap neartourSpotStationMarkerMap;
+    HashMap pathStationMarkerMap;
+    HashMap placeDistance;
     boolean isSelected;
 
     ArrayList<TourSpotMarkerItem> TourSpotList;
@@ -109,6 +122,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     LinearLayout stationInfoLayout;
     LinearLayout tourSpotInfoLayout;
+    LinearLayout pathInfoLayout;
 
     TelephonyManager telephonyManager;
     String networkoper;
@@ -149,6 +163,19 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     TextView fab_txt_rental;
     TextView tool_txt_recommend;
 
+    private MainPathAsyncTask mainPathAsyncTask;
+    private SubPathAsyncTask subPathAsyncTask;
+    private PathInfoAsyncTask pathInfoAsyncTask;
+    ArrayList<LatLng> routePoints;
+    ArrayList<LatLng> rentRoutePoints;
+    ArrayList<LatLng> returnRoutePoints;
+    ArrayList<LatLng> middleOneRoutePoints;
+    ArrayList<LatLng> middleTwoRoutePoints;
+    ArrayList<Float> distanceList;
+    ArrayList<MarkerItem> sampleList;
+    ArrayList<Polyline> polylines;
+    ArrayList<Marker> pathmarkers;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -168,6 +195,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         stationInfoLayout = (LinearLayout) findViewById(R.id.stationInfoLayout);
         tourSpotInfoLayout = (LinearLayout) findViewById(R.id.tourSpotInfoLayout);
+        pathInfoLayout = (LinearLayout) findViewById(R.id.pathInfoLayout);
         alarmSettingLayout = (RelativeLayout) findViewById(R.id.alarmSettingLayout);
         alarmSettingToolbar = (Toolbar) findViewById(R.id.toolBar_alarmsetting);
         rentInfoLayout = (LinearLayout) findViewById(R.id.rentInfoLayout);
@@ -220,9 +248,336 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         tool_txt_recommend.setTypeface(tf_nanumsquare_bold);
         mainTxtView.setTypeface(tf_nanumsquare_bold);
 
+        polylines = new ArrayList<>();
+        pathmarkers = new ArrayList<>();
+    }
+
+    private void removePolyline() {
+        for (Polyline line : polylines) {
+            line.remove();
+        }
+        polylines.clear();
+    }
+
+    private void removeSearchMarkers() {
+        Marker marker;
+
+        if (markerMap.containsKey("searched")) {
+            marker = (Marker) markerMap.get("searched");
+            marker.remove();
+        }
+        if (markerMap.containsKey("start")) {
+            marker = (Marker) markerMap.get("start");
+            marker.remove();
+        }
+        if (markerMap.containsKey("end")) {
+            marker = (Marker) markerMap.get("end");
+            marker.remove();
+        }
+    }
+
+    private void changePathStationMarker(MarkerItem markerItem, boolean isPath, String mode) {
+        Marker temp;
+
+        // 경로 마커 추가 시
+        if (isPath) {
+            temp = (Marker) stationMarkerMap.get(markerItem.getNumber());
+            if (mode.equals("rent")) {
+                addMarker(temp, "rentStation");
+                temp.remove();
+            } else if (mode.equals("return")) {
+                addMarker(temp, "returnStation");
+                temp.remove();
+            } else {
+                if (!pathStationMarkerMap.containsKey(markerItem.getNumber())) {
+                    addMarker(temp, "middleStation");
+                    temp.remove();
+                }
+            }
+            // 원래 마커 추가 시
+        } else {
+            for (Marker marker : pathmarkers) {
+                temp = marker;
+                addMarker(temp, "green");
+                temp.remove();
+            }
+            pathStationMarkerMap.clear();
+            pathmarkers.clear();
+        }
+    }
+
+    private class MainPathAsyncTask extends AsyncTask<MainPathData, Void, MainPathData> {
+        @Override
+        protected MainPathData doInBackground(MainPathData... mainPathData) {
+
+            try {
+            } catch (Exception e) {
+                Log.d("Background Task", e.toString());
+            }
+            return mainPathData[0];
+        }
+
+        @Override
+        protected void onPostExecute(MainPathData mainPathData) {
+            PolylineOptions options = new PolylineOptions().width(40).color(Color.RED).geodesic(true);
+
+            if (mainPathData.getMode().equals("direct")) {
+                changePathStationMarker(mainPathData.getStartMarkerItem(), true, "rent");
+                changePathStationMarker(mainPathData.getEndMarkerItem(), true, "return");
+            } else if (mainPathData.getMode().equals("one")) {
+                changePathStationMarker(mainPathData.getStartMarkerItem(), true, "rent");
+                changePathStationMarker(mainPathData.getEndMarkerItem(), true, "middle");
+            } else {
+                changePathStationMarker(mainPathData.getStartMarkerItem(), true, "middle");
+                changePathStationMarker(mainPathData.getEndMarkerItem(), true, "return");
+            }
+
+            for (int i = 0; i < mainPathData.getPathPoints().size(); i++) {
+                LatLng point = mainPathData.getPathPoints().get(i);
+                options.add(point);
+            }
+            polylines.add(mGoogleMap.addPolyline(options));
+        }
+    }
+
+    private class SubPathAsyncTask extends AsyncTask<SubPathData, Void, SubPathData> {
+        @Override
+        protected SubPathData doInBackground(SubPathData... subPathData) {
+
+            try {
+            } catch (Exception e) {
+                Log.d("Background Task", e.toString());
+            }
+            return subPathData[0];
+        }
+
+        @Override
+        protected void onPostExecute(SubPathData subPathData) {
+            PolylineOptions options = new PolylineOptions().width(40).color(Color.BLUE).geodesic(true);
+
+            if (subPathData.getMode().equals("rent")) {
+                markerMap.put("start", mGoogleMap.addMarker(subPathData.getMarkerOptions()));
+            } else {
+                markerMap.put("end", mGoogleMap.addMarker(subPathData.getMarkerOptions()));
+            }
+
+            for (int i = 0; i < subPathData.getPathPoints().size(); i++) {
+                LatLng point = subPathData.getPathPoints().get(i);
+                options.add(point);
+            }
+            polylines.add(mGoogleMap.addPolyline(options));
+        }
+    }
+
+    private class PathInfoAsyncTask extends AsyncTask<PathInfoData, Void, PathInfoData> {
+        @Override
+        protected PathInfoData doInBackground(PathInfoData... pathInfoData) {
+
+            try {
+            } catch (Exception e) {
+                Log.d("Background Task", e.toString());
+            }
+            return pathInfoData[0];
+        }
+
+        @Override
+        protected void onPostExecute(PathInfoData pathInfoData) {
+
+            TextView distanceTxt = (TextView) findViewById(R.id.pathDistanceTxt);
+            TextView timeTxt = (TextView) findViewById(R.id.pathTimeTxt);
+            int hours, minutes;
+            float temp;
+            String convertString;
+            convertString = String.format("%.1f", pathInfoData.getDistance() * 0.001);
+            distanceTxt.setText(convertString+"km");
+            Float time = Float.valueOf(convertString) / 15;
+            if (time >= 1) {
+                hours = (int) Math.floor(time);
+                temp = time - (float) Math.floor(time);
+                minutes = (int) Math.floor(temp * 60);
+                convertString = "약 " +hours  + "시간 " + minutes + "분";
+            } else {
+                minutes = (int) Math.floor(time * 60);
+                convertString = "약 " +minutes + "분";
+            }
+            timeTxt.setText(convertString);
+            changePathInfoLayoutVisibility(true);
+            LatLngBounds.Builder builder = new LatLngBounds.Builder();
+            builder.include(new LatLng(pathInfoData.getStartPoint().getPosition().latitude, pathInfoData.getStartPoint().getPosition().longitude));
+            builder.include(new LatLng(pathInfoData.getEndPoint().getPosition().latitude, pathInfoData.getEndPoint().getPosition().longitude));
+            builder.include(new LatLng(pathInfoData.getRentPoint().getLatitude(), pathInfoData.getRentPoint().getLongitude()));
+            builder.include(new LatLng(pathInfoData.getReturnPoint().getLatitude(), pathInfoData.getReturnPoint().getLongitude()));
+            LatLngBounds bounds = builder.build();
+            mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100));
+        }
+    }
 
 
+    private void findRentPath(MarkerOptions start, MarkerItem rentStation) {
 
+        TMapData tmapdata = new TMapData();
+        final MarkerOptions fstart = start;
+        final MarkerItem frentStation = rentStation;
+        TMapPoint startpoint = new TMapPoint(start.getPosition().latitude, start.getPosition().longitude);
+        TMapPoint endpoint = new TMapPoint(rentStation.getLatitude(), rentStation.getLongitude());
+
+        tmapdata.findPathDataAll(startpoint, endpoint, new TMapData.FindPathDataAllListenerCallback() {
+            @Override
+            public void onFindPathDataAll(Document doc) {
+                rentRoutePoints = getCoordinateArrays(doc);
+                SubPathData subPathData = new SubPathData(rentRoutePoints, fstart, frentStation, "rent");
+                subPathAsyncTask = new SubPathAsyncTask();
+                subPathAsyncTask.execute(subPathData);
+            }
+        });
+    }
+
+    private void findReturnPath(MarkerOptions end, MarkerItem returnStation) {
+
+        TMapData tmapdata = new TMapData();
+
+        final MarkerOptions fend = end;
+        final MarkerItem freturnStation = returnStation;
+
+        TMapPoint startpoint = new TMapPoint(returnStation.getLatitude(), returnStation.getLongitude());
+        TMapPoint endpoint = new TMapPoint(end.getPosition().latitude, end.getPosition().longitude);
+
+        tmapdata.findPathDataAll(startpoint, endpoint, new TMapData.FindPathDataAllListenerCallback() {
+            @Override
+            public void onFindPathDataAll(Document doc) {
+                returnRoutePoints = getCoordinateArrays(doc);
+                SubPathData subPathData = new SubPathData(returnRoutePoints, fend, freturnStation, "return");
+                subPathAsyncTask = new SubPathAsyncTask();
+                subPathAsyncTask.execute(subPathData);
+            }
+        });
+    }
+
+    private void findOneMiddlePath(MarkerItem rentStation, MarkerItem middleStation) {
+
+        TMapData tmapdata = new TMapData();
+
+        final MarkerItem fRentStation = rentStation;
+        final MarkerItem fMiddleStation = middleStation;
+
+        TMapPoint startpoint = new TMapPoint(rentStation.getLatitude(), rentStation.getLongitude());
+        TMapPoint endpoint = new TMapPoint(middleStation.getLatitude(), middleStation.getLongitude());
+
+        tmapdata.findPathDataAll(startpoint, endpoint, new TMapData.FindPathDataAllListenerCallback() {
+            @Override
+            public void onFindPathDataAll(Document doc) {
+                middleOneRoutePoints = getCoordinateArrays(doc);
+                MainPathData mainPathData = new MainPathData(middleOneRoutePoints, fRentStation, fMiddleStation, "one");
+                mainPathAsyncTask = new MainPathAsyncTask();
+                mainPathAsyncTask.execute(mainPathData);
+            }
+        });
+    }
+
+    private void findTwoMiddlePath(MarkerItem returnStation, MarkerItem middleStation) {
+
+        TMapData tmapdata = new TMapData();
+
+        final MarkerItem fReturnStation = returnStation;
+        final MarkerItem fMiddleStation = middleStation;
+
+        TMapPoint startpoint = new TMapPoint(middleStation.getLatitude(), middleStation.getLongitude());
+        TMapPoint endpoint = new TMapPoint(returnStation.getLatitude(), returnStation.getLongitude());
+
+        tmapdata.findPathDataAll(startpoint, endpoint, new TMapData.FindPathDataAllListenerCallback() {
+            @Override
+            public void onFindPathDataAll(Document doc) {
+                middleTwoRoutePoints = getCoordinateArrays(doc);
+                MainPathData mainPathData = new MainPathData(middleTwoRoutePoints, fMiddleStation, fReturnStation, "two");
+                mainPathAsyncTask = new MainPathAsyncTask();
+                mainPathAsyncTask.execute(mainPathData);
+            }
+        });
+    }
+
+    private void findPath(MarkerItem rentStation, MarkerItem returnStation, LatLng startPlace, LatLng endPlace) {
+
+        TMapData tmapdata = new TMapData();
+        final MarkerItem fRentStation = rentStation;
+        final MarkerItem fReturnStation = returnStation;
+        final MarkerOptions startMarkerOptions = new MarkerOptions();
+        final MarkerOptions endMarkerOptions = new MarkerOptions();
+        startMarkerOptions.position(new LatLng(startPlace.latitude, startPlace.longitude));
+        startMarkerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("startmarker")));
+        endMarkerOptions.position(new LatLng(endPlace.latitude, endPlace.longitude));
+        endMarkerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("endmarker")));
+        LatLng start = startPlace;
+        LatLng end = endPlace;
+        final TMapPoint startpoint = new TMapPoint(rentStation.latitude, rentStation.longitude);
+        final TMapPoint endpoint = new TMapPoint(returnStation.latitude, returnStation.longitude);
+
+        tmapdata.findPathDataAll(startpoint, endpoint, new TMapData.FindPathDataAllListenerCallback() {
+            @Override
+            public void onFindPathDataAll(Document doc) {
+                Float distance = Float.valueOf(getDistance(doc));
+                MarkerItem middlePoint;
+                routePoints = getCoordinateArrays(doc);
+                findRentPath(startMarkerOptions, fRentStation);
+                findReturnPath(endMarkerOptions, fReturnStation);
+                if (distance < 15000) {
+                    MainPathData mainPathData = new MainPathData(routePoints, fRentStation, fReturnStation, "direct");
+                    mainPathAsyncTask = new MainPathAsyncTask();
+                    mainPathAsyncTask.execute(mainPathData);
+                    pathInfoAsyncTask = new PathInfoAsyncTask();
+                    PathInfoData pathInfoData = new PathInfoData(distance, startMarkerOptions, endMarkerOptions, fRentStation, fReturnStation);
+                    pathInfoAsyncTask.execute(pathInfoData);
+                } else if (distance >= 15000) {
+                    middlePoint = sortingStationList(routePoints.get(routePoints.size() / 2));
+                    findOneMiddlePath(fRentStation, middlePoint);
+                    findTwoMiddlePath(fReturnStation, middlePoint);
+                    pathInfoAsyncTask = new PathInfoAsyncTask();
+                    PathInfoData pathInfoData = new PathInfoData(distance, startMarkerOptions, endMarkerOptions, fRentStation, fReturnStation);
+                    pathInfoAsyncTask.execute(pathInfoData);
+                } else {
+                    Toast.makeText(MainActivity.this, "따릉이 이용에 부적합한 경로입니다", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    public String getDistance(Document doc) {
+        NodeList nodeList = doc.getElementsByTagName("tmap:totalDistance");
+        String value = "0";
+
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            value = nodeList.item(i).getFirstChild().getNodeValue();
+            Log.i("tag", value);//여기변경
+        }
+        return value;
+    }
+
+    public ArrayList<LatLng> getCoordinateArrays(Document doc) {
+
+        ArrayList<LatLng> oneTrack = new ArrayList<LatLng>();
+        try {
+            ArrayList<String> tracksString = new ArrayList<String>();
+            NodeList nodeList = doc.getElementsByTagName("coordinates");
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                String value = nodeList.item(i).getFirstChild().getNodeValue();
+                tracksString.add(value);
+                Log.i("tag", value);//여기변경
+            }
+
+            for (int i = 0; i < tracksString.size(); i++) {
+
+                ArrayList<String> oneTrackString = new ArrayList<String>(Arrays.asList(tracksString.get(i).split("\\s+")));
+                for (int k = 1; k < oneTrackString.size(); k++) {
+                    LatLng latLng = new LatLng(Double.parseDouble(oneTrackString.get(k).split(",")[1]),
+                            Double.parseDouble(oneTrackString.get(k).split(",")[0]));
+                    oneTrack.add(latLng);
+                    Log.i("좌표", latLng.latitude + " " + latLng.longitude);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return oneTrack;
     }
 
 
@@ -414,7 +769,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mGoogleMap.getUiSettings().setCompassEnabled(false);
 
         mapButtonSetting();
-        //TmapAuthentication();
+        TmapAuthentication();
 
         markerMap = new HashMap();
         stationMarkerMap = new HashMap();
@@ -422,6 +777,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         isSelected = false;
         tourSpotMarkerMap = new HashMap();
         neartourSpotStationMarkerMap = new HashMap();
+        pathStationMarkerMap = new HashMap();
         TourSpotList = new ArrayList();
         BackupStationList = new ArrayList();
 
@@ -718,6 +1074,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         } else if (marker.equals(neartourSpotStationMarkerMap.get(marker.getSnippet()))) {
             insertInfoLayoutContent(marker, stationInfoLayout);
             changeInfoLayoutVisibility(stationInfoLayout, true);
+        } else if (marker.equals(pathStationMarkerMap.get(marker.getSnippet()))) {
+            uncheckNearStationMarker();
+            changeSelectedMarker(null);
+            insertInfoLayoutContent(marker, stationInfoLayout);
+            changeInfoLayoutVisibility(stationInfoLayout, true);
+        } else if (marker.equals(markerMap.get("start")) || marker.equals(markerMap.get("end"))) {
+
         } else {
             uncheckNearStationMarker();
             changeSelectedMarker(marker);
@@ -734,6 +1097,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         uncheckNearStationMarker();
         changeInfoLayoutVisibility(stationInfoLayout, false);
         changeInfoLayoutVisibility(tourSpotInfoLayout, false);
+        removePolyline();
+        changePathStationMarker(null, false, "");
+        removeSearchMarkers();
+        changePathInfoLayoutVisibility(false);
     }
 
 
@@ -1097,6 +1464,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         return app_installed;
     }
 
+    private void changePathInfoLayoutVisibility(boolean isVisible) {
+
+        if(isVisible){
+            pathInfoLayout.setVisibility(View.VISIBLE);
+        } else {
+            pathInfoLayout.setVisibility(View.GONE);
+        }
+    }
+
     private void changeInfoLayoutVisibility(LinearLayout view, boolean isVisible) {
 
         Animation slide_down = AnimationUtils.loadAnimation(getApplicationContext(),
@@ -1157,9 +1533,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         if (BackupStationList != null) {
             for (int i = 0; i < BackupStationList.size(); i++) {
-                removeMarker = (Marker) neartourSpotStationMarkerMap.get(BackupStationList.get(i).contentNum);
-                removeMarker.remove();
-                addMarker(BackupStationList.get(i), "green");
+                if (!pathStationMarkerMap.containsKey(BackupStationList.get(i).getNumber())) {
+                    removeMarker = (Marker) neartourSpotStationMarkerMap.get(BackupStationList.get(i).contentNum);
+                    removeMarker.remove();
+                    addMarker(BackupStationList.get(i), "green");
+                }
             }
             BackupStationList.clear();
         }
@@ -1167,26 +1545,97 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onPlaceSelected(Place place) {
-        if (markerMap.containsKey("searched")) {
-            Marker marker = (Marker) markerMap.get("searched");
-            marker.remove();
-        }
         changeSelectedMarker(null);
         uncheckNearStationMarker();
         changeInfoLayoutVisibility(stationInfoLayout, false);
         changeInfoLayoutVisibility(tourSpotInfoLayout, false);
-        MarkerOptions markerOptions = new MarkerOptions();
         LatLng latLng = new LatLng(place.getLatLng().latitude, place.getLatLng().longitude);
-        markerOptions.position(latLng);
-        markerOptions.title(place.getName().toString());
-        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("searchmarker")));
-        markerMap.put("searched", mGoogleMap.addMarker(markerOptions));
-        Marker marker = (Marker) markerMap.get("searched");
-        marker.showInfoWindow();
-        changeInfoLayoutVisibility(stationInfoLayout, false);
-        changeInfoLayoutVisibility(tourSpotInfoLayout, false);
-        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(14));
+        MarkerItem start, end;
+        removePolyline();
+        changePathStationMarker(null, false, "");
+        removeSearchMarkers();
+        changePathInfoLayoutVisibility(false);
+        final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            pathAlertMessage("GPS");
+            mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+            mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(14));
+            MarkerOptions markerOptions = new MarkerOptions();
+            markerOptions.position(latLng);
+            markerOptions.title(place.getName().toString());
+            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("searchmarker")));
+            markerMap.put("searched", mGoogleMap.addMarker(markerOptions));
+            Marker marker = (Marker) markerMap.get("searched");
+            marker.showInfoWindow();
+        } else {
+            Location location = mGoogleMap.getMyLocation();
+            if (location != null) {
+                LatLng myLatlng = new LatLng(location.getLatitude(), location.getLongitude());
+                start = sortingStationList(myLatlng);
+                end = sortingStationList(latLng);
+                if (!start.getNumber().equals(end.getNumber())) {
+                    findPath(start, end, myLatlng, latLng);
+                } else {
+                    pathAlertMessage("fail");
+                    mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                    mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(14));
+                    MarkerOptions markerOptions = new MarkerOptions();
+                    markerOptions.position(latLng);
+                    markerOptions.title(place.getName().toString());
+                    markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("searchmarker")));
+                    markerMap.put("searched", mGoogleMap.addMarker(markerOptions));
+                    Marker marker = (Marker) markerMap.get("searched");
+                    marker.showInfoWindow();
+                }
+            }
+        }
+    }
+
+    public void pathAlertMessage(String mode) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        if (mode.equals("GPS")) {
+            builder.setMessage("'위치 서비스' 사용을 허용하면, 검색한 목적지까지의 경로를 확인할 수 있습니다.")
+                    .setCancelable(false)
+                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                            dialog.cancel();
+                        }
+                    });
+            final AlertDialog alert = builder.create();
+            alert.show();
+        } else if (mode.equals("fail")) {
+            builder.setMessage("검색한 목적지까지는 따릉이가 아닌, 다른 이동수단을 추천합니다!")
+                    .setCancelable(false)
+                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                            dialog.cancel();
+                        }
+                    });
+            final AlertDialog alert = builder.create();
+            alert.show();
+        }
+    }
+
+    private MarkerItem sortingStationList(LatLng latLng) {
+
+        distanceList = new ArrayList();
+        placeDistance = new HashMap();
+        MarkerItem markerItem;
+
+        for (int i = 0; i < sampleList.size(); i++) {
+            float[] distance = new float[2];
+            Location.distanceBetween(sampleList.get(i).getLatitude(), sampleList.get(i).getLongitude(),
+                    latLng.latitude, latLng.longitude, distance);
+            distanceList.add(distance[0]);
+            placeDistance.put(distance[0], sampleList.get(i));
+        }
+
+        Collections.sort(distanceList);
+        markerItem = (MarkerItem) placeDistance.get(distanceList.get(0));
+        //latLng = new LatLng(markerItem.getLatitude(), markerItem.getLongitude());
+
+        return markerItem;
     }
 
     // 결과에 대한 함수
@@ -1289,7 +1738,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         String coordinate_y = "";
         String content_num = "";
 
-        ArrayList<MarkerItem> sampleList = new ArrayList();
+        sampleList = new ArrayList();
         while (!result.isAfterLast()) {
             content_name = result.getString(1);
             content_num = result.getString(6);
@@ -1356,8 +1805,17 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         } else if (iconName.contains("search")) {
             width = (int) (displaywidth * 0.093f);
             height = (int) (width * 1.25f);
-        } else {
+        } else if(iconName.contains("red") || iconName.contains("yellow")) {
             width = (int) (displaywidth * 0.075f);
+            height = (int) (width * 1.6f);
+        } else if(iconName.contains("start") || iconName.contains("end")) {
+            width = (int) (displaywidth * 0.11f);
+            height = (int) (width * 1.22f);
+        } else if(iconName.contains("rent") || iconName.contains("return") || iconName.contains("middle")) {
+            width = (int) (displaywidth * 0.12f);
+            height = (int) (width * 1.8f);
+        } else {
+            width = (int) (displaywidth * 0.08f);
             height = (int) (width * 1.6f);
         }
         Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(), getResources().getIdentifier(iconName, "drawable", getPackageName()));
@@ -1380,6 +1838,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         LatLng position = new LatLng(markerItem.getLatitude(), markerItem.getLongitude());
         String stationName = markerItem.getName();
         String stationNumber = markerItem.getNumber();
+        Marker marker;
 
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.title(stationName);
@@ -1395,6 +1854,21 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         } else if (markerMode.equals("nearStation")) {
             markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("redmarker")));
             neartourSpotStationMarkerMap.put(stationNumber, mGoogleMap.addMarker(markerOptions));
+        } else if (markerMode.equals("rentStation")) {
+            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("rentmarker")));
+            marker = mGoogleMap.addMarker(markerOptions);
+            pathStationMarkerMap.put(stationNumber, marker);
+            pathmarkers.add(marker);
+        } else if (markerMode.equals("returnStation")) {
+            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("returnmarker")));
+            marker = mGoogleMap.addMarker(markerOptions);
+            pathStationMarkerMap.put(stationNumber, marker);
+            pathmarkers.add(marker);
+        } else if (markerMode.equals("middleStation")) {
+            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("middlemarker")));
+            marker = mGoogleMap.addMarker(markerOptions);
+            pathStationMarkerMap.put(stationNumber, marker);
+            pathmarkers.add(marker);
         }
 
         return;
@@ -1543,6 +2017,103 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
+    public class MainPathData {
+        ArrayList<LatLng> pathPoints;
+        MarkerItem startMarkerItem;
+        MarkerItem endMarkerItem;
+        String mode;
+
+        public MainPathData(ArrayList<LatLng> pathPoints, MarkerItem startMarkerItem, MarkerItem endMarkerItem, String mode) {
+            this.pathPoints = pathPoints;
+            this.startMarkerItem = startMarkerItem;
+            this.endMarkerItem = endMarkerItem;
+            this.mode = mode;
+        }
+
+        public ArrayList<LatLng> getPathPoints() {
+            return pathPoints;
+        }
+
+        public MarkerItem getStartMarkerItem() {
+            return startMarkerItem;
+        }
+
+        public MarkerItem getEndMarkerItem() {
+            return endMarkerItem;
+        }
+
+        public String getMode() {
+            return mode;
+        }
+    }
+
+    public class SubPathData {
+        ArrayList<LatLng> pathPoints;
+        MarkerOptions markerOptions;
+        MarkerItem markerItem;
+        String mode;
+
+        public SubPathData(ArrayList<LatLng> pathPoints, MarkerOptions markerOptions, MarkerItem markerItem, String mode) {
+            this.pathPoints = pathPoints;
+            this.markerOptions = markerOptions;
+            this.markerItem = markerItem;
+            this.mode = mode;
+        }
+
+        public ArrayList<LatLng> getPathPoints() {
+            return pathPoints;
+        }
+
+        public MarkerOptions getMarkerOptions() {
+            return markerOptions;
+        }
+
+        public MarkerItem getMarkerItem() {
+            return markerItem;
+        }
+
+        public String getMode() {
+            return mode;
+        }
+    }
+
+    public class PathInfoData {
+        float distance;
+        MarkerOptions startPoint;
+        MarkerOptions endPoint;
+        MarkerItem rentPoint;
+        MarkerItem returnPoint;
+
+        public PathInfoData(float distance, MarkerOptions startPoint, MarkerOptions endPoint, MarkerItem rentPoint, MarkerItem returnPoint) {
+            this.distance = distance;
+            this.startPoint = startPoint;
+            this.endPoint = endPoint;
+            this.rentPoint = rentPoint;
+            this.returnPoint = returnPoint;
+        }
+
+        public float getDistance() {
+            return distance;
+        }
+
+        public MarkerOptions getStartPoint() {
+            return startPoint;
+        }
+
+        public MarkerOptions getEndPoint() {
+            return endPoint;
+        }
+
+        public MarkerItem getRentPoint() {
+            return rentPoint;
+        }
+
+        public MarkerItem getReturnPoint() {
+            return returnPoint;
+        }
+    }
+
+
     private void checkNearStationMarker(Marker marker) {
 
         Marker removeMarker;
@@ -1689,9 +2260,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
 
         for (int i = 0; i < BackupStationList.size(); i++) {
-            removeMarker = (Marker) stationMarkerMap.get(BackupStationList.get(i).contentNum.toString());
-            removeMarker.remove();
-            addMarker(BackupStationList.get(i), "nearStation");
+            if (!pathStationMarkerMap.containsKey(BackupStationList.get(i).getNumber())) {
+                removeMarker = (Marker) stationMarkerMap.get(BackupStationList.get(i).contentNum.toString());
+                removeMarker.remove();
+                addMarker(BackupStationList.get(i), "nearStation");
+            }
         }
     }
 

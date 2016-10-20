@@ -768,7 +768,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mGoogleMap.getUiSettings().setCompassEnabled(false);
 
         mapButtonSetting();
-        TmapAuthentication();
+   //     TmapAuthentication();
 
         markerMap = new HashMap();
         stationMarkerMap = new HashMap();
@@ -1206,6 +1206,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             String address = "";
 
             while (!result.isAfterLast()) {
+
                 address = result.getString(4);
                 result.moveToNext();
             }
@@ -1741,9 +1742,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             content_num = result.getString(6);
             coordinate_x = result.getString(4);
             coordinate_y = result.getString(5);
+            //임시 디비 확인
+            String engContentName=result.getString(8);
+            String engAddrGu=result.getString(9);
+            String engNewAddr=result.getString(10);
+            Log.w("대여소디비확인",engContentName+" , "+engAddrGu+" , "+engNewAddr);
             sampleList.add(new MarkerItem(Double.parseDouble(coordinate_x), Double.parseDouble(coordinate_y), content_name, content_num));
             result.moveToNext();
         }
+
 
         result.close();
         dbAdapter.close();
@@ -1773,10 +1780,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             String spotMapX = result.getString(1);
             String spotMapY = result.getString(2);
             String spotTitle = result.getString(3);
+            //임시 디비 확인
+            String engSpotTitle=result.getString(5);
+            String engSpotAddress=result.getString(6);
 
             resultStr += spotNum + ", " + spotMapX + ", " + spotMapY + " , " + spotTitle + "\n";
 
-            Log.w("resultStr:: ", spotNum + ", " + spotMapX + ", " + spotMapY + " , " + spotTitle);
+            Log.w("resultStr:: ", spotNum + "," + spotMapX + "," + spotMapY + "," + spotTitle+","+engSpotTitle+","+engSpotAddress);
             TourSpotList.add(new TourSpotMarkerItem(Double.parseDouble(spotMapX), Double.parseDouble(spotMapY), spotTitle));
             result.moveToNext();
         }

@@ -21,13 +21,17 @@ public class StationDbAdapter {
     public static final String KEY_COORDINATE_Y = "coordinate_y";
     public static final String KEY_CONTENT_NUM="content_num";
     public static final String KEY_RACK_COUNT="rack_count";
+    public static final String KEY_ENG_CONTENT_NAME="eng_content_name";
+    public static final String KEY_ENG_ADDR_GU="eng_addr_gu";
+    public static final String KEY_ENG_NEW_ADDR="eng_new_addr";
 
 
     private static final String TAG = "StationDbAdapter";
     private DatabaseHelper mDbHelper;
     private SQLiteDatabase mDb;
     private static final String DATABASE_CREATE = "create table stations (_id integer primary key autoincrement, "
-            + "content_name text, addr_gu text, new_addr text, coordinate_x text, coordinate_y text, content_num text, rack_count text);";
+            + "content_name text, addr_gu text, new_addr text, coordinate_x text, coordinate_y text, content_num text, "
+            + "rack_count text, eng_content_name text, eng_addr_gu text, eng_new_addr text);";
 
     private static final String DATABASE_NAME = "rentalStation";
     private static final String DATABASE_TABLE = "stations";
@@ -77,7 +81,8 @@ public class StationDbAdapter {
 
 
     //레코드 생성
-    public long createStation(String contentName, String addr_gu, String new_addr, String coordinate_x, String coordinate_y,String content_num,String rack_count) {
+    public long createStation(String contentName, String addr_gu, String new_addr, String coordinate_x, String coordinate_y,String content_num,String rack_count,
+                              String engContentName, String engAddrGu, String engNewAddr) {
 
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_CONTENT_NAME, contentName);
@@ -87,6 +92,9 @@ public class StationDbAdapter {
         initialValues.put(KEY_COORDINATE_Y, coordinate_y);
         initialValues.put(KEY_CONTENT_NUM,content_num);
         initialValues.put(KEY_RACK_COUNT,rack_count);
+        initialValues.put(KEY_ENG_CONTENT_NAME,engContentName);
+        initialValues.put(KEY_ENG_ADDR_GU,engAddrGu);
+        initialValues.put(KEY_ENG_NEW_ADDR,engNewAddr);
 
         return mDb.insert(DATABASE_TABLE, null, initialValues);
     }
@@ -102,14 +110,14 @@ public class StationDbAdapter {
     //모든 레코드 반환
     public Cursor fetchAllStations() {
         return mDb.query(DATABASE_TABLE, new String[]{KEY_ROWID, KEY_CONTENT_NAME, KEY_ADDR_GU, KEY_NEW_ADDR, KEY_COORDINATE_X,
-                KEY_COORDINATE_Y, KEY_CONTENT_NUM,KEY_RACK_COUNT}, null, null, null, null, null);
+                KEY_COORDINATE_Y, KEY_CONTENT_NUM,KEY_RACK_COUNT,KEY_ENG_CONTENT_NAME,KEY_ENG_ADDR_GU,KEY_ENG_NEW_ADDR}, null, null, null, null, null);
     }
 
     //특정 레코드 반환-rowID
     public Cursor fetchStationByRowID(long rowId) throws SQLException {
 
         Cursor mCursor = mDb.query(true, DATABASE_TABLE, new String[] { KEY_ROWID, KEY_CONTENT_NAME, KEY_ADDR_GU, KEY_NEW_ADDR,
-                KEY_COORDINATE_X, KEY_COORDINATE_Y, KEY_CONTENT_NUM,KEY_RACK_COUNT }, KEY_ROWID
+                KEY_COORDINATE_X, KEY_COORDINATE_Y, KEY_CONTENT_NUM,KEY_RACK_COUNT,KEY_ENG_CONTENT_NAME,KEY_ENG_ADDR_GU,KEY_ENG_NEW_ADDR }, KEY_ROWID
                 + "=" + rowId, null, null, null, null, null);
         if (mCursor != null) {
             mCursor.moveToFirst();
@@ -120,7 +128,7 @@ public class StationDbAdapter {
     public Cursor fetchStationByNumber(String contentNumber)throws SQLException {
 
         Cursor mCursor = mDb.query(true, DATABASE_TABLE, new String[] { KEY_ROWID, KEY_CONTENT_NAME, KEY_ADDR_GU, KEY_NEW_ADDR,
-                KEY_COORDINATE_X, KEY_COORDINATE_Y, KEY_CONTENT_NUM,KEY_RACK_COUNT },KEY_CONTENT_NUM
+                KEY_COORDINATE_X, KEY_COORDINATE_Y, KEY_CONTENT_NUM,KEY_RACK_COUNT,KEY_ENG_CONTENT_NAME,KEY_ENG_ADDR_GU,KEY_ENG_NEW_ADDR },KEY_CONTENT_NUM
                 + "= '" + contentNumber+"'", null, null, null, null, null);
         if (mCursor != null) {
             mCursor.moveToFirst();

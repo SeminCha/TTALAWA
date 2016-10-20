@@ -15,12 +15,14 @@ public class SpotsDbAdapter {
     public static final String KEY_SPOT_MAP_Y="_spotMapY";
     public static final String KEY_SPOT_TITLE="_spotTitle";
     public static final String KEY_SPOT_ADDRESS ="_spotAddress";
+    public static final String KEY_ENG_SPOT_TITLE="eng_spotTitle";
+    public static final String KEY_ENG_SPOT_ADDRESS="eng_spotAddress";
 
     private static final String TAG = "SpotsDbAdapter";
     private DatabaseHelper mDbHelper;
     private SQLiteDatabase mDb;
     private static final String DATABASE_CREATE = "create table tourspot (_id integer primary key autoincrement, "
-            + "_spotMapX text, _spotMapY text, _spotTitle text, _spotAddress text);";
+            + "_spotMapX text, _spotMapY text, _spotTitle text, _spotAddress text, eng_spotTitle text, eng_spotAddress text);";
 
     private static final String DATABASE_NAME = "tourSpotDb";
     private static final String DATABASE_TABLE = "tourspot";
@@ -70,7 +72,7 @@ public class SpotsDbAdapter {
 
 
     //레코드 생성
-    public long createSpot(String spotMapX, String spotMapY, String spotTitle, String spotAddress) {
+    public long createSpot(String spotMapX, String spotMapY, String spotTitle, String spotAddress, String engSpotTitle, String engSpotAddress) {
 
         ContentValues initialValues = new ContentValues();
 
@@ -78,6 +80,8 @@ public class SpotsDbAdapter {
         initialValues.put(KEY_SPOT_MAP_Y, spotMapY);
         initialValues.put(KEY_SPOT_TITLE, spotTitle);
         initialValues.put(KEY_SPOT_ADDRESS, spotAddress);
+        initialValues.put(KEY_ENG_SPOT_TITLE,engSpotTitle);
+        initialValues.put(KEY_ENG_SPOT_ADDRESS,engSpotAddress);
 
         return mDb.insert(DATABASE_TABLE, null, initialValues);
     }
@@ -85,7 +89,7 @@ public class SpotsDbAdapter {
     //모든 레코드 반환
     public Cursor fetchAllSpots() {
         return mDb.query(DATABASE_TABLE, new String[]{KEY_ROWID, KEY_SPOT_MAP_X, KEY_SPOT_MAP_Y,
-                KEY_SPOT_TITLE, KEY_SPOT_ADDRESS}, null, null, null, null, null);
+                KEY_SPOT_TITLE, KEY_SPOT_ADDRESS,KEY_ENG_SPOT_TITLE,KEY_ENG_SPOT_ADDRESS}, null, null, null, null, null);
     }
 
     //특정 레코드 반환-NO USE
@@ -103,7 +107,7 @@ public class SpotsDbAdapter {
     public Cursor fetchSpotByTitle(String spotTitle) throws SQLException {
 
         Cursor mCursor = mDb.query(true, DATABASE_TABLE, new String[] { KEY_ROWID, KEY_SPOT_MAP_X,
-                KEY_SPOT_MAP_Y, KEY_SPOT_TITLE, KEY_SPOT_ADDRESS}, KEY_SPOT_TITLE
+                KEY_SPOT_MAP_Y, KEY_SPOT_TITLE, KEY_SPOT_ADDRESS,KEY_ENG_SPOT_TITLE,KEY_ENG_SPOT_ADDRESS}, KEY_SPOT_TITLE
                 + "= '" + spotTitle+"' ", null, null, null, null, null);
         if (mCursor != null) {
             mCursor.moveToFirst();

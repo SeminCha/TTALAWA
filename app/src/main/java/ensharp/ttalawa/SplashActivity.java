@@ -36,7 +36,7 @@ public class SplashActivity extends Activity {
         //엑셀파일 데이터를 데이터베이스에 저장
         dbAdapter.open();
         Cursor temp = dbAdapter.fetchAllStations();
-        Log.w("testing!getCount!", String.valueOf(temp.getCount()));
+   //     Log.w("testing!getCount!", String.valueOf(temp.getCount()));
 
         if (temp.getCount() == 0)
             copyExcelDataToDatabase();
@@ -47,7 +47,7 @@ public class SplashActivity extends Activity {
         //엑셀파일 데이터를 데이터베이스에 저장
         spotDbAdapter.open();
         temp = spotDbAdapter.fetchAllSpots();
-        Log.w("testing!getCount!", String.valueOf(temp.getCount()));
+//        Log.w("testing!getCount!", String.valueOf(temp.getCount()));
 
         if (temp.getCount() == 0)
             copyExcelDataToDbSpot();
@@ -65,6 +65,7 @@ public class SplashActivity extends Activity {
 
     }
 
+    //대여소 데이터 디비로 받아오기
     private void copyExcelDataToDatabase() {
         Log.w("ExcelToDatabase", "copyExcelDataToDatabase()");
 
@@ -96,8 +97,11 @@ public class SplashActivity extends Activity {
                         String coordinate_y = sheet.getCell(nColumnStartIndex + 4, nRow).getContents();
                         String content_num = sheet.getCell(nColumnStartIndex + 5, nRow).getContents();
                         String rack_count = sheet.getCell(nColumnStartIndex + 6, nRow).getContents();
+                        String eng_contentName=sheet.getCell(nColumnStartIndex+7,nRow).getContents();
+                        String eng_addr_gu=sheet.getCell(nColumnStartIndex+8,nRow).getContents();
+                        String eng_new_addr=sheet.getCell(nColumnStartIndex+9,nRow).getContents();
 
-                        dbAdapter.createStation(content_name, addr_gu, new_addr, coordinate_x, coordinate_y, content_num, rack_count);
+                        dbAdapter.createStation(content_name, addr_gu, new_addr, coordinate_x, coordinate_y, content_num, rack_count,eng_contentName,eng_addr_gu,eng_new_addr);
                     }
                     dbAdapter.close();
 
@@ -116,6 +120,7 @@ public class SplashActivity extends Activity {
         }
     }
 
+    //관광지 데이터 디비로 받아오기
     private void copyExcelDataToDbSpot() {
         Log.w("ExcelToDatabase", "copyExcelDataToDatabase()");
 
@@ -144,8 +149,10 @@ public class SplashActivity extends Activity {
                         String spotMapY = sheet.getCell(nColumnStartIndex + 1, nRow).getContents();
                         String spotTitle = sheet.getCell(nColumnStartIndex + 2, nRow).getContents();
                         String spotAddress = sheet.getCell(nColumnStartIndex + 3, nRow).getContents();
+                        String engSpotTitle=sheet.getCell(nColumnStartIndex+4, nRow).getContents();
+                        String engSpotAddress=sheet.getCell(nColumnStartIndex+5,nRow).getContents();
 
-                        spotDbAdapter.createSpot(spotMapX, spotMapY, spotTitle, spotAddress);
+                        spotDbAdapter.createSpot(spotMapX, spotMapY, spotTitle, spotAddress,engSpotTitle,engSpotAddress);
                     }
                     spotDbAdapter.close();
 

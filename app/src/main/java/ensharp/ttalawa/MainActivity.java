@@ -93,7 +93,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         LocationListener {
 
 
-
     GoogleMap mGoogleMap;
     MapFragment mapFrag;
     LocationRequest mLocationRequest;
@@ -238,11 +237,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
-        Typeface tf_nanumsquare_bold=Typeface.createFromAsset(getAssets(),"NanumSquareB.ttf");
-        Typeface tf_nanumsquare_extrabold=Typeface.createFromAsset(getAssets(),"NanumSquareEB.ttf");
-        fab_txt_tour=(TextView)findViewById(R.id.fab_txt_tourspot);
-        fab_txt_rental=(TextView)findViewById(R.id.fab_txt_rentalstation);
-        tool_txt_recommend=(TextView)findViewById(R.id.tool_recommend_txt);
+        Typeface tf_nanumsquare_bold = Typeface.createFromAsset(getAssets(), "NanumSquareB.ttf");
+        Typeface tf_nanumsquare_extrabold = Typeface.createFromAsset(getAssets(), "NanumSquareEB.ttf");
+        fab_txt_tour = (TextView) findViewById(R.id.fab_txt_tourspot);
+        fab_txt_rental = (TextView) findViewById(R.id.fab_txt_rentalstation);
+        tool_txt_recommend = (TextView) findViewById(R.id.tool_recommend_txt);
         fab_txt_tour.setTypeface(tf_nanumsquare_bold);
         fab_txt_rental.setTypeface(tf_nanumsquare_bold);
         tool_txt_recommend.setTypeface(tf_nanumsquare_bold);
@@ -319,7 +318,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         @Override
         protected void onPostExecute(MainPathData mainPathData) {
-            PolylineOptions options = new PolylineOptions().width(40).color(Color.RED).geodesic(true);
+            PolylineOptions options = new PolylineOptions().width(35).color(Color.RED).geodesic(true);
 
             if (mainPathData.getMode().equals("direct")) {
                 changePathStationMarker(mainPathData.getStartMarkerItem(), true, "rent");
@@ -353,7 +352,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         @Override
         protected void onPostExecute(SubPathData subPathData) {
-            PolylineOptions options = new PolylineOptions().width(40).color(Color.BLUE).geodesic(true);
+            PolylineOptions options = new PolylineOptions().width(35).color(Color.BLUE).geodesic(true);
 
             if (subPathData.getMode().equals("rent")) {
                 markerMap.put("start", mGoogleMap.addMarker(subPathData.getMarkerOptions()));
@@ -389,16 +388,16 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             float temp;
             String convertString;
             convertString = String.format("%.1f", pathInfoData.getDistance() * 0.001);
-            distanceTxt.setText(convertString+"km");
+            distanceTxt.setText(convertString + "km");
             Float time = Float.valueOf(convertString) / 15;
             if (time >= 1) {
                 hours = (int) Math.floor(time);
                 temp = time - (float) Math.floor(time);
                 minutes = (int) Math.floor(temp * 60);
-                convertString = "약 " +hours  + "시간 " + minutes + "분";
+                convertString = "약 " + hours + "시간 " + minutes + "분";
             } else {
                 minutes = (int) Math.floor(time * 60);
-                convertString = "약 " +minutes + "분";
+                convertString = "약 " + minutes + "분";
             }
             timeTxt.setText(convertString);
             changePathInfoLayoutVisibility(true);
@@ -534,7 +533,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     PathInfoData pathInfoData = new PathInfoData(distance, startMarkerOptions, endMarkerOptions, fRentStation, fReturnStation);
                     pathInfoAsyncTask.execute(pathInfoData);
                 } else {
-                    Toast.makeText(MainActivity.this, "따릉이 이용에 부적합한 경로입니다", Toast.LENGTH_SHORT).show();
+                    pathAlertMessage("fail");
                 }
             }
         });
@@ -833,14 +832,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private void buildAlertMessageNoGps() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("내 위치 정보를 사용하려면, 단말기 설정에서 '위치 서비스' 사용을 허용해주세요.")
+        builder.setMessage(R.string.alertGpsOn)
                 .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
                         startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
                     }
                 })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
                         dialog.cancel();
                     }
@@ -1049,7 +1048,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     }
                     //사용자가 비동의 했을 경우
                 } else {
-                    Toast.makeText(this, "현재위치인식승인이 거부되었습니다.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, R.string.GPSdenied, Toast.LENGTH_LONG).show();
                 }
                 return;
             }
@@ -1389,7 +1388,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void SKPMapApikeyFailed(String errorMsg) {
                 Log.i("키인증", "실패");
-                Toast.makeText(MainActivity.this, "네비게이션 안내 오류로 다음에 이용해 주시기 바랍니다.", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, R.string.navigationError, Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -1398,14 +1397,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         boolean isTmapApp_1 = appInstalledOrNot("com.skt.skaf.l001mtm091");
         boolean isTmapApp_2 = appInstalledOrNot("com.skt.tmap.ku");
         boolean isTmapApp_3 = appInstalledOrNot("com.skt.skaf.l001mtm092");
-        //boolean isTmapApp = tmaptapi.isTmapApplicationInstalled();
 
         if (isTmapApp_1 || isTmapApp_2 || isTmapApp_3) {
             if (isStation) {
-                tmaptapi.invokeRoute(marker.getTitle() + " " + "거치소", (float) marker.getPosition().longitude, (float) marker.getPosition().latitude);
+                tmaptapi.invokeRoute(marker.getTitle() + " " + R.string.station, (float) marker.getPosition().longitude, (float) marker.getPosition().latitude);
             } else {
                 tmaptapi.invokeRoute(marker.getTitle(), (float) marker.getPosition().longitude, (float) marker.getPosition().latitude);
-
             }
         } else {
             showTmapInstallDialog();
@@ -1421,9 +1418,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 MainActivity.this);
 
         alertDialogBuilder
-                .setMessage("T map 설치가 필요합니다.")
+                .setMessage(R.string.alertTmapInstall)
                 .setCancelable(false)
-                .setPositiveButton("설치하기",
+                .setPositiveButton(R.string.install,
                         new DialogInterface.OnClickListener() {
                             public void onClick(
                                     DialogInterface dialog, int id) {
@@ -1437,7 +1434,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 }
                             }
                         })
-                .setNegativeButton("취소",
+                .setNegativeButton(R.string.no,
                         new DialogInterface.OnClickListener() {
                             public void onClick(
                                     DialogInterface dialog, int id) {
@@ -1466,7 +1463,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private void changePathInfoLayoutVisibility(boolean isVisible) {
 
-        if(isVisible){
+        if (isVisible) {
             pathInfoLayout.setVisibility(View.VISIBLE);
         } else {
             pathInfoLayout.setVisibility(View.GONE);
@@ -1595,9 +1592,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         if (mode.equals("GPS")) {
-            builder.setMessage("'위치 서비스' 사용을 허용하면, 검색한 목적지까지의 경로를 확인할 수 있습니다.")
+            builder.setMessage(R.string.alertSearchGPS)
                     .setCancelable(false)
-                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                         public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
                             dialog.cancel();
                         }
@@ -1605,9 +1602,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             final AlertDialog alert = builder.create();
             alert.show();
         } else if (mode.equals("fail")) {
-            builder.setMessage("검색한 목적지까지는 따릉이가 아닌, 다른 이동수단을 추천합니다!")
+            builder.setMessage(R.string.alertSearchGPS)
                     .setCancelable(false)
-                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                         public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
                             dialog.cancel();
                         }
@@ -1805,13 +1802,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         } else if (iconName.contains("search")) {
             width = (int) (displaywidth * 0.093f);
             height = (int) (width * 1.25f);
-        } else if(iconName.contains("red") || iconName.contains("yellow")) {
+        } else if (iconName.contains("red") || iconName.contains("yellow")) {
             width = (int) (displaywidth * 0.075f);
             height = (int) (width * 1.6f);
-        } else if(iconName.contains("start") || iconName.contains("end")) {
+        } else if (iconName.contains("start") || iconName.contains("end")) {
             width = (int) (displaywidth * 0.11f);
             height = (int) (width * 1.22f);
-        } else if(iconName.contains("rent") || iconName.contains("return") || iconName.contains("middle")) {
+        } else if (iconName.contains("rent") || iconName.contains("return") || iconName.contains("middle")) {
             width = (int) (displaywidth * 0.12f);
             height = (int) (width * 1.8f);
         } else {
@@ -2348,7 +2345,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             } else if (alarmSettingLayout.getVisibility() == View.VISIBLE) {
                 changeAlarmLayoutVisibility(false);
             } else {
-                Toast.makeText(this, "'뒤로'버튼을 한번 더 누르시면 종료됩니다.",
+                Toast.makeText(this,R.string.exit,
                         Toast.LENGTH_SHORT).show();
                 exit = true;
                 new Handler().postDelayed(new Runnable() {

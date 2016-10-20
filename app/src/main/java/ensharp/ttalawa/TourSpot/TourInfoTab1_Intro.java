@@ -734,7 +734,7 @@ public class TourInfoTab1_Intro extends Fragment {
         if (mode.equals("GPS")) {
             builder.setMessage("방문 인증 서비스를 이용하시려면, 단말기 설정에서 '위치 서비스' 사용을 허용해주세요.")
                     .setCancelable(false)
-                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                         public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
                             dialog.cancel();
                         }
@@ -744,7 +744,7 @@ public class TourInfoTab1_Intro extends Fragment {
         } else if (mode.equals("성공")) {
             builder.setMessage("즐거운 관광 되셨나요? \n해당 관광지 방문이 확인되었습니다!")
                     .setCancelable(false)
-                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                         public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
 //                            tourSpotVisitCheck.setBackground(getResources().getDrawable(R.drawable.visited_btn));
                             //tourSpotVisitCheck.setBackgroundColor(getResources().getColor(R.color.green_light));
@@ -757,7 +757,7 @@ public class TourInfoTab1_Intro extends Fragment {
         } else if (mode.equals("실패")) {
             builder.setMessage("지금 계신 곳은 해당 관광지가 아니네요!\n조금만 더 근처로 가주세요.")
                     .setCancelable(false)
-                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                         public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
                             dialog.cancel();
                         }
@@ -767,14 +767,14 @@ public class TourInfoTab1_Intro extends Fragment {
         } else if (mode.equals("이미방문")) {
             builder.setMessage("이미 방문하셨습니다! \n방문기록을 삭제할까요?")
                     .setCancelable(false)
-                    .setPositiveButton("예", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                         public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
                            // tourSpotVisitCheck.setBackgroundColor(getResources().getColor(R.color.grey));
                             pref.putValue(key, false, "방문여부");
                             dialog.cancel();
                         }
                     })
-                    .setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                    .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                         public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
                             dialog.cancel();
                         }
@@ -1053,7 +1053,7 @@ public class TourInfoTab1_Intro extends Fragment {
             @Override
             public void SKPMapApikeyFailed(String errorMsg) {
                 Log.i("키인증", "실패");
-                Toast.makeText(TourInfoActivity.mContextTourInfo, "네비게이션 안내 오류로 다음에 이용해 주시기 바랍니다.", Toast.LENGTH_LONG).show();
+                Toast.makeText(TourInfoActivity.mContextTourInfo, R.string.navigationError, Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -1067,9 +1067,9 @@ public class TourInfoTab1_Intro extends Fragment {
                 TourInfoActivity.mContextTourInfo);
 
         alertDialogBuilder
-                .setMessage("T map 설치가 필요합니다.")
+                .setMessage(R.string.alertTmapInstall)
                 .setCancelable(false)
-                .setPositiveButton("설치하기",
+                .setPositiveButton(R.string.install,
                         new DialogInterface.OnClickListener() {
                             public void onClick(
                                     DialogInterface dialog, int id) {
@@ -1083,7 +1083,7 @@ public class TourInfoTab1_Intro extends Fragment {
                                 }
                             }
                         })
-                .setNegativeButton("취소",
+                .setNegativeButton(R.string.no,
                         new DialogInterface.OnClickListener() {
                             public void onClick(
                                     DialogInterface dialog, int id) {

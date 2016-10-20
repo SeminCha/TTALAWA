@@ -57,7 +57,7 @@
                 android:layout_toEndOf="@+id/imageView3"
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
-                android:text="따릉이 반납 알람"
+                android:text="@string/returnNotification"
                 android:textColor="@color/maincolor"
                 android:textStyle="bold"
                 android:textSize="18sp" />
@@ -106,7 +106,7 @@
                         android:layout_height="50dp"
                         android:layout_weight="7"
                         android:gravity="center_vertical|center"
-                        android:text="반납 시간 전"
+                        android:text="@string/beforeReturnTime"
                         android:textColor="#354150"
                         android:textSize="17.5sp"
                         android:textStyle="bold" />
@@ -128,7 +128,7 @@
                         android:layout_height="50dp"
                         android:background="@drawable/setbtn_unselected"
                         android:elevation="10dp"
-                        android:text="5분"
+                        android:text="@string/fiveminutes"
                         android:textSize="16.5sp"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
@@ -143,7 +143,7 @@
                         android:layout_height="50dp"
                         android:background="@drawable/setbtn_unselected"
                         android:elevation="10dp"
-                        android:text="10분"
+                        android:text="@string/tenminutes"
                         android:textSize="16.5sp"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
@@ -158,7 +158,7 @@
                         android:layout_height="50dp"
                         android:background="@drawable/setbtn_unselected"
                         android:elevation="10dp"
-                        android:text="20분"
+                        android:text="@string/twentyminutes"
                         android:textSize="16.5sp"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
@@ -173,7 +173,7 @@
                         android:layout_height="50dp"
                         android:background="@drawable/setbtn_unselected"
                         android:elevation="10dp"
-                        android:text="30분"
+                        android:text="@string/thirtyminutes"
                         android:textSize="16.5sp"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
@@ -218,7 +218,7 @@
                         android:layout_height="50dp"
                         android:layout_weight="7"
                         android:gravity="center_vertical|center"
-                        android:text="알람 방식"
+                        android:text="@string/alarmType"
                         android:textColor="#354150"
                         android:textSize="17.5sp"
                         android:textIsSelectable="true"
@@ -241,7 +241,7 @@
                         android:layout_height="50dp"
                         android:background="@drawable/setbtn_unselected"
                         android:elevation="10dp"
-                        android:text="소리"
+                        android:text="@string/sound"
                         android:textSize="16.5sp"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
@@ -256,7 +256,7 @@
                         android:layout_height="50dp"
                         android:background="@drawable/setbtn_unselected"
                         android:elevation="10dp"
-                        android:text="진동"
+                        android:text="@string/vibrate"
                         android:textSize="16.5sp"
                         android:textColor="@color/white"
                         android:textStyle="bold" />

@@ -23,13 +23,13 @@ public class TourSpotRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     public static class CourseViewHolder extends RecyclerView.ViewHolder {
         public LinearLayout layoutCourse;
         public TextView courseTitleView;
-        public TextView courseEngTextView;
+        public TextView courseSubTextView;
 
         public CourseViewHolder(View v) {
             super(v);
             courseTitleView = (TextView) v.findViewById(R.id.courseTitleView);
             layoutCourse=(LinearLayout)v.findViewById(R.id.layout_course);
-            courseEngTextView=(TextView)v.findViewById(R.id.courseEngText);
+            courseSubTextView =(TextView)v.findViewById(R.id.courseEngText);
         }
     }
     public static class DataViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -110,39 +110,39 @@ public class TourSpotRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         if(holder instanceof CourseViewHolder) {
             CourseViewHolder tHolder = (CourseViewHolder) holder;
             if((itemList.get(position)).getCourseToString()=="도심") {
-                tHolder.courseTitleView.setText(itemList.get(position).getCourseToString());
+                tHolder.courseTitleView.setText(R.string.course_dosim_main);
                 tHolder.layoutCourse.setBackgroundResource(R.drawable.data_course_dosim);
                 tHolder.courseTitleView.setTextColor(Color.parseColor("#9c4876"));
-                tHolder.courseEngTextView.setText("City Center");
-                tHolder.courseEngTextView.setTextColor(Color.parseColor("#be729c"));
+                tHolder.courseSubTextView.setText(R.string.course_dosim_sub);
+                tHolder.courseSubTextView.setTextColor(Color.parseColor("#be729c"));
             }
             else if((itemList.get(position)).getCourseToString()=="고궁") {
-                tHolder.courseTitleView.setText(itemList.get(position).getCourseToString());
+                tHolder.courseTitleView.setText(R.string.course_gogung_main);
                 tHolder.layoutCourse.setBackgroundResource(R.drawable.data_course_gogung);
                 tHolder.courseTitleView.setTextColor(Color.parseColor("#1189a2"));
-                tHolder.courseEngTextView.setText("Palace Quarter");
-                tHolder.courseEngTextView.setTextColor(Color.parseColor("#44bbd3"));
+                tHolder.courseSubTextView.setText(R.string.course_gogung_sub);
+                tHolder.courseSubTextView.setTextColor(Color.parseColor("#44bbd3"));
             }
             else if((itemList.get(position)).getCourseToString()=="동대문&대학로") {
-                tHolder.courseTitleView.setText(itemList.get(position).getCourseToString());
+                tHolder.courseTitleView.setText(R.string.course_dongdae_main);
                 tHolder.layoutCourse.setBackgroundResource(R.drawable.data_course_dong_dae);
                 tHolder.courseTitleView.setTextColor(Color.parseColor("#486d9f"));
-                tHolder.courseEngTextView.setText("Dongdaemun&Around");
-                tHolder.courseEngTextView.setTextColor(Color.parseColor("#7a9fd0"));
+                tHolder.courseSubTextView.setText(R.string.course_dongdae_sub);
+                tHolder.courseSubTextView.setTextColor(Color.parseColor("#7a9fd0"));
             }
             else if((itemList.get(position)).getCourseToString()=="여의도") {
-                tHolder.courseTitleView.setText(itemList.get(position).getCourseToString());
+                tHolder.courseTitleView.setText(R.string.course_yeouido_main);
                 tHolder.layoutCourse.setBackgroundResource(R.drawable.data_course_yeouido);
                 tHolder.courseTitleView.setTextColor(Color.parseColor("#875295"));
-                tHolder.courseEngTextView.setText("Yeouido");
-                tHolder.courseEngTextView.setTextColor(Color.parseColor("#ab7cb7"));
+                tHolder.courseSubTextView.setText(R.string.course_yeouido_sub);
+                tHolder.courseSubTextView.setTextColor(Color.parseColor("#ab7cb7"));
             }
             else if((itemList.get(position)).getCourseToString()=="상암") {
-                tHolder.courseTitleView.setText(itemList.get(position).getCourseToString());
+                tHolder.courseTitleView.setText(R.string.course_sangam_main);
                 tHolder.layoutCourse.setBackgroundResource(R.drawable.data_course_sangam);
                 tHolder.courseTitleView.setTextColor(Color.parseColor("#b36b24"));
-                tHolder.courseEngTextView.setText("Sangam");
-                tHolder.courseEngTextView.setTextColor(Color.parseColor("#e49d56"));
+                tHolder.courseSubTextView.setText(R.string.course_sangam_sub);
+                tHolder.courseSubTextView.setTextColor(Color.parseColor("#e49d56"));
             }
         }
 

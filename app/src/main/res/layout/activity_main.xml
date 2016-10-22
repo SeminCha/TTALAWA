@@ -165,13 +165,14 @@
                             app:backgroundTint="@color/fabcolor" />
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="45dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:elevation="16dp"
                             android:text="@string/tourSpotFab"
                             android:id="@+id/fab_txt_tourspot"
                             android:textColor="@android:color/white"
+                            android:textAlignment="center"
                             android:textSize="14dp" />
                     </FrameLayout>
                     <!--대여소목록 버튼-->
@@ -192,13 +193,15 @@
                             app:backgroundTint="@color/fabcolor" />
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:gravity="center"
+                            android:layout_width="45dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:elevation="16dp"
                             android:text="@string/stationFab"
                             android:id="@+id/fab_txt_rentalstation"
                             android:textColor="@android:color/white"
+                            android:textAlignment="center"
                             android:textSize="14dp" />
                     </FrameLayout>
 
@@ -486,6 +489,7 @@
                                     android:gravity="right|center"
                                     android:text="@string/navigation"
                                     android:textColor="#354150"
+                                    android:textAlignment="textEnd"
                                     android:textSize="20dp" />
                             </RelativeLayout>
 
@@ -547,6 +551,7 @@
                                     android:gravity="right|center"
                                     android:text="@string/rent"
                                     android:textColor="#354150"
+                                    android:textAlignment="textEnd"
                                     android:textSize="20dp" />
                             </RelativeLayout>
 
@@ -761,7 +766,8 @@
                                     android:gravity="right|center"
                                     android:text="@string/navigation"
                                     android:textColor="#354150"
-                                    android:textSize="20dp" />
+                                    android:textSize="20dp"
+                                    android:textAlignment="textEnd"/>
                             </RelativeLayout>
 
                             <RelativeLayout
@@ -822,7 +828,8 @@
                                     android:gravity="right|center"
                                     android:text="@string/tourSpotDetails"
                                     android:textColor="#354150"
-                                    android:textSize="20dp" />
+                                    android:textSize="20dp"
+                                    android:textAlignment="textEnd"/>
                             </RelativeLayout>
 
                             <RelativeLayout

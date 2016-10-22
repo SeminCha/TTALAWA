@@ -10,7 +10,7 @@
         android:layout_marginTop="25dp"
         android:gravity="top"
         android:paddingLeft="17dp"
-        android:text="이용 요금"
+        android:text="@string/tour_adm"
         android:textStyle="bold"
         android:textSize="18sp"
         android:textColor="@color/maincolor"/>

@@ -24,7 +24,7 @@
                 android:layout_marginTop="25dp"
                 android:gravity="top"
                 android:paddingLeft="17dp"
-                android:text="이용 요금"
+                android:text="@string/tour_adm"
                 android:textColor="@color/maincolor"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -47,7 +47,7 @@
                         android:height="45dp"
                         android:background="@drawable/celltitle"
                         android:gravity="center"
-                        android:text="관람시설"
+                        android:text="@string/tour_attractions"
                         android:textColor="@color/tablecolor"
                         android:textSize="16sp" />
 
@@ -57,7 +57,7 @@
                         android:height="45dp"
                         android:background="@drawable/celltitle"
                         android:gravity="center"
-                        android:text="어른"
+                        android:text="@string/tour_adult"
                         android:textColor="@color/tablecolor"
                         android:textSize="16sp" />
 
@@ -67,7 +67,7 @@
                         android:height="45dp"
                         android:background="@drawable/celltitle"
                         android:gravity="center"
-                        android:text="청소년"
+                        android:text="@string/tour_youth"
                         android:textColor="@color/tablecolor"
                         android:textSize="16sp" />
 
@@ -77,7 +77,7 @@
                         android:height="45dp"
                         android:background="@drawable/celltitle"
                         android:gravity="center"
-                        android:text="어린이"
+                        android:text="@string/tour_children"
                         android:textColor="@color/tablecolor"
                         android:textSize="16sp" />
                 </TableRow>

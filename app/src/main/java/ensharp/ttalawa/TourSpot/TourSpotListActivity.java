@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import ensharp.ttalawa.DBAdapter.SpotsDbAdapter;
 import ensharp.ttalawa.R;
@@ -36,7 +37,7 @@ public class TourSpotListActivity extends ActionBarActivity implements TourSpotR
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tourspotlist);
         activityNameTxt = (TextView) findViewById(R.id.activityName);
-        activityNameTxt.setText("추천 관광 명소");
+        activityNameTxt.setText(R.string.tour_recom);
         pref = new SharedPreferences(this);
         mTimeRecyclerView = (RecyclerView) findViewById(R.id.tourSpotRecyclerView);
         mTimeRecyclerView.setHasFixedSize(true);
@@ -85,7 +86,11 @@ public class TourSpotListActivity extends ActionBarActivity implements TourSpotR
 
     private ArrayList<TourData> getDataset() {
 
-        getDbTourSpot();
+        if(Locale.getDefault().getLanguage().equals("ko")) {
+            getKorDbTourSpot();
+        }else{
+            getEngDbTourSpot();
+        }
 
         ArrayList<TourData> dataset = new ArrayList<>();
 
@@ -126,7 +131,7 @@ public class TourSpotListActivity extends ActionBarActivity implements TourSpotR
         return dataset;
     }
 
-    private void getDbTourSpot() {
+    private void getKorDbTourSpot() {
         this.dbAdapter = new SpotsDbAdapter(this);
 
         dbAdapter.open();
@@ -137,6 +142,26 @@ public class TourSpotListActivity extends ActionBarActivity implements TourSpotR
         spotList = new ArrayList();
         while (!result.isAfterLast()) {
             spotName = result.getString(3);
+            spotList.add(spotName);
+            result.moveToNext();
+        }
+
+        result.close();
+        dbAdapter.close();
+    }
+
+    private void getEngDbTourSpot() {
+        this.dbAdapter = new SpotsDbAdapter(this);
+
+        dbAdapter.open();
+        Cursor result = dbAdapter.fetchAllSpots();
+        result.moveToFirst();
+        String spotName = "";
+
+        spotList = new ArrayList();
+        while (!result.isAfterLast()) {
+            spotName = result.getString(5);
+            Log.i("왜안들어오냐",result.getString(5));
             spotList.add(spotName);
             result.moveToNext();
         }

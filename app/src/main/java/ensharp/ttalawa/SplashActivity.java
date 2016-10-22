@@ -151,8 +151,10 @@ public class SplashActivity extends Activity {
                         String spotAddress = sheet.getCell(nColumnStartIndex + 3, nRow).getContents();
                         String engSpotTitle=sheet.getCell(nColumnStartIndex+4, nRow).getContents();
                         String engSpotAddress=sheet.getCell(nColumnStartIndex+5,nRow).getContents();
+                        String korIntro=sheet.getCell(nColumnStartIndex+6,nRow).getContents();
+                        String engIntro=sheet.getCell(nColumnStartIndex+7,nRow).getContents();
 
-                        spotDbAdapter.createSpot(spotMapX, spotMapY, spotTitle, spotAddress,engSpotTitle,engSpotAddress);
+                        spotDbAdapter.createSpot(spotMapX, spotMapY, spotTitle, spotAddress,engSpotTitle,engSpotAddress,korIntro,engIntro);
                     }
                     spotDbAdapter.close();
 

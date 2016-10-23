@@ -30,6 +30,6 @@
                 android:gravity="center"
                 android:textSize="16sp"
                 android:textColor="@color/tablecolor"
-                android:text="무료" />
+                android:text="@string/namsangol_free" />
 </TableLayout>
 </LinearLayout>

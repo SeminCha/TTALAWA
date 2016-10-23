@@ -44,22 +44,22 @@
                     <TextView
                         android:textSize="16sp"
                         android:textColor="@color/tablecolor"
-                        android:layout_weight="5"
+                        android:layout_weight="5.5"
                         android:width="0px"
                         android:height="45dp"
                         android:background="@drawable/celltitle"
                         android:gravity="center"
-                        android:text="관람시간" />
+                        android:text="@string/hours_hours" />
 
                     <TextView
                         android:textSize="16sp"
                         android:textColor="@color/tablecolor"
-                        android:layout_weight="5"
+                        android:layout_weight="4.5"
                         android:width="0px"
                         android:height="45dp"
                         android:background="@drawable/celltitle"
                         android:gravity="center"
-                        android:text="비고" />
+                        android:text="@string/gyeong_bigo" />
 
 
                 </TableRow>
@@ -69,22 +69,22 @@
                     <TextView
                         android:textSize="16sp"
                         android:textColor="@color/tablecolor"
-                        android:layout_weight="5"
+                        android:layout_weight="5.5"
                         android:width="0px"
                         android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="매일 10:00~22:00" />
+                        android:text="@string/square_hours" />
 
                     <TextView
                         android:textSize="16sp"
                         android:textColor="@color/tablecolor"
-                        android:layout_weight="5"
+                        android:layout_weight="4.5"
                         android:width="0px"
                         android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="21:30까지 입장가능" />
+                        android:text="@string/square_notes" />
 
 
                 </TableRow>

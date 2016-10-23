@@ -50,7 +50,7 @@
                         android:height="45dp"
                         android:background="@drawable/celltitle"
                         android:gravity="center"
-                        android:text="구분" />
+                        android:text="@string/mbc_session" />
                     <TextView
                         android:textSize="16sp"
                         android:textColor="@color/tablecolor"
@@ -59,7 +59,7 @@
                         android:height="45dp"
                         android:background="@drawable/celltitle"
                         android:gravity="center"
-                        android:text="시작시간" />
+                        android:text="@string/mbc_starthour" />
 
                 </TableRow>
 
@@ -72,7 +72,7 @@
                         android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="1회차" />
+                        android:text="@string/mbc_1" />
                     <TextView
                         android:textSize="16sp"
                         android:textColor="@color/tablecolor"
@@ -92,7 +92,7 @@
                         android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="2회차" />
+                        android:text="@string/mbc_2" />
                     <TextView
                         android:textSize="16sp"
                         android:textColor="@color/tablecolor"
@@ -112,7 +112,7 @@
                         android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="3회차" />
+                        android:text="@string/mbc_3" />
                     <TextView
                         android:textSize="16sp"
                         android:textColor="@color/tablecolor"
@@ -132,7 +132,7 @@
                         android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="4회차" />
+                        android:text="@string/mbc_4" />
                     <TextView
                         android:textSize="16sp"
                         android:textColor="@color/tablecolor"
@@ -152,7 +152,7 @@
                         android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="5회차" />
+                        android:text="@string/mbc_5" />
                     <TextView
                         android:textSize="16sp"
                         android:textColor="@color/tablecolor"
@@ -172,7 +172,7 @@
                         android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="6회차" />
+                        android:text="@string/mbc_6" />
                     <TextView
                         android:textSize="16sp"
                         android:textColor="@color/tablecolor"
@@ -192,7 +192,7 @@
                         android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="7회차" />
+                        android:text="@string/mbc_7" />
                     <TextView
                         android:textSize="16sp"
                         android:textColor="@color/tablecolor"
@@ -212,7 +212,7 @@
                         android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="8회차" />
+                        android:text="@string/mbc_8" />
                     <TextView
                         android:textSize="16sp"
                         android:textColor="@color/tablecolor"
@@ -232,7 +232,7 @@
                         android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="9회차" />
+                        android:text="@string/mbc_9" />
                     <TextView
                         android:textSize="16sp"
                         android:textColor="@color/tablecolor"
@@ -252,7 +252,7 @@
                         android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="10회차" />
+                        android:text="@string/mbc_10" />
                     <TextView
                         android:textSize="16sp"
                         android:textColor="@color/tablecolor"
@@ -272,7 +272,7 @@
                         android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="11회차" />
+                        android:text="@string/mbc_11" />
                     <TextView
                         android:textSize="16sp"
                         android:textColor="@color/tablecolor"
@@ -293,7 +293,7 @@
                     android:height="45dp"
                     android:background="@drawable/celltitle"
                     android:gravity="center"
-                    android:text="비고" />
+                    android:text="@string/gyeong_bigo" />
                 <TextView
                     android:paddingLeft="15dp"
                     android:textSize="16sp"
@@ -302,7 +302,7 @@
                     android:height="45dp"
                     android:background="@drawable/cellbg_top"
                     android:gravity="center_vertical"
-                    android:text="- 10:00~18:00 연중무휴 운영" />
+                    android:text="@string/mbc_bigo1" />
                 <TextView
                     android:paddingLeft="25dp"
                     android:textSize="16sp"
@@ -311,7 +311,7 @@
                     android:height="45dp"
                     android:background="@drawable/cellbg_btm"
                     android:gravity="top"
-                    android:text="(단, 설날/추석 당일은 휴관)" />
+                    android:text="@string/mbc_bigo2" />
 
                 <TextView
                     android:paddingLeft="15dp"
@@ -321,7 +321,7 @@
                     android:height="45dp"
                     android:background="@drawable/cellbg"
                     android:gravity="center_vertical"
-                    android:text="- 운영종료 2시간 전(16:00)까지만 입장 가능" />
+                    android:text="@string/mbc_bigo3" />
                 <TextView
                     android:paddingLeft="15dp"
                     android:textSize="16sp"
@@ -330,7 +330,7 @@
                     android:height="45dp"
                     android:background="@drawable/cellbg"
                     android:gravity="center_vertical"
-                    android:text="- 하루 11회 투어 운영, 1회 투어 소요시간은 90분" />
+                    android:text="@string/mbc_bigo4" />
             </TableLayout>
 
 

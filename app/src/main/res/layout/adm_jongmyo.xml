@@ -48,7 +48,7 @@
                         android:height="45dp"
                         android:background="@drawable/celltitle"
                         android:gravity="center"
-                        android:text="대상" />
+                        android:text="@string/jongmyo_target" />
 
                     <TextView
                         android:textSize="16sp"
@@ -58,7 +58,7 @@
                         android:height="45dp"
                         android:background="@drawable/celltitle"
                         android:gravity="center"
-                        android:text="관람 요금" />
+                        android:text="@string/jongmyo_admissions" />
 
 
                 </TableRow>
@@ -74,7 +74,7 @@
                             android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
-                            android:text="만 25세~64세(내국인)" />
+                            android:text="@string/jongmyo_2564" />
 
                         <TextView
                             android:textSize="16sp"
@@ -83,7 +83,7 @@
                             android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
-                            android:text="만 19세 이상 외국인" />
+                            android:text="@string/jongmyo_19" />
                     </TableLayout>
 
                     <TextView
@@ -94,7 +94,7 @@
                         android:height="90dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="1,000원" />
+                        android:text="@string/jongmyo_1000" />
                 </TableRow>
 
                 <TableRow android:weightSum="14">
@@ -108,7 +108,7 @@
                             android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
-                            android:text="만 24세 이하, 만 65세 이상(내국인)" />
+                            android:text="@string/jongmyo_2465" />
 
                         <TextView
                             android:textSize="16sp"
@@ -117,7 +117,7 @@
                             android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
-                            android:text="만 6세 이하 외국인" />
+                            android:text="@string/jongmyo_6" />
                     </TableLayout>
 
                     <TextView
@@ -128,7 +128,7 @@
                         android:height="90dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="외국인" />
+                        android:text="@string/jongmyo_free" />
                 </TableRow>
 
                 <TableRow android:weightSum="14">
@@ -140,7 +140,7 @@
                         android:height="90dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="만 7세 이상~만 18세 이상 외국인" />
+                        android:text="@string/jongmyo_718" />
                     <TextView
                         android:textSize="16sp"
                         android:textColor="@color/tablecolor"
@@ -149,7 +149,7 @@
                         android:height="90dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="500원" />
+                        android:text="@string/jongmyo_500" />
                 </TableRow>
 
                 <TextView
@@ -160,7 +160,7 @@
                     android:height="45dp"
                     android:background="@drawable/celltitle"
                     android:gravity="center"
-                    android:text="비고" />
+                    android:text="@string/gyeong_bigo" />
 
                 <TextView
                     android:textSize="16sp"
@@ -170,7 +170,7 @@
                     android:height="45dp"
                     android:background="@drawable/cellbg_top"
                     android:gravity="center"
-                    android:text="※ 무료관람대상자 (반드시 관련 증빙 제시)" />
+                    android:text="@string/jongmyo_bigo1" />
                 <TextView
                     android:textSize="16sp"
                     android:textColor="@color/tablecolor"
@@ -179,7 +179,8 @@
                     android:height="45dp"
                     android:background="@drawable/cellbg_center"
                     android:gravity="center_vertical"
-                    android:text="      - 만 24세 이하 청소년(학생증 또는 신분증 지참)" />
+                    android:paddingLeft="30dp"
+                    android:text="@string/jongmyo_bigo2" />
                 <TextView
                     android:textSize="16sp"
                     android:textColor="@color/tablecolor"
@@ -188,7 +189,8 @@
                     android:height="45dp"
                     android:background="@drawable/cellbg_center"
                     android:gravity="center_vertical"
-                    android:text="      - 만 6세 이하, 만 65세 이상 국민(신분증 지참)" />
+                    android:paddingLeft="30dp"
+                    android:text="@string/jongmyo_bigo3" />
                 <TextView
                     android:textSize="16sp"
                     android:textColor="@color/tablecolor"
@@ -197,7 +199,8 @@
                     android:height="45dp"
                     android:background="@drawable/cellbg_btm"
                     android:gravity="center_vertical"
-                    android:text="      - 만 6세 이하 및 만 65세 이상 외국인" />
+                    android:paddingLeft="30dp"
+                    android:text="@string/jongmyo_bigo4" />
             </TableLayout>
         </LinearLayout>
     </ScrollView>

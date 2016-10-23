@@ -38,7 +38,7 @@
                     android:background="@drawable/celltitle_top"
                     android:gravity="bottom"
                     android:textAlignment="center"
-                    android:text="대인" />
+                    android:text="@string/nampark_adult" />
                 <TextView
                     android:textSize="16sp"
                     android:textColor="@color/tablecolor"
@@ -47,7 +47,7 @@
                     android:background="@drawable/celltitle_btm"
                     android:gravity="top"
                     android:textAlignment="center"
-                    android:text="(만 25세~만 64세)" />
+                    android:text="@string/changdeok_2564" />
             </TableLayout>
 
             <TextView
@@ -74,7 +74,7 @@
                     android:background="@drawable/celltitle_center"
                     android:gravity="bottom"
                     android:textAlignment="center"
-                    android:text="소인" />
+                    android:text="@string/changdeok_youth" />
                 <TextView
                     android:textSize="16sp"
                     android:textColor="@color/tablecolor"
@@ -83,7 +83,7 @@
                     android:background="@drawable/celltitle_center"
                     android:gravity="top"
                     android:textAlignment="center"
-                    android:text="(만 24세 이하)" />
+                    android:text="@string/changdeok_24" />
             </TableLayout>
 
             <TextView
@@ -94,7 +94,7 @@
                 android:height="45dp"
                 android:background="@drawable/cellbg"
                 android:gravity="center"
-                android:text="무료(외국인 제외)" />
+                android:text="@string/changdeok_youthFare" />
 
         </TableRow>
 
@@ -110,7 +110,7 @@
                     android:background="@drawable/celltitle_top"
                     android:gravity="bottom"
                     android:textAlignment="center"
-                    android:text="단체" />
+                    android:text="@string/changdeok_group" />
                 <TextView
                     android:textSize="16sp"
                     android:textColor="@color/tablecolor"
@@ -119,7 +119,7 @@
                     android:background="@drawable/celltitle_btm"
                     android:gravity="top"
                     android:textAlignment="center"
-                    android:text="(10명 이상)" />
+                    android:text="@string/changdeok_group10" />
             </TableLayout>
 
             <TableLayout android:layout_weight="8.5">
@@ -131,7 +131,7 @@
                     android:background="@drawable/cellbg_top"
                     android:gravity="bottom"
                     android:textAlignment="center"
-                    android:text="무료 대상자를 제외한 10명" />
+                    android:text="@string/changdeok_group1" />
                 <TextView
                     android:textSize="16sp"
                     android:textColor="@color/tablecolor"
@@ -140,7 +140,7 @@
                     android:background="@drawable/cellbg_btm"
                     android:gravity="top"
                     android:textAlignment="center"
-                    android:text="이상일 경우 요금 22.5% 할인" />
+                    android:text="@string/changdeok_group2" />
             </TableLayout>
 
         </TableRow>
@@ -154,7 +154,7 @@
                 android:height="170dp"
                 android:background="@drawable/celltitle_btm"
                 android:gravity="center"
-                android:text="무료" />
+                android:text="@string/changdeok_free" />
             <TableLayout
                 android:layout_weight="8.5">
                 <TextView
@@ -165,7 +165,8 @@
                     android:height="40dp"
                     android:background="@drawable/cellbg_top"
                     android:gravity="bottom"
-                    android:text="    ※ 무료 관람 대상자는" />
+                    android:paddingLeft="20dp"
+                    android:text="@string/changdeok_bigo1" />
                 <TextView
                     android:textSize="16sp"
                     android:textColor="@color/tablecolor"
@@ -174,7 +175,8 @@
                     android:height="40dp"
                     android:background="@drawable/cellbg_center"
                     android:gravity="center_vertical"
-                    android:text="      신분증 제시" />
+                    android:paddingLeft="25dp"
+                    android:text="@string/changdeok_bigo2" />
                 <TextView
                     android:textSize="16sp"
                     android:textColor="@color/tablecolor"
@@ -183,7 +185,8 @@
                     android:height="45dp"
                     android:background="@drawable/cellbg_center"
                     android:gravity="center_vertical"
-                    android:text="      - 만 24세 이하 청소년" />
+                    android:paddingLeft="30dp"
+                    android:text="@string/changdeok_bigo3" />
                 <TextView
                     android:textSize="16sp"
                     android:textColor="@color/tablecolor"
@@ -192,7 +195,8 @@
                     android:height="45dp"
                     android:background="@drawable/cellbg_btm"
                     android:gravity="center_vertical"
-                    android:text="      - 만 65세 이상 어르신" />
+                    android:paddingLeft="30dp"
+                    android:text="@string/changdeok_bigo4" />
             </TableLayout>
 
 

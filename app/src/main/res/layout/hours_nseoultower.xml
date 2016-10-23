@@ -44,7 +44,7 @@
                     android:height="45dp"
                     android:background="@drawable/celltitle"
                     android:gravity="center"
-                    android:text="구분" />
+                    android:text="@string/nseoul_gubun" />
 
                 <TextView
                     android:layout_weight="7"
@@ -54,7 +54,7 @@
                     android:height="45dp"
                     android:background="@drawable/cellbg"
                     android:gravity="center"
-                    android:text="월요일~금요일/일요일" />
+                    android:text="@string/nseoul_week" />
 
                 <TextView
                     android:textSize="16sp"
@@ -64,7 +64,7 @@
                     android:height="45dp"
                     android:background="@drawable/cellbg"
                     android:gravity="center"
-                    android:text="토요일" />
+                    android:text="@string/nseoul_sat" />
             </TableRow>
 
             <TableRow android:weightSum="15">
@@ -77,7 +77,7 @@
                     android:height="45dp"
                     android:background="@drawable/celltitle_btm"
                     android:gravity="center"
-                    android:text="전망대" />
+                    android:text="@string/nseoul_observatory" />
 
                 <TextView
                     android:textSize="16sp"

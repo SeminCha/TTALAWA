@@ -45,7 +45,7 @@
                     android:height="45dp"
                     android:background="@drawable/celltitle"
                     android:gravity="center"
-                    android:text="시간제 관람" />
+                    android:text="@string/jongmyo_guidedtour" />
 
                 <TableRow android:weightSum="14">
 
@@ -57,7 +57,7 @@
                         android:height="405dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="관람 시간" />
+                        android:text="@string/jongmyo_observ" />
 
                     <TableLayout android:layout_weight="10">
 
@@ -140,7 +140,7 @@
                             android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
-                            android:text="17:00(3월~9월) / 17:20(6월~8월)" />
+                            android:text="@string/jongmyo_guideMon" />
 
                     </TableLayout>
                 </TableRow>
@@ -156,7 +156,7 @@
                         android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="비고" />
+                        android:text="@string/gyeong_bigo" />
 
                     <TextView
                         android:textSize="16sp"
@@ -166,7 +166,7 @@
                         android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="문화재해설사와 함께하는 관람 실시" />
+                        android:text="@string/jongmyo_bigo" />
                 </TableRow>
 
 
@@ -192,7 +192,7 @@
                     android:height="45dp"
                     android:background="@drawable/celltitle"
                     android:gravity="center"
-                    android:text="자유 관람" />
+                    android:text="@string/jongmyo_selfguide" />
 
                 <TableRow android:weightSum="14">
 
@@ -204,7 +204,7 @@
                         android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="구분" />
+                        android:text="@string/nseoul_gubun" />
 
                     <TextView
                         android:textSize="16sp"
@@ -214,7 +214,7 @@
                         android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="매표 시간" />
+                        android:text="@string/jongmyo_ticketing" />
 
                     <TextView
                         android:textSize="16sp"
@@ -224,7 +224,7 @@
                         android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="관람 시간" />
+                        android:text="@string/jongmyo_observ" />
                 </TableRow>
 
                 <TableRow android:weightSum="14">
@@ -238,7 +238,7 @@
                             android:background="@drawable/cellbg_top"
                             android:gravity="bottom"
                             android:textAlignment="center"
-                            android:text="2월~5월" />
+                            android:text="@string/jongmyo_2_5" />
 
                         <TextView
                             android:textSize="16sp"
@@ -248,7 +248,7 @@
                             android:background="@drawable/cellbg_btm"
                             android:gravity="top"
                             android:textAlignment="center"
-                            android:text="/ 9월~10월" />
+                            android:text="@string/jongmyo_9_10" />
                     </TableLayout>
 
                     <TextView
@@ -282,7 +282,7 @@
                         android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="6월~8월" />
+                        android:text="@string/jongmyo_6_8" />
 
                     <TextView
                         android:textSize="16sp"
@@ -315,7 +315,7 @@
                         android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="11월~1월" />
+                        android:text="@string/jongmyo_11_1" />
 
                     <TextView
                         android:textSize="16sp"

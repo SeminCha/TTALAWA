@@ -46,7 +46,7 @@
                         android:height="45dp"
                         android:background="@drawable/celltitle"
                         android:gravity="center"
-                        android:text="구분" />
+                        android:text="@string/nseoul_gubun" />
 
                     <TextView
                         android:textSize="16sp"
@@ -56,7 +56,7 @@
                         android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="대인" />
+                        android:text="@string/nampark_adult" />
 
                     <TextView
                         android:textSize="16sp"
@@ -66,7 +66,7 @@
                         android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="소인" />
+                        android:text="@string/nampark_child" />
                 </TableRow>
 
                 <TableRow android:weightSum="15">
@@ -79,7 +79,7 @@
                         android:height="45dp"
                         android:background="@drawable/celltitle_btm"
                         android:gravity="center"
-                        android:text="전망대" />
+                        android:text="@string/nseoul_observatory" />
 
                     <TextView
                         android:textSize="16sp"
@@ -89,7 +89,7 @@
                         android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="10,000원" />
+                        android:text="@string/nseoul_10000" />
 
                     <TextView
                         android:textSize="16sp"
@@ -99,7 +99,7 @@
                         android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="8,000원" />
+                        android:text="@string/nseoul_8000" />
                 </TableRow>
 
                 <TableRow android:weightSum="15">
@@ -112,7 +112,7 @@
                         android:height="135dp"
                         android:background="@drawable/celltitle_btm"
                         android:gravity="center"
-                        android:text="비고" />
+                        android:text="@string/gyeong_bigo" />
 
                     <TableLayout android:layout_weight="12">
 
@@ -123,7 +123,7 @@
                             android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
-                            android:text="대인 : 만 13세 이상" />
+                            android:text="@string/nseoul_adult" />
 
                         <TextView
                             android:textSize="16sp"
@@ -132,7 +132,7 @@
                             android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
-                            android:text="소인 : 만 3세~ 만 12세" />
+                            android:text="@string/nseoul_child" />
 
                         <TextView
                             android:textSize="16sp"
@@ -141,7 +141,7 @@
                             android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
-                            android:text="경로 : 소인 요금과 동일" />
+                            android:text="@string/nseoul_senior" />
                     </TableLayout>
                 </TableRow>
 

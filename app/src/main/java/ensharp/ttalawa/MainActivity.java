@@ -1149,10 +1149,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 // 한국어
                 if(Locale.getDefault().getLanguage().equals("ko")){
                     address = result.getString(2) + " " +  result.getString(3);
+                    stationTag.setImageResource(R.drawable.station_label);
                 }
                 // 영어
                 else {
                     address =  result.getString(10) + " " +  result.getString(9);
+                    stationTag.setImageResource(R.drawable.eng_station_label);
                 }
                 rack_count = result.getString(7);
                 Log.i("거치대 수 뭐니",rack_count);
@@ -1236,12 +1238,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             while (!result.isAfterLast()) {
                 // 한국어
                 if(Locale.getDefault().getLanguage().equals("ko")){
-                    tourSpotTag.setBackgroundResource(R.drawable.tourspot_label);
+                    tourSpotTag.setImageResource(R.drawable.tourspot_label);
                     address = result.getString(4);
                 }
                 // 영어
                 else {
-                    tourSpotTag.setBackgroundResource(R.drawable.eng_tourspotlabel);
+                    tourSpotTag.setImageResource(R.drawable.eng_tourspot_label);
                     address  = result.getString(6);
                 }
                 result.moveToNext();
@@ -1326,86 +1328,114 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private String getTourSpotIntro(String spotName) {
 
         String introContent;
-
-        switch (spotName) {
-            case "덕수궁 돌담길":
+        if (Locale.getDefault().getLanguage().equals("ko")) {
+            if (spotName.equals(getString(R.string.spot_deoksu))) {
                 introContent = "연인과 함께 걷고 싶은 길";
-                break;
-            case "명동":
+            } else if (spotName.equals(getString(R.string.spot_myeongdong))) {
                 introContent = "대한민국 예술과 패션 1번지";
-                break;
-            case "남산골 한옥마을":
+            } else if (spotName.equals(getString(R.string.spot_namsangol))) {
                 introContent = "전통 가옥에서 만나는 우리 문화";
-                break;
-            case "숭례문":
+            } else if (spotName.equals(getString(R.string.spot_sungnyemun))) {
                 introContent = "서울의 정문, 국보 1호";
-                break;
-            case "남산 공원":
+            } else if (spotName.equals(getString(R.string.spot_namsanpark))) {
                 introContent = "도심에 위치한 자연 휴식처";
-                break;
-            case "N 서울타워":
+            } else if (spotName.equals(getString(R.string.spot_nseoul))) {
                 introContent = "도심 속 로맨틱 아일랜드";
-                break;
-            case "경복궁":
+            } else if (spotName.equals(getString(R.string.spot_gyeongbok))) {
                 introContent = "조선 왕조의 법궁, 조선의 중심지";
-                break;
-            case "광화문 광장":
+            } else if (spotName.equals(getString(R.string.spot_gwanghwamun))) {
                 introContent = "한국을 대표하는 도심 속의 광장";
-                break;
-            case "종묘":
+            } else if (spotName.equals(getString(R.string.spot_jongmyo))) {
                 introContent = "조선왕조의 신조를 모신 유교사당";
-                break;
-            case "보신각 터":
+            } else if (spotName.equals(getString(R.string.spot_bosingak))) {
                 introContent = "'제야의 종' 타종행사가 열리는 곳";
-                break;
-            case "쌈지길":
+            } else if (spotName.equals(getString(R.string.spot_ssamzie))) {
                 introContent = "인사동 속의 새로운 인사동";
-                break;
-            case "인사동":
+            } else if (spotName.equals(getString(R.string.spot_insadong))) {
                 introContent = "도심에서 느끼는 전통의 멋";
-                break;
-            case "창덕궁과 후원":
+            } else if (spotName.equals(getString(R.string.spot_changdeokgung))) {
                 introContent = "조선의 왕들, 후원에 취하다";
-                break;
-            case "창경궁":
+            } else if (spotName.equals(getString(R.string.spot_changgyeong))) {
                 introContent = "조선 왕조 역사의 중요한 무대";
-                break;
-            case "북촌 한옥마을":
+            } else if (spotName.equals(getString(R.string.spot_bukchon))) {
                 introContent = "옛집 골목길 따라 걷는 여행";
-                break;
-            case "흥인지문":
+            } else if (spotName.equals(getString(R.string.spot_heunginjimun))) {
                 introContent = "국가지정 보물 1호";
-                break;
-            case "동대문 패션타운":
+            } else if (spotName.equals(getString(R.string.spot_dongfashion))) {
                 introContent = "세계적인 의류패션산업의 메카";
-                break;
-            case "대학로":
+            } else if (spotName.equals(getString(R.string.spot_daehakro))) {
                 introContent = "문화 예술의 거리";
-                break;
-            case "마로니에 공원":
+            } else if (spotName.equals(getString(R.string.spot_marronnier))) {
                 introContent = "문화 예술의 터전";
-                break;
-            case "낙산 공원":
+            } else if (spotName.equals(getString(R.string.spot_naksan))) {
                 introContent = "북악의 좌청룡에서 서울을 조망하자";
-                break;
-            case "63스퀘어":
+            } else if (spotName.equals(getString(R.string.spot_63square))) {
                 introContent = "여의도의 복합 문화 공간";
-                break;
-            case "여의도 공원":
+            } else if (spotName.equals(getString(R.string.spot_yeouido))) {
                 introContent = "서울의 센트럴 파크";
-                break;
-            case "MBC 월드 방송 테마 파크":
+            } else if (spotName.equals(getString(R.string.spot_mbc))) {
                 introContent = "TV 속 환상의 세계, MBC월드";
-                break;
-            case "평화의 공원":
+            } else if (spotName.equals(getString(R.string.spot_pyeongwha))) {
                 introContent = "사람과 자연의 조화로운 만남";
-                break;
-            case "하늘 공원":
+            } else if (spotName.equals(getString(R.string.spot_skypark))) {
                 introContent = "하늘과 맞닿은 초원";
-                break;
-            default:
+            } else {
                 introContent = "없음";
-                break;
+            }
+        } else {
+            if (spotName.equals(getString(R.string.spot_deoksu))) {
+                introContent = "One of Korea’s 100 most beautiful roads";
+            } else if (spotName.equals(getString(R.string.spot_myeongdong))) {
+                introContent = "Korea’s best-known shopping district";
+            } else if (spotName.equals(getString(R.string.spot_namsangol))) {
+                introContent = "The ancient village from the Joseon period";
+            } else if (spotName.equals(getString(R.string.spot_sungnyemun))) {
+                introContent = "National Treasure No. 1 in Korea";
+            } else if (spotName.equals(getString(R.string.spot_namsanpark))) {
+                introContent = "The home to many popular tourist attractions";
+            } else if (spotName.equals(getString(R.string.spot_nseoul))) {
+                introContent = "Namsan’s main tourist attraction";
+            } else if (spotName.equals(getString(R.string.spot_gyeongbok))) {
+                introContent = "The First royal palace built in the Joseon Dynasty";
+            } else if (spotName.equals(getString(R.string.spot_gwanghwamun))) {
+                introContent = "The main gate of Gyeongbokgung";
+            } else if (spotName.equals(getString(R.string.spot_jongmyo))) {
+                introContent = "The Confucian shrine where the memorial tablets for the kings and queens of the Joseon Dynasty";
+            } else if (spotName.equals(getString(R.string.spot_bosingak))) {
+                introContent = "Bell rung to announce the time during the Joseon period";
+            } else if (spotName.equals(getString(R.string.spot_ssamzie))) {
+                introContent = "The Multi-cultural space where visitors can shop";
+            } else if (spotName.equals(getString(R.string.spot_insadong))) {
+                introContent = "The Street showcasing traditional Korean culture";
+            } else if (spotName.equals(getString(R.string.spot_changdeokgung))) {
+                introContent = "The most well-preserved royal residential palace from the Joseon period";
+            } else if (spotName.equals(getString(R.string.spot_changgyeong))) {
+                introContent = "The palace that symbolizes the filial piety of King Seongjong of the Joseon Dynasty";
+            } else if (spotName.equals(getString(R.string.spot_bukchon))) {
+                introContent = "The district packed with hanoks, traditional Korean houses";
+            } else if (spotName.equals(getString(R.string.spot_heunginjimun))) {
+                introContent = "National Treasure No. 1";
+            } else if (spotName.equals(getString(R.string.spot_dongfashion))) {
+                introContent = "The fashion town with Shopping malls that offer a wide variety of fashion apparel and accessories";
+            } else if (spotName.equals(getString(R.string.spot_daehakro))) {
+                introContent = "The center of performance culture";
+            } else if (spotName.equals(getString(R.string.spot_marronnier))) {
+                introContent = "The small park planted with marronnier trees";
+            } else if (spotName.equals(getString(R.string.spot_naksan))) {
+                introContent = "The park that offers a spectacular view of Daehangno from its peak";
+            } else if (spotName.equals(getString(R.string.spot_63square))) {
+                introContent = "One of the tallest buildings in Seoul";
+            } else if (spotName.equals(getString(R.string.spot_yeouido))) {
+                introContent = "Take a walk among the trees";
+            } else if (spotName.equals(getString(R.string.spot_mbc))) {
+                introContent = "Fantastic world in TV";
+            } else if (spotName.equals(getString(R.string.spot_pyeongwha))) {
+                introContent = "Harmony with people and nature";
+            } else if (spotName.equals(getString(R.string.spot_skypark))) {
+                introContent = "A park where the sky and the meadow meet";
+            } else {
+                introContent = "None";
+            }
         }
 
         return introContent;

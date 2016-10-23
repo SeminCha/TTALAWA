@@ -6,7 +6,7 @@
     <string name="restTimeInfo">Use the rental service.</string>
     <string name="searchHint">Enter the destination.</string>
     <string name="spot">Tourist Spot</string>
-    <string name="station">Rental Spot</string>
+    <string name="station">Rental Station</string>
     <string name="stationAddress">Address</string>
     <string name="stationFab">Stations</string>
     <string name="stationNumber">Station No.</string>
@@ -113,5 +113,11 @@
     <string name="gyeong_bigo2">\t\t\t\tAges 65 and above</string>
     <string name="gyeong_bigo3">\t\t* With the purchase of a book of Combination Tickets </string>
     <string name="gyeong_bigo4">\t\t\t(adults 10,000won, Youth 5,000won), one admission for each of the five different Palaces is available within three month.</string>
-
+    <string name="rackCountUnit"> </string>
+    <string name="stationListTitle">Rental Station List(order by distance)</string>
+    <string name="about">about</string>
+    <string name="alertVisitGps">If you want to use \'Visit Check\' service, turn on your Gps.</string>
+    <string name="alertVisitComplete">Have you enjoyed your trip? We confirm your visit!</string>
+    <string name="alertVisitFail">You aren\'t at the tourist spot. Go near them.</string>
+    <string name="alertVisitAlready">Your visit is already confirmed! Do you want to delete your visit history?</string>
 </resources>

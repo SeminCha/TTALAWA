@@ -450,55 +450,55 @@ public class TourInfoTab1_Intro extends Fragment {
                     Intent intent = new Intent();
 
                     if (spotName.equals(getString(R.string.spot_deoksu))) {
-                        intent.putExtra("key", "덕수궁 돌담길");
+                        intent.putExtra("key", getString(R.string.spot_deoksu));
                     } else if (spotName.equals(getString(R.string.spot_myeongdong))) {
-                        intent.putExtra("key", "명동");
+                        intent.putExtra("key", getString(R.string.spot_myeongdong));
                     } else if (spotName.equals(getString(R.string.spot_namsangol))) {
-                        intent.putExtra("key", "남산골 한옥마을");
+                        intent.putExtra("key", getString(R.string.spot_namsangol));
                     } else if (spotName.equals(getString(R.string.spot_sungnyemun))) {
-                        intent.putExtra("key", "숭례문");
+                        intent.putExtra("key", getString(R.string.spot_sungnyemun));
                     } else if (spotName.equals(getString(R.string.spot_namsanpark))) {
-                        intent.putExtra("key", "남산 공원");
+                        intent.putExtra("key", getString(R.string.spot_namsanpark));
                     } else if (spotName.equals(getString(R.string.spot_nseoul))) {
-                        intent.putExtra("key", "N 서울타워");
+                        intent.putExtra("key", getString(R.string.spot_nseoul));
                     } else if (spotName.equals(getString(R.string.spot_gyeongbok))) {
-                        intent.putExtra("key", "경복궁");
+                        intent.putExtra("key",getString(R.string.spot_gyeongbok));
                     } else if (spotName.equals(getString(R.string.spot_gwanghwamun))) {
-                        intent.putExtra("key", "광화문 광장");
+                        intent.putExtra("key", getString(R.string.spot_gwanghwamun));
                     } else if (spotName.equals(getString(R.string.spot_jongmyo))) {
-                        intent.putExtra("key", "종묘");
+                        intent.putExtra("key", getString(R.string.spot_jongmyo));
                     } else if (spotName.equals(getString(R.string.spot_bosingak))) {
-                        intent.putExtra("key", "보신각 터");
+                        intent.putExtra("key", getString(R.string.spot_bosingak));
                     } else if (spotName.equals(getString(R.string.spot_ssamzie))) {
-                        intent.putExtra("key", "쌈지길");
+                        intent.putExtra("key", getString(R.string.spot_ssamzie));
                     } else if (spotName.equals(getString(R.string.spot_insadong))) {
-                        intent.putExtra("key", "인사동");
+                        intent.putExtra("key", getString(R.string.spot_insadong));
                     } else if (spotName.equals(getString(R.string.spot_changdeokgung))) {
-                        intent.putExtra("key", "창덕궁과 후원");
+                        intent.putExtra("key", getString(R.string.spot_changdeokgung));
                     } else if (spotName.equals(getString(R.string.spot_changgyeong))) {
-                        intent.putExtra("key", "창경궁");
+                        intent.putExtra("key", getString(R.string.spot_changgyeong));
                     } else if (spotName.equals(getString(R.string.spot_bukchon))) {
-                        intent.putExtra("key", "북촌 한옥마을");
+                        intent.putExtra("key", getString(R.string.spot_bukchon));
                     } else if (spotName.equals(getString(R.string.spot_heunginjimun))) {
-                        intent.putExtra("key", "흥인지문");
+                        intent.putExtra("key", getString(R.string.spot_heunginjimun));
                     } else if (spotName.equals(getString(R.string.spot_dongfashion))) {
-                        intent.putExtra("key", "동대문 패션타운");
+                        intent.putExtra("key", getString(R.string.spot_dongfashion));
                     } else if (spotName.equals(getString(R.string.spot_daehakro))) {
-                        intent.putExtra("key", "대학로");
+                        intent.putExtra("key", getString(R.string.spot_daehakro));
                     } else if (spotName.equals(getString(R.string.spot_marronnier))) {
-                        intent.putExtra("key", "마로니에 공원");
+                        intent.putExtra("key", getString(R.string.spot_marronnier));
                     } else if (spotName.equals(getString(R.string.spot_naksan))) {
-                        intent.putExtra("key", "낙산 공원");
+                        intent.putExtra("key", getString(R.string.spot_naksan));
                     } else if (spotName.equals(getString(R.string.spot_63square))) {
-                        intent.putExtra("key", "63스퀘어");
+                        intent.putExtra("key", getString(R.string.spot_63square));
                     } else if (spotName.equals(getString(R.string.spot_yeouido))) {
-                        intent.putExtra("key", "여의도 공원");
+                        intent.putExtra("key", getString(R.string.spot_yeouido));
                     } else if (spotName.equals(getString(R.string.spot_mbc))) {
-                        intent.putExtra("key", "MBC 월드 방송 테마 파크");
+                        intent.putExtra("key", getString(R.string.spot_mbc));
                     } else if (spotName.equals(getString(R.string.spot_pyeongwha))) {
-                        intent.putExtra("key", "평화의 공원");
+                        intent.putExtra("key", getString(R.string.spot_pyeongwha));
                     } else if (spotName.equals(getString(R.string.spot_skypark))) {
-                        intent.putExtra("key", "하늘 공원");
+                        intent.putExtra("key", getString(R.string.spot_skypark));
                     }
                     getActivity().setResult(1, intent);
                     getActivity().finish();
@@ -506,55 +506,55 @@ public class TourInfoTab1_Intro extends Fragment {
 
                 case R.id.navi_btn:
                     if (spotName.equals(getString(R.string.spot_deoksu))) {
-                        TmapNavigation("덕수궁 돌담길");
+                        TmapNavigation(getString(R.string.spot_deoksu));
                     } else if (spotName.equals(getString(R.string.spot_myeongdong))) {
-                        TmapNavigation("명동");
+                        TmapNavigation(getString(R.string.spot_myeongdong));
                     } else if (spotName.equals(getString(R.string.spot_namsangol))) {
-                        TmapNavigation("남산골 한옥마을");
+                        TmapNavigation(getString(R.string.spot_namsangol));
                     } else if (spotName.equals(getString(R.string.spot_sungnyemun))) {
-                        TmapNavigation("숭례문");
+                        TmapNavigation(getString(R.string.spot_sungnyemun));
                     } else if (spotName.equals(getString(R.string.spot_namsanpark))) {
-                        TmapNavigation("남산 공원");
+                        TmapNavigation(getString(R.string.spot_namsanpark));
                     } else if (spotName.equals(getString(R.string.spot_nseoul))) {
-                        TmapNavigation("N 서울타워");
+                        TmapNavigation(getString(R.string.spot_nseoul));
                     } else if (spotName.equals(getString(R.string.spot_gyeongbok))) {
-                        TmapNavigation("경복궁");
+                        TmapNavigation(getString(R.string.spot_gyeongbok));
                     } else if (spotName.equals(getString(R.string.spot_gwanghwamun))) {
-                        TmapNavigation("광화문 광장");
+                        TmapNavigation(getString(R.string.spot_gwanghwamun));
                     } else if (spotName.equals(getString(R.string.spot_jongmyo))) {
-                        TmapNavigation("종묘");
+                        TmapNavigation(getString(R.string.spot_jongmyo));
                     } else if (spotName.equals(getString(R.string.spot_bosingak))) {
-                        TmapNavigation("보신각 터");
+                        TmapNavigation(getString(R.string.spot_bosingak));
                     } else if (spotName.equals(getString(R.string.spot_ssamzie))) {
-                        TmapNavigation("쌈지길");
+                        TmapNavigation(getString(R.string.spot_ssamzie));
                     } else if (spotName.equals(getString(R.string.spot_insadong))) {
-                        TmapNavigation("인사동");
+                        TmapNavigation(getString(R.string.spot_insadong));
                     } else if (spotName.equals(getString(R.string.spot_changdeokgung))) {
-                        TmapNavigation("창덕궁과 후원");
+                        TmapNavigation(getString(R.string.spot_changdeokgung));
                     } else if (spotName.equals(getString(R.string.spot_changgyeong))) {
-                        TmapNavigation("창경궁");
+                        TmapNavigation(getString(R.string.spot_changgyeong));
                     } else if (spotName.equals(getString(R.string.spot_bukchon))) {
-                        TmapNavigation("북촌 한옥마을");
+                        TmapNavigation(getString(R.string.spot_bukchon));
                     } else if (spotName.equals(getString(R.string.spot_heunginjimun))) {
-                        TmapNavigation("흥인지문");
+                        TmapNavigation(getString(R.string.spot_heunginjimun));
                     } else if (spotName.equals(getString(R.string.spot_dongfashion))) {
-                        TmapNavigation("동대문 패션타운");
+                        TmapNavigation(getString(R.string.spot_dongfashion));
                     } else if (spotName.equals(getString(R.string.spot_daehakro))) {
-                        TmapNavigation("대학로");
+                        TmapNavigation(getString(R.string.spot_daehakro));
                     } else if (spotName.equals(getString(R.string.spot_marronnier))) {
-                        TmapNavigation("마로니에 공원");
+                        TmapNavigation(getString(R.string.spot_marronnier));
                     } else if (spotName.equals(getString(R.string.spot_naksan))) {
-                        TmapNavigation("낙산 공원");
+                        TmapNavigation(getString(R.string.spot_naksan));
                     } else if (spotName.equals(getString(R.string.spot_63square))) {
-                        TmapNavigation("63스퀘어");
+                        TmapNavigation(getString(R.string.spot_63square));
                     } else if (spotName.equals(getString(R.string.spot_yeouido))) {
-                        TmapNavigation("여의도 공원");
+                        TmapNavigation(getString(R.string.spot_yeouido));
                     } else if (spotName.equals(getString(R.string.spot_mbc))) {
-                        TmapNavigation("MBC 월드 방송 테마 파크");
+                        TmapNavigation(getString(R.string.spot_mbc));
                     } else if (spotName.equals(getString(R.string.spot_pyeongwha))) {
-                        TmapNavigation(("평화의 공원"));
+                        TmapNavigation(getString(R.string.spot_pyeongwha));
                     } else if (spotName.equals(getString(R.string.spot_skypark))) {
-                        TmapNavigation("하늘 공원");
+                        TmapNavigation(getString(R.string.spot_skypark));
                     }
                     break;
 
@@ -641,9 +641,9 @@ public class TourInfoTab1_Intro extends Fragment {
         key = position;
 
         if (mode.equals("GPS")) {
-            builder.setMessage("방문 인증 서비스를 이용하시려면, 단말기 설정에서 '위치 서비스' 사용을 허용해주세요.")
+            builder.setMessage(getString(R.string.alertVisitGps))
                     .setCancelable(false)
-                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
                         public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
                             dialog.cancel();
                         }
@@ -651,9 +651,9 @@ public class TourInfoTab1_Intro extends Fragment {
             final AlertDialog alert = builder.create();
             alert.show();
         } else if (mode.equals("성공")) {
-            builder.setMessage("즐거운 관광 되셨나요? \n해당 관광지 방문이 확인되었습니다!")
+            builder.setMessage(getString(R.string.alertVisitComplete))
                     .setCancelable(false)
-                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
                         public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
 //                            tourSpotVisitCheck.setBackground(getResources().getDrawable(R.drawable.visited_btn));
                             //tourSpotVisitCheck.setBackgroundColor(getResources().getColor(R.color.green_light));
@@ -664,9 +664,9 @@ public class TourInfoTab1_Intro extends Fragment {
             final AlertDialog alert = builder.create();
             alert.show();
         } else if (mode.equals("실패")) {
-            builder.setMessage("지금 계신 곳은 해당 관광지가 아니네요!\n조금만 더 근처로 가주세요.")
+            builder.setMessage(getString(R.string.alertVisitFail))
                     .setCancelable(false)
-                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
                         public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
                             dialog.cancel();
                         }
@@ -674,16 +674,16 @@ public class TourInfoTab1_Intro extends Fragment {
             final AlertDialog alert = builder.create();
             alert.show();
         } else if (mode.equals("이미방문")) {
-            builder.setMessage("이미 방문하셨습니다! \n방문기록을 삭제할까요?")
+            builder.setMessage(getString(R.string.alertVisitAlready))
                     .setCancelable(false)
-                    .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                         public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
                             // tourSpotVisitCheck.setBackgroundColor(getResources().getColor(R.color.grey));
                             pref.putValue(key, false, "방문여부");
                             dialog.cancel();
                         }
                     })
-                    .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    .setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
                         public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
                             dialog.cancel();
                         }
@@ -962,7 +962,7 @@ public class TourInfoTab1_Intro extends Fragment {
             @Override
             public void SKPMapApikeyFailed(String errorMsg) {
                 Log.i("키인증", "실패");
-                Toast.makeText(TourInfoActivity.mContextTourInfo, R.string.navigationError, Toast.LENGTH_LONG).show();
+                Toast.makeText(TourInfoActivity.mContextTourInfo, getString(R.string.navigationError), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -976,9 +976,9 @@ public class TourInfoTab1_Intro extends Fragment {
                 TourInfoActivity.mContextTourInfo);
 
         alertDialogBuilder
-                .setMessage(R.string.alertTmapInstall)
+                .setMessage(getString(R.string.alertTmapInstall))
                 .setCancelable(false)
-                .setPositiveButton(R.string.install,
+                .setPositiveButton(getString(R.string.install),
                         new DialogInterface.OnClickListener() {
                             public void onClick(
                                     DialogInterface dialog, int id) {
@@ -992,7 +992,7 @@ public class TourInfoTab1_Intro extends Fragment {
                                 }
                             }
                         })
-                .setNegativeButton(R.string.no,
+                .setNegativeButton(getString(R.string.no),
                         new DialogInterface.OnClickListener() {
                             public void onClick(
                                     DialogInterface dialog, int id) {

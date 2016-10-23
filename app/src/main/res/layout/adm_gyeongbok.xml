@@ -49,7 +49,7 @@
                             android:height="45dp"
                             android:background="@drawable/celltitle"
                             android:gravity="center"
-                            android:text="개인"
+                            android:text="@string/gyeong_individual"
                             android:textColor="@color/tablecolor"
                             android:textSize="16sp" />
 
@@ -59,7 +59,7 @@
                             android:height="45dp"
                             android:background="@drawable/celltitle_btm"
                             android:gravity="center"
-                            android:text="(내국인)"
+                            android:text="@string/gyeong_local"
                             android:textColor="@color/tablecolor"
                             android:textSize="16sp" />
                     </TableLayout>
@@ -72,7 +72,7 @@
                             android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
-                            android:text="대인"
+                            android:text="@string/gyeong_daeIn"
                             android:textColor="@color/tablecolor"
                             android:textSize="16sp" />
 
@@ -82,7 +82,7 @@
                             android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
-                            android:text="(만25세~만64세)"
+                            android:text="@string/gyeong_age"
                             android:textColor="@color/tablecolor"
                             android:textSize="16sp" />
 
@@ -94,7 +94,7 @@
                         android:height="90dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="3,000원"
+                        android:text="@string/gyeong_3000"
                         android:textColor="@color/tablecolor"
                         android:textSize="16sp" />
                 </TableRow>
@@ -110,7 +110,7 @@
                             android:height="45dp"
                             android:background="@drawable/celltitle_btm"
                             android:gravity="center"
-                            android:text="단체"
+                            android:text="@string/gyeong_group"
                             android:textColor="@color/tablecolor"
                             android:textSize="16sp" />
 
@@ -120,7 +120,7 @@
                             android:height="45dp"
                             android:background="@drawable/celltitle_btm"
                             android:gravity="center"
-                            android:text="(내국인)"
+                            android:text="@string/gyeong_local"
                             android:textColor="@color/tablecolor"
                             android:textSize="16sp" />
                     </TableLayout>
@@ -133,7 +133,7 @@
                             android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
-                            android:text="대인(10인이상)"
+                            android:text="@string/gyeong_daein10"
                             android:textColor="@color/tablecolor"
                             android:textSize="16sp" />
 
@@ -143,7 +143,7 @@
                             android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
-                            android:text="※ 무료대상자 제외"
+                            android:text="@string/gyeong_below_daein10"
                             android:textColor="@color/tablecolor"
                             android:textSize="16sp" />
                     </TableLayout>
@@ -154,7 +154,7 @@
                         android:height="90dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="2,450원"
+                        android:text="@string/gyeong_2450"
                         android:textColor="@color/tablecolor"
                         android:textSize="16sp" />
                 </TableRow>
@@ -167,7 +167,7 @@
                         android:height="210dp"
                         android:background="@drawable/celltitle_btm"
                         android:gravity="center"
-                        android:text="비고"
+                        android:text="@string/gyeong_bigo"
                         android:textColor="@color/tablecolor"
                         android:textSize="16sp" />
 
@@ -179,7 +179,7 @@
                             android:height="40dp"
                             android:background="@drawable/cellbg_top"
                             android:gravity="bottom"
-                            android:text="     ※ 무료관람에 해당되시는 분은 신분증"
+                            android:text="@string/gyeong_bigo1"
                             android:textColor="@color/tablecolor"
                             android:textSize="16sp" />
 
@@ -189,34 +189,34 @@
                             android:height="40dp"
                             android:background="@drawable/cellbg_center"
                             android:gravity="center_vertical"
-                            android:text="        을 매표소에 제시한 후 무료입장권을"
+                            android:text="@string/gyeong_bigo2"
                             android:textColor="@color/tablecolor"
                             android:textSize="16sp" />
 
-                        <TextView
+                        dhfslkfdfhdh<TextView
                             android:layout_weight="12"
                             android:width="0px"
                             android:height="40dp"
                             android:background="@drawable/cellbg_center"
                             android:gravity="top"
-                            android:text="        발권받아 입장하시면 됩니다. "
+                            android:text="@string/gyeong_bigo3"
                             android:textColor="@color/tablecolor"
                             android:textSize="16sp" />
 
                         <TextView
                             android:layout_weight="12"
                             android:width="0px"
-                            android:height="45dp"
+                            android:height="50dp"
                             android:background="@drawable/cellbg_center"
                             android:gravity="center_vertical"
-                            android:text="      - 만 24세 이하 청소년"
+                            android:text="@string/gyeong_bigo4"
                             android:textColor="@color/tablecolor"
                             android:textSize="16sp" />
 
                         <TextView
                             android:layout_weight="12"
                             android:width="0px"
-                            android:height="45dp"
+                            android:height="50dp"
                             android:background="@drawable/cellbg_btm"
                             android:gravity="center_vertical"
                             android:text="      - 만 65세 이상 어르신"

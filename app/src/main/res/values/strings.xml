@@ -90,5 +90,27 @@
     <string name="spot_jongmyo">종묘</string>
     <string name="spot_bosingak">보신각 터</string>
     <string name="spot_ssamzie">쌈지길</string>
+    <string name="hours_hours">관람 시간</string>
+    <string name="hours_finalAdmission">입장 마감</string>
+    <string name="hours_1_2">1월~2월</string>
+    <string name="hours_3_5">3월~5월</string>
+    <string name="hours_6_8">6월~8월</string>
+    <string name="hours_9_10">9월~10월</string>
+    <string name="hours_11_12">11월~12월</string>
+    <string name="hours_months">관람 기간</string>
+    <string name="gyeong_individual">개인</string>
+    <string name="gyeong_daeIn">대인</string>
+    <string name="gyeong_local">(내국인)</string>
+    <string name="gyeong_age">(만25세~만64세)</string>
+    <string name="gyeong_3000">3,000원</string>
+    <string name="gyeong_2450">2,450원</string>
+    <string name="gyeong_group">단체</string>
+    <string name="gyeong_daein10">대인(10인이상)</string>
+    <string name="gyeong_below_daein10">※ 무료대상자 제외</string>
+    <string name="gyeong_bigo">비고</string>
+    <string name="gyeong_bigo1">\t\t※ 무료관람에 해당되시는 분은 신분증</string>
+    <string name="gyeong_bigo2">\t\t\t을 매표소에 제시한 후 무료입장권을</string>
+    <string name="gyeong_bigo3">\t\t\t발권받아 입장하시면 됩니다.</string>
+    <string name="gyeong_bigo4">\t\t\t- 만 24세 이하 청소년</string>
 
 </resources>

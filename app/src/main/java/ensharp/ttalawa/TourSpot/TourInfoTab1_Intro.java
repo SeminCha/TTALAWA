@@ -74,9 +74,9 @@ public class TourInfoTab1_Intro extends Fragment {
         tourSpotVisitCheck = (Button) inflatedView.findViewById(R.id.visitCheckBtn);
         tourSpotVisitCheck.setOnClickListener(btnListener);
 
-        if(Locale.getDefault().getLanguage().equals("ko")) {
+        if (Locale.getDefault().getLanguage().equals("ko")) {
             getKorIntroDbTourSpot();
-        }else{
+        } else {
             getEngIntroDbTourSpot();
         }
 
@@ -110,13 +110,13 @@ public class TourInfoTab1_Intro extends Fragment {
         Cursor result = spotDbAdapter.fetchAllSpots();
         result.moveToFirst();
         String spotKorIntro = "";
-        String spotKorAddr="";
+        String spotKorAddr = "";
 
         spotIntroList = new ArrayList();
-        spotAddrList=new ArrayList();
+        spotAddrList = new ArrayList();
         while (!result.isAfterLast()) {
             spotKorIntro = result.getString(7);
-            spotKorAddr=result.getString(4);
+            spotKorAddr = result.getString(4);
             spotIntroList.add(spotKorIntro);
             spotAddrList.add(spotKorAddr);
             result.moveToNext();
@@ -125,6 +125,7 @@ public class TourInfoTab1_Intro extends Fragment {
         result.close();
         spotDbAdapter.close();
     }
+
     //영문판 소개 디비 받아오기
     private void getEngIntroDbTourSpot() {
         this.spotDbAdapter = new SpotsDbAdapter(getContext());
@@ -133,13 +134,13 @@ public class TourInfoTab1_Intro extends Fragment {
         Cursor result = spotDbAdapter.fetchAllSpots();
         result.moveToFirst();
         String spotEngIntro = "";
-        String spotEngAddr="";
+        String spotEngAddr = "";
 
         spotIntroList = new ArrayList();
-        spotAddrList=new ArrayList();
+        spotAddrList = new ArrayList();
         while (!result.isAfterLast()) {
             spotEngIntro = result.getString(8);
-            spotEngAddr=result.getString(6);
+            spotEngAddr = result.getString(6);
             spotIntroList.add(spotEngIntro);
             spotAddrList.add(spotEngAddr);
             result.moveToNext();
@@ -288,453 +289,326 @@ public class TourInfoTab1_Intro extends Fragment {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.btn_call:
-                    switch (spotName) {
-                        case "덕수궁 돌담길":
-                            callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-771-9951"));
-                            startActivity(callIntent);
-                            break;
-                        case "명동":
-                            callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-778-0333"));
-                            startActivity(callIntent);
-                            break;
-                        case "남산골 한옥마을":
-                            callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-2261-0500"));
-                            startActivity(callIntent);
-                            break;
-                        case "숭례문":
-                            callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:042-481-4650"));
-                            startActivity(callIntent);
-                            break;
-                        case "남산 공원":
-                            callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-3783-5900"));
-                            startActivity(callIntent);
-                            break;
-                        case "N 서울타워":
-                            callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-3455-9277"));
-                            startActivity(callIntent);
-                            break;
-                        case "경복궁":
-                            callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-3700-3900"));
-                            startActivity(callIntent);
-                            break;
-                        case "광화문 광장":
-                            callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-3700-3901"));
-                            startActivity(callIntent);
-                            break;
-                        case "종묘":
-                            callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-3672-4332"));
-                            startActivity(callIntent);
-                            break;
-                        case "보신각 터":
-                            callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-2148-1114"));
-                            startActivity(callIntent);
-                            break;
-                        case "쌈지길":
-                            callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-736-0088"));
-                            startActivity(callIntent);
-                            break;
-                        case "인사동":
-                            callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-737-7890"));
-                            startActivity(callIntent);
-                            break;
-                        case "창덕궁과 후원":
-                            callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-3668-2300"));
-                            startActivity(callIntent);
-                            break;
-                        case "창경궁":
-                            callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-762-4868"));
-                            startActivity(callIntent);
-                            break;
-                        case "북촌 한옥마을":
-                            callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-2133-5580"));
-                            startActivity(callIntent);
-                            break;
-                        case "흥인지문":
-                            callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-778-0333"));
-                            startActivity(callIntent);
-                            break;
-                        case "동대문 패션타운":
-                            callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-2278-0500"));
-                            startActivity(callIntent);
-                            break;
-                        case "대학로":
-                            callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-2148-1812"));
-                            startActivity(callIntent);
-                            break;
-                        case "마로니에 공원":
-                            callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-2148-4158"));
-                            startActivity(callIntent);
-                            break;
-                        case "낙산 공원":
-                            callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-2148-2842"));
-                            startActivity(callIntent);
-                            break;
-                        case "63스퀘어":
-                            callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-789-5663"));
-                            startActivity(callIntent);
-                            break;
-                        case "여의도 공원":
-                            callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-2670-3758"));
-                            startActivity(callIntent);
-                            break;
-                        case "MBC 월드 방송 테마 파크":
-                            callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-789-3705"));
-                            startActivity(callIntent);
-                            break;
-                        case "평화의 공원":
-                            callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-300-5501"));
-                            startActivity(callIntent);
-                            break;
-                        case "하늘 공원":
-                            callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-300-5502"));
-                            startActivity(callIntent);
-                            break;
+                    if (spotName.equals(getString(R.string.spot_deoksu))) {
+                        callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-771-9951"));
+                        startActivity(callIntent);
+                    } else if (spotName.equals(getString(R.string.spot_myeongdong))) {
+                        callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-778-0333"));
+                        startActivity(callIntent);
+                    } else if (spotName.equals(getString(R.string.spot_namsangol))) {
+                        callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-2261-0500"));
+                        startActivity(callIntent);
+                    } else if (spotName.equals(getString(R.string.spot_sungnyemun))) {
+                        callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:042-481-4650"));
+                        startActivity(callIntent);
+                    } else if (spotName.equals(getString(R.string.spot_namsanpark))) {
+                        callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-3783-5900"));
+                        startActivity(callIntent);
+                    } else if (spotName.equals(getString(R.string.spot_nseoul))) {
+                        callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-3455-9277"));
+                        startActivity(callIntent);
+                    } else if (spotName.equals(getString(R.string.spot_gyeongbok))) {
+                        callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-3700-3900"));
+                        startActivity(callIntent);
+                    } else if (spotName.equals(getString(R.string.spot_gwanghwamun))) {
+                        callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-3700-3901"));
+                        startActivity(callIntent);
+                    } else if (spotName.equals(getString(R.string.spot_jongmyo))) {
+                        callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-3672-4332"));
+                        startActivity(callIntent);
+                    } else if (spotName.equals(getString(R.string.spot_bosingak))) {
+                        callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-2148-1114"));
+                        startActivity(callIntent);
+                    } else if (spotName.equals(getString(R.string.spot_ssamzie))) {
+                        callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-736-0088"));
+                        startActivity(callIntent);
+                    } else if (spotName.equals(getString(R.string.spot_insadong))) {
+                        callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-737-7890"));
+                        startActivity(callIntent);
+                    } else if (spotName.equals(getString(R.string.spot_changdeokgung))) {
+                        callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-3668-2300"));
+                        startActivity(callIntent);
+                    } else if (spotName.equals(getString(R.string.spot_changgyeong))) {
+                        callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-762-4868"));
+                        startActivity(callIntent);
+                    } else if (spotName.equals(getString(R.string.spot_bukchon))) {
+                        callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-2133-5580"));
+                        startActivity(callIntent);
+                    } else if (spotName.equals(getString(R.string.spot_heunginjimun))) {
+                        callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-778-0333"));
+                        startActivity(callIntent);
+                    } else if (spotName.equals(getString(R.string.spot_dongfashion))) {
+                        callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-2278-0500"));
+                        startActivity(callIntent);
+                    } else if (spotName.equals(getString(R.string.spot_daehakro))) {
+                        callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-2148-1812"));
+                        startActivity(callIntent);
+                    } else if (spotName.equals(getString(R.string.spot_marronnier))) {
+                        callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-2148-4158"));
+                        startActivity(callIntent);
+                    } else if (spotName.equals(getString(R.string.spot_naksan))) {
+                        callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-2148-2842"));
+                        startActivity(callIntent);
+                    } else if (spotName.equals(getString(R.string.spot_63square))) {
+                        callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-789-5663"));
+                        startActivity(callIntent);
+                    } else if (spotName.equals(getString(R.string.spot_yeouido))) {
+                        callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-2670-3758"));
+                        startActivity(callIntent);
+                    } else if (spotName.equals(getString(R.string.spot_mbc))) {
+                        callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-789-3705"));
+                        startActivity(callIntent);
+                    } else if (spotName.equals(getString(R.string.spot_pyeongwha))) {
+                        callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-300-5501"));
+                        startActivity(callIntent);
+                    } else if (spotName.equals(getString(R.string.spot_skypark))) {
+                        callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:02-300-5502"));
+                        startActivity(callIntent);
                     }
                     break;
+
                 case R.id.btn_website:
-                    switch (spotName) {
-                        case "덕수궁 돌담길":
-                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.deoksugung.go.kr/"));
-                            startActivity(webIntent);
-                            break;
-                        case "명동":
-                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.facebook.com/MyeongdongTouristInformationCenter/"));
-                            startActivity(webIntent);
-                            break;
-                        case "남산골 한옥마을":
-                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.hanokmaeul.or.kr/"));
-                            startActivity(webIntent);
-                            break;
-                        case "숭례문":
-                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://korean.visitkorea.or.kr/kor/bz15/where/where_main_search.jsp?cid=128162/"));
-                            startActivity(webIntent);
-                            break;
-                        case "남산 공원":
-                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://parks.seoul.go.kr/namsan/"));
-                            startActivity(webIntent);
-                            break;
-                        case "N 서울타워":
-                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.nseoultower.com/"));
-                            startActivity(webIntent);
-                            break;
-                        case "경복궁":
-                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.royalpalace.go.kr/"));
-                            startActivity(webIntent);
-                            break;
-                        case "광화문 광장":
-                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://terms.naver.com/entry.nhn?docId=1065227&cid=40942&categoryId=33076/"));
-                            startActivity(webIntent);
-                            break;
-                        case "종묘":
-                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://jm.cha.go.kr/n_jm/"));
-                            startActivity(webIntent);
-                            break;
-                        case "보신각 터":
-                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://tour.jongno.go.kr/tourMain.do/"));
-                            startActivity(webIntent);
-                            break;
-                        case "쌈지길":
-                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.ssamzigil.co.kr/"));
-                            startActivity(webIntent);
-                            break;
-                        case "인사동":
-                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.hiinsa.com/"));
-                            startActivity(webIntent);
-                            break;
-                        case "창덕궁과 후원":
-                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.cdg.go.kr:9901/"));
-                            startActivity(webIntent);
-                            break;
-                        case "창경궁":
-                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://cgg.cha.go.kr/n_cgg/index.html/"));
-                            startActivity(webIntent);
-                            break;
-                        case "북촌 한옥마을":
-                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://hanok.seoul.go.kr/"));
-                            startActivity(webIntent);
-                            break;
-                        case "흥인지문":
-                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://korean.visitseoul.net/attractions/%ED%9D%A5%EC%9D%B8%EC%A7%80%EB%AC%B8%EB%8F%99%EB%8C%80%EB%AC%B8_/1999"));
-                            startActivity(webIntent);
-                            break;
-                        case "동대문 패션타운":
-                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.dft.co.kr/"));
-                            startActivity(webIntent);
-                            break;
-                        case "대학로":
-                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://korean.visitkorea.or.kr/kor/bz15/where/where_main_search.jsp?cid=126534/"));
-                            startActivity(webIntent);
-                            break;
-                        case "마로니에 공원":
-                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://korean.visitkorea.or.kr/kor/bz15/where/where_tour.jsp?cid=126487/"));
-                            startActivity(webIntent);
-                            break;
-                        case "낙산 공원":
-                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://korean.visitkorea.or.kr/kor/bz15/where/where_tour.jsp?cid=129501/"));
-                            startActivity(webIntent);
-                            break;
-                        case "63스퀘어":
-                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.63.co.kr/"));
-                            startActivity(webIntent);
-                            break;
-                        case "여의도 공원":
-                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://korean.visitkorea.or.kr/kor/bz15/where/where_tour.jsp?cid=127955/"));
-                            startActivity(webIntent);
-                            break;
-                        case "MBC 월드 방송 테마 파크":
-                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://mbcworld.imbc.com/guide/index.html/"));
-                            startActivity(webIntent);
-                            break;
-                        case "평화의 공원":
-                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://worldcuppark.seoul.go.kr/parkinfo/parkinfo2_1.html/"));
-                            startActivity(webIntent);
-                            break;
-                        case "하늘 공원":
-                            webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://worldcuppark.seoul.go.kr/parkinfo/parkinfo3_1.html/"));
-                            startActivity(webIntent);
-                            break;
+                    if (spotName.equals(getString(R.string.spot_deoksu))) {
+                        webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.deoksugung.go.kr/"));
+                        startActivity(webIntent);
+                    } else if (spotName.equals(getString(R.string.spot_myeongdong))) {
+                        webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.facebook.com/MyeongdongTouristInformationCenter/"));
+                        startActivity(webIntent);
+                    } else if (spotName.equals(getString(R.string.spot_namsangol))) {
+                        webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.hanokmaeul.or.kr/"));
+                        startActivity(webIntent);
+                    } else if (spotName.equals(getString(R.string.spot_sungnyemun))) {
+                        webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://korean.visitkorea.or.kr/kor/bz15/where/where_main_search.jsp?cid=128162/"));
+                        startActivity(webIntent);
+                    } else if (spotName.equals(getString(R.string.spot_namsanpark))) {
+                        webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://parks.seoul.go.kr/namsan/"));
+                        startActivity(webIntent);
+                    } else if (spotName.equals(getString(R.string.spot_nseoul))) {
+                        webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.nseoultower.com/"));
+                        startActivity(webIntent);
+                    } else if (spotName.equals(getString(R.string.spot_gyeongbok))) {
+                        webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.royalpalace.go.kr/"));
+                        startActivity(webIntent);
+                    } else if (spotName.equals(getString(R.string.spot_gwanghwamun))) {
+                        webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://terms.naver.com/entry.nhn?docId=1065227&cid=40942&categoryId=33076/"));
+                        startActivity(webIntent);
+                    } else if (spotName.equals(getString(R.string.spot_jongmyo))) {
+                        webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://jm.cha.go.kr/n_jm/"));
+                        startActivity(webIntent);
+                    } else if (spotName.equals(getString(R.string.spot_bosingak))) {
+                        webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://tour.jongno.go.kr/tourMain.do/"));
+                        startActivity(webIntent);
+                    } else if (spotName.equals(getString(R.string.spot_ssamzie))) {
+                        webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.ssamzigil.co.kr/"));
+                        startActivity(webIntent);
+                    } else if (spotName.equals(getString(R.string.spot_insadong))) {
+                        webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.hiinsa.com/"));
+                        startActivity(webIntent);
+                    } else if (spotName.equals(getString(R.string.spot_changdeokgung))) {
+                        webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.cdg.go.kr:9901/"));
+                        startActivity(webIntent);
+                    } else if (spotName.equals(getString(R.string.spot_changgyeong))) {
+                        webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://cgg.cha.go.kr/n_cgg/index.html/"));
+                        startActivity(webIntent);
+                    } else if (spotName.equals(getString(R.string.spot_bukchon))) {
+                        webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://hanok.seoul.go.kr/"));
+                        startActivity(webIntent);
+                    } else if (spotName.equals(getString(R.string.spot_heunginjimun))) {
+                        webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://korean.visitseoul.net/attractions/%ED%9D%A5%EC%9D%B8%EC%A7%80%EB%AC%B8%EB%8F%99%EB%8C%80%EB%AC%B8_/1999"));
+                        startActivity(webIntent);
+                    } else if (spotName.equals(getString(R.string.spot_dongfashion))) {
+                        webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.dft.co.kr/"));
+                        startActivity(webIntent);
+                    } else if (spotName.equals(getString(R.string.spot_daehakro))) {
+                        webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://korean.visitkorea.or.kr/kor/bz15/where/where_main_search.jsp?cid=126534/"));
+                        startActivity(webIntent);
+                    } else if (spotName.equals(getString(R.string.spot_marronnier))) {
+                        webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://korean.visitkorea.or.kr/kor/bz15/where/where_tour.jsp?cid=126487/"));
+                        startActivity(webIntent);
+                    } else if (spotName.equals(getString(R.string.spot_naksan))) {
+                        webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://korean.visitkorea.or.kr/kor/bz15/where/where_tour.jsp?cid=129501/"));
+                        startActivity(webIntent);
+                    } else if (spotName.equals(getString(R.string.spot_63square))) {
+                        webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.63.co.kr/"));
+                        startActivity(webIntent);
+                    } else if (spotName.equals(getString(R.string.spot_yeouido))) {
+                        webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://korean.visitkorea.or.kr/kor/bz15/where/where_tour.jsp?cid=127955/"));
+                        startActivity(webIntent);
+                    } else if (spotName.equals(getString(R.string.spot_mbc))) {
+                        webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://mbcworld.imbc.com/guide/index.html/"));
+                        startActivity(webIntent);
+                    } else if (spotName.equals(getString(R.string.spot_pyeongwha))) {
+                        webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://worldcuppark.seoul.go.kr/parkinfo/parkinfo2_1.html/"));
+                        startActivity(webIntent);
+                    } else if (spotName.equals(getString(R.string.spot_skypark))) {
+                        webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://worldcuppark.seoul.go.kr/parkinfo/parkinfo3_1.html/"));
+                        startActivity(webIntent);
                     }
                     break;
+
                 case R.id.showmap_btn:
-                    ///////////////////////////////////////지도 연결 ///////////////////////////////////////////////////////
                     Intent intent = new Intent();
-                    switch (spotName) {
-                        case "덕수궁 돌담길":
-                            intent.putExtra("key", "덕수궁 돌담길");
-                            break;
-                        case "명동":
-                            intent.putExtra("key", "명동");
-                            break;
-                        case "남산골 한옥마을":
-                            intent.putExtra("key", "남산골 한옥마을");
-                            break;
-                        case "숭례문":
-                            intent.putExtra("key", "숭례문");
-                            break;
-                        case "남산 공원":
-                            intent.putExtra("key", "남산 공원");
-                            break;
-                        case "N 서울타워":
-                            intent.putExtra("key", "N 서울타워");
-                            break;
-                        case "경복궁":
-                            intent.putExtra("key", "경복궁");
-                            break;
-                        case "광화문 광장":
-                            intent.putExtra("key", "광화문 광장");
-                            break;
-                        case "종묘":
-                            intent.putExtra("key", "종묘");
-                            break;
-                        case "보신각 터":
-                            intent.putExtra("key", "보신각 터");
-                            break;
-                        case "쌈지길":
-                            intent.putExtra("key", "쌈지길");
-                            break;
-                        case "인사동":
-                            intent.putExtra("key", "인사동");
-                            break;
-                        case "창덕궁과 후원":
-                            intent.putExtra("key", "창덕궁과 후원");
-                            break;
-                        case "창경궁":
-                            intent.putExtra("key", "창경궁");
-                            break;
-                        case "북촌 한옥마을":
-                            intent.putExtra("key", "북촌 한옥마을");
-                            break;
-                        case "흥인지문":
-                            intent.putExtra("key", "흥인지문");
-                            break;
-                        case "동대문 패션타운":
-                            intent.putExtra("key", "동대문 패션타운");
-                            break;
-                        case "대학로":
-                            intent.putExtra("key", "대학로");
-                            break;
-                        case "마로니에 공원":
-                            intent.putExtra("key", "마로니에 공원");
-                            break;
-                        case "낙산 공원":
-                            intent.putExtra("key", "낙산 공원");
-                            break;
-                        case "63스퀘어":
-                            intent.putExtra("key", "63스퀘어");
-                            break;
-                        case "여의도 공원":
-                            intent.putExtra("key", "여의도 공원");
-                            break;
-                        case "MBC 월드 방송 테마 파크":
-                            intent.putExtra("key", "MBC 월드 방송 테마 파크");
-                            break;
-                        case "평화의 공원":
-                            intent.putExtra("key", "평화의 공원");
-                            break;
-                        case "하늘 공원":
-                            intent.putExtra("key", "하늘 공원");
-                            break;
+
+                    if (spotName.equals(getString(R.string.spot_deoksu))) {
+                        intent.putExtra("key", "덕수궁 돌담길");
+                    } else if (spotName.equals(getString(R.string.spot_myeongdong))) {
+                        intent.putExtra("key", "명동");
+                    } else if (spotName.equals(getString(R.string.spot_namsangol))) {
+                        intent.putExtra("key", "남산골 한옥마을");
+                    } else if (spotName.equals(getString(R.string.spot_sungnyemun))) {
+                        intent.putExtra("key", "숭례문");
+                    } else if (spotName.equals(getString(R.string.spot_namsanpark))) {
+                        intent.putExtra("key", "남산 공원");
+                    } else if (spotName.equals(getString(R.string.spot_nseoul))) {
+                        intent.putExtra("key", "N 서울타워");
+                    } else if (spotName.equals(getString(R.string.spot_gyeongbok))) {
+                        intent.putExtra("key", "경복궁");
+                    } else if (spotName.equals(getString(R.string.spot_gwanghwamun))) {
+                        intent.putExtra("key", "광화문 광장");
+                    } else if (spotName.equals(getString(R.string.spot_jongmyo))) {
+                        intent.putExtra("key", "종묘");
+                    } else if (spotName.equals(getString(R.string.spot_bosingak))) {
+                        intent.putExtra("key", "보신각 터");
+                    } else if (spotName.equals(getString(R.string.spot_ssamzie))) {
+                        intent.putExtra("key", "쌈지길");
+                    } else if (spotName.equals(getString(R.string.spot_insadong))) {
+                        intent.putExtra("key", "인사동");
+                    } else if (spotName.equals(getString(R.string.spot_changdeokgung))) {
+                        intent.putExtra("key", "창덕궁과 후원");
+                    } else if (spotName.equals(getString(R.string.spot_changgyeong))) {
+                        intent.putExtra("key", "창경궁");
+                    } else if (spotName.equals(getString(R.string.spot_bukchon))) {
+                        intent.putExtra("key", "북촌 한옥마을");
+                    } else if (spotName.equals(getString(R.string.spot_heunginjimun))) {
+                        intent.putExtra("key", "흥인지문");
+                    } else if (spotName.equals(getString(R.string.spot_dongfashion))) {
+                        intent.putExtra("key", "동대문 패션타운");
+                    } else if (spotName.equals(getString(R.string.spot_daehakro))) {
+                        intent.putExtra("key", "대학로");
+                    } else if (spotName.equals(getString(R.string.spot_marronnier))) {
+                        intent.putExtra("key", "마로니에 공원");
+                    } else if (spotName.equals(getString(R.string.spot_naksan))) {
+                        intent.putExtra("key", "낙산 공원");
+                    } else if (spotName.equals(getString(R.string.spot_63square))) {
+                        intent.putExtra("key", "63스퀘어");
+                    } else if (spotName.equals(getString(R.string.spot_yeouido))) {
+                        intent.putExtra("key", "여의도 공원");
+                    } else if (spotName.equals(getString(R.string.spot_mbc))) {
+                        intent.putExtra("key", "MBC 월드 방송 테마 파크");
+                    } else if (spotName.equals(getString(R.string.spot_pyeongwha))) {
+                        intent.putExtra("key", "평화의 공원");
+                    } else if (spotName.equals(getString(R.string.spot_skypark))) {
+                        intent.putExtra("key", "하늘 공원");
                     }
                     getActivity().setResult(1, intent);
                     getActivity().finish();
                     break;
+
                 case R.id.navi_btn:
-                    ////////////////////////////////////// 네비 연결 ////////////////////////////////////////////////////////
-                    switch (spotName) {
-                        case "덕수궁 돌담길":
-                            TmapNavigation("덕수궁 돌담길");
-                            break;
-                        case "명동":
-                            TmapNavigation("명동");
-                            break;
-                        case "남산골 한옥마을":
-                            TmapNavigation("남산골 한옥마을");
-                            break;
-                        case "숭례문":
-                            TmapNavigation("숭례문");
-                            break;
-                        case "남산 공원":
-                            TmapNavigation("남산 공원");
-                            break;
-                        case "N 서울타워":
-                            TmapNavigation("N 서울타워");
-                            break;
-                        case "경복궁":
-                            TmapNavigation("경복궁");
-                            break;
-                        case "광화문 광장":
-                            TmapNavigation("광화문 광장");
-                            break;
-                        case "종묘":
-                            TmapNavigation("종묘");
-                            break;
-                        case "보신각 터":
-                            TmapNavigation("보신각 터");
-                            break;
-                        case "쌈지길":
-                            TmapNavigation("쌈지길");
-                            break;
-                        case "인사동":
-                            TmapNavigation("인사동");
-                            break;
-                        case "창덕궁과 후원":
-                            TmapNavigation("창덕궁과 후원");
-                            break;
-                        case "창경궁":
-                            TmapNavigation("창경궁");
-                            break;
-                        case "북촌 한옥마을":
-                            TmapNavigation("북촌 한옥마을");
-                            break;
-                        case "흥인지문":
-                            TmapNavigation("흥인지문");
-                            break;
-                        case "동대문 패션타운":
-                            TmapNavigation("동대문 패션타운");
-                            break;
-                        case "대학로":
-                            TmapNavigation("대학로");
-                            break;
-                        case "마로니에 공원":
-                            TmapNavigation("마로니에 공원");
-                            break;
-                        case "낙산 공원":
-                            TmapNavigation("낙산 공원");
-                            break;
-                        case "63스퀘어":
-                            TmapNavigation("63스퀘어");
-                            break;
-                        case "여의도 공원":
-                            TmapNavigation("여의도 공원");
-                            break;
-                        case "MBC 월드 방송 테마 파크":
-                            TmapNavigation("MBC 월드 방송 테마 파크");
-                            break;
-                        case "평화의 공원":
-                            TmapNavigation(("평화의 공원"));
-                            break;
-                        case "하늘 공원":
-                            TmapNavigation("하늘 공원");
-                            break;
+                    if (spotName.equals(getString(R.string.spot_deoksu))) {
+                        TmapNavigation("덕수궁 돌담길");
+                    } else if (spotName.equals(getString(R.string.spot_myeongdong))) {
+                        TmapNavigation("명동");
+                    } else if (spotName.equals(getString(R.string.spot_namsangol))) {
+                        TmapNavigation("남산골 한옥마을");
+                    } else if (spotName.equals(getString(R.string.spot_sungnyemun))) {
+                        TmapNavigation("숭례문");
+                    } else if (spotName.equals(getString(R.string.spot_namsanpark))) {
+                        TmapNavigation("남산 공원");
+                    } else if (spotName.equals(getString(R.string.spot_nseoul))) {
+                        TmapNavigation("N 서울타워");
+                    } else if (spotName.equals(getString(R.string.spot_gyeongbok))) {
+                        TmapNavigation("경복궁");
+                    } else if (spotName.equals(getString(R.string.spot_gwanghwamun))) {
+                        TmapNavigation("광화문 광장");
+                    } else if (spotName.equals(getString(R.string.spot_jongmyo))) {
+                        TmapNavigation("종묘");
+                    } else if (spotName.equals(getString(R.string.spot_bosingak))) {
+                        TmapNavigation("보신각 터");
+                    } else if (spotName.equals(getString(R.string.spot_ssamzie))) {
+                        TmapNavigation("쌈지길");
+                    } else if (spotName.equals(getString(R.string.spot_insadong))) {
+                        TmapNavigation("인사동");
+                    } else if (spotName.equals(getString(R.string.spot_changdeokgung))) {
+                        TmapNavigation("창덕궁과 후원");
+                    } else if (spotName.equals(getString(R.string.spot_changgyeong))) {
+                        TmapNavigation("창경궁");
+                    } else if (spotName.equals(getString(R.string.spot_bukchon))) {
+                        TmapNavigation("북촌 한옥마을");
+                    } else if (spotName.equals(getString(R.string.spot_heunginjimun))) {
+                        TmapNavigation("흥인지문");
+                    } else if (spotName.equals(getString(R.string.spot_dongfashion))) {
+                        TmapNavigation("동대문 패션타운");
+                    } else if (spotName.equals(getString(R.string.spot_daehakro))) {
+                        TmapNavigation("대학로");
+                    } else if (spotName.equals(getString(R.string.spot_marronnier))) {
+                        TmapNavigation("마로니에 공원");
+                    } else if (spotName.equals(getString(R.string.spot_naksan))) {
+                        TmapNavigation("낙산 공원");
+                    } else if (spotName.equals(getString(R.string.spot_63square))) {
+                        TmapNavigation("63스퀘어");
+                    } else if (spotName.equals(getString(R.string.spot_yeouido))) {
+                        TmapNavigation("여의도 공원");
+                    } else if (spotName.equals(getString(R.string.spot_mbc))) {
+                        TmapNavigation("MBC 월드 방송 테마 파크");
+                    } else if (spotName.equals(getString(R.string.spot_pyeongwha))) {
+                        TmapNavigation(("평화의 공원"));
+                    } else if (spotName.equals(getString(R.string.spot_skypark))) {
+                        TmapNavigation("하늘 공원");
                     }
                     break;
+
                 case R.id.visitCheckBtn:
-                    switch (spotName) {
-                        case "덕수궁 돌담길":
-                            tourVisitCheck("0");
-                            break;
-                        case "명동":
-                            tourVisitCheck("1");
-                            break;
-                        case "남산골 한옥마을":
-                            tourVisitCheck("2");
-                            break;
-                        case "숭례문":
-                            tourVisitCheck("3");
-                            break;
-                        case "남산 공원":
-                            tourVisitCheck("4");
-                            break;
-                        case "N 서울타워":
-                            tourVisitCheck("5");
-                            break;
-                        case "경복궁":
-                            tourVisitCheck("6");
-                            break;
-                        case "광화문 광장":
-                            tourVisitCheck("7");
-                            break;
-                        case "종묘":
-                            tourVisitCheck("8");
-                            break;
-                        case "보신각 터":
-                            tourVisitCheck("9");
-                            break;
-                        case "쌈지길":
-                            tourVisitCheck("10");
-                            break;
-                        case "인사동":
-                            tourVisitCheck("11");
-                            break;
-                        case "창덕궁과 후원":
-                            tourVisitCheck("12");
-                            break;
-                        case "창경궁":
-                            tourVisitCheck("13");
-                            break;
-                        case "북촌 한옥마을":
-                            tourVisitCheck("14");
-                            break;
-                        case "흥인지문":
-                            tourVisitCheck("15");
-                            break;
-                        case "동대문 패션타운":
-                            tourVisitCheck("16");
-                            break;
-                        case "대학로":
-                            tourVisitCheck("17");
-                            break;
-                        case "마로니에 공원":
-                            tourVisitCheck("18");
-                            break;
-                        case "낙산 공원":
-                            tourVisitCheck("19");
-                            break;
-                        case "63스퀘어":
-                            tourVisitCheck("20");
-                            break;
-                        case "여의도 공원":
-                            tourVisitCheck("21");
-                            break;
-                        case "MBC 월드 방송 테마 파크":
-                            tourVisitCheck("22");
-                            break;
-                        case "평화의 공원":
-                            tourVisitCheck("23");
-                            break;
-                        case "하늘 공원":
-                            tourVisitCheck("24");
-                            break;
+                    if (spotName.equals(getString(R.string.spot_deoksu))) {
+                        tourVisitCheck("0");
+                    } else if (spotName.equals(getString(R.string.spot_myeongdong))) {
+                        tourVisitCheck("1");
+                    } else if (spotName.equals(getString(R.string.spot_namsangol))) {
+                        tourVisitCheck("2");
+                    } else if (spotName.equals(getString(R.string.spot_sungnyemun))) {
+                        tourVisitCheck("3");
+                    } else if (spotName.equals(getString(R.string.spot_namsanpark))) {
+                        tourVisitCheck("4");
+                    } else if (spotName.equals(getString(R.string.spot_nseoul))) {
+                        tourVisitCheck("5");
+                    } else if (spotName.equals(getString(R.string.spot_gyeongbok))) {
+                        tourVisitCheck("6");
+                    } else if (spotName.equals(getString(R.string.spot_gwanghwamun))) {
+                        tourVisitCheck("7");
+                    } else if (spotName.equals(getString(R.string.spot_jongmyo))) {
+                        tourVisitCheck("8");
+                    } else if (spotName.equals(getString(R.string.spot_bosingak))) {
+                        tourVisitCheck("9");
+                    } else if (spotName.equals(getString(R.string.spot_ssamzie))) {
+                        tourVisitCheck("10");
+                    } else if (spotName.equals(getString(R.string.spot_insadong))) {
+                        tourVisitCheck("11");
+                    } else if (spotName.equals(getString(R.string.spot_changdeokgung))) {
+                        tourVisitCheck("12");
+                    } else if (spotName.equals(getString(R.string.spot_changgyeong))) {
+                        tourVisitCheck("13");
+                    } else if (spotName.equals(getString(R.string.spot_bukchon))) {
+                        tourVisitCheck("14");
+                    } else if (spotName.equals(getString(R.string.spot_heunginjimun))) {
+                        tourVisitCheck("15");
+                    } else if (spotName.equals(getString(R.string.spot_dongfashion))) {
+                        tourVisitCheck("16");
+                    } else if (spotName.equals(getString(R.string.spot_daehakro))) {
+                        tourVisitCheck("17");
+                    } else if (spotName.equals(getString(R.string.spot_marronnier))) {
+                        tourVisitCheck("18");
+                    } else if (spotName.equals(getString(R.string.spot_naksan))) {
+                        tourVisitCheck("19");
+                    } else if (spotName.equals(getString(R.string.spot_63square))) {
+                        tourVisitCheck("20");
+                    } else if (spotName.equals(getString(R.string.spot_yeouido))) {
+                        tourVisitCheck("21");
+                    } else if (spotName.equals(getString(R.string.spot_mbc))) {
+                        tourVisitCheck("22");
+                    } else if (spotName.equals(getString(R.string.spot_pyeongwha))) {
+                        tourVisitCheck("23");
+                    } else if (spotName.equals(getString(R.string.spot_skypark))) {
+                        tourVisitCheck("24");
                     }
                     break;
 

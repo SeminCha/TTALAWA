@@ -16,6 +16,7 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Locale;
 
 import ensharp.ttalawa.DBAdapter.StationDbAdapter;
 
@@ -41,7 +42,7 @@ public class StationListActivity extends Activity implements AdapterView.OnItemC
         setContentView(R.layout.activity_nearbystationlist);
 
         activityNameTxt = (TextView) findViewById(R.id.activityName);
-        activityNameTxt.setText("대여소 목록(거리 순)");
+        activityNameTxt.setText(getString(R.string.stationListTitle));
         currentLocation = getIntent().getParcelableExtra("location");
         mStationContext = this;
         getStationData();
@@ -103,21 +104,27 @@ public class StationListActivity extends Activity implements AdapterView.OnItemC
         result.moveToFirst();
         String content_name = "";
         String content_num = "";
-        String addr_gu = "";
-        String new_addr = "";
+        String address = "";
         String coordinate_x = "";
         String coordinate_y = "";
 
         stationList = new ArrayList();
         while (!result.isAfterLast()) {
-            content_name = result.getString(1);
-            content_name = result.getString(1);
             content_num = result.getString(6);
-            addr_gu = result.getString(2);
-            new_addr = result.getString(3);
             coordinate_x = result.getString(4);
             coordinate_y = result.getString(5);
-            stationList.add(new StationData(Double.parseDouble(coordinate_x), Double.parseDouble(coordinate_y), content_name.substring(4), content_num, addr_gu + " " + new_addr));
+            //한국어
+            if (Locale.getDefault().getLanguage().equals("ko")) {
+                content_name = result.getString(1);
+                address = result.getString(2) + " " + result.getString(3);
+            }
+            // 영어
+            else {
+                content_name = result.getString(8);
+                address = result.getString(10) + " " + result.getString(9);
+            }
+
+            stationList.add(new StationData(Double.parseDouble(coordinate_x), Double.parseDouble(coordinate_y), content_name.substring(4), content_num, address));
             result.moveToNext();
         }
 

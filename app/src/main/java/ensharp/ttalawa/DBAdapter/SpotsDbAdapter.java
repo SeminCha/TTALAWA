@@ -119,4 +119,15 @@ public class SpotsDbAdapter {
         return mCursor;
     }
 
+    public Cursor fetchSpotByEngTitle(String spotTitle) throws SQLException {
+
+        Cursor mCursor = mDb.query(true, DATABASE_TABLE, new String[] { KEY_ROWID, KEY_SPOT_MAP_X,
+                KEY_SPOT_MAP_Y, KEY_SPOT_TITLE, KEY_SPOT_ADDRESS,KEY_ENG_SPOT_TITLE,KEY_ENG_SPOT_ADDRESS,KEY_KOR_INTRO,KEY_ENG_INTRO}, KEY_ENG_SPOT_TITLE
+                + "= '" + spotTitle+"' ", null, null, null, null, null);
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+        }
+        return mCursor;
+    }
+
 }

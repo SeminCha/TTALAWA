@@ -51,13 +51,14 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="6.5">
+            android:layout_weight="6">
 
             <Button
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:text="경로안내"
                 android:textSize="10dp"
+                android:focusable="false"
                 android:id="@+id/directNavigationBtn"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="49dp" />
@@ -66,13 +67,13 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1.5">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center|right"
-                android:text="약"
+                android:text="@string/about"
                 android:textColor="@color/grey_light"
                 android:textSize="20dp" />
         </RelativeLayout>

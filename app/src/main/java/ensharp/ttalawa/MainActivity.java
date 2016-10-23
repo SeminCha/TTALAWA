@@ -35,6 +35,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
@@ -77,6 +78,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import ensharp.ttalawa.DBAdapter.SpotsDbAdapter;
 import ensharp.ttalawa.DBAdapter.StationDbAdapter;
@@ -502,9 +504,17 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         final MarkerOptions startMarkerOptions = new MarkerOptions();
         final MarkerOptions endMarkerOptions = new MarkerOptions();
         startMarkerOptions.position(new LatLng(startPlace.latitude, startPlace.longitude));
-        startMarkerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("startmarker")));
+        if (Locale.getDefault().getLanguage().equals("ko")) {
+            startMarkerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("startmarker")));
+        } else {
+            startMarkerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("eng_startmarker")));
+        }
         endMarkerOptions.position(new LatLng(endPlace.latitude, endPlace.longitude));
-        endMarkerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("endmarker")));
+        if (Locale.getDefault().getLanguage().equals("ko")) {
+            endMarkerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("endmarker")));
+        } else {
+            endMarkerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("eng_endmarker")));
+        }
         LatLng start = startPlace;
         LatLng end = endPlace;
         final TMapPoint startpoint = new TMapPoint(rentStation.latitude, rentStation.longitude);
@@ -768,7 +778,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mGoogleMap.getUiSettings().setCompassEnabled(false);
 
         mapButtonSetting();
-   //     TmapAuthentication();
+        //TmapAuthentication();
 
         markerMap = new HashMap();
         stationMarkerMap = new HashMap();
@@ -832,14 +842,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private void buildAlertMessageNoGps() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(R.string.alertGpsOn)
+        builder.setMessage(getString(R.string.alertGpsOn))
                 .setCancelable(false)
-                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                     public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
                         startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
                     }
                 })
-                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                .setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
                     public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
                         dialog.cancel();
                     }
@@ -1048,7 +1058,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     }
                     //사용자가 비동의 했을 경우
                 } else {
-                    Toast.makeText(this, R.string.GPSdenied, Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, getString(R.string.GPSdenied), Toast.LENGTH_LONG).show();
                 }
                 return;
             }
@@ -1106,6 +1116,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private void insertInfoLayoutContent(Marker marker, LinearLayout view) {
 
         // 거치소 정보 레이아웃에 대한 정보
+        ImageView stationTag = (ImageView) findViewById(R.id.stationTag);
         TextView stationName = (TextView) findViewById(R.id.stationNameTxt);
         TextView stationNumber = (TextView) findViewById(R.id.stationNumberTxt);
         TextView stationRack = (TextView) findViewById(R.id.stationRackTxt);
@@ -1114,6 +1125,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         final LinearLayout stationRent = (LinearLayout) findViewById(R.id.stationRentLayout);
 
         // 관광명소 정보 레이아웃에 대한 정보
+        ImageView tourSpotTag = (ImageView) findViewById(R.id.tourSpotTag);
         TextView tourSpotName = (TextView) findViewById(R.id.tourSpotNameTxt);
         TextView tourSpotIntro = (TextView) findViewById(R.id.tourSpotIntroTxt);
         TextView tourSpotAddress = (TextView) findViewById(R.id.tourSpotAdressTxt);
@@ -1128,22 +1140,29 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             Cursor result = dbAdapter.fetchStationByNumber(marker.getSnippet());
             result.moveToFirst();
 
-
             String addr_gu = "";
             String new_addr = "";
             String rack_count = "";
+            String address = "";
 
             while (!result.isAfterLast()) {
-                addr_gu = result.getString(2);
-                new_addr = result.getString(3);
+                // 한국어
+                if(Locale.getDefault().getLanguage().equals("ko")){
+                    address = result.getString(2) + " " +  result.getString(3);
+                }
+                // 영어
+                else {
+                    address =  result.getString(10) + " " +  result.getString(9);
+                }
                 rack_count = result.getString(7);
+                Log.i("거치대 수 뭐니",rack_count);
                 result.moveToNext();
             }
 
             stationName.setText(marker.getTitle());
             stationNumber.setText(marker.getSnippet());
-            stationRack.setText(rack_count + "대");
-            stationAddress.setText(addr_gu + " " + new_addr);
+            stationRack.setText(rack_count + getString(R.string.rackCountUnit));
+            stationAddress.setText(address);
 
             stationNavigation.setOnTouchListener(new View.OnTouchListener() {
                 @Override
@@ -1200,14 +1219,31 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             tourSpotName.setText(marker.getTitle());
 
             spotDbAdapter.open();
-            Cursor result = spotDbAdapter.fetchSpotByTitle(marker.getTitle());
+            Cursor result;
+            // 한국어
+            if (Locale.getDefault().getLanguage().equals("ko")) {
+              result = spotDbAdapter.fetchSpotByTitle(marker.getTitle());
+            }
+            // 영어
+            else {
+                result = spotDbAdapter.fetchSpotByEngTitle(marker.getTitle());
+            }
+
             result.moveToFirst();
 
             String address = "";
 
             while (!result.isAfterLast()) {
-
-                address = result.getString(4);
+                // 한국어
+                if(Locale.getDefault().getLanguage().equals("ko")){
+                    tourSpotTag.setBackgroundResource(R.drawable.tourspot_label);
+                    address = result.getString(4);
+                }
+                // 영어
+                else {
+                    tourSpotTag.setBackgroundResource(R.drawable.eng_tourspotlabel);
+                    address  = result.getString(6);
+                }
                 result.moveToNext();
             }
 
@@ -1389,7 +1425,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void SKPMapApikeyFailed(String errorMsg) {
                 Log.i("키인증", "실패");
-                Toast.makeText(MainActivity.this, R.string.navigationError, Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, getString(R.string.navigationError), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -1401,7 +1437,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         if (isTmapApp_1 || isTmapApp_2 || isTmapApp_3) {
             if (isStation) {
-                tmaptapi.invokeRoute(marker.getTitle() + " " + R.string.station, (float) marker.getPosition().longitude, (float) marker.getPosition().latitude);
+                tmaptapi.invokeRoute(marker.getTitle() + " " + getString(R.string.station), (float) marker.getPosition().longitude, (float) marker.getPosition().latitude);
             } else {
                 tmaptapi.invokeRoute(marker.getTitle(), (float) marker.getPosition().longitude, (float) marker.getPosition().latitude);
             }
@@ -1419,9 +1455,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 MainActivity.this);
 
         alertDialogBuilder
-                .setMessage(R.string.alertTmapInstall)
+                .setMessage(getString(R.string.alertTmapInstall))
                 .setCancelable(false)
-                .setPositiveButton(R.string.install,
+                .setPositiveButton(getString(R.string.install),
                         new DialogInterface.OnClickListener() {
                             public void onClick(
                                     DialogInterface dialog, int id) {
@@ -1435,7 +1471,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 }
                             }
                         })
-                .setNegativeButton(R.string.no,
+                .setNegativeButton(getString(R.string.no),
                         new DialogInterface.OnClickListener() {
                             public void onClick(
                                     DialogInterface dialog, int id) {
@@ -1593,9 +1629,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         if (mode.equals("GPS")) {
-            builder.setMessage(R.string.alertSearchGPS)
+            builder.setMessage(getString(R.string.alertSearchGPS))
                     .setCancelable(false)
-                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
                         public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
                             dialog.cancel();
                         }
@@ -1603,9 +1639,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             final AlertDialog alert = builder.create();
             alert.show();
         } else if (mode.equals("fail")) {
-            builder.setMessage(R.string.alertSearchGPS)
+            builder.setMessage(getString(R.string.alertSearchFail))
                     .setCancelable(false)
-                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
                         public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
                             dialog.cancel();
                         }
@@ -1738,15 +1774,23 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         sampleList = new ArrayList();
         while (!result.isAfterLast()) {
-            content_name = result.getString(1);
+
             content_num = result.getString(6);
             coordinate_x = result.getString(4);
             coordinate_y = result.getString(5);
             //임시 디비 확인
-            String engContentName=result.getString(8);
-            String engAddrGu=result.getString(9);
-            String engNewAddr=result.getString(10);
-            Log.w("대여소디비확인",engContentName+" , "+engAddrGu+" , "+engNewAddr);
+//            String engContentName
+//            String engAddrGu=result.getString(9);
+//            String engNewAddr=result.getString(10);
+//            Log.w("대여소디비확인",engContentName+" , "+engAddrGu+" , "+engNewAddr);
+            //한국어
+            if (Locale.getDefault().getLanguage().equals("ko")) {
+                content_name = result.getString(1);
+            }
+            //영어
+            else {
+                content_name = result.getString(8);
+            }
             sampleList.add(new MarkerItem(Double.parseDouble(coordinate_x), Double.parseDouble(coordinate_y), content_name, content_num));
             result.moveToNext();
         }
@@ -1776,17 +1820,23 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         result.moveToFirst();
         String resultStr = "";
         while (!result.isAfterLast()) {
-            String spotNum = result.getString(0);
+//            String spotNum = result.getString(0);
             String spotMapX = result.getString(1);
             String spotMapY = result.getString(2);
-            String spotTitle = result.getString(3);
+            String spotTitle;
             //임시 디비 확인
-            String engSpotTitle=result.getString(5);
-            String engSpotAddress=result.getString(6);
-
-            resultStr += spotNum + ", " + spotMapX + ", " + spotMapY + " , " + spotTitle + "\n";
-
-            Log.w("resultStr:: ", spotNum + "," + spotMapX + "," + spotMapY + "," + spotTitle+","+engSpotTitle+","+engSpotAddress);
+//            String engSpotTitle=result.getString(5);
+//            String engSpotAddress=result.getString(6);
+            if (Locale.getDefault().getLanguage().equals("ko")) {
+                spotTitle = result.getString(3);
+            }
+            //영어
+            else {
+                spotTitle = result.getString(5);
+            }
+//            resultStr += spotNum + ", " + spotMapX + ", " + spotMapY + " , " + spotTitle + "\n";
+//
+//            Log.w("resultStr:: ", spotNum + "," + spotMapX + "," + spotMapY + "," + spotTitle+","+engSpotTitle+","+engSpotAddress);
             TourSpotList.add(new TourSpotMarkerItem(Double.parseDouble(spotMapX), Double.parseDouble(spotMapY), spotTitle));
             result.moveToNext();
         }
@@ -1818,6 +1868,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         } else if (iconName.contains("start") || iconName.contains("end")) {
             width = (int) (displaywidth * 0.11f);
             height = (int) (width * 1.22f);
+        } else if (iconName.contains("eng_return")) {
+            width = (int) (displaywidth * 0.145f);
+            height = (int) (width * 1.5f);
         } else if (iconName.contains("rent") || iconName.contains("return") || iconName.contains("middle")) {
             width = (int) (displaywidth * 0.12f);
             height = (int) (width * 1.8f);
@@ -1862,17 +1915,29 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("redmarker")));
             neartourSpotStationMarkerMap.put(stationNumber, mGoogleMap.addMarker(markerOptions));
         } else if (markerMode.equals("rentStation")) {
-            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("rentmarker")));
+            if (Locale.getDefault().getLanguage().equals("ko")) {
+                markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("rentmarker")));
+            } else {
+                markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("eng_rentmarker")));
+            }
             marker = mGoogleMap.addMarker(markerOptions);
             pathStationMarkerMap.put(stationNumber, marker);
             pathmarkers.add(marker);
         } else if (markerMode.equals("returnStation")) {
-            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("returnmarker")));
+            if (Locale.getDefault().getLanguage().equals("ko")) {
+                markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("returnmarker")));
+            } else {
+                markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("eng_returnmarker")));
+            }
             marker = mGoogleMap.addMarker(markerOptions);
             pathStationMarkerMap.put(stationNumber, marker);
             pathmarkers.add(marker);
         } else if (markerMode.equals("middleStation")) {
-            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("middlemarker")));
+            if (Locale.getDefault().getLanguage().equals("ko")) {
+                markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("middlemarker")));
+            } else {
+                markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("eng_middlemarker")));
+            }
             marker = mGoogleMap.addMarker(markerOptions);
             pathStationMarkerMap.put(stationNumber, marker);
             pathmarkers.add(marker);
@@ -2355,7 +2420,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             } else if (alarmSettingLayout.getVisibility() == View.VISIBLE) {
                 changeAlarmLayoutVisibility(false);
             } else {
-                Toast.makeText(this,R.string.exit,
+                Toast.makeText(this,getString(R.string.exit),
                         Toast.LENGTH_SHORT).show();
                 exit = true;
                 new Handler().postDelayed(new Runnable() {

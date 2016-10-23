@@ -251,5 +251,11 @@
     <string name="changdeok_bigo2">신분증 제시</string>
     <string name="changdeok_bigo3">- 만 24세 이하 청소년</string>
     <string name="changdeok_bigo4">- 만 65세 이상 어르신</string>
-
+    <string name="rackCountUnit">대</string>
+    <string name="stationListTitle">대여소 목록(거리 순)</string>
+    <string name="about">약</string>
+    <string name="alertVisitGps">방문 인증 서비스를 이용하시려면, 단말기 설정에서 \'위치 서비스\' 사용을 허용해주세요.</string>
+    <string name="alertVisitComplete">즐거운 관광 되셨나요? \\n해당 관광지 방문이 확인되었습니다!</string>
+    <string name="alertVisitFail">지금 계신 곳은 해당 관광지가 아니네요!\\n조금만 더 근처로 가주세요!</string>
+    <string name="alertVisitAlready">이미 방문하셨습니다! \\n방문기록을 삭제할까요?</string>
 </resources>

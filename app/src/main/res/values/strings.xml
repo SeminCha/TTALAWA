@@ -260,4 +260,6 @@
     <string name="alertVisitAlready">이미 방문하셨습니다! \\n방문기록을 삭제할까요?</string>
     <string name="pathInfoHours">시간</string>
     <string name="minutes">분</string>
+    <string name="path_time">소요시간</string>
+    <string name="path_distance">이동거리</string>
 </resources>

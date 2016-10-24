@@ -46,7 +46,7 @@
                     android:height="45dp"
                     android:background="@drawable/celltitle"
                     android:gravity="center"
-                    android:text="한옥 관람시간" />
+                    android:text="@string/namsangol_openingHanok" />
                 <!--1열(시설명)-->
                 <TableRow android:weightSum="15">
 
@@ -58,7 +58,7 @@
                         android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="하절기(4월~10월)" />
+                        android:text="@string/namsangol_summer" />
 
                     <TextView
                         android:textSize="16sp"
@@ -83,7 +83,7 @@
                         android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="동절기(11월~3월)" />
+                        android:text="@string/namsangol_winter" />
 
                     <TextView
                         android:textSize="16sp"
@@ -108,7 +108,7 @@
                         android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="비고" />
+                        android:text="@string/gyeong_bigo" />
 
                     <TextView
                         android:textSize="16sp"
@@ -118,7 +118,7 @@
                         android:background="@drawable/cellbg"
                         android:gravity="center"
                         android:textColor="@color/tablecolor"
-                        android:text="매주 화요일 휴관" />
+                        android:text="@string/namsangol_notes" />
 
 
                 </TableRow>
@@ -128,101 +128,110 @@
 
 
             <!--주요시설 표-->
-            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
+                android:orientation="vertical"
                 >
 
                 <TextView
                     android:textSize="16sp"
                     android:textColor="@color/tablecolor"
                     android:layout_weight="15"
-                    android:width="0px"
-                    android:height="45dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
                     android:background="@drawable/celltitle"
                     android:gravity="center"
-                    android:text="전통정원 개방시간" />
+                    android:text="@string/namsangol_openingGarden" />
                 <!--1열(시설명)-->
-                <TableRow android:weightSum="15">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="15"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:textSize="16sp"
                         android:textColor="@color/tablecolor"
                         android:layout_weight="6"
-                        android:width="0px"
-                        android:height="45dp"
+                        android:layout_width="0px"
+                        android:layout_height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="산책 및 이용" />
+                        android:text="@string/namsangol_walk" />
 
                     <TextView
                         android:textSize="16sp"
                         android:textColor="@color/tablecolor"
                         android:layout_weight="9"
-                        android:width="0px"
-                        android:height="45dp"
+                        android:layout_width="0px"
+                        android:layout_height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
                         android:text="07:00~23:00" />
 
 
-                </TableRow>
+                </LinearLayout>
 
-                <TableRow android:weightSum="15">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="15"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="6"
+                        android:layout_width="0px"
+                        android:layout_height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="@string/namsangol_reardoor" />
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/tablecolor"
+                        android:layout_weight="9"
+                        android:layout_width="0px"
+                        android:layout_height="45dp"
+                        android:background="@drawable/cellbg"
+                        android:gravity="center"
+                        android:text="@string/namsangol_overnight" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="15"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:textSize="16sp"
                         android:textColor="@color/tablecolor"
                         android:layout_weight="6"
-                        android:width="0px"
-                        android:height="45dp"
+                        android:layout_width="0px"
+                        android:layout_height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="후문 주민 통로 이용" />
+                        android:text="@string/gyeong_bigo" />
 
                     <TextView
                         android:textSize="16sp"
                         android:textColor="@color/tablecolor"
                         android:layout_weight="9"
-                        android:width="0px"
-                        android:height="45dp"
+                        android:layout_width="0px"
+                        android:layout_height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="05:00~익일01:00" />
+                        android:text="@string/namsangol_restrict" />
 
 
-                </TableRow>
-
-                <TableRow android:weightSum="15">
-
-                    <TextView
-                        android:textSize="16sp"
-                        android:textColor="@color/tablecolor"
-                        android:layout_weight="6"
-                        android:width="0px"
-                        android:height="45dp"
-                        android:background="@drawable/cellbg"
-                        android:gravity="center"
-                        android:text="비고" />
-
-                    <TextView
-                        android:textSize="16sp"
-                        android:textColor="@color/tablecolor"
-                        android:layout_weight="9"
-                        android:width="0px"
-                        android:height="45dp"
-                        android:background="@drawable/cellbg"
-                        android:gravity="center"
-                        android:text="01:00~05:00 입장 및 통행 제한" />
+                </LinearLayout>
 
 
-                </TableRow>
-
-
-            </TableLayout>
+            </LinearLayout>
 
 
         </LinearLayout>

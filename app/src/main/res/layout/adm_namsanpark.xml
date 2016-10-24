@@ -29,214 +29,12 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <!--주요시설 및 이용요금 표-->
-            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:textSize="10pt">
-
-                <!--1열(시설명)-->
-                <TableRow android:weightSum="15">
-
-                    <TextView
-                        android:layout_weight="6"
-                        android:width="0px"
-                        android:height="45dp"
-                        android:background="@drawable/celltitle"
-                        android:gravity="center"
-                        android:text="시설명"
-                        android:textColor="@color/tablecolor"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_weight="9"
-                        android:width="0px"
-                        android:height="45dp"
-                        android:background="@drawable/celltitle"
-                        android:gravity="center"
-                        android:text="서울 타워"
-                        android:textColor="@color/tablecolor"
-                        android:textSize="16sp" />
-
-
-                </TableRow>
-
-                <TableRow android:weightSum="15">
-
-                    <TextView
-                        android:layout_weight="6"
-                        android:width="0px"
-                        android:height="45dp"
-                        android:background="@drawable/cellbg"
-                        android:gravity="center"
-                        android:text="(종별)"
-                        android:textColor="@color/tablecolor"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_weight="9"
-                        android:width="0px"
-                        android:height="45dp"
-                        android:background="@drawable/cellbg"
-                        android:gravity="center"
-                        android:text="전망대"
-                        android:textColor="@color/tablecolor"
-                        android:textSize="16sp" />
-
-
-                </TableRow>
-
-                <!--2열(이용요금)-->
-                <TableRow android:weightSum="15">
-
-                    <TableLayout android:layout_weight="3.5">
-
-                        <TextView
-                            android:layout_height="match_parent"
-                            android:layout_weight="3.5"
-                            android:width="0px"
-                            android:height="90dp"
-                            android:background="@drawable/cellbg_top"
-                            android:gravity="bottom|center_horizontal"
-                            android:text="이용요금"
-                            android:textColor="@color/tablecolor"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:layout_height="match_parent"
-                            android:layout_weight="3.5"
-                            android:width="0px"
-                            android:height="90dp"
-                            android:background="@drawable/cellbg_btm"
-                            android:gravity="top|center_horizontal"
-                            android:text="개별/(단체)"
-                            android:textColor="@color/tablecolor"
-                            android:textSize="16sp" />
-                    </TableLayout>
-
-                    <TableLayout android:layout_weight="2.5">
-
-                        <TextView
-                            android:layout_weight="2.5"
-                            android:width="0px"
-                            android:height="90dp"
-                            android:background="@drawable/cellbg"
-                            android:gravity="center"
-                            android:text="대인"
-                            android:textColor="@color/tablecolor"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:layout_weight="2.5"
-                            android:width="0px"
-                            android:height="90dp"
-                            android:background="@drawable/cellbg"
-                            android:gravity="center"
-                            android:text="소인"
-                            android:textColor="@color/tablecolor"
-                            android:textSize="16sp" />
-                    </TableLayout>
-
-                    <TableLayout android:layout_weight="9">
-
-                        <TextView
-                            android:width="0px"
-                            android:height="45dp"
-                            android:background="@drawable/cellbg"
-                            android:gravity="center"
-                            android:text="9000원"
-                            android:textColor="@color/tablecolor"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:width="0px"
-                            android:height="45dp"
-                            android:background="@drawable/cellbg"
-                            android:gravity="center"
-                            android:text="(단체 10% 할인)"
-                            android:textColor="@color/tablecolor"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:width="0px"
-                            android:height="45dp"
-                            android:background="@drawable/cellbg"
-                            android:gravity="center"
-                            android:text="5000원"
-                            android:textColor="@color/tablecolor"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:width="0px"
-                            android:height="45dp"
-                            android:background="@drawable/cellbg"
-                            android:gravity="center"
-                            android:text="(단체 10% 할인)"
-                            android:textColor="@color/tablecolor"
-                            android:textSize="16sp" />
-                    </TableLayout>
-                </TableRow>
-
-                <!--비고-->
-                <TableRow android:weightSum="15">
-
-                    <TextView
-                        android:layout_weight="6"
-                        android:width="0px"
-                        android:height="135dp"
-                        android:background="@drawable/cellbg"
-                        android:gravity="center"
-                        android:text="비고"
-                        android:textColor="@color/tablecolor"
-                        android:textSize="16sp" />
-
-                    <TableLayout android:layout_weight="9">
-
-                        <TextView
-                            android:layout_weight="9"
-                            android:width="0px"
-                            android:height="45dp"
-                            android:background="@drawable/cellbg"
-                            android:gravity="center"
-                            android:text="단체 20인 이상"
-                            android:textColor="@color/tablecolor"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:layout_weight="9"
-                            android:width="0px"
-                            android:height="45dp"
-                            android:background="@drawable/cellbg"
-                            android:gravity="center"
-                            android:text="대인: 만 13세 이상"
-                            android:textColor="@color/tablecolor"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:layout_weight="9"
-                            android:width="0px"
-                            android:height="45dp"
-                            android:background="@drawable/cellbg"
-                            android:gravity="center"
-                            android:text="소인: 만 3세~만 12세"
-                            android:textColor="@color/tablecolor"
-                            android:textSize="16sp" />
-                    </TableLayout>
-
-
-                </TableRow>
-
-            </TableLayout>
-
 
             <!--케이블카-->
             <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="15dp"
                 android:paddingBottom="50dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
@@ -251,7 +49,7 @@
                         android:height="45dp"
                         android:background="@drawable/celltitle"
                         android:gravity="center"
-                        android:text="시설명"
+                        android:text="@string/nampark_facility"
                         android:textColor="@color/tablecolor"
                         android:textSize="16sp" />
 
@@ -263,7 +61,7 @@
                         android:height="45dp"
                         android:background="@drawable/celltitle"
                         android:gravity="center"
-                        android:text="케이블카"
+                        android:text="@string/nampark_cablecar"
                         android:textColor="@color/tablecolor"
                         android:textSize="16sp" />
                 </TableRow>
@@ -276,7 +74,7 @@
                         android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="(종별)"
+                        android:text="@string/nampark_type"
                         android:textColor="@color/tablecolor"
                         android:textSize="16sp" />
 
@@ -287,7 +85,7 @@
                         android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="편도"
+                        android:text="@string/nampark_oneway"
                         android:textColor="@color/tablecolor"
                         android:textSize="16sp" />
 
@@ -297,7 +95,7 @@
                         android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="왕복"
+                        android:text="@string/nampark_roundtrip"
                         android:textColor="@color/tablecolor"
                         android:textSize="16sp" />
                 </TableRow>
@@ -314,7 +112,7 @@
                             android:height="90dp"
                             android:background="@drawable/cellbg_top"
                             android:gravity="bottom|center_horizontal"
-                            android:text="이용요금"
+                            android:text="@string/nampark_rates"
                             android:textColor="@color/tablecolor"
                             android:textSize="16sp" />
 
@@ -325,7 +123,7 @@
                             android:height="90dp"
                             android:background="@drawable/cellbg_btm"
                             android:gravity="top|center_horizontal"
-                            android:text="개별/(단체)"
+                            android:text="@string/nampark_indi_group"
                             android:textColor="@color/tablecolor"
                             android:textSize="16sp" />
                     </TableLayout>
@@ -338,7 +136,7 @@
                             android:height="90dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
-                            android:text="대인"
+                            android:text="@string/nampark_adult"
                             android:textColor="@color/tablecolor"
                             android:textSize="16sp" />
 
@@ -348,7 +146,7 @@
                             android:height="90dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
-                            android:text="소인"
+                            android:text="@string/nampark_child"
                             android:textColor="@color/tablecolor"
                             android:textSize="16sp" />
 
@@ -361,7 +159,7 @@
                             android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
-                            android:text="6000원"
+                            android:text="@string/nampark_6000"
                             android:textColor="@color/tablecolor"
                             android:textSize="16sp" />
 
@@ -370,7 +168,7 @@
                             android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
-                            android:text="(5000원)"
+                            android:text="@string/nampark_5000"
                             android:textColor="@color/tablecolor"
                             android:textSize="16sp" />
 
@@ -379,7 +177,7 @@
                             android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
-                            android:text="8500원"
+                            android:text="@string/nampark_8500"
                             android:textColor="@color/tablecolor"
                             android:textSize="16sp" />
 
@@ -388,7 +186,7 @@
                             android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
-                            android:text="(7000원)"
+                            android:text="@string/nampark_7000"
                             android:textColor="@color/tablecolor"
                             android:textSize="16sp" />
                     </TableLayout>
@@ -400,7 +198,7 @@
                             android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
-                            android:text="3500원"
+                            android:text="@string/nampark_3500"
                             android:textColor="@color/tablecolor"
                             android:textSize="16sp" />
 
@@ -409,7 +207,7 @@
                             android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
-                            android:text="(3000원)"
+                            android:text="@string/nampark_3000"
                             android:textColor="@color/tablecolor"
                             android:textSize="16sp" />
 
@@ -418,7 +216,7 @@
                             android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
-                            android:text="5500원"
+                            android:text="@string/nampark_5500"
                             android:textColor="@color/tablecolor"
                             android:textSize="16sp" />
 
@@ -427,7 +225,7 @@
                             android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
-                            android:text="(4500원)"
+                            android:text="@string/nampark_4500"
                             android:textColor="@color/tablecolor"
                             android:textSize="16sp" />
                     </TableLayout>
@@ -443,7 +241,7 @@
                         android:height="45dp"
                         android:background="@drawable/cellbg"
                         android:gravity="center"
-                        android:text="비고"
+                        android:text="@string/gyeong_bigo"
                         android:textColor="@color/tablecolor"
                         android:textSize="16sp" />
 
@@ -455,7 +253,7 @@
                             android:height="45dp"
                             android:background="@drawable/cellbg"
                             android:gravity="center"
-                            android:text="단체 30인 이상"
+                            android:text="@string/nampark_bigo"
                             android:textColor="@color/tablecolor"
                             android:textSize="16sp" />
 

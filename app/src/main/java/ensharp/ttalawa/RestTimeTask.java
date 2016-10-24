@@ -38,7 +38,11 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
 
         intent = new Intent(MainActivity.mContext, MainActivity.class);
         contentIntent = PendingIntent.getActivity(MainActivity.mContext, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        charging = "과금 0 원";
+        if (Locale.getDefault().getLanguage().equals("ko")) {
+            charging = "과금 0 원";
+        } else{
+            charging = "Charging 0 won";
+        }
         pref = new SharedPreferences(MainActivity.mContext);
         thirtyArm = true;
         twentyArm = true;
@@ -49,13 +53,17 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
         //큰 아이콘
         notificationManager = (NotificationManager) MainActivity.mContext.getSystemService(MainActivity.mContext.NOTIFICATION_SERVICE);
 
-        timer = new CountDownTimer(1815000, 1000) {
+        timer = new CountDownTimer(3600000, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 if ((millisUntilFinished < 1800000) && (thirtyArm == true)) {
                     thirtyArm = false;
                     if(pref.getValue("30", "off", "alarm").equals("on")){
-                        notification(notificationManager, notificationBuilder, "30분 남았습니다", charging);
+                        if (Locale.getDefault().getLanguage().equals("ko")) {
+                            notification(notificationManager, notificationBuilder, "30분 남았습니다", charging);
+                        } else{
+                            notification(notificationManager, notificationBuilder, "Half an hour left", charging);
+                        }
                         if(pref.getValue("sound", "off", "alarm").equals("on")){
                             ttsArm.setLanguage(Locale.KOREA);
                             ttsArm.speak("따릉이 자전거 반납까지 30분 남았습니다.",
@@ -65,7 +73,11 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
                 } else if ((millisUntilFinished < 1200000) && (twentyArm == true)) {
                     twentyArm = false;
                     if(pref.getValue("20", "off", "alarm").equals("on")){
-                        notification(notificationManager, notificationBuilder, "20분 남았습니다", charging);
+                        if (Locale.getDefault().getLanguage().equals("ko")) {
+                            notification(notificationManager, notificationBuilder, "20분 남았습니다", charging);
+                        } else{
+                            notification(notificationManager, notificationBuilder, "20 minutes left", charging);
+                        }
                         if(pref.getValue("sound", "off", "alarm").equals("on")) {
                             ttsArm.setLanguage(Locale.KOREA);
                             ttsArm.speak("따릉이 자전거 반납까지 20분 남았습니다.",
@@ -76,7 +88,11 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
                     tenArm = false;
                     MainActivity.mainTxtView.setTextColor(Color.parseColor("#FF0000"));
                     if(pref.getValue("10", "off", "alarm").equals("on")){
-                        notification(notificationManager, notificationBuilder, "10분 남았습니다", charging);
+                        if (Locale.getDefault().getLanguage().equals("ko")) {
+                            notification(notificationManager, notificationBuilder, "10분 남았습니다", charging);
+                        } else{
+                            notification(notificationManager, notificationBuilder, "10 minutes left", charging);
+                        }
                         if(pref.getValue("sound", "off", "alarm").equals("on")) {
                             ttsArm.setLanguage(Locale.KOREA);
                             ttsArm.speak("따릉이 자전거 반납까지 10분 남았습니다.",
@@ -87,7 +103,11 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
                     fiveArm = false;
                     MainActivity.mainTxtView.setTextColor(Color.parseColor("#FF0000"));
                     if(pref.getValue("5", "off", "alarm").equals("on")){
-                        notification(notificationManager, notificationBuilder, "5분 남았습니다", charging);
+                        if (Locale.getDefault().getLanguage().equals("ko")) {
+                            notification(notificationManager, notificationBuilder, "5분 남았습니다", charging);
+                        } else{
+                            notification(notificationManager, notificationBuilder, "5 minutes left", charging);
+                        }
                         if(pref.getValue("sound", "off", "alarm").equals("on")) {
                             ttsArm.setLanguage(Locale.KOREA);
                             ttsArm.speak("따릉이 자전거 반납까지 5분 남았습니다.",
@@ -95,14 +115,23 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
                         }
                     }
                 }
-                MainActivity.mainTxtView.setText("반납까지 " + millisUntilFinished / 1000 / 60 % 60 + "분");
+                if (Locale.getDefault().getLanguage().equals("ko")) {
+                    MainActivity.mainTxtView.setText("반납까지 " + millisUntilFinished / 1000 / 60 % 60 + "분");
+                } else{
+                    MainActivity.mainTxtView.setText(millisUntilFinished / 1000 / 60 % 60 + "minutes left to return");
+                }
                 MainActivity.overChargingView.setText(charging);
             }
 
             public void onFinish() {
                 if (pref.getValue("state", "nonRent", "state").equals("Rent")) {
                     pref.putValue("state", "firstOver", "state");
-                    charging = "과금 1000원";
+                    if (Locale.getDefault().getLanguage().equals("ko")) {
+                        charging = "과금 1000원";
+                    } else{
+                        charging = "Charging 1000won";
+                    }
+
                     thirtyArm = true;
                     twentyArm = true;
                     tenArm = true;
@@ -135,8 +164,12 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
                 if ((millisUntilFinished < 1800000) && (thirtyArm == true)) {
                     thirtyArm = false;
                     if(pref.getValue("30", "off", "alarm").equals("on")){
-                        notification(notificationManager, notificationBuilder, "30분 남았습니다", charging);
-                        if(pref.getValue("sound", "off", "alarm").equals("on")) {
+                        if (Locale.getDefault().getLanguage().equals("ko")) {
+                            notification(notificationManager, notificationBuilder, "30분 남았습니다", charging);
+                        } else{
+                            notification(notificationManager, notificationBuilder, "Half an hour left", charging);
+                        }
+                        if(pref.getValue("sound", "off", "alarm").equals("on")){
                             ttsArm.setLanguage(Locale.KOREA);
                             ttsArm.speak("따릉이 자전거 반납까지 30분 남았습니다.",
                                     TextToSpeech.QUEUE_FLUSH, null);
@@ -145,7 +178,11 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
                 } else if ((millisUntilFinished < 1200000) && (twentyArm == true)) {
                     twentyArm = false;
                     if(pref.getValue("20", "off", "alarm").equals("on")){
-                        notification(notificationManager, notificationBuilder, "20분 남았습니다", charging);
+                        if (Locale.getDefault().getLanguage().equals("ko")) {
+                            notification(notificationManager, notificationBuilder, "20분 남았습니다", charging);
+                        } else{
+                            notification(notificationManager, notificationBuilder, "20 minutes left", charging);
+                        }
                         if(pref.getValue("sound", "off", "alarm").equals("on")) {
                             ttsArm.setLanguage(Locale.KOREA);
                             ttsArm.speak("따릉이 자전거 반납까지 20분 남았습니다.",
@@ -156,7 +193,11 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
                     tenArm = false;
                     MainActivity.mainTxtView.setTextColor(Color.parseColor("#FF0000"));
                     if(pref.getValue("10", "off", "alarm").equals("on")){
-                        notification(notificationManager, notificationBuilder, "10분 남았습니다", charging);
+                        if (Locale.getDefault().getLanguage().equals("ko")) {
+                            notification(notificationManager, notificationBuilder, "10분 남았습니다", charging);
+                        } else{
+                            notification(notificationManager, notificationBuilder, "10 minutes left", charging);
+                        }
                         if(pref.getValue("sound", "off", "alarm").equals("on")) {
                             ttsArm.setLanguage(Locale.KOREA);
                             ttsArm.speak("따릉이 자전거 반납까지 10분 남았습니다.",
@@ -167,7 +208,11 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
                     fiveArm = false;
                     MainActivity.mainTxtView.setTextColor(Color.parseColor("#FF0000"));
                     if(pref.getValue("5", "off", "alarm").equals("on")){
-                        notification(notificationManager, notificationBuilder, "5분 남았습니다", charging);
+                        if (Locale.getDefault().getLanguage().equals("ko")) {
+                            notification(notificationManager, notificationBuilder, "5분 남았습니다", charging);
+                        } else{
+                            notification(notificationManager, notificationBuilder, "5 minutes left", charging);
+                        }
                         if(pref.getValue("sound", "off", "alarm").equals("on")) {
                             ttsArm.setLanguage(Locale.KOREA);
                             ttsArm.speak("따릉이 자전거 반납까지 5분 남았습니다.",
@@ -175,7 +220,11 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
                         }
                     }
                 }
-                MainActivity.mainTxtView.setText("반납까지 " + millisUntilFinished / 1000 / 60 % 60 + "분");
+                if (Locale.getDefault().getLanguage().equals("ko")) {
+                    MainActivity.mainTxtView.setText("반납까지 " + millisUntilFinished / 1000 / 60 % 60 + "분");
+                } else{
+                    MainActivity.mainTxtView.setText(millisUntilFinished / 1000 / 60 % 60 + "minutes left to return");
+                }
                 MainActivity.overChargingView.setText(charging);
                 if (pref.getValue("state", "nonRent", "state").equals("nonRent")) {
                     timer.cancel();
@@ -193,18 +242,30 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
                     case "firstOver": // 첫번째 과금
                         timer.cancel();
                         pref.putValue("state", "secondOver", "state");
-                        charging = "과금 2000원";
+                        if (Locale.getDefault().getLanguage().equals("ko")) {
+                            charging = "과금 2000원";
+                        } else{
+                            charging = "Charging 2000won";
+                        }
                         timeOver();
                         break;
                     case "secondOver": // 두번째 과금
                         timer.cancel();
                         pref.putValue("state", "thirdOver", "state");
-                        charging = "과금 3000원";
+                        if (Locale.getDefault().getLanguage().equals("ko")) {
+                            charging = "과금 3000원";
+                        } else{
+                            charging = "Charging 3000won";
+                        }
                         timeOver();
                         break;
                     case "thirdOver": // 세번째 과금
                         timer.cancel();
-                        charging = "분실됨";
+                        if (Locale.getDefault().getLanguage().equals("ko")) {
+                            charging = "분실됨";
+                        } else{
+                            charging = "Bicycle went astray";
+                        }
                         break;
                     default:
                         initData();
@@ -216,7 +277,11 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
 
     public void initData() {
         MainActivity.mainTxtView.setTextColor(Color.parseColor("#000000"));
-        MainActivity.mainTxtView.setText("따릉이를 대여하세요");
+        if (Locale.getDefault().getLanguage().equals("ko")) {
+            MainActivity.mainTxtView.setText("따릉이를 대여하세요");
+        } else{
+            MainActivity.mainTxtView.setText("Use the rental service");
+        }
         MainActivity.overChargingView.setText("");
         pref.putValue("state", "nonRent", "state");
     }

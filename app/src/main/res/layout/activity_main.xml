@@ -243,7 +243,7 @@
             <include
                 layout="@layout/layout_pathinfo"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="bottom"/>
 
             <!--마크 누르면 뜨는 대여소 레이아웃-->
@@ -258,7 +258,7 @@
                 android:paddingEnd="20dp"
                 android:paddingStart="20dp"
                 android:paddingTop="23dp"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:weightSum="97">
 
                 <!--관광지명-->
@@ -292,11 +292,17 @@
                         android:paddingStart="5dp">
 
                         <TextView
+                            android:singleLine="true"
+                            android:ellipsize="marquee"
+                            android:marqueeRepeatLimit ="marquee_forever"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:scrollHorizontally="true"
                             android:id="@+id/stationNameTxt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingStart="5dp"
-                            android:text=""
+                            android:text="대여소 이름"
                             android:textColor="@color/black"
                             android:textSize="20dp" />
 
@@ -410,7 +416,14 @@
                             android:background="@drawable/layout_top_seperator">
 
                             <TextView
-                                android:layout_width="match_parent"
+                                android:singleLine="true"
+                                android:ellipsize="marquee"
+                                android:marqueeRepeatLimit ="marquee_forever"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true"
+                                android:scrollHorizontally="true"
+                                android:id="@+id/addrTitle"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
                                 android:layout_centerVertical="true"
@@ -420,14 +433,23 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:ellipsize="marquee"
+                                android:marqueeRepeatLimit ="marquee_forever"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true"
+                                android:scrollHorizontally="true"
+                                android:singleLine="true"
+                                android:layout_marginLeft="5dp"
+                                android:layout_toRightOf="@+id/addrTitle"
                                 android:id="@+id/stationAddressTxt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
                                 android:layout_centerVertical="true"
+                                android:textAlignment="textEnd"
                                 android:paddingEnd="8dp"
                                 android:paddingStart="1dp"
-                                android:text=""
+                                android:text="주소"
                                 android:textColor="@color/grey_dark"
                                 android:textSize="19dp" />
 
@@ -609,6 +631,12 @@
                         android:paddingStart="5dp">
 
                         <TextView
+                            android:singleLine="true"
+                            android:ellipsize="marquee"
+                            android:marqueeRepeatLimit ="marquee_forever"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:scrollHorizontally="true"
                             android:id="@+id/tourSpotNameTxt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -664,6 +692,7 @@
                             android:weightSum="10">
 
                             <TextView
+                                android:id="@+id/spotIntroTitle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
@@ -674,12 +703,21 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:layout_marginLeft="5dp"
+                                android:layout_toRightOf="@+id/spotIntroTitle"
+                                android:singleLine="true"
+                                android:ellipsize="marquee"
+                                android:marqueeRepeatLimit ="marquee_forever"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true"
+                                android:scrollHorizontally="true"
                                 android:id="@+id/tourSpotIntroTxt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
                                 android:layout_centerVertical="true"
-                                android:text=""
+                                android:textAlignment="textEnd"
+                                android:text="관광정보 소개"
                                 android:textColor="@color/grey_dark"
                                 android:textSize="17dp" />
                         </RelativeLayout>
@@ -691,6 +729,7 @@
                             android:background="@drawable/layout_top_seperator">
 
                             <TextView
+                                android:id="@+id/spotAddrTitle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
@@ -701,12 +740,21 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:singleLine="true"
+                                android:ellipsize="marquee"
+                                android:marqueeRepeatLimit ="marquee_forever"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true"
+                                android:scrollHorizontally="true"
+                                android:layout_marginLeft="5dp"
+                                android:layout_toRightOf="@+id/spotAddrTitle"
                                 android:id="@+id/tourSpotAdressTxt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
                                 android:layout_centerVertical="true"
-                                android:text=""
+                                android:text="관광정보 주소"
+                                android:textAlignment="textEnd"
                                 android:textColor="@color/grey_dark"
                                 android:textSize="19dp" />
                         </RelativeLayout>

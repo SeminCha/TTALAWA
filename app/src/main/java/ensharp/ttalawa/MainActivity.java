@@ -778,7 +778,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mGoogleMap.getUiSettings().setCompassEnabled(false);
 
         mapButtonSetting();
-        //TmapAuthentication();
+       TmapAuthentication();
 
         markerMap = new HashMap();
         stationMarkerMap = new HashMap();
@@ -1160,9 +1160,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
 
             stationName.setText(marker.getTitle());
+            stationName.setSelected(true);
+
             stationNumber.setText(marker.getSnippet());
             stationRack.setText(rack_count + getString(R.string.rackCountUnit));
             stationAddress.setText(address);
+            stationAddress.setSelected(true);
 
             stationNavigation.setOnTouchListener(new View.OnTouchListener() {
                 @Override
@@ -1217,6 +1220,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         } else {
             tourSpotName.setText(marker.getTitle());
+            tourSpotName.setSelected(true);
 
             spotDbAdapter.open();
             Cursor result;
@@ -1248,7 +1252,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
 
             tourSpotAddress.setText(address);
+            tourSpotAddress.setSelected(true);
             tourSpotIntro.setText(getTourSpotIntro(marker.getTitle()));
+            tourSpotIntro.setSelected(true);
 
             tourSpotNavigation.setOnTouchListener(new View.OnTouchListener() {
                 @Override

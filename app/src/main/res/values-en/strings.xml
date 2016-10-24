@@ -253,10 +253,10 @@
     <string name="changdeok_bigo3">- Children/Seniors</string>
     <string name="changdeok_bigo4">- Those wearing a Hanbok</string>
     <string name="rackCountUnit"> </string>
-    <string name="stationListTitle">Rental Station List(order by distance)</string>
+    <string name="stationListTitle">Rental stations(ordered by distance)</string>
     <string name="about">about</string>
-    <string name="alertVisitGps">If you want to use \'Visit Check\' service, turn on your Gps.</string>
+    <string name="alertVisitGps">If you want to use \'Visit Check\' service, turn on your GPS.</string>
     <string name="alertVisitComplete">Have you enjoyed your trip? We confirm your visit!</string>
     <string name="alertVisitFail">You aren\'t at the tourist spot. Go near them.</string>
-    <string name="alertVisitAlready">Your visit is already confirmed! Do you want to delete your visit history?</string>
+    <string name="alertVisitAlready">Your visit is already confirmed! Do you want to delete your visit log?</string>
 </resources>

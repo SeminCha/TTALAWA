@@ -228,7 +228,7 @@
                     <Button
                         android:id="@+id/button_sound"
                         android:layout_width="60dp"
-                        android:layout_height="50dp"
+                        android:layout_height="53dp"
                         android:background="@drawable/setbtn_unselected"
                         android:elevation="10dp"
                         android:textAlignment="center"
@@ -244,7 +244,7 @@
                     <Button
                         android:id="@+id/button_vib"
                         android:layout_width="60dp"
-                        android:layout_height="50dp"
+                        android:layout_height="53dp"
                         android:background="@drawable/setbtn_unselected"
                         android:elevation="10dp"
                         android:textAlignment="center"

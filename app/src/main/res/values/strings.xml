@@ -17,7 +17,7 @@
     <string name="tourSpotDetails">상세보기</string>
     <string name="settings">설정</string>
     <string name="alarmType">알람 방식</string>
-    <string name="returnNotification">따릉이 반납 알람</string>
+    <string name="returnNotification">따릉이 반납 알림</string>
     <string name="beforeReturnTime">반납 시간 전</string>
     <string name="fiveminutes">5분</string>
     <string name="tenminutes">10분</string>

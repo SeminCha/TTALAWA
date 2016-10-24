@@ -778,7 +778,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mGoogleMap.getUiSettings().setCompassEnabled(false);
 
         mapButtonSetting();
-        //TmapAuthentication();
+        TmapAuthentication();
 
         markerMap = new HashMap();
         stationMarkerMap = new HashMap();
@@ -2220,145 +2220,180 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         Marker removeMarker;
 
-        switch (marker.getTitle()) {
-
-            //311, 312
-            case "덕수궁 돌담길":
+        if (Locale.getDefault().getLanguage().equals("ko")) {
+            if (marker.getTitle().equals(getString(R.string.spot_deoksu))) {
                 BackupStationList.add(new MarkerItem(37.5666321, 126.9774684, "서울광장 옆", "311"));
                 BackupStationList.add(new MarkerItem(37.5646485, 126.9767202, "시청역 1번출구 뒤", "312"));
-                break;
-            //321, 322
-            case "명동":
+            } else if (marker.getTitle().equals(getString(R.string.spot_myeongdong))) {
                 BackupStationList.add(new MarkerItem(37.5651703, 126.9846938, "한국외환은행 본점 앞", "321"));
                 BackupStationList.add(new MarkerItem(37.5640689, 126.9863523, "명동성당 앞", "322"));
-                break;
-            //336
-            case "남산골 한옥마을":
+            } else if (marker.getTitle().equals(getString(R.string.spot_namsangol))) {
                 BackupStationList.add(new MarkerItem(37.5625785, 126.9929071, "티마크 호텔 앞", "336"));
-                break;
-            //313, 324
-            case "숭례문":
+            } else if (marker.getTitle().equals(getString(R.string.spot_sungnyemun))) {
                 BackupStationList.add(new MarkerItem(37.556828, 126.9719665, "서울역 광장 파출소 옆", "313"));
                 BackupStationList.add(new MarkerItem(37.561474, 126.9810088, "신세계백화점 본점 앞", "324"));
-                break;
-            //없음
-            case "남산 공원":
-                break;
-            //없음
-            case "N 서울타워":
-                break;
-            //302, 314
-            case "경복궁":
+            } else if (marker.getTitle().equals(getString(R.string.spot_namsanpark))) {
+            } else if (marker.getTitle().equals(getString(R.string.spot_nseoul))) {
+            } else if (marker.getTitle().equals(getString(R.string.spot_gyeongbok))) {
                 BackupStationList.add(new MarkerItem(37.5759804, 126.9741132, "경복궁역 4번출구 뒤", "302"));
                 BackupStationList.add(new MarkerItem(37.5790923, 126.9803112, "국립현대미술관", "314"));
-                break;
-            //304, 305, 306
-            case "광화문 광장":
+            } else if (marker.getTitle().equals(getString(R.string.spot_gwanghwamun))) {
                 BackupStationList.add(new MarkerItem(37.572552, 126.977427, "광화문역 2번출구 앞", "304"));
                 BackupStationList.add(new MarkerItem(37.5725488, 126.9783353, "종로구청 옆", "305"));
                 BackupStationList.add(new MarkerItem(37.5706864, 126.9764515, "광화문역 7번출구 앞", "306"));
-                break;
-            //333, 334, 338
-            case "종묘":
+            } else if (marker.getTitle().equals(getString(R.string.spot_jongmyo))) {
                 BackupStationList.add(new MarkerItem(37.5775368, 126.9936516, "창덕궁 매표소 앞", "333"));
                 BackupStationList.add(new MarkerItem(37.570584, 126.9918076, "종로3가역 2번출구 뒤", "334"));
                 BackupStationList.add(new MarkerItem(37.5712826, 126.9974966, "세운스퀘어 앞", "338"));
-                break;
-            //316, 318, 330
-            case "보신각 터":
+            } else if (marker.getTitle().equals(getString(R.string.spot_bosingak))) {
                 BackupStationList.add(new MarkerItem(37.5703991, 126.9818301, "종각역 1번출구 앞", "316"));
                 BackupStationList.add(new MarkerItem(37.5685003, 126.9825137, "광교사거리 남측", "318"));
                 BackupStationList.add(new MarkerItem(37.5682135, 126.9849536, "청계천 한빛광장", "330"));
-                break;
-            //315, 326, 327
-            case "쌈지길":
+            } else if (marker.getTitle().equals(getString(R.string.spot_ssamzie))) {
                 BackupStationList.add(new MarkerItem(37.5758723, 126.9833154, "신한은행 안국역지점 옆", "315"));
                 BackupStationList.add(new MarkerItem(37.5762768, 126.9861608, "안국역 5번출구 앞", "326"));
                 BackupStationList.add(new MarkerItem(37.5736474, 126.9873623, "낙원상가 옆", "327"));
-                break;
-            //315, 326
-            case "인사동":
+            } else if (marker.getTitle().equals(getString(R.string.spot_insadong))) {
                 BackupStationList.add(new MarkerItem(37.5758723, 126.9833154, "신한은행 안국역지점 옆", "315"));
                 BackupStationList.add(new MarkerItem(37.5762768, 126.9861608, "안국역 5번출구 앞", "326"));
-                break;
-            //333, 337
-            case "창덕궁과 후원":
+            } else if (marker.getTitle().equals(getString(R.string.spot_changdeokgung))) {
                 BackupStationList.add(new MarkerItem(37.5775368, 126.9936516, "창덕궁 매표소 앞", "333"));
                 BackupStationList.add(new MarkerItem(37.5789955, 126.9964652, "창경궁 입구", "337"));
-                break;
-            //333, 337
-            case "창경궁":
+            } else if (marker.getTitle().equals(getString(R.string.spot_changgyeong))) {
                 BackupStationList.add(new MarkerItem(37.5775368, 126.9936516, "창덕궁 매표소 앞", "333"));
                 BackupStationList.add(new MarkerItem(37.5789955, 126.9964652, "창경궁 입구", "337"));
-                break;
-            //325, 326
-            case "북촌 한옥마을":
+            } else if (marker.getTitle().equals(getString(R.string.spot_bukchon))) {
                 BackupStationList.add(new MarkerItem(37.580003, 126.9849234, "가회동 주민센터 옆", "325"));
                 BackupStationList.add(new MarkerItem(37.5762768, 126.9861608, "안국역 5번출구 앞", "326"));
-                break;
-            //344, 346
-            case "흥인지문":
+            } else if (marker.getTitle().equals(getString(R.string.spot_heunginjimun))) {
                 BackupStationList.add(new MarkerItem(37.5740319, 127.0067303, "성균관대 E하우스 앞", "344"));
                 BackupStationList.add(new MarkerItem(37.5688585, 127.0100563, "맥스타일 앞", "346"));
-                break;
-            //346, 347
-            case "동대문 패션타운":
+            } else if (marker.getTitle().equals(getString(R.string.spot_dongfashion))) {
                 BackupStationList.add(new MarkerItem(37.5688585, 127.0100563, "맥스타일 앞", "346"));
                 BackupStationList.add(new MarkerItem(37.5653792, 127.0078744, "동대문역사문화공원역 9번출구 앞", "347"));
-                break;
-            //341, 342
-            case "대학로":
+            } else if (marker.getTitle().equals(getString(R.string.spot_daehakro))) {
                 BackupStationList.add(new MarkerItem(37.5821752, 127.0017159, "혜화역 3번출구 뒤", "341"));
                 BackupStationList.add(new MarkerItem(37.5796835, 127.00248, "대학로 마로니에공원", "342"));
-                break;
-            //341, 342
-            case "마로니에 공원":
+            } else if (marker.getTitle().equals(getString(R.string.spot_marronnier))) {
                 BackupStationList.add(new MarkerItem(37.5821752, 127.0017159, "혜화역 3번출구 뒤", "341"));
                 BackupStationList.add(new MarkerItem(37.5796835, 127.00248, "대학로 마로니에공원", "342"));
-                break;
-            //341, 342
-            case "낙산 공원":
+            } else if (marker.getTitle().equals(getString(R.string.spot_naksan))) {
                 BackupStationList.add(new MarkerItem(37.5821752, 127.0017159, "혜화역 3번출구 뒤", "341"));
                 BackupStationList.add(new MarkerItem(37.5796835, 127.00248, "대학로 마로니에공원", "342"));
-                break;
-            //221, 222
-            case "63스퀘어":
+            } else if (marker.getTitle().equals(getString(R.string.spot_63square))) {
                 BackupStationList.add(new MarkerItem(37.522529, 126.9376243, "여의도초교 앞", "221"));
                 BackupStationList.add(new MarkerItem(37.5190648, 126.9375564, "시범아파트버스정류장 옆", "222"));
-                break;
-            //202, 205, 206, 213, 214, 210
-            case "여의도 공원":
+            } else if (marker.getTitle().equals(getString(R.string.spot_yeouido))) {
                 BackupStationList.add(new MarkerItem(37.5287803, 126.924613, "국민일보 앞", "202"));
                 BackupStationList.add(new MarkerItem(37.52629, 126.9204017, "산업은행 앞", "205"));
                 BackupStationList.add(new MarkerItem(37.5245621, 126.9178234, "KBS 앞", "206"));
                 BackupStationList.add(new MarkerItem(37.5250461, 126.9240667, "신한금융투자후문 앞", "210"));
                 BackupStationList.add(new MarkerItem(37.5218453, 126.9188913, "KT 앞", "213"));
                 BackupStationList.add(new MarkerItem(37.5230357, 126.9208569, "금융감독원 앞", "214"));
-                break;
-            //404, 405, 408, 409, 411, 414
-            case "MBC 월드 방송 테마 파크":
+            } else if (marker.getTitle().equals(getString(R.string.spot_mbc))) {
                 BackupStationList.add(new MarkerItem(37.583542, 126.8867311, "우리금융상암센터 교차로", "404"));
                 BackupStationList.add(new MarkerItem(37.5825567, 126.8856689, "DMC빌 앞", "405"));
                 BackupStationList.add(new MarkerItem(37.5808287, 126.886682, "LG CNS앞", "408"));
                 BackupStationList.add(new MarkerItem(37.579368, 126.8891946, "누리꿈스퀘어 옆", "409"));
                 BackupStationList.add(new MarkerItem(37.5779916, 126.8914505, "KT 앞", "411"));
                 BackupStationList.add(new MarkerItem(37.5781785, 126.8945011, "상암동주민센터 옆", "414"));
-                break;
-            //413, 420, 421
-            case "평화의 공원":
+            } else if (marker.getTitle().equals(getString(R.string.spot_pyeongwha))) {
                 BackupStationList.add(new MarkerItem(37.5715288, 126.8896663, "상암월드컵파크 3단지 후문", "413"));
                 BackupStationList.add(new MarkerItem(37.5662219, 126.8961888, "서울시 공공자전거 운영센터 옆", "420"));
                 BackupStationList.add(new MarkerItem(37.5659259, 126.9009017, "마포구청 앞", "421"));
-                break;
-            //413, 420, 421
-            case "하늘 공원":
+            } else if (marker.getTitle().equals(getString(R.string.spot_skypark))) {
                 BackupStationList.add(new MarkerItem(37.5715288, 126.8896663, "상암월드컵파크 3단지 후문", "413"));
                 BackupStationList.add(new MarkerItem(37.5662219, 126.8961888, "서울시 공공자전거 운영센터 옆", "420"));
                 BackupStationList.add(new MarkerItem(37.5659259, 126.9009017, "마포구청 앞", "421"));
-                break;
-
-            default:
-                break;
+            } else {
+            }
+        } else {
+            if (marker.getTitle().equals(getString(R.string.spot_deoksu))) {
+                BackupStationList.add(new MarkerItem(37.5666321, 126.9774684, "Beside Seoul Plaza", "311"));
+                BackupStationList.add(new MarkerItem(37.5646485, 126.9767202, "Behind City Hall Station, Exit 1", "312"));
+            } else if (marker.getTitle().equals(getString(R.string.spot_myeongdong))) {
+                BackupStationList.add(new MarkerItem(37.5651703, 126.9846938, "In front of the Korea Exchange Bank Headquarters", "321"));
+                BackupStationList.add(new MarkerItem(37.5640689, 126.9863523, "In front of Myeong-dong Cathedral", "322"));
+            } else if (marker.getTitle().equals(getString(R.string.spot_namsangol))) {
+                BackupStationList.add(new MarkerItem(37.5625785, 126.9929071, "In front of Tmark Hotel", "336"));
+            } else if (marker.getTitle().equals(getString(R.string.spot_sungnyemun))) {
+                BackupStationList.add(new MarkerItem(37.556828, 126.9719665, "Beside Seoul Plaza Police Substation", "313"));
+                BackupStationList.add(new MarkerItem(37.561474, 126.9810088, "In front of the Shinsegae Department Store Headquarters", "324"));
+            } else if (marker.getTitle().equals(getString(R.string.spot_namsanpark))) {
+            } else if (marker.getTitle().equals(getString(R.string.spot_nseoul))) {
+            } else if (marker.getTitle().equals(getString(R.string.spot_gyeongbok))) {
+                BackupStationList.add(new MarkerItem(37.5759804, 126.9741132, "Behind Gyeongbokgung Station, Exit 4", "302"));
+                BackupStationList.add(new MarkerItem(37.5790923, 126.9803112, "National Museum of Modern and Contemporary Art", "314"));
+            } else if (marker.getTitle().equals(getString(R.string.spot_gwanghwamun))) {
+                BackupStationList.add(new MarkerItem(37.572552, 126.977427, "In front of Gwanghwamun Station, Exit 1", "304"));
+                BackupStationList.add(new MarkerItem(37.5725488, 126.9783353, "Beside Jongno-gu Office", "305"));
+                BackupStationList.add(new MarkerItem(37.5706864, 126.9764515, "In front of Gwanghwamun Station, Exit 7", "306"));
+            } else if (marker.getTitle().equals(getString(R.string.spot_jongmyo))) {
+                BackupStationList.add(new MarkerItem(37.5775368, 126.9936516, "In front of Changdeokgung Palace Ticket Office", "333"));
+                BackupStationList.add(new MarkerItem(37.570584, 126.9918076, "Behind Jongno 3-ga Station, Exit 2", "334"));
+                BackupStationList.add(new MarkerItem(37.5712826, 126.9974966, "In front of Sewoon Square", "338"));
+            } else if (marker.getTitle().equals(getString(R.string.spot_bosingak))) {
+                BackupStationList.add(new MarkerItem(37.5703991, 126.9818301, "In front of Jonggak Station, Exit 1", "316"));
+                BackupStationList.add(new MarkerItem(37.5685003, 126.9825137, "South side of Gwanggyo Intersection", "318"));
+                BackupStationList.add(new MarkerItem(37.5682135, 126.9849536, "Cheonggyecheon Hanbit Plaza", "330"));
+            } else if (marker.getTitle().equals(getString(R.string.spot_ssamzie))) {
+                BackupStationList.add(new MarkerItem(37.5758723, 126.9833154, "Beside the Anguk Station Branch of Shinhan Bank", "315"));
+                BackupStationList.add(new MarkerItem(37.5762768, 126.9861608, "In front of Anguk Station, Exit 5", "326"));
+                BackupStationList.add(new MarkerItem(37.5736474, 126.9873623, "Beside Nakwon Shopping Center", "327"));
+            } else if (marker.getTitle().equals(getString(R.string.spot_insadong))) {
+                BackupStationList.add(new MarkerItem(37.5758723, 126.9833154, "Beside the Anguk Station Branch of Shinhan Bank", "315"));
+                BackupStationList.add(new MarkerItem(37.5762768, 126.9861608, "In front of Anguk Station, Exit 5", "326"));
+            } else if (marker.getTitle().equals(getString(R.string.spot_changdeokgung))) {
+                BackupStationList.add(new MarkerItem(37.5775368, 126.9936516, "In front of Changdeokgung Palace Ticket Office", "333"));
+                BackupStationList.add(new MarkerItem(37.5789955, 126.9964652, "Changgyeonggung Palace Entrance", "337"));
+            } else if (marker.getTitle().equals(getString(R.string.spot_changgyeong))) {
+                BackupStationList.add(new MarkerItem(37.5775368, 126.9936516, "In front of Changdeokgung Palace Ticket Office", "333"));
+                BackupStationList.add(new MarkerItem(37.5789955, 126.9964652, "Changgyeonggung Palace Entrance", "337"));
+            } else if (marker.getTitle().equals(getString(R.string.spot_bukchon))) {
+                BackupStationList.add(new MarkerItem(37.580003, 126.9849234, "Beside Gahoe-dong Community Service Center", "325"));
+                BackupStationList.add(new MarkerItem(37.5762768, 126.9861608, "In front of Anguk Station, Exit 5", "326"));
+            } else if (marker.getTitle().equals(getString(R.string.spot_heunginjimun))) {
+                BackupStationList.add(new MarkerItem(37.5740319, 127.0067303, "In front of Sungkyunkwan University's E House", "344"));
+                BackupStationList.add(new MarkerItem(37.5688585, 127.0100563, "In front of The Maxtyle", "346"));
+            } else if (marker.getTitle().equals(getString(R.string.spot_dongfashion))) {
+                BackupStationList.add(new MarkerItem(37.5688585, 127.0100563, "In front of The Maxtyle", "346"));
+                BackupStationList.add(new MarkerItem(37.5653792, 127.0078744, "In front of Dongdaemun History and Culture Park Station, Exit 9", "347"));
+            } else if (marker.getTitle().equals(getString(R.string.spot_daehakro))) {
+                BackupStationList.add(new MarkerItem(37.5821752, 127.0017159, "Behind Hyehwa Station, Exit 3", "341"));
+                BackupStationList.add(new MarkerItem(37.5796835, 127.00248, "In front of Marronnier Park, Daehak-ro", "342"));
+            } else if (marker.getTitle().equals(getString(R.string.spot_marronnier))) {
+                BackupStationList.add(new MarkerItem(37.5821752, 127.0017159, "Behind Hyehwa Station, Exit 3", "341"));
+                BackupStationList.add(new MarkerItem(37.5796835, 127.00248, "In front of Marronnier Park, Daehak-ro", "342"));
+            } else if (marker.getTitle().equals(getString(R.string.spot_naksan))) {
+                BackupStationList.add(new MarkerItem(37.5821752, 127.0017159, "Behind Hyehwa Station, Exit 3", "341"));
+                BackupStationList.add(new MarkerItem(37.5796835, 127.00248, "In front of Marronnier Park, Daehak-ro", "342"));
+            } else if (marker.getTitle().equals(getString(R.string.spot_63square))) {
+                BackupStationList.add(new MarkerItem(37.522529, 126.9376243, "In front of Yeouido Elementary School", "221"));
+                BackupStationList.add(new MarkerItem(37.5190648, 126.9375564, "Sibum Apt. next to the bus stop", "222"));
+            } else if (marker.getTitle().equals(getString(R.string.spot_yeouido))) {
+                BackupStationList.add(new MarkerItem(37.5287803, 126.924613, "In front of the Kukmin Daily Building", "202"));
+                BackupStationList.add(new MarkerItem(37.52629, 126.9204017, "In front of the KDB Bank Building", "205"));
+                BackupStationList.add(new MarkerItem(37.5245621, 126.9178234, "In front of the KBS Building", "206"));
+                BackupStationList.add(new MarkerItem(37.5250461, 126.9240667, "In front of the Back Gate of the Shinhan Investment Corp. Building", "210"));
+                BackupStationList.add(new MarkerItem(37.5218453, 126.9188913, "In front of the KT Building", "213"));
+                BackupStationList.add(new MarkerItem(37.5230357, 126.9208569, "In front of the Financial Supervisory Service Building", "214"));
+            } else if (marker.getTitle().equals(getString(R.string.spot_mbc))) {
+                BackupStationList.add(new MarkerItem(37.583542, 126.8867311, "Woori Finance Holdings at Sangam Crossroad", "404"));
+                BackupStationList.add(new MarkerItem(37.5825567, 126.8856689, "In front of DMC Ville", "405"));
+                BackupStationList.add(new MarkerItem(37.5808287, 126.886682, "LG CNS앞", "408"));
+                BackupStationList.add(new MarkerItem(37.579368, 126.8891946, "In front of LG CNS", "409"));
+                BackupStationList.add(new MarkerItem(37.5779916, 126.8914505, "DMC Gallery", "411"));
+                BackupStationList.add(new MarkerItem(37.5781785, 126.8945011, "Beside Sangam-dong Community Service Center", "414"));
+            } else if (marker.getTitle().equals(getString(R.string.spot_pyeongwha))) {
+                BackupStationList.add(new MarkerItem(37.5715288, 126.8896663, "Rear entrance to Sangam World Cup Park Apt. Complex #3", "413"));
+                BackupStationList.add(new MarkerItem(37.5662219, 126.8961888, "Beside Seoul City Public Bicycle Operations Center", "420"));
+                BackupStationList.add(new MarkerItem(37.5659259, 126.9009017, "In front of Mapo-Gu Office", "421"));
+            } else if (marker.getTitle().equals(getString(R.string.spot_skypark))) {
+                BackupStationList.add(new MarkerItem(37.5715288, 126.8896663, "Rear entrance to Sangam World Cup Park Apt. Complex #3", "413"));
+                BackupStationList.add(new MarkerItem(37.5662219, 126.8961888, "Beside Seoul City Public Bicycle Operations Center", "420"));
+                BackupStationList.add(new MarkerItem(37.5659259, 126.9009017, "In front of Mapo-Gu Office", "421"));
+            } else {
+            }
         }
 
         for (int i = 0; i < BackupStationList.size(); i++) {

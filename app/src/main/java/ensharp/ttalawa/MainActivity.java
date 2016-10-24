@@ -176,6 +176,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     ArrayList<MarkerItem> sampleList;
     ArrayList<Polyline> polylines;
     ArrayList<Marker> pathmarkers;
+    private int polylineWidth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -320,7 +321,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         @Override
         protected void onPostExecute(MainPathData mainPathData) {
-            PolylineOptions options = new PolylineOptions().width(35).color(Color.RED).geodesic(true);
+            PolylineOptions options = new PolylineOptions().width(polylineWidth).color(Color.RED).geodesic(true);
 
             if (mainPathData.getMode().equals("direct")) {
                 changePathStationMarker(mainPathData.getStartMarkerItem(), true, "rent");
@@ -354,7 +355,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         @Override
         protected void onPostExecute(SubPathData subPathData) {
-            PolylineOptions options = new PolylineOptions().width(35).color(Color.BLUE).geodesic(true);
+            PolylineOptions options = new PolylineOptions().width(polylineWidth).color(Color.BLUE).geodesic(true);
 
             if (subPathData.getMode().equals("rent")) {
                 markerMap.put("start", mGoogleMap.addMarker(subPathData.getMarkerOptions()));
@@ -396,10 +397,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 hours = (int) Math.floor(time);
                 temp = time - (float) Math.floor(time);
                 minutes = (int) Math.floor(temp * 60);
-                convertString = "약 " + hours + "시간 " + minutes + "분";
+                convertString = getString(R.string.about) + " " + hours + getString(R.string.pathInfoHours) + " " + minutes + getString(R.string.minutes);
             } else {
                 minutes = (int) Math.floor(time * 60);
-                convertString = "약 " + minutes + "분";
+                convertString = getString(R.string.about) + " " + minutes + getString(R.string.minutes);
             }
             timeTxt.setText(convertString);
             changePathInfoLayoutVisibility(true);
@@ -749,7 +750,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         pref.putValue("vib", "on", "alarm");
                     }
                     break;
-
             }
         }
     };
@@ -812,6 +812,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             buildGoogleApiClient();
             mGoogleMap.setMyLocationEnabled(true);
         }
+
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        int displaywidth = metrics.widthPixels;
+        polylineWidth = (int) (displaywidth * 0.022f);
     }
 
     //Google Play Service API로 위치정보를 처리하는 앱에서는 반드시 필요
@@ -1814,11 +1819,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             content_num = result.getString(6);
             coordinate_x = result.getString(4);
             coordinate_y = result.getString(5);
-            //임시 디비 확인
-//            String engContentName
-//            String engAddrGu=result.getString(9);
-//            String engNewAddr=result.getString(10);
-//            Log.w("대여소디비확인",engContentName+" , "+engAddrGu+" , "+engNewAddr);
+
             //한국어
             if (Locale.getDefault().getLanguage().equals("ko")) {
                 content_name = result.getString(1);
@@ -1856,13 +1857,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         result.moveToFirst();
         String resultStr = "";
         while (!result.isAfterLast()) {
-//            String spotNum = result.getString(0);
             String spotMapX = result.getString(1);
             String spotMapY = result.getString(2);
             String spotTitle;
-            //임시 디비 확인
-//            String engSpotTitle=result.getString(5);
-//            String engSpotAddress=result.getString(6);
+
             if (Locale.getDefault().getLanguage().equals("ko")) {
                 spotTitle = result.getString(3);
             }
@@ -1870,9 +1868,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             else {
                 spotTitle = result.getString(5);
             }
-//            resultStr += spotNum + ", " + spotMapX + ", " + spotMapY + " , " + spotTitle + "\n";
-//
-//            Log.w("resultStr:: ", spotNum + "," + spotMapX + "," + spotMapY + "," + spotTitle+","+engSpotTitle+","+engSpotAddress);
             TourSpotList.add(new TourSpotMarkerItem(Double.parseDouble(spotMapX), Double.parseDouble(spotMapY), spotTitle));
             result.moveToNext();
         }

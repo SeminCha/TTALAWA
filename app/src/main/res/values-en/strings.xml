@@ -24,8 +24,8 @@
     <string name="tenminutes">10min</string>
     <string name="twentyminutes">20min</string>
     <string name="thirtyminutes">30min</string>
-    <string name="sound">Sound</string>
-    <string name="vibrate">Vibrate</string>
+    <string name="sound">sound</string>
+    <string name="vibrate">vibrate</string>
     <string name="alertGpsOn">For using location service, change your GPS setting.</string>
     <string name="GPSdenied">Location permission is denied.</string>
     <string name="yes">YES</string>
@@ -259,4 +259,6 @@
     <string name="alertVisitComplete">Have you enjoyed your trip? We confirm your visit!</string>
     <string name="alertVisitFail">You aren\'t at the tourist spot. Go near them.</string>
     <string name="alertVisitAlready">Your visit is already confirmed! Do you want to delete your visit log?</string>
+    <string name="pathInfoHours">hour</string>
+    <string name="minutes">minutes</string>
 </resources>

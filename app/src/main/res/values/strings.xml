@@ -258,4 +258,6 @@
     <string name="alertVisitComplete">즐거운 관광 되셨나요? \\n해당 관광지 방문이 확인되었습니다!</string>
     <string name="alertVisitFail">지금 계신 곳은 해당 관광지가 아니네요!\\n조금만 더 근처로 가주세요!</string>
     <string name="alertVisitAlready">이미 방문하셨습니다! \\n방문기록을 삭제할까요?</string>
+    <string name="pathInfoHours">시간</string>
+    <string name="minutes">분</string>
 </resources>

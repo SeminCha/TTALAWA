@@ -7,7 +7,7 @@
         <item name="colorPrimaryDark">#202730</item>
         <!--   theme UI controls like checkboxes and text fields -->
         <!--<item name="colorAccent">#ccdf5539</item>-->
-        <item name="colorAccent">@color/grey_light_transparent</item>
+        <item name="colorAccent">#6B82A1</item>
     </style>
 
     <style name="AppTabLayout" parent="Widget.Design.TabLayout">

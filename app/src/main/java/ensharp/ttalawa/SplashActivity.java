@@ -3,9 +3,11 @@ package ensharp.ttalawa;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.TextView;
 
 import java.io.InputStream;
 
@@ -26,11 +28,41 @@ public class SplashActivity extends Activity {
     private StationDbAdapter dbAdapter;
     private SpotsDbAdapter spotDbAdapter;
 
+    private TextView tta;
+    private TextView reungi;
+    private TextView ra;
+    private TextView idingharu;
+    private TextView wa;
+    private TextView dot1;
+    private TextView dot2;
+    private TextView dot3;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        Typeface tf_nanumsquare_bold = Typeface.createFromAsset(getAssets(), "NanumSquareB.ttf");
+        Typeface tf_nanumsquare_extrabold = Typeface.createFromAsset(getAssets(), "NanumSquareEB.ttf");
+        Typeface tf_samsung=Typeface.createFromAsset(getAssets(),"SamsungKorean-Bold.ttf");
+        tta=(TextView)findViewById(R.id.txt_tta);
+        reungi=(TextView)findViewById(R.id.txt_reungi);
+        ra=(TextView)findViewById(R.id.txt_ra);
+        idingharu=(TextView)findViewById(R.id.txt_idingharu);
+        wa=(TextView)findViewById(R.id.txt_wa);
+        dot1=(TextView)findViewById(R.id.txt_dot1);
+        dot2=(TextView)findViewById(R.id.txt_dot2);
+        dot3=(TextView)findViewById(R.id.txt_dot3);
+
+        tta.setTypeface(tf_samsung);
+        reungi.setTypeface(tf_samsung);
+        ra.setTypeface(tf_samsung);
+        idingharu.setTypeface(tf_samsung);
+        wa.setTypeface(tf_samsung);
+        dot1.setTypeface(tf_samsung);
+        dot2.setTypeface(tf_samsung);
+        dot3.setTypeface(tf_samsung);
 
         this.dbAdapter = new StationDbAdapter(this);
         //엑셀파일 데이터를 데이터베이스에 저장

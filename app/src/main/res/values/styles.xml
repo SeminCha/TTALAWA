@@ -12,7 +12,7 @@
 
     <style name="AppTabLayout" parent="Widget.Design.TabLayout">
         <!--<item name="tabMaxWidth">@dimen/tab_max_width</item>-->
-        <item name="tabIndicatorColor">@color/orangered</item>
+        <item name="tabIndicatorColor">@color/orangered_sub</item>
         <item name="tabIndicatorHeight">3.5dp</item>
         <item name="tabPaddingStart">6dp</item>
         <item name="tabPaddingEnd">6dp</item>

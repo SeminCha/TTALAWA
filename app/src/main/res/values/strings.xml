@@ -23,7 +23,7 @@
     <string name="tenminutes">10분</string>
     <string name="twentyminutes">20분</string>
     <string name="thirtyminutes">30분</string>
-    <string name="sound">소리</string>
+    <string name="sound">음성</string>
     <string name="vibrate">진동</string>
     <string name="alertGpsOn">내 위치 정보를 사용하려면, 단말기 설정에서 \'위치 서비스\' 사용을 허용해주세요.</string>
     <string name="GPSdenied">현재위치인식승인이 거부되었습니다.</string>

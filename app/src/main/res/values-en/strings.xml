@@ -24,7 +24,7 @@
     <string name="tenminutes">10min</string>
     <string name="twentyminutes">20min</string>
     <string name="thirtyminutes">30min</string>
-    <string name="sound">Sound</string>
+    <string name="sound">Voice</string>
     <string name="vibrate">Vibrate</string>
     <string name="alertGpsOn">For using location service, change your GPS setting.</string>
     <string name="GPSdenied">Location permission is denied.</string>

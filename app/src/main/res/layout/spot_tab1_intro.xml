@@ -71,7 +71,7 @@
             <Button
                 android:id="@+id/visitCheckBtn"
                 android:layout_width="85dp"
-                android:layout_height="26dp"
+                android:layout_height="30dp"
                 android:layout_alignParentRight="true"
                 android:background="@drawable/visit_btn"
                 android:elevation="10dp"

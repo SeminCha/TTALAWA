@@ -53,6 +53,7 @@ public class TourInfoTab1_Intro extends Fragment {
     String networkoper;
     TMapTapi tmaptapi;
     private SpotsDbAdapter spotDbAdapter;
+    private ImageView tourSpotTag;
 
     //관광명소 소개 리스트
     private ArrayList<String> spotIntroList;
@@ -73,11 +74,13 @@ public class TourInfoTab1_Intro extends Fragment {
         naviBtn.setOnClickListener(btnListener);
         tourSpotVisitCheck = (Button) inflatedView.findViewById(R.id.visitCheckBtn);
         tourSpotVisitCheck.setOnClickListener(btnListener);
-
+        tourSpotTag = (ImageView) inflatedView.findViewById(R.id.text_spotName);
         if (Locale.getDefault().getLanguage().equals("ko")) {
             getKorIntroDbTourSpot();
+            tourSpotTag.setImageResource(R.drawable.tourspot_label);
         } else {
             getEngIntroDbTourSpot();
+            tourSpotTag.setImageResource(R.drawable.eng_tourspot_label);
         }
 
         pref = new SharedPreferences(TourInfoActivity.mContextTourInfo);

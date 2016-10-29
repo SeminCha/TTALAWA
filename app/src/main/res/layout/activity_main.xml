@@ -376,7 +376,7 @@
                                     android:layout_alignParentEnd="true"
                                     android:layout_centerVertical="true"
                                     android:text=""
-                                    android:textColor="@color/grey_darker"
+                                    android:textColor="@color/maincolor"
                                     android:textSize="22dp" />
                             </RelativeLayout>
 
@@ -718,7 +718,7 @@
                                 android:layout_centerVertical="true"
                                 android:textAlignment="textEnd"
                                 android:text="관광정보 소개"
-                                android:textColor="@color/grey_dark"
+                                android:textColor="@color/maincolor"
                                 android:textSize="17dp" />
                         </RelativeLayout>
 

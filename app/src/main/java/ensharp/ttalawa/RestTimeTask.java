@@ -22,7 +22,7 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
     public NotificationManager notificationManager;
     public Intent intent;
     public PendingIntent contentIntent;
-    public final Bitmap bitmap = BitmapFactory.decodeResource(MainActivity.mContext.getResources(), android.R.drawable.ic_menu_gallery); // 아이콘 ic_menu_gallery를 띄워준다.;
+    public final Bitmap bitmap = BitmapFactory.decodeResource(MainActivity.mContext.getResources(), R.drawable.splash_icon); // 아이콘 ic_menu_gallery를 띄워준다.;
     public CountDownTimer timer;
     private String charging;
     private boolean thirtyArm;
@@ -292,7 +292,7 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
         pNotificationBuilder = new NotificationCompat.Builder(MainActivity.mContext);
         pNotificationBuilder
                 .setLargeIcon(bitmap) // 이미지 띄워주기
-                .setSmallIcon(R.drawable.cast_ic_notification_small_icon)
+                .setSmallIcon(R.drawable.settings)
                 .setContentTitle(restTime)
                 .setContentText(charging) // 텍스트 띄우기
                 .setTicker(restTime) // 상태 바에 뜨는 문구

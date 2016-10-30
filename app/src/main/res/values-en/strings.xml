@@ -262,4 +262,5 @@
     <string name="minutes">min</string>
     <string name="path_distance">Distance</string>
     <string name="path_time">Time</string>
+    <string name="about"> </string>
 </resources>

@@ -86,7 +86,7 @@ public class TourInfoTab1_Intro extends Fragment {
         pref = new SharedPreferences(TourInfoActivity.mContextTourInfo);
         spotName = TourInfoActivity.spotName;
         setContentView(spotName);
-        //TmapAuthentication();
+        TmapAuthentication();
 
         spotName = TourInfoActivity.spotName;
         setContentView(spotName);

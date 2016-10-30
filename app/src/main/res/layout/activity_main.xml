@@ -587,6 +587,7 @@
                 </LinearLayout>
             </LinearLayout>
 
+            <!--관광지 정보레이아웃-->
             <LinearLayout
                 android:id="@+id/tourSpotInfoLayout"
                 android:layout_width="match_parent"

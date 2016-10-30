@@ -66,6 +66,7 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
                         }
                         if(pref.getValue("sound", "off", "alarm").equals("on")){
                             ttsArm.setLanguage(Locale.KOREA);
+                            ttsArm.setSpeechRate(0.9f);
                             ttsArm.speak("따릉이 자전거 반납까지 30분 남았습니다.",
                                     TextToSpeech.QUEUE_FLUSH, null);
                         }
@@ -80,6 +81,7 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
                         }
                         if(pref.getValue("sound", "off", "alarm").equals("on")) {
                             ttsArm.setLanguage(Locale.KOREA);
+                            ttsArm.setSpeechRate(0.9f);
                             ttsArm.speak("따릉이 자전거 반납까지 20분 남았습니다.",
                                     TextToSpeech.QUEUE_FLUSH, null);
                         }
@@ -95,6 +97,7 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
                         }
                         if(pref.getValue("sound", "off", "alarm").equals("on")) {
                             ttsArm.setLanguage(Locale.KOREA);
+                            ttsArm.setSpeechRate(0.9f);
                             ttsArm.speak("따릉이 자전거 반납까지 10분 남았습니다.",
                                     TextToSpeech.QUEUE_FLUSH, null);
                         }
@@ -110,6 +113,7 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
                         }
                         if(pref.getValue("sound", "off", "alarm").equals("on")) {
                             ttsArm.setLanguage(Locale.KOREA);
+                            ttsArm.setSpeechRate(0.9f);
                             ttsArm.speak("따릉이 자전거 반납까지 5분 남았습니다.",
                                     TextToSpeech.QUEUE_FLUSH, null);
                         }
@@ -158,7 +162,7 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
     }
 
     public void timeOver() {
-        timer = new CountDownTimer(3600000, 1000) {
+        timer = new CountDownTimer(1800000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 if ((millisUntilFinished < 1800000) && (thirtyArm == true)) {
@@ -171,6 +175,7 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
                         }
                         if(pref.getValue("sound", "off", "alarm").equals("on")){
                             ttsArm.setLanguage(Locale.KOREA);
+                            ttsArm.setSpeechRate(0.9f);
                             ttsArm.speak("따릉이 자전거 반납까지 30분 남았습니다.",
                                     TextToSpeech.QUEUE_FLUSH, null);
                         }
@@ -185,6 +190,7 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
                         }
                         if(pref.getValue("sound", "off", "alarm").equals("on")) {
                             ttsArm.setLanguage(Locale.KOREA);
+                            ttsArm.setSpeechRate(0.9f);
                             ttsArm.speak("따릉이 자전거 반납까지 20분 남았습니다.",
                                     TextToSpeech.QUEUE_FLUSH, null);
                         }
@@ -200,6 +206,7 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
                         }
                         if(pref.getValue("sound", "off", "alarm").equals("on")) {
                             ttsArm.setLanguage(Locale.KOREA);
+                            ttsArm.setSpeechRate(0.9f);
                             ttsArm.speak("따릉이 자전거 반납까지 10분 남았습니다.",
                                     TextToSpeech.QUEUE_FLUSH, null);
                         }
@@ -215,6 +222,7 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
                         }
                         if(pref.getValue("sound", "off", "alarm").equals("on")) {
                             ttsArm.setLanguage(Locale.KOREA);
+                            ttsArm.setSpeechRate(0.9f);
                             ttsArm.speak("따릉이 자전거 반납까지 5분 남았습니다.",
                                     TextToSpeech.QUEUE_FLUSH, null);
                         }

@@ -734,24 +734,24 @@ public class TourInfoTab1_Intro extends Fragment {
                 break;
             //남산 공원 -> 그냥 갔다온 것으로 처리할 계획
             case 4:
-//                if ((37.55719324547463 <= myLocation.getLatitude() && myLocation.getLatitude() <= 37.56184307132696)
-//                        && (127.01541882008314 <= myLocation.getLongitude() && myLocation.getLongitude() <= 127.020458355546))
-//                    result = true;
-//                else
-//                    result = false;
-//                break;
-                result = true;
+                if ((37.54709791204009 <= myLocation.getLatitude() && myLocation.getLatitude() <= 37.55615958657706)
+                        && (126.97939977049829 <= myLocation.getLongitude() && myLocation.getLongitude() <= 126.9946863502264))
+                    result = true;
+                else
+                    result = false;
                 break;
+                //result = true;
+                //break;
             //N 서울타워 -> 그냥 갔다온 것으로 처리할 계획
             case 5:
-//                if ((37.55719324547463 <= myLocation.getLatitude() && myLocation.getLatitude() <= 37.56184307132696)
-//                        && (127.01541882008314 <= myLocation.getLongitude() && myLocation.getLongitude() <= 127.020458355546))
-//                    result = true;
-//                else
-//                    result = false;
-//                break;
-                result = true;
+                if ((37.54709791204009 <= myLocation.getLatitude() && myLocation.getLatitude() <= 37.55615958657706)
+                        && (126.97939977049829 <= myLocation.getLongitude() && myLocation.getLongitude() <= 126.9946863502264))
+                    result = true;
+                else
+                    result = false;
                 break;
+//                result = true;
+//                break;
             // 경복궁
             case 6:
                 if ((37.575461045726954 <= myLocation.getLatitude() && myLocation.getLatitude() <= 37.58413773751325)
@@ -762,14 +762,14 @@ public class TourInfoTab1_Intro extends Fragment {
                 break;
             //광화문 광장 -> 그냥 갔다온 것으로 처리할 계획
             case 7:
-//                if ((37.55719324547463 <= myLocation.getLatitude() && myLocation.getLatitude() <= 37.56184307132696)
-//                        && (127.01541882008314 <= myLocation.getLongitude() && myLocation.getLongitude() <= 127.020458355546))
-//                    result = true;
-//                else
-//                    result = false;
-//                break;
-                result = true;
+                if ((37.57191886867333 <= myLocation.getLatitude() && myLocation.getLatitude() <= 37.57401788800245)
+                        && (126.97461001574993 <= myLocation.getLongitude() && myLocation.getLongitude() <= 126.97664212435485))
+                    result = true;
+                else
+                    result = false;
                 break;
+//                result = true;
+//                break;
             //종묘
             case 8:
                 if ((37.570641198876515 <= myLocation.getLatitude() && myLocation.getLatitude() <= 37.57763197419156)
@@ -796,24 +796,24 @@ public class TourInfoTab1_Intro extends Fragment {
                 break;
             //인사동 -> 그냥 갔다온 것으로 처리할 계획
             case 11:
-//                if ((37.573988126399875 <= myLocation.getLatitude() && myLocation.getLatitude() <= 37.57446377916004)
-//                        && (126.9845362007618 <= myLocation.getLongitude() && myLocation.getLongitude() <= 126.98515411466359))
-//                    result = true;
-//                else
-//                    result = false;
-//                break;
-                result = true;
+                if ((37.57333894848428 <= myLocation.getLatitude() && myLocation.getLatitude() <= 37.57639399471106)
+                        && (126.98264725506306 <= myLocation.getLongitude() && myLocation.getLongitude() <= 126.98661256581543))
+                    result = true;
+                else
+                    result = false;
                 break;
+//                result = true;
+//                break;
             //창덕궁과 후원 -> 그냥 갔다온 것으로 처리할 계획
             case 12:
-//                if ((37.57399051795766 <= myLocation.getLatitude() && myLocation.getLatitude() <= 37.57446377916004)
-//                        && (126.9845362007618 <= myLocation.getLongitude() && myLocation.getLongitude() <= 126.98515411466359))
-//                    result = true;
-//                else
-//                    result = false;
-//                break;
-                result = true;
+                if ((37.57736439805643 <= myLocation.getLatitude() && myLocation.getLatitude() <= 37.57987590899944)
+                        && (126.99317190796138 <= myLocation.getLongitude() && myLocation.getLongitude() <= 126.99693202972412))
+                    result = true;
+                else
+                    result = false;
                 break;
+//                result = true;
+//                break;
             //창경궁
             case 13:
                 if ((37.57736439805643 <= myLocation.getLatitude() && myLocation.getLatitude() <= 37.57987590899944)
@@ -824,14 +824,14 @@ public class TourInfoTab1_Intro extends Fragment {
                 break;
             //북촌 한옥마을 -> 그냥 갔다온 것으로 처리할 계획
             case 14:
-//                if ((37.57399051795766 <= myLocation.getLatitude() && myLocation.getLatitude() <= 37.57446377916004)
-//                        && (126.9845362007618 <= myLocation.getLongitude() && myLocation.getLongitude() <= 126.98515411466359))
-//                    result = true;
-//                else
-//                    result = false;
-//                break;
-                result = true;
+                if ((37.57399051795766 <= myLocation.getLatitude() && myLocation.getLatitude() <= 37.57446377916004)
+                        && (126.9845362007618 <= myLocation.getLongitude() && myLocation.getLongitude() <= 126.98515411466359))
+                    result = true;
+                else
+                    result = false;
                 break;
+//                result = true;
+//                break;
             //흥인지문
             case 15:
                 if ((37.5708729243104 <= myLocation.getLatitude() && myLocation.getLatitude() <= 37.571249210864345)
@@ -850,14 +850,14 @@ public class TourInfoTab1_Intro extends Fragment {
                 break;
             //대학로  -> 그냥 갔다온 것으로 처리할 계획
             case 17:
-//                if ((37.57736439805643 <= myLocation.getLatitude() && myLocation.getLatitude() <= 37.57987590899944)
-//                        && (126.99317190796138 <= myLocation.getLongitude() && myLocation.getLongitude() <= 126.99693202972412))
-//                    result = true;
-//                else
-//                    result = false;
-//                break;
-                result = true;
+                if ((37.57852131914368 <= myLocation.getLatitude() && myLocation.getLatitude() <= 37.5842482654808)
+                        && (126.99980132281779 <= myLocation.getLongitude() && myLocation.getLongitude() <= 127.00551409274341))
+                    result = true;
+                else
+                    result = false;
                 break;
+//                result = true;
+//                break;
             //마로니에 공원
             case 18:
                 if ((37.57956237332758 <= myLocation.getLatitude() && myLocation.getLatitude() <= 37.580887982510106)
@@ -876,22 +876,22 @@ public class TourInfoTab1_Intro extends Fragment {
                 break;
             //63스퀘어
             case 20:
-                if ((37.51858117991359 <= myLocation.getLatitude() && myLocation.getLatitude() <= 37.52097048883535)
-                        && (126.93862482905388 <= myLocation.getLongitude() && myLocation.getLongitude() <= 126.94096840918066))
+                if ((37.51858117991359 <= myLocation.getLatitude() && myLocation.getLatitude() <= 37.52752666793541)
+                        && (126.91632494330406 <= myLocation.getLongitude() && myLocation.getLongitude() <= 126.94096840918066))
                     result = true;
                 else
                     result = false;
                 break;
-            //여의도 공원 -> 그냥 갔다온 것으로 처리할 계획
+            //여의도 공원 -> 그냥 갔다온 것으로 처리할 계획GKSEMF
             case 21:
-//                if ((37.51858117991359 <= myLocation.getLatitude() && myLocation.getLatitude() <= 37.52097048883535)
-//                        && (126.93862482905388 <= myLocation.getLongitude() && myLocation.getLongitude() <= 126.94096840918066))
-//                    result = true;
-//                else
-//                    result = false;
-//                break;
-                result = true;
+                if ((37.52147785811003 <= myLocation.getLatitude() && myLocation.getLatitude() <= 37.532387589995395)
+                        && (126.93862482905388 <= myLocation.getLongitude() && myLocation.getLongitude() <= 126.93059161305428))
+                    result = true;
+                else
+                    result = false;
                 break;
+//                result = true;
+//                break;
             //MBC 월드 방송 테마 파크
             case 22:
                 if ((37.5783669400379 <= myLocation.getLatitude() && myLocation.getLatitude() <= 37.58196327893457)
@@ -903,14 +903,14 @@ public class TourInfoTab1_Intro extends Fragment {
 
             //평화의 공원 -> 그냥 갔다온 것으로 처리할 계획
             case 23:
-//                if ((37.51858117991359 <= myLocation.getLatitude() && myLocation.getLatitude() <= 37.52097048883535)
-//                        && (126.93862482905388 <= myLocation.getLongitude() && myLocation.getLongitude() <= 126.94096840918066))
-//                    result = true;
-//                else
-//                    result = false;
-//            break;
-                result = true;
-                break;
+                if ((37.56437902438309 <= myLocation.getLatitude() && myLocation.getLatitude() <= 37.57195713465197)
+                        && (126.88073504716156 <= myLocation.getLongitude() && myLocation.getLongitude() <= 126.88957259058952))
+                    result = true;
+                else
+                    result = false;
+            break;
+//                result = true;
+//                break;
             //하늘 공원
             case 24:
                 if ((37.56437902438309 <= myLocation.getLatitude() && myLocation.getLatitude() <= 37.57195713465197)

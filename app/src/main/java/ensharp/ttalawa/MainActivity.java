@@ -220,9 +220,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mainTxtView = (TextView) findViewById(R.id.restTimetxtView);
         overChargingView = (TextView) findViewById(R.id.overChargingView);
 
-        mainTxtView = (TextView) findViewById(R.id.restTimetxtView);
-        overChargingView = (TextView) findViewById(R.id.overChargingView);
-
         alarm_check = (CheckBox) findViewById(R.id.alarm_check);
         alarm_check.setOnClickListener(checkClickListener);
         btn_five = (Button) findViewById(R.id.button_5);

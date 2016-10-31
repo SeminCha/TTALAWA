@@ -43,7 +43,6 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
         } else{
             charging = "Charging 0 won";
         }
-        pref = new SharedPreferences(MainActivity.mContext);
         thirtyArm = true;
         twentyArm = true;
         tenArm = true;
@@ -56,6 +55,7 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
         timer = new CountDownTimer(3600000, 1000) {
 
             public void onTick(long millisUntilFinished) {
+                pref = new SharedPreferences(MainActivity.mContext);
                 if ((millisUntilFinished < 1800000) && (thirtyArm == true)) {
                     thirtyArm = false;
                     if(pref.getValue("30", "off", "alarm").equals("on")){
@@ -147,6 +147,11 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
                     MainActivity.mainTxtView.setText(millisUntilFinished / 1000 / 60 % 60 + "minutes left to return");
                 }
                 MainActivity.overChargingView.setText(charging);
+                if(pref.getValue("state", "nonRent", "state").equals("nonRent")){
+                    onFinish();
+                    charging = "";
+                    MainActivity.overChargingView.setText("");
+                }
             }
 
             public void onFinish() {
@@ -180,7 +185,6 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
     }
 
     protected void onPostExecute(Void result) {
-
     }
 
     public void timeOver() {
@@ -336,7 +340,6 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
         } else{
             MainActivity.mainTxtView.setText("Use the rental service");
         }
-        MainActivity.overChargingView.setText("");
         pref.putValue("state", "nonRent", "state");
     }
 

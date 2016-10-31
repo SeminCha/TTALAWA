@@ -23,7 +23,7 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
     public Intent intent;
     public PendingIntent contentIntent;
     public final Bitmap bitmap = BitmapFactory.decodeResource(MainActivity.mContext.getResources(), R.drawable.splash_icon); // 아이콘 ic_menu_gallery를 띄워준다.;
-    public CountDownTimer timer;
+    public static CountDownTimer timer;
     private String charging;
     private boolean thirtyArm;
     private boolean twentyArm;

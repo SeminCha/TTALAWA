@@ -61,29 +61,40 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
                     if(pref.getValue("30", "off", "alarm").equals("on")){
                         if (Locale.getDefault().getLanguage().equals("ko")) {
                             notification(notificationManager, notificationBuilder, "30분 남았습니다", charging);
+                            if(pref.getValue("sound", "off", "alarm").equals("on")){
+                                ttsArm.setLanguage(Locale.KOREA);
+                                ttsArm.setSpeechRate(0.9f);
+                                ttsArm.speak("따릉이 자전거 반납까지 30분 남았습니다.",
+                                        TextToSpeech.QUEUE_FLUSH, null);
+                            }
                         } else{
                             notification(notificationManager, notificationBuilder, "Half an hour left", charging);
+                            if(pref.getValue("sound", "off", "alarm").equals("on")){
+                                ttsArm.setLanguage(Locale.ENGLISH);
+                                ttsArm.setSpeechRate(0.9f);
+                                ttsArm.speak("Half an hour left.",TextToSpeech.QUEUE_FLUSH, null);
+                            }
                         }
-                        if(pref.getValue("sound", "off", "alarm").equals("on")){
-                            ttsArm.setLanguage(Locale.KOREA);
-                            ttsArm.setSpeechRate(0.9f);
-                            ttsArm.speak("따릉이 자전거 반납까지 30분 남았습니다.",
-                                    TextToSpeech.QUEUE_FLUSH, null);
-                        }
+
                     }
                 } else if ((millisUntilFinished < 1200000) && (twentyArm == true)) {
                     twentyArm = false;
                     if(pref.getValue("20", "off", "alarm").equals("on")){
                         if (Locale.getDefault().getLanguage().equals("ko")) {
                             notification(notificationManager, notificationBuilder, "20분 남았습니다", charging);
+                            if(pref.getValue("sound", "off", "alarm").equals("on")) {
+                                ttsArm.setLanguage(Locale.KOREA);
+                                ttsArm.setSpeechRate(0.9f);
+                                ttsArm.speak("따릉이 자전거 반납까지 20분 남았습니다.",
+                                        TextToSpeech.QUEUE_FLUSH, null);
+                            }
                         } else{
                             notification(notificationManager, notificationBuilder, "20 minutes left", charging);
-                        }
-                        if(pref.getValue("sound", "off", "alarm").equals("on")) {
-                            ttsArm.setLanguage(Locale.KOREA);
-                            ttsArm.setSpeechRate(0.9f);
-                            ttsArm.speak("따릉이 자전거 반납까지 20분 남았습니다.",
-                                    TextToSpeech.QUEUE_FLUSH, null);
+                            if(pref.getValue("sound", "off", "alarm").equals("on")) {
+                                ttsArm.setLanguage(Locale.ENGLISH);
+                                ttsArm.setSpeechRate(0.9f);
+                                ttsArm.speak("20 minutes left.", TextToSpeech.QUEUE_FLUSH, null);
+                            }
                         }
                     }
                 } else if ((millisUntilFinished < 600000) && (tenArm == true)) {
@@ -92,14 +103,19 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
                     if(pref.getValue("10", "off", "alarm").equals("on")){
                         if (Locale.getDefault().getLanguage().equals("ko")) {
                             notification(notificationManager, notificationBuilder, "10분 남았습니다", charging);
+                            if(pref.getValue("sound", "off", "alarm").equals("on")) {
+                                ttsArm.setLanguage(Locale.KOREA);
+                                ttsArm.setSpeechRate(0.9f);
+                                ttsArm.speak("따릉이 자전거 반납까지 10분 남았습니다.",
+                                        TextToSpeech.QUEUE_FLUSH, null);
+                            }
                         } else{
                             notification(notificationManager, notificationBuilder, "10 minutes left", charging);
-                        }
-                        if(pref.getValue("sound", "off", "alarm").equals("on")) {
-                            ttsArm.setLanguage(Locale.KOREA);
-                            ttsArm.setSpeechRate(0.9f);
-                            ttsArm.speak("따릉이 자전거 반납까지 10분 남았습니다.",
-                                    TextToSpeech.QUEUE_FLUSH, null);
+                            if(pref.getValue("sound", "off", "alarm").equals("on")) {
+                                ttsArm.setLanguage(Locale.ENGLISH);
+                                ttsArm.setSpeechRate(0.9f);
+                                ttsArm.speak("10 minutes left.", TextToSpeech.QUEUE_FLUSH, null);
+                            }
                         }
                     }
                 } else if ((millisUntilFinished < 300000) && (fiveArm == true)) {
@@ -108,14 +124,20 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
                     if(pref.getValue("5", "off", "alarm").equals("on")){
                         if (Locale.getDefault().getLanguage().equals("ko")) {
                             notification(notificationManager, notificationBuilder, "5분 남았습니다", charging);
+                            if(pref.getValue("sound", "off", "alarm").equals("on")) {
+                                ttsArm.setLanguage(Locale.KOREA);
+                                ttsArm.setSpeechRate(0.9f);
+                                ttsArm.speak("따릉이 자전거 반납까지 5분 남았습니다.",
+                                        TextToSpeech.QUEUE_FLUSH, null);
+                            }
                         } else{
                             notification(notificationManager, notificationBuilder, "5 minutes left", charging);
-                        }
-                        if(pref.getValue("sound", "off", "alarm").equals("on")) {
-                            ttsArm.setLanguage(Locale.KOREA);
-                            ttsArm.setSpeechRate(0.9f);
-                            ttsArm.speak("따릉이 자전거 반납까지 5분 남았습니다.",
-                                    TextToSpeech.QUEUE_FLUSH, null);
+                            if(pref.getValue("sound", "off", "alarm").equals("on")) {
+                                ttsArm.setLanguage(Locale.ENGLISH);
+                                ttsArm.setSpeechRate(0.9f);
+                                ttsArm.speak("5 minutes left.",
+                                        TextToSpeech.QUEUE_FLUSH, null);
+                            }
                         }
                     }
                 }
@@ -170,14 +192,20 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
                     if(pref.getValue("30", "off", "alarm").equals("on")){
                         if (Locale.getDefault().getLanguage().equals("ko")) {
                             notification(notificationManager, notificationBuilder, "30분 남았습니다", charging);
+                            if(pref.getValue("sound", "off", "alarm").equals("on")){
+                                ttsArm.setLanguage(Locale.KOREA);
+                                ttsArm.setSpeechRate(0.9f);
+                                ttsArm.speak("따릉이 자전거 반납까지 30분 남았습니다.",
+                                        TextToSpeech.QUEUE_FLUSH, null);
+                            }
                         } else{
                             notification(notificationManager, notificationBuilder, "Half an hour left", charging);
-                        }
-                        if(pref.getValue("sound", "off", "alarm").equals("on")){
-                            ttsArm.setLanguage(Locale.KOREA);
-                            ttsArm.setSpeechRate(0.9f);
-                            ttsArm.speak("따릉이 자전거 반납까지 30분 남았습니다.",
-                                    TextToSpeech.QUEUE_FLUSH, null);
+                            if(pref.getValue("sound", "off", "alarm").equals("on")){
+                                ttsArm.setLanguage(Locale.ENGLISH);
+                                ttsArm.setSpeechRate(0.9f);
+                                ttsArm.speak("Half an hour left.",
+                                        TextToSpeech.QUEUE_FLUSH, null);
+                            }
                         }
                     }
                 } else if ((millisUntilFinished < 1200000) && (twentyArm == true)) {
@@ -185,14 +213,20 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
                     if(pref.getValue("20", "off", "alarm").equals("on")){
                         if (Locale.getDefault().getLanguage().equals("ko")) {
                             notification(notificationManager, notificationBuilder, "20분 남았습니다", charging);
+                            if(pref.getValue("sound", "off", "alarm").equals("on")) {
+                                ttsArm.setLanguage(Locale.KOREA);
+                                ttsArm.setSpeechRate(0.9f);
+                                ttsArm.speak("따릉이 자전거 반납까지 20분 남았습니다.",
+                                        TextToSpeech.QUEUE_FLUSH, null);
+                            }
                         } else{
                             notification(notificationManager, notificationBuilder, "20 minutes left", charging);
-                        }
-                        if(pref.getValue("sound", "off", "alarm").equals("on")) {
-                            ttsArm.setLanguage(Locale.KOREA);
-                            ttsArm.setSpeechRate(0.9f);
-                            ttsArm.speak("따릉이 자전거 반납까지 20분 남았습니다.",
-                                    TextToSpeech.QUEUE_FLUSH, null);
+                            if(pref.getValue("sound", "off", "alarm").equals("on")) {
+                                ttsArm.setLanguage(Locale.ENGLISH);
+                                ttsArm.setSpeechRate(0.9f);
+                                ttsArm.speak("20 minutese left.",
+                                        TextToSpeech.QUEUE_FLUSH, null);
+                            }
                         }
                     }
                 } else if ((millisUntilFinished < 600000) && (tenArm == true)) {
@@ -201,14 +235,20 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
                     if(pref.getValue("10", "off", "alarm").equals("on")){
                         if (Locale.getDefault().getLanguage().equals("ko")) {
                             notification(notificationManager, notificationBuilder, "10분 남았습니다", charging);
+                            if(pref.getValue("sound", "off", "alarm").equals("on")) {
+                                ttsArm.setLanguage(Locale.KOREA);
+                                ttsArm.setSpeechRate(0.9f);
+                                ttsArm.speak("따릉이 자전거 반납까지 10분 남았습니다.",
+                                        TextToSpeech.QUEUE_FLUSH, null);
+                            }
                         } else{
                             notification(notificationManager, notificationBuilder, "10 minutes left", charging);
-                        }
-                        if(pref.getValue("sound", "off", "alarm").equals("on")) {
-                            ttsArm.setLanguage(Locale.KOREA);
-                            ttsArm.setSpeechRate(0.9f);
-                            ttsArm.speak("따릉이 자전거 반납까지 10분 남았습니다.",
-                                    TextToSpeech.QUEUE_FLUSH, null);
+                            if(pref.getValue("sound", "off", "alarm").equals("on")) {
+                                ttsArm.setLanguage(Locale.KOREA);
+                                ttsArm.setSpeechRate(0.9f);
+                                ttsArm.speak("10 minutes left.",
+                                        TextToSpeech.QUEUE_FLUSH, null);
+                            }
                         }
                     }
                 } else if ((millisUntilFinished < 300000) && (fiveArm == true)) {
@@ -217,14 +257,20 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
                     if(pref.getValue("5", "off", "alarm").equals("on")){
                         if (Locale.getDefault().getLanguage().equals("ko")) {
                             notification(notificationManager, notificationBuilder, "5분 남았습니다", charging);
+                            if(pref.getValue("sound", "off", "alarm").equals("on")) {
+                                ttsArm.setLanguage(Locale.KOREA);
+                                ttsArm.setSpeechRate(0.9f);
+                                ttsArm.speak("따릉이 자전거 반납까지 5분 남았습니다.",
+                                        TextToSpeech.QUEUE_FLUSH, null);
+                            }
                         } else{
                             notification(notificationManager, notificationBuilder, "5 minutes left", charging);
-                        }
-                        if(pref.getValue("sound", "off", "alarm").equals("on")) {
-                            ttsArm.setLanguage(Locale.KOREA);
-                            ttsArm.setSpeechRate(0.9f);
-                            ttsArm.speak("따릉이 자전거 반납까지 5분 남았습니다.",
-                                    TextToSpeech.QUEUE_FLUSH, null);
+                            if(pref.getValue("sound", "off", "alarm").equals("on")) {
+                                ttsArm.setLanguage(Locale.KOREA);
+                                ttsArm.setSpeechRate(0.9f);
+                                ttsArm.speak("5 minutes left.",
+                                        TextToSpeech.QUEUE_FLUSH, null);
+                            }
                         }
                     }
                 }

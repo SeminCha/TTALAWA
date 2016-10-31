@@ -72,7 +72,7 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
                             if(pref.getValue("sound", "off", "alarm").equals("on")){
                                 ttsArm.setLanguage(Locale.ENGLISH);
                                 ttsArm.setSpeechRate(0.9f);
-                                ttsArm.speak("Half an hour left.",TextToSpeech.QUEUE_FLUSH, null);
+                                ttsArm.speak("30 minutes left before the end of the session.",TextToSpeech.QUEUE_FLUSH, null);
                             }
                         }
 
@@ -93,7 +93,7 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
                             if(pref.getValue("sound", "off", "alarm").equals("on")) {
                                 ttsArm.setLanguage(Locale.ENGLISH);
                                 ttsArm.setSpeechRate(0.9f);
-                                ttsArm.speak("20 minutes left.", TextToSpeech.QUEUE_FLUSH, null);
+                                ttsArm.speak("20 minutes left before the end of the session.", TextToSpeech.QUEUE_FLUSH, null);
                             }
                         }
                     }
@@ -114,7 +114,7 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
                             if(pref.getValue("sound", "off", "alarm").equals("on")) {
                                 ttsArm.setLanguage(Locale.ENGLISH);
                                 ttsArm.setSpeechRate(0.9f);
-                                ttsArm.speak("10 minutes left.", TextToSpeech.QUEUE_FLUSH, null);
+                                ttsArm.speak("10 minutes left before the end of the session.", TextToSpeech.QUEUE_FLUSH, null);
                             }
                         }
                     }
@@ -135,7 +135,7 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
                             if(pref.getValue("sound", "off", "alarm").equals("on")) {
                                 ttsArm.setLanguage(Locale.ENGLISH);
                                 ttsArm.setSpeechRate(0.9f);
-                                ttsArm.speak("5 minutes left.",
+                                ttsArm.speak("5 minutes left before the end of the session.",
                                         TextToSpeech.QUEUE_FLUSH, null);
                             }
                         }

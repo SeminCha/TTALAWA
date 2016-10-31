@@ -349,7 +349,7 @@ public class RestTimeTask extends AsyncTask<Void, Void, Void> implements TextToS
         pNotificationBuilder = new NotificationCompat.Builder(MainActivity.mContext);
         pNotificationBuilder
                 .setLargeIcon(bitmap) // 이미지 띄워주기
-                .setSmallIcon(R.drawable.settings)
+                .setSmallIcon(R.drawable.alarm)
                 .setContentTitle(restTime)
                 .setContentText(charging) // 텍스트 띄우기
                 .setTicker(restTime) // 상태 바에 뜨는 문구
